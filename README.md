@@ -6,7 +6,9 @@ Il s'agit d'un site pour un maquettiste / architecte en reconversion en tant qu'
 L'idée principale de ce projet est de réaliser le site "vitrine" d'un architecte d'intérieur, mais aussi d'y combiner sa passion : la brocante et la revente de meubles vintage et de designers.
 
 Ce site doit répondre à certains pré-requis demandés par le client en termes de design (sobre et minimaliste). Quelques exemples de sites ont d'ailleurs fournis par le client:
+
 https://minuit.archi/ 
+
 https://www.ateliergermain.com/
 
 
