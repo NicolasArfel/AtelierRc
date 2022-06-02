@@ -13,9 +13,11 @@ Le site aura donc un double emploi :
 - Un site vitrine pour montrer ses réalisations (photos format vignette, informations de type surface, localisation, type, etc..).
 - Un site de vente (e-shop) de meubles chinés avec la mise en place d'un panier pour réaliser son achat et la possibilité de laisser un commentaire (connexion obligatoire).
  
-Il y aura également (pour les détails) :
-- Un formulaire de contact.
+Il y aura donc (pour les détails) :
+- une page d'accueil
+- une page de login/logout 
 - Une page "à propos" pour en savoir plus sur son travail.
+- Un formulaire de contact.
 Ce site ira donc plus loin qu'un simple site vitrine, mais un accent particulier devra être mis sur le front, puisqu'il permettra à son propriétaire de mettre en valeur ses projets.
 Il y aura également une partie gestion de comptes (connexion, authentification, type d'utilisateur) pour accéder à des contenus supplémentaires (matériauthèque, articles, favoris).
 Il faudra créer un back office pour qu'il puisse administrer son site et qu'il ajoute lui-même ses projets/articles/produits/matériaux... en toute autonomie, ainsi qu'une base de données pour stocker toutes ces informations.
