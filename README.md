@@ -12,7 +12,7 @@ Ce site devra répondre à certains pré-requis demandés par le client en terme
 Le site aura donc un double emploi :
 - Un site vitrine pour montrer ses réalisations (photos format vignette, informations de type surface, localisation, type, etc..).
 - Un site de vente (e-shop) de meubles chinés avec la mise en place d'un panier pour réaliser son achat et la possibilité de laisser un commentaire (connexion obligatoire).
-- 
+ 
 Il y aura également (pour les détails) :
 - Un formulaire de contact.
 - Une page "à propos" pour en savoir plus sur son travail.
