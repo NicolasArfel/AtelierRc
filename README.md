@@ -3,9 +3,12 @@
 ## Présentation du projet
 
 Il s'agit d'un site pour un maquettiste / architecte en reconversion en tant qu'architecte d'intérieur / chineur.
-L'idée principale de ce projet serait de réaliser le site "vitrine" d'un architecte d'intérieur, mais aussi d'y combiner sa passion : la brocante et la revente de meubles vintage et de designers.
+L'idée principale de ce projet est de réaliser le site "vitrine" d'un architecte d'intérieur, mais aussi d'y combiner sa passion : la brocante et la revente de meubles vintage et de designers.
 
-Ce site devra répondre à certains pré-requis demandés par le client en termes de design (sobre et minimaliste). Quelques exemples de sites seront d'ailleurs fournis par le client.
+Ce site doit répondre à certains pré-requis demandés par le client en termes de design (sobre et minimaliste). Quelques exemples de sites ont d'ailleurs fournis par le client:
+https://minuit.archi/ 
+https://www.ateliergermain.com/
+
 
 ## Description 
 
