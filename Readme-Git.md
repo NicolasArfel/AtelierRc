@@ -25,12 +25,12 @@
 
 7. Switcher sur une autre branche :
     - `git checkout le-nom-de-la-branche`
-    - par exemple : `git checkout master` vous renverra sur la branche 'master'.
+    - par exemple : `git checkout main` vous renverra sur la branche 'master'.
 
 8. Récupérer le travail de la branche master :
-   - `git remote add correction git@github.com:O-clock-Blob/projet-14-AtelierRC.git`
-   - `git switch master`
-   - `git pull correction master --force --allow-unrelated-histories`
+   - `git remote add origin git@github.com:O-clock-Blob/projet-14-AtelierRC.git`
+   - `git switch main`
+   - `git pull origin main --force --allow-unrelated-histories`
 
 ### N'oubliez pas de repartir d'une nouvelle branche en reprenant l'étape 3
 
