@@ -19,7 +19,7 @@ const Projets = () => {
     return (
         <main className="container" >
             <Banner title={title} description={description} />
-            <div className="row">
+            <div className="row project__section">
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/" >
                         <div class="card-image">
