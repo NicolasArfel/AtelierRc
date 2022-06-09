@@ -6,6 +6,11 @@ nav {
     box-shadow: none;
 }
 
+.active {
+    background: #7c7c7c45;
+    border-radius: 0.5em;
+}
+
 .login {
     position: absolute;
     top: 0;
@@ -31,6 +36,6 @@ nav {
 @media (min-width:992px) {
     .sidenav-trigger {
         position: absolute;
-        top:-200px;
+        top: -200px;
     }
 }
