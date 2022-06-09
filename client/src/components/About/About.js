@@ -1,3 +1,4 @@
+import Banner from '../Banner/Banner';
 import './About.css'
 
 const AboutImg = '../../images/about.jpeg'
@@ -6,10 +7,7 @@ const AboutImg = '../../images/about.jpeg'
 const About = () => {
     return (
         <main className="about container center">
-            <div className="about__banner ">
-                <h1 className="about__banner-title" > À propos </h1>
-                <p className="about__banner-description" > Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus odit deserunt cupiditate fuga porro obcaecati sapiente, magni iusto vitae pariatur, eaque facilis exercitationem modi eos distinctio dolor inventore, ipsam dolorum! </p>
-            </div>
+            <Banner title={`À propos`} description={`Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus odit deserunt cupiditate fuga porro obcaecati sapiente, magni iusto vitae pariatur, eaque facilis exercitationem modi eos distinctio dolor inventore, ipsam dolorum!`}/>
             <div className="row">
                 <div className="about__img col s6">
                     <img src={AboutImg} alt="" />
