@@ -1,3 +1,11 @@
 .project__article {
     margin: 5rem;
 }
+
+.card {
+    box-shadow: none !important;
+}
+
+.card-image:hover {
+    opacity: 0.8;
+}
