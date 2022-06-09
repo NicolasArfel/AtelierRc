@@ -10,6 +10,10 @@
     font-size: 1.2em;
 }
 
+.contact__button {
+    border-radius: 0.5em;
+}
+
 .contact__img {
     max-width: 50%;
 }
@@ -28,8 +32,9 @@
     .contact__img {
         max-width: 30%;
     }
+
     .row .col {
-        width: 100%!important;
+        width: 100% !important;
         margin-left: auto;
         left: auto;
         right: auto;
