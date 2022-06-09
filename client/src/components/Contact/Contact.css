@@ -11,9 +11,33 @@
 }
 
 .contact__img {
-    max-width: 30%;
+    max-width: 50%;
 }
 
 .contact__aticle {
     margin: 1em;
+}
+
+@media only screen and (max-width: 1004px) {
+    .contact__img {
+        max-width: 38%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .contact__img {
+        max-width: 30%;
+    }
+    .row .col {
+        width: 100%!important;
+        margin-left: auto;
+        left: auto;
+        right: auto;
+    }
+}
+
+@media only screen and (max-width: 690px) {
+    .contact__img {
+        max-width: 40%;
+    }
 }
