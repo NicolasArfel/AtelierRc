@@ -2,6 +2,6 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+-- Ready to code
 
 COMMIT;
