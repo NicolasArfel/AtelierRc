@@ -38,6 +38,9 @@ const Contact = () => {
                             <textarea id="textarea1" className="materialize-textarea"></textarea>
                             <label htmlFor="last_name">Votre Message</label>
                         </div>
+                        <button class="btn waves-effect waves-light grey darken-3" type="submit" name="action">Envoyer
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </form>
             </div>
