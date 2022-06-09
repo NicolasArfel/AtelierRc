@@ -2,6 +2,10 @@ li {
     margin: 1rem;
 }
 
+nav {
+    box-shadow: none;
+}
+
 .login {
     position: absolute;
     top: 0;
