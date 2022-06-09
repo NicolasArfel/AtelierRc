@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './FooterStyle.css'
+import './Footer.css'
 const LogoRC = '../../images/Atelier.png'
 const logoInsta = '../../images/icons8-instagram.svg'
 

@@ -4,6 +4,7 @@ import About from '../About/About';
 import Contact from '../Contact/Contact';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Projets from '../Projets/Projets';
 import './App.css';
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
     <div className="App">
       <Header />
       <Routes>
+        <Route path="/" element={<Projets />} />
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
