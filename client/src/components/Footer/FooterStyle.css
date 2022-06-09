@@ -1,0 +1,52 @@
+.logoRC {
+    width: 200px;
+}
+
+.footer-contact {
+    text-align: initial;
+}
+
+.page-footer {
+    border-top: 1px solid black;
+}
+
+.logo-insta {
+    width: 40px;
+}
+
+.logoInsta {
+    text-align: end;
+}
+
+.logo-insta:hover {
+    width: 45px;
+}
+
+.mailto {
+    color: black;
+}
+
+.mailto:hover {
+    color: rgb(153, 137, 58);
+}
+
+.copyright {
+    color: rgb(0, 0, 0);
+}
+
+@media only screen and (max-width: 992px) {
+    .col {
+        width: 33% !important;
+    }
+}
+
+@media only screen and (max-width: 690px) {
+    .col {
+        width: 100% !important;
+    }
+
+    .logoInsta,
+    .footer-contact {
+        text-align: center;
+    }
+}
