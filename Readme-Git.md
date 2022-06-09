@@ -18,7 +18,7 @@
 5. Voir la branche locale:
     - `git branch`
 
-6. Sauvegarder votre travail :
+6. Sauvegarder votre travail (!! Bien verifier d'être sur la bonne branch ) :
     - `git add`
     - `git commit -m "texte clair et explicite"`
     - `git push`
