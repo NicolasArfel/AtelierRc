@@ -1,0 +1,22 @@
+li {
+    margin: 1rem;
+}
+
+.login {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.insta {
+    position: absolute;
+    top: 0;
+    left: 10px;
+}
+
+@media (min-width:992px) {
+    .sidenav-trigger {
+        position: absolute;
+        top:-200px;
+    }
+}
