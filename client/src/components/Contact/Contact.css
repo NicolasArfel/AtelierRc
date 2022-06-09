@@ -1,0 +1,19 @@
+.contact__banner {
+    border-top: 1px solid #0000006e;
+    border-bottom: 1px solid #0000006e;
+    margin: 2em 0em 2em 0em;
+    text-align: initial;
+}
+
+.contact__banner-p {
+    margin-left: 2em;
+    font-size: 1.2em;
+}
+
+.contact__img {
+    max-width: 30%;
+}
+
+.contact__aticle {
+    margin: 1em;
+}
