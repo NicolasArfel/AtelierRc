@@ -7,7 +7,7 @@ const logoInsta = '../../images/icons8-instagram.svg'
 const footer = () => {
     return (
         <footer className="page-footer white">
-            <div className="row">
+            <div className="row footer-content">
                 <div className="col l4 s12 footer-contact">
                     <p className='black-text'>Romain Caillon</p>
                     <p className='black-text'>75010 Paris</p>

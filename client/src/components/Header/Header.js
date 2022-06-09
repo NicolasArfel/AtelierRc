@@ -9,7 +9,7 @@ const Header = () => {
         
             <header className="center">
                 <nav className="grey lighten-3 center" role="navigation">
-                    <a href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC' className='logo_header' src={LogoRC} /></a>
+                    <span href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC' className='logo_header' src={LogoRC} /></span>
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
                             <li className='black-text'>Projets</li>
@@ -33,7 +33,7 @@ const Header = () => {
                 </div> 
                     {/* {!isLogged && <i class="black-text right material-icons login">person</i> }
                     {isLogged && <i class="black-text right material-icons login">exit_to_app</i> } */}
-                    <i class="black-text right material-icons login">person</i> 
+                    <i className="black-text right material-icons login">person</i> 
 
                 </nav>
             </header>
