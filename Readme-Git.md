@@ -25,12 +25,14 @@
 
 7. Switcher sur une autre branche :
     - `git checkout le-nom-de-la-branche`
-    - par exemple : `git checkout master` vous renverra sur la branche 'master'.
+    - par exemple : `git checkout main` vous renverra sur la branche 'main'.
 
-8. Récupérer le travail de la branche master :
-   - `git remote add correction git@github.com:O-clock-Blob/projet-14-AtelierRC.git`
-   - `git switch master`
-   - `git pull correction master --force --allow-unrelated-histories`
+!!! Ne pas oublier de git pull entre chaques merges de composants !!!
+
+8. Récupérer le travail de la branch terminée :
+   - Se placer sur la branch parente du composant a merge => `git merge nom-de-la-branch-enfant`
+   - Ajouter à git les modifications => `git add . => git commit -m description du commit" => git push`
+   - Une fois chaques branch principale actualisée faire un `git merge nom-de-la-branche-principale` depuis la branch Main pour avoir le repos à jour
 
 ### N'oubliez pas de repartir d'une nouvelle branche en reprenant l'étape 3
 
