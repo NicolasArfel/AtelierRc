@@ -25,7 +25,9 @@
 
 7. Switcher sur une autre branche :
     - `git checkout le-nom-de-la-branche`
-    - par exemple : `git switch main` vous renverra sur la branche 'main'.
+    - par exemple : `git checkout main` vous renverra sur la branche 'main'.
+
+!!! Ne pas oublier de git pull entre chaques merges de composants !!!
 
 8. Récupérer le travail de la branch terminée :
    - Se placer sur la branch parente du composant a merge => `git merge nom-de-la-branch-enfant`
@@ -33,4 +35,3 @@
    - Une fois chaques branch principale actualisée faire un `git merge nom-de-la-branche-principale` depuis la branch Main pour avoir le repos à jour
 
 ### N'oubliez pas de repartir d'une nouvelle branche en reprenant l'étape 3
-
