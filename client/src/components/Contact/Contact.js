@@ -1,16 +1,15 @@
 import React from 'react'
 
+import Banner from '../Banner/Banner'
 import './Contact.css'
 const ContactImg = '../../images/about.jpeg'
 
+const title = 'Contact'
+
 const Contact = () => {
     return (
-        <main className="container">
-            <div className='contact__banner'>
-                <p className='contact__banner-p'>
-                    Contact
-                </p>
-            </div>
+        <main className="container" >
+            <Banner title={title} />
             <div className="row">
                 <div className="col s6">
                     <article className='contact__aticle'>
