@@ -2,7 +2,7 @@ import React from 'react'
 
 import Banner from '../Banner/Banner'
 import './Contact.css'
-const ContactImg = '../../images/about.jpeg'
+const ContactImg = '../../images/contact_img.png'
 
 const title = 'Contact'
 
@@ -32,7 +32,7 @@ const Contact = () => {
                         <div className="input-field col s12">
                             <input id="email" type="email" className="validate" />
                             <label htmlFor="email">Email</label>
-                            <span className="helper-text" data-error="L'email n'est pas valide" data-success="right"></span>
+                            <span className="helper-text" data-error="Email non valide" data-success="Email valide"></span>
                         </div>
                         <div className="input-field col s12">
                             <textarea id="textarea1" className="materialize-textarea"></textarea>

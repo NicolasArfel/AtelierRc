@@ -2,11 +2,15 @@ li {
     margin: 1rem;
 }
 
+header {
+    height: 100px;
+}
+
 nav {
     box-shadow: none;
 }
 
-.active {
+.active-link {
     background: #7c7c7c45;
     border-radius: 0.5em;
 }
@@ -15,6 +19,10 @@ nav {
     position: absolute;
     top: 0;
     right: 10px;
+}
+
+.logoInsta {
+    margin-bottom: 3em;
 }
 
 .logo_header {
