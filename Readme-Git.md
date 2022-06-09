@@ -27,6 +27,8 @@
     - `git checkout le-nom-de-la-branche`
     - par exemple : `git checkout master` vous renverra sur la branche 'master'.
 
+!!! Ne pas oublier de git pull entre chaques merges de composants !!!
+
 8. Récupérer le travail de la branche master :
    - `git remote add correction git@github.com:O-clock-Blob/projet-14-AtelierRC.git`
    - `git switch master`
