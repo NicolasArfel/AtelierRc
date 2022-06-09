@@ -1,3 +1,4 @@
+
 .logoRC {
     width: 200px;
 }
@@ -8,6 +9,9 @@
 
 .page-footer {
     border-top: 1px solid black;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .logo-insta {

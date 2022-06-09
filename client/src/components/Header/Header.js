@@ -1,5 +1,7 @@
-
 import './Header.css';
+
+const logoInsta = '../../images/icons8-instagram.svg'
+const LogoRC = '../../images/Atelier.png'
 
 const Header = () => {
     return (
@@ -7,7 +9,7 @@ const Header = () => {
         
             <header className="center">
                 <nav className="grey lighten-3 center" role="navigation">
-                    <span id="logo-container" className="brand-logo center">LOGO</span>
+                    <a href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC' className='logo_header' src={LogoRC} /></a>
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
                             <li className='black-text'>Projets</li>
@@ -26,7 +28,9 @@ const Header = () => {
 
                         <span data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons grey-text">menu</i></span>
                     </div>
-                    <i class="black-text left material-icons insta">photo_camera</i> 
+                    <div className="col l4 s12 logoInsta">
+                    <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='insta' src={logoInsta} /></a>
+                </div> 
                     {/* {!isLogged && <i class="black-text right material-icons login">person</i> }
                     {isLogged && <i class="black-text right material-icons login">exit_to_app</i> } */}
                     <i class="black-text right material-icons login">person</i> 
