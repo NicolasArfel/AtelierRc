@@ -54,11 +54,12 @@ const Register = () => {
                             type="submit"
                             name="action"
                         >
-                            Envoyer
+                            S'inscrire 
                         </button>
                     </div>
                 </form>
                 <div className="column col s6">
+                <p>Dèjà inscrit ? Connectez-vous !</p>
                     <Link to="/login">
                         <button className="button btn-large waves-effect waves-light grey darken-3 ">
                             Se connecter
