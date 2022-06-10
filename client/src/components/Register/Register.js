@@ -60,7 +60,7 @@ const Register = () => {
                 </form>
                 <div className="column col s6">
                     <Link to="/login">
-                        <button className="button btn-large waves-effect waves-light grey darken-3">
+                        <button className="button btn-large waves-effect waves-light grey darken-3 contact__button">
                             Se connecter
                         </button>
                     </Link>
