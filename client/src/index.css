@@ -3,13 +3,15 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto+Serif:opsz,wght@8..144,100;8..144,300;8..144,400;8..144,500;8..144,700&display=swap');
+
 
 body {
   margin: 0;
   height: 100vh;
   flex-direction: column;
-  font-family: 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: /* 'Roboto Condensed' */ 'Roboto Serif',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
