@@ -14,7 +14,7 @@ const projectController = {
         }
     },
 
-    async getOne(_, res) {
+    async getOne(req, res) {
        try {
             const project = await projectDatamapper.findByPk(req.params.id);
           //  if (!project) {
