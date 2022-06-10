@@ -23,15 +23,7 @@ const Projets = () => {
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/" >
                         <div class="card-image">
-                            <img className="responsive-img" alt={projet1} src={projet1} />
-                            <span class="card-title black-text">Card Title</span>
-                        </div>
-                    </Link>
-                </article>
-                <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
-                            <img className="responsive-img" alt={projet3} src={projet3} />
+                            <img className="responsive-img" alt={projet4} src={projet4} />
                             <span class="card-title black-text">Card Title</span>
                         </div>
                     </Link>
@@ -47,6 +39,14 @@ const Projets = () => {
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/" >
                         <div class="card-image">
+                            <img className="responsive-img" alt={projet3} src={projet3} />
+                            <span class="card-title black-text">Card Title</span>
+                        </div>
+                    </Link>
+                </article>
+                <article className="col s12 m6 l3 project__article card">
+                    <Link to="/" >
+                        <div class="card-image">
                             <img className="responsive-img" alt={projet5} src={projet5} />
                             <span class="card-title black-text">Card Title</span>
                         </div>
@@ -55,12 +55,12 @@ const Projets = () => {
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/" >
                         <div class="card-image">
-                            <img className="responsive-img" alt={projet4} src={projet4} />
+                            <img className="responsive-img" alt={projet1} src={projet1} />
                             <span class="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
-                <article className="col s12 m6 l3 project__article card">
+                <article className="col s12 m6 l3 project__article card" >
                     <Link to="/" >
                         <div class="card-image">
                             <img className="responsive-img" alt={projet6} src={projet6} />
