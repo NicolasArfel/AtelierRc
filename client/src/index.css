@@ -11,7 +11,7 @@ body {
   margin: 0;
   height: 100vh;
   flex-direction: column;
-  font-family: /* 'Roboto Condensed' */ 'Roboto Serif',
+  font-family:  'Roboto Condensed', 'Roboto Serif',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -4615,7 +4615,7 @@ nav ul li.active {
 nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #000;
   display: block;
   padding: 0 15px;
