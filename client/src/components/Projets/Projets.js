@@ -21,50 +21,50 @@ const Projets = () => {
             <Banner title={title} description={description} />
             <div className="row project__section">
                 <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet4} src={projet4} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
                 <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet2} src={projet2} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
                 <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet3} src={projet3} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
                 <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet5} src={projet5} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
                 <article className="col s12 m6 l3 project__article card">
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet1} src={projet1} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
                 <article className="col s12 m6 l3 project__article card" >
-                    <Link to="/" >
-                        <div class="card-image">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image">
                             <img className="responsive-img" alt={projet6} src={projet6} />
-                            <span class="card-title black-text">Card Title</span>
+                            <span className="card-title black-text">Card Title</span>
                         </div>
                     </Link>
                 </article>
