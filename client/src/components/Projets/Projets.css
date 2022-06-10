@@ -6,10 +6,6 @@
     box-shadow: none !important;
 }
 
-.card__image {
-    border: 3px solid black;
-}
-
 .card-image:hover {
     opacity: 0.8;
 }

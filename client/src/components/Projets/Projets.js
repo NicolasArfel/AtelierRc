@@ -22,7 +22,7 @@ const Projets = () => {
             <div className="row project__section">
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet4} src={projet4} />
                             <span className="card-title black-text">Card Title</span>
                         </div>
@@ -30,7 +30,7 @@ const Projets = () => {
                 </article>
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet2} src={projet2} />
                             <span className="card-title black-text">Card Title</span>
                         </div>
@@ -38,7 +38,7 @@ const Projets = () => {
                 </article>
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet3} src={projet3} />
                             <span className="card-title black-text">Card Title</span>
                         </div>
@@ -46,7 +46,7 @@ const Projets = () => {
                 </article>
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet5} src={projet5} />
                             <span className="card-title black-text">Card Title</span>
                         </div>
@@ -54,7 +54,7 @@ const Projets = () => {
                 </article>
                 <article className="col s12 m6 l3 project__article card">
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet1} src={projet1} />
                             <span className="card-title black-text">Card Title</span>
                         </div>
@@ -62,7 +62,7 @@ const Projets = () => {
                 </article>
                 <article className="col s12 m6 l3 project__article card" >
                     <Link to="/projet/:slug" >
-                        <div className="card-image card__image">
+                        <div className="card-image card__image z-depth-2">
                             <img className="responsive-img" alt={projet6} src={projet6} />
                             <span className="card-title black-text">Card Title</span>
                         </div>

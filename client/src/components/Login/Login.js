@@ -28,7 +28,7 @@ const Login = () => {
                 </form>
                 <div className="column col s6">
                     <Link to='/register'>
-                    <button class="button btn-large waves-effect waves-light grey darken-3">
+                    <button className="button btn-large waves-effect waves-light grey darken-3">
                         S'inscrire
                     </button>                  
                     </Link>
