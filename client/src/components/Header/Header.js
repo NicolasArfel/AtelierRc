@@ -73,7 +73,11 @@ const Header = () => {
                     </div>
                     {/* {!isLogged && <i class="black-text right material-icons login">person</i> }
                     {isLogged && <i class="black-text right material-icons login">exit_to_app</i> } */}
-                    <i className="black-text right material-icons login">person</i>
+                    <NavLink to="/login" className={activeLink} >
+                        <i className="black-text right material-icons login-icon">
+                            person
+                        </i>
+                    </NavLink>
                 </nav>
             </header>
         </div>
