@@ -50,7 +50,7 @@ const Register = () => {
                             </label>
                         </div>
                         <button
-                            className="btn waves-effect waves-light grey darken-3 contact__button"
+                            className="button btn waves-effect waves-light grey darken-3 "
                             type="submit"
                             name="action"
                         >
@@ -60,7 +60,7 @@ const Register = () => {
                 </form>
                 <div className="column col s6">
                     <Link to="/login">
-                        <button className="button btn-large waves-effect waves-light grey darken-3 contact__button">
+                        <button className="button btn-large waves-effect waves-light grey darken-3 ">
                             Se connecter
                         </button>
                     </Link>

@@ -22,12 +22,12 @@ const Login = () => {
                             <textarea id="textarea1" className="materialize-textarea"></textarea>
                             <label htmlFor="password">Mot de Passe</label>
                         </div>
-                        <button className="btn waves-effect waves-light grey darken-3 contact__button" type="submit" name="action">Envoyer</button>
+                        <button className="btn waves-effect waves-light grey darken-3 button" type="submit" name="action">Envoyer</button>
                     </div>
                 </form>
                 <div className="column col s6">
                     <Link to='/register'>
-                        <button className="button btn-large waves-effect waves-light grey darken-3 contact__button">
+                        <button className="button btn-large waves-effect waves-light grey darken-3">
                             S'inscrire
                         </button>
                     </Link>

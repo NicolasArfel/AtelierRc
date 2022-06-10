@@ -5828,6 +5828,15 @@ button.btn-floating {
   display: block;
 }
 
+.button {
+  border-radius: 0.5em;
+}
+
+.button:hover {
+  background-color: #42424240 !important;
+  color: black;
+}
+
 .dropdown-content {
   background-color: #fff;
   margin: 0;
