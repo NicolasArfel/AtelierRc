@@ -14,6 +14,11 @@
     border-radius: 0.5em;
 }
 
+.contact__button:hover {
+    background-color: #42424240 !important;
+    color: black;
+}
+
 .contact__img {
     max-width: 70%;
 }

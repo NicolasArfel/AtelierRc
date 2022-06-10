@@ -13,7 +13,7 @@ const Contact = () => {
             <Banner title={title} description={description} />
             <div className="row">
                 <article className="col s6">
-                    <img alt='ContactImg' className='contact__img' src={ContactImg} />
+                    <img alt='ContactImg' className='contact__img z-depth-2' src={ContactImg} />
                 </article>
                 <form className="col s6 right contact__form">
                     <div className="row">
