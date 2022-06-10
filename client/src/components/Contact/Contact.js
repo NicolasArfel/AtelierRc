@@ -5,29 +5,25 @@ import './Contact.css'
 const ContactImg = '../../images/contact_img.png'
 
 const title = 'Contact'
+const description = `Romain Caillon, 75010 Paris. romaincaillon.archi@gmail.com`
 
 const Contact = () => {
     return (
         <main className="container" >
-            <Banner title={title} />
+            <Banner title={title} description={description} />
             <div className="row">
-                <div className="col s6">
-                    <article className='contact__aticle'>
-                        <p className='black-text'>Romain Caillon</p>
-                        <p className='black-text'>75010 Paris</p>
-                        <a href="mailto: romaincaillon.archi@gmail.com" className='mailto'>romaincaillon.archi@gmail.com</a>
-                    </article>
+                <article className="col s6">
                     <img alt='ContactImg' className='contact__img' src={ContactImg} />
-                </div>
+                </article>
                 <form className="col s6 right contact__form">
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="first_name" type="text" className="validate" />
-                            <label htmlFor="first_name">Nom</label>
+                            <input id="last_name" type="text" className="validate" />
+                            <label htmlFor="last_name">Nom</label>
                         </div>
                         <div className="input-field col s12">
-                            <input id="last_name" type="text" className="validate" />
-                            <label htmlFor="last_name">Prénom</label>
+                            <input id="first_name" type="text" className="validate" />
+                            <label htmlFor="first_name">Prénom</label>
                         </div>
                         <div className="input-field col s12">
                             <input id="email" type="email" className="validate" />
@@ -36,7 +32,7 @@ const Contact = () => {
                         </div>
                         <div className="input-field col s12">
                             <textarea id="textarea1" className="materialize-textarea"></textarea>
-                            <label htmlFor="last_name">Votre Message</label>
+                            <label htmlFor="textarea1">Votre Message</label>
                         </div>
                         <button className="btn waves-effect waves-light grey darken-3 contact__button" type="submit" name="action">Envoyer</button>
                     </div>
