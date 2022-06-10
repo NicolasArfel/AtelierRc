@@ -18,7 +18,7 @@
 5. Voir la branche locale:
     - `git branch`
 
-6. Sauvegarder votre travail :
+6. Sauvegarder votre travail (!! Bien verifier d'être sur la bonne branch ) :
     - `git add`
     - `git commit -m "texte clair et explicite"`
     - `git push`
@@ -28,11 +28,18 @@
     - par exemple : `git checkout main` vous renverra sur la branche 'main'.
 
 !!! Ne pas oublier de git pull entre chaques merges de composants !!!
+<<<<<<< HEAD
 
 8. Récupérer le travail de la branch terminée :
    - Se placer sur la branch parente du composant a merge => `git merge nom-de-la-branch-enfant`
    - Ajouter à git les modifications => `git add . => git commit -m description du commit" => git push`
    - Une fois chaques branch principale actualisée faire un `git merge nom-de-la-branche-principale` depuis la branch Main pour avoir le repos à jour
+=======
+>>>>>>> components
 
+8. Récupérer le travail de la branch terminée :
+   - Se placer sur la branch parente du composant a merge => `git merge nom-de-la-branch-enfant`
+   - Ajouter à git les modifications => `git add . => git commit -m description du commit" => git push`
+   - Une fois chaques branch principale actualisée faire un `git merge nom-de-la-branche-principale` depuis la branch Main pour avoir le repos à jour
 ### N'oubliez pas de repartir d'une nouvelle branche en reprenant l'étape 3
 

@@ -1,0 +1,50 @@
+li {
+    margin: 1rem;    
+}
+
+header {
+    height: 100px;
+}
+
+nav {
+    box-shadow: none;
+}
+
+.active-link {
+    background: #7c7c7c45;
+    border-radius: 0.5em;
+}
+
+.login-icon {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+
+.logoInsta {
+    margin-bottom: 3em;
+}
+
+.logo_header {
+    width: 80px;
+}
+
+.insta {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 40px;
+    margin-top: 1rem;
+}
+
+.insta:hover {
+    width: 48px;
+}
+
+
+@media (min-width:992px) {
+    .sidenav-trigger {
+        position: absolute;
+        top: -200px;
+    }
+}

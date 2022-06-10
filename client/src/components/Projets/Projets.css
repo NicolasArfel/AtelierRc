@@ -1,0 +1,40 @@
+.card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    height: 480px;
+    margin: 2rem ;
+}
+
+.responsive-img {
+    max-height: 100%;
+}
+
+.card-image:hover {
+    opacity: 0.8;
+}
+
+.project__section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+}
+
+
+@media  (max-width: 2315px) {
+    .card__image {
+        width: 450px;
+        height: 450px;
+        margin: 1.5rem;
+    }
+}
+@media  (max-width: 2121px) {
+    .project__section {
+       
+        justify-content: space-around;
+    }
+}
