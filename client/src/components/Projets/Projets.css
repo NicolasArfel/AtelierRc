@@ -1,9 +1,14 @@
-.project__article {
-    margin: 5rem;
+.card__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 480px;
+    height: 480px;
+    margin: 2rem ;
 }
 
-.card {
-    box-shadow: none !important;
+.responsive-img {
+    max-height: 100%;
 }
 
 .card-image:hover {
@@ -19,14 +24,17 @@
     align-items: center;
 }
 
-@media only screen and (min-width: 993px) {
-    .project__article {
-        width: 25% !important;
+
+@media  (max-width: 2315px) {
+    .card__image {
+        width: 450px;
+        height: 450px;
+        margin: 1.5rem;
     }
 }
-
-@media only screen and (max-width: 1296px) {
-    .project__article {
-        width: 39% !important;
+@media  (max-width: 2121px) {
+    .project__section {
+       
+        justify-content: space-around;
     }
 }
