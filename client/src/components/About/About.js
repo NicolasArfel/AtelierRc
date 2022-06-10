@@ -1,5 +1,9 @@
+/* --- imports --- */
+
 import Banner from '../Banner/Banner';
 import './About.css'
+
+/* --- éléments créés pour les props --- */
 
 const AboutImg = '../../images/about.jpeg'
 const title = 'À propos';
@@ -14,11 +18,7 @@ const About = () => {
                     <img src={AboutImg} alt="" className='responsive-img z-depth-2' />
                 </div>
                 <div className="about__description col s6" >
-                    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nam eum itaque ratione laborum! Similique aut, dolore culpa sit beatae porro nisi quae sequi voluptatem, delectus non blanditiis amet exercitationem.
-                        Nemo, accusantium aliquam. Culpa inventore aperiam sunt, modi dolorum quae maxime harum? At consectetur iure ducimus quis, provident velit nostrum rem est dolores voluptatibus, suscipit corporis nihil sit voluptas id?
-                        Molestias, aliquam dolores harum ad architecto, omnis deserunt dolore minus minima facere sunt distinctio? Beatae animi totam aspernatur non deleniti ducimus natus dolore, ut minus, molestiae dignissimos veniam! Officia, nam?
-                        Harum, cumque sed. Voluptatem excepturi est temporibus asperiores libero, molestiae nihil quasi magnam nisi eligendi veritatis aut dolor doloremque hic facere dolore voluptates commodi ipsa mollitia unde fugit ad eveniet.
-                        Incidunt, repellendus doloremque. Tempore atque doloribus quod provident in natus quia placeat sapiente numquam veniam tenetur ea id, dolorem quis assumenda vel fuga aliquid, hic delectus velit repellat ipsa vitae.</p>
+                    <p >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi harum quod, minus saepe debitis illum odio expedita nam, est eveniet tempore maxime. Pariatur quos aspernatur mollitia. Ea molestiae assumenda numquam.</p>
                 </div>
             </div>
 
