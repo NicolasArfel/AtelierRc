@@ -29,13 +29,13 @@
 
 @media only screen and (max-width: 1004px) {
     .contact__img {
-        max-width: 38%;
+        max-width: 38%!important;
     }
 }
 
 @media only screen and (max-width: 992px) {
     .contact__img {
-        max-width: 30%;
+        max-width: 30%!important;
     }
 
     .row .col {
@@ -48,6 +48,6 @@
 
 @media only screen and (max-width: 690px) {
     .contact__img {
-        max-width: 40%;
+        max-width: 40%!important;
     }
 }
