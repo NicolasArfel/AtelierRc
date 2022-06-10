@@ -11,7 +11,7 @@ const About = () => {
             <Banner title={title} description={description} />
             <div className="row">
                 <div className="about__img col s6">
-                    <img src={AboutImg} alt="" />
+                    <img src={AboutImg} alt="" className='responsive-img' />
                 </div>
                 <div className="about__description col s6" >
                     <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus nam eum itaque ratione laborum! Similique aut, dolore culpa sit beatae porro nisi quae sequi voluptatem, delectus non blanditiis amet exercitationem.
