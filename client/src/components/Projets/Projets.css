@@ -16,9 +16,14 @@
     justify-content: space-around;
 }
 
-@media only screen and (min-width: 0) {
+@media only screen and (min-width: 993px) {
     .project__article {
-        margin: 5rem;
-        max-width: 39% !important;
+        width: 25%!important;
+    }
+}
+
+@media only screen and (max-width: 1296px) {
+    .project__article {
+        width: 39%!important;
     }
 }
