@@ -1,4 +1,5 @@
 const express = require('express');
+const furnitureController = require('./controllers/api/furnitureController');
 
 // importer les controllers
 const projectController = require('./controllers/api/projectController');
@@ -15,8 +16,7 @@ router.get('/api/project/:id', projectController.getOne);
 
 /* Furnitures */
 
-router.use((req, res) => {
-  res.status(404).send('Service does not exists\nSee : https://doc.localhost.api');
-});
+router.get('/api/furnitures', furnitureController.getAllFurnitures);
+router.get('/api/furniture/:id', furnitureController.getOne);
 
 module.exports = router;
