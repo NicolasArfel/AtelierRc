@@ -4,8 +4,19 @@
     padding: 0em 2em 0em 2em;
 }
 
-.card__article  {
-    width: 50%!important;
+.card__article {
+    width: 50% !important;
     margin: auto;
     margin-bottom: 2rem;
+}
+
+.sticky__details-project {
+    position: sticky;
+    top: 20px
+}
+
+@media (max-width:992px) {
+    .sticky__details-project {
+        position: initial;
+    }
 }

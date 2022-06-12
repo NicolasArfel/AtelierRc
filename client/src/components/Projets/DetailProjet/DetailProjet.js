@@ -20,7 +20,7 @@ const DetailProjet = () => {
         <main className="container" >
             <Banner title={title} />
             <div className="row">
-                <div className="col s6">
+                <div className="col s6 sticky__details-project">
                     <div className="col s12">
                         <div className="card card__detail">
                             <div className="card-content black-text">
