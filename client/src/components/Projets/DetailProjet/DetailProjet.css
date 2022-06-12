@@ -3,3 +3,9 @@
     border-radius: 0.3em;
     padding: 0em 2em 0em 2em;
 }
+
+.card__article  {
+    width: 50%!important;
+    margin: auto;
+    margin-bottom: 2rem;
+}
