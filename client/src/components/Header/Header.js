@@ -77,7 +77,7 @@ const Header = () => {
                         </ul>
                         <span data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons grey-text">menu</i></span>
                     </div>
-                
+
                     <div className="col l4 s12 logoInsta hide-on-med-and-down">
                         <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='insta' src={logoInsta} /></a>
                     </div>
