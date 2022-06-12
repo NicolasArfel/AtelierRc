@@ -6,7 +6,7 @@ const logoInsta = '../../images/icons8-instagram.svg'
 
 const footer = () => {
     return (
-        <footer className="page-footer white">
+        <footer className="page-footer">
             <div className="row footer-content">
                 <div className="col l4 s12 footer-contact">
                     <p className='black-text'>Romain Caillon</p>
@@ -20,7 +20,7 @@ const footer = () => {
                     <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='logo-insta' src={logoInsta} /></a>
                 </div>
             </div>
-            <div className="footer-copyright white">
+            <div className="footer-copyright">
                 <div className="container">
                     <p className='copyright'>© 2022 Copyright Atelier-RC</p>
                 </div>

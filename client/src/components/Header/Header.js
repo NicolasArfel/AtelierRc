@@ -13,7 +13,7 @@ const Header = () => {
     return (
         <div>
             <header className="center">
-                <nav className="grey white center " role="navigation">
+                <nav className="center " role="navigation">
                     <span href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC' className='logo_header' src={LogoRC} /></span>
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
