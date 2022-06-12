@@ -20,7 +20,7 @@ const DetailProjet = () => {
         <main className="container" >
             <Banner title={title} />
             <div className="row">
-                <div className="col s6">
+                <div className="col s6 sticky__details-project">
                     <div className="col s12">
                         <div className="card card__detail">
                             <div className="card-content black-text">
@@ -49,42 +49,42 @@ const DetailProjet = () => {
                 </div>
 
                 <div className="col s6">
-                    <article className="card">
+                    <article className="card card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet1} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet2} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet3} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet4} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet5} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet6} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet7} />
                         </div>
                     </article>
-                    <article className="card">
+                    <article className="card  card__article">
                         <div className="card-image">
                             <img className="responsive-img z-depth-2" alt={projet1} src={projet8} />
                         </div>

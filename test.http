@@ -1,0 +1,6 @@
+################################################################################
+# Test file for the HTTP routes of the API
+# To be able to use it, you need REST Client extension on your VSCode
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+################################################################################
+

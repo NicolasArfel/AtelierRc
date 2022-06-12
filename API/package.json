@@ -1,0 +1,29 @@
+{
+  "name": "projet-14-atelierrc",
+  "version": "1.0.0",
+  "description": "## Présentation du projet",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/O-clock-Blob/projet-14-AtelierRC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/O-clock-Blob/projet-14-AtelierRC/issues"
+  },
+  "homepage": "https://github.com/O-clock-Blob/projet-14-AtelierRC#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.17.0",
+    "express": "^4.18.1",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7",
+    "pg": "^8.7.3"
+  }
+}
