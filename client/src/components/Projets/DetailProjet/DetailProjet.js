@@ -13,7 +13,7 @@ import projet6 from '../../../projets/Chantier-meulire-Andrsey/6.jpg'
 import projet7 from '../../../projets/Chantier-meulire-Andrsey/7.jpg'
 import projet8 from '../../../projets/Chantier-meulire-Andrsey/8.jpg'
 
-const title = 'Atelier Versailles'
+const title = `Description du projet ${projet1}`
 
 const DetailProjet = () => {
     return (
