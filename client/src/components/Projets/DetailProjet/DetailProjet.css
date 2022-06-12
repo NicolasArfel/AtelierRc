@@ -1,13 +1,20 @@
 .card__detail {
-    border: 1px solid rgb(228, 228, 228);
-    border-radius: 0.3em;
+    box-shadow: none;
     padding: 0em 2em 0em 2em;
+    text-align: justify;
+    width: 70%;
+    margin: auto;
+    margin-bottom: 2rem;
 }
 
 .card__article {
     width: 50% !important;
     margin: auto;
     margin-bottom: 2rem;
+}
+
+.card__section-title {
+    text-decoration: underline;
 }
 
 .sticky__details-project {

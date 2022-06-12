@@ -11,8 +11,8 @@ nav {
 }
 
 .active-link {
-    background: #7c7c7c45;
-    border-radius: 0.5em;
+    text-decoration: underline;
+    color: black;
 }
 
 .login-icon {

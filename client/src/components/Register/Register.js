@@ -13,16 +13,25 @@ const Register = () => {
                 <form className="col s6 right register__form">
                     <div className="row">
                         <div className="input-field col s12">
-                            <input id="last_name" type="text" className="validate" />
+                            <input
+                                id="last_name"
+                                type="text"
+                                className="validate" />
                             <label htmlFor="last_name">Nom</label>
                         </div>
                         <div className="input-field col s12">
-                            <input id="first_name" type="text" className="validate" />
+                            <input
+                                id="first_name"
+                                type="text"
+                                className="validate" />
                             <label htmlFor="first_name">Prénom</label>
                         </div>
                         <div className="input-field col s12">
-                            <input id="email" type="email" className="validate" />
-                            <label htmlFor="email">*Email</label>
+                            <input
+                                id="email"
+                                type="email"
+                                className="validate" />
+                            <label htmlFor="email">Email</label>
                             <span
                                 className="helper-text"
                                 data-error="Email non valide"
@@ -30,19 +39,19 @@ const Register = () => {
                             ></span>
                         </div>
                         <div className="input-field col s12">
-                            <textarea
-                                id="textarea1"
-                                className="materialize-textarea"
-                            ></textarea>
-                            <label htmlFor="password">*Mot de Passe</label>
+                            <input
+                                id="password"
+                                type="text"
+                                className="validate" />
+                            <label htmlFor="password">Mot de Passe</label>
                         </div>
                         <div className="input-field col s12">
-                            <textarea
-                                id="textarea1"
-                                className="materialize-textarea"
-                            ></textarea>
+                            <input
+                                id="confirm_password"
+                                type="text"
+                                className="validate" />
                             <label htmlFor="confirm_password">
-                                *Confirmer le Mot de Passe
+                                Confirmer le Mot de Passe
                             </label>
                         </div>
                         <button

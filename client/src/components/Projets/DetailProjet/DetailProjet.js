@@ -24,22 +24,19 @@ const DetailProjet = () => {
                     <div className="col s12">
                         <div className="card card__detail">
                             <div className="card-content black-text">
-                                <h2 className="card-title card__title">Atelier Versailles</h2>
-                                <p>Projet :</p>
+                                <h2 className="center card-title card__title">Atelier Versailles</h2>
+                                <p className='card__section-title'>Projet :</p>
                                 <p>Grand appartement haussmannien à moderniser, acheté par la famille 10 ans en arrière.</p>
                             </div>
-                            <div className='divider'></div>
                             <div className="card-content">
-                                <p>Style :</p>
+                                <p className='card__section-title'>Style :</p>
                                 <p>Un style chaleureux, intemporel, avec des choix colorimétriques osés mais toujours élégants.</p>
                             </div>
-                            <div className='divider'></div>
                             <div className="card-content">
                                 <p>Surface: 200m²</p>
                             </div>
-                            <div className='divider'></div>
                             <div className="card-content">
-                                <p>Demande :</p>
+                                <p className='card__section-title'>Demande :</p>
                                 <p>
                                     Optimiser tous les volumes pour que chaque pièce corresponde au mode de vie de cette famille de 5 personnes, créer des rangements mais surtout réussir à garder le cachet de l’immeuble haussmannien.
                                 </p>

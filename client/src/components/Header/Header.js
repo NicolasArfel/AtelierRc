@@ -40,7 +40,7 @@ const Header = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/login">
+                                <NavLink to="/login" className={activeLink}>
                                     Connexion
                                 </NavLink>
                             </li>

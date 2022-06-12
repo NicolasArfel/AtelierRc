@@ -15,7 +15,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #eee;
+  background-color: #fff;
 }
 
 code {
@@ -2717,7 +2717,7 @@ nav,
 .divider {
   height: 1px;
   overflow: hidden;
-  background-color: #e0e0e0;
+  background-color: #fff;
 }
 
 blockquote {
@@ -2783,7 +2783,7 @@ video.responsive-video {
 }
 
 .pagination li.active {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .pagination li.disabled a {
@@ -2988,7 +2988,7 @@ ul.staggered-list li {
 .page-footer {
   padding-top: 20px;
   color: #fff;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .page-footer .footer-copyright {
@@ -3007,7 +3007,6 @@ ul.staggered-list li {
   -ms-flex-pack: justify;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(51, 51, 51, 0.08);
 }
 
 table,
@@ -4482,7 +4481,7 @@ table span.badge {
 
 nav {
   color: #fff;
-  background-color: #eee;
+  background-color: #fff;
   width: 100%;
   height: 56px;
   line-height: 56px;
@@ -4616,7 +4615,7 @@ nav ul a {
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   font-size: 1.2rem;
-  color: #000;
+  color: #00000045;
   display: block;
   padding: 0 15px;
   cursor: pointer;
@@ -4644,8 +4643,7 @@ nav ul a.btn-floating>.material-icons {
 }
 
 nav ul a:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 0.7rem;
+  color: black;
 }
 
 nav ul.left {
@@ -5869,7 +5867,7 @@ button.btn-floating {
 
 .dropdown-content li:hover,
 .dropdown-content li.active {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .dropdown-content li:focus {
@@ -6176,7 +6174,7 @@ body.keyboard-focused .dropdown-content li:focus {
 }
 
 .keyboard-focused .collapsible-header:focus {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .collapsible-body {
@@ -8061,7 +8059,7 @@ input[type=range]::-ms-thumb {
 
 .sidenav .collapsible-body>ul:not(.collapsible)>li.active,
 .sidenav.sidenav-fixed .collapsible-body>ul:not(.collapsible)>li.active {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .sidenav .collapsible-body>ul:not(.collapsible)>li.active a,
@@ -8741,7 +8739,7 @@ input[type=range]::-ms-thumb {
   height: 16px;
   width: 16px;
   margin: 0 12px;
-  background-color: #e0e0e0;
+  background-color: #fff;
   -webkit-transition: background-color .3s;
   transition: background-color .3s;
   border-radius: 50%;
@@ -8898,7 +8896,7 @@ input[type=range]::-ms-thumb {
   position: absolute;
   font-size: 1rem;
   border-radius: 50%;
-  background-color: #eee;
+  background-color: #fff;
   -webkit-box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.14), 0 10px 50px 0 rgba(0, 0, 0, 0.12), 0 30px 10px -20px rgba(0, 0, 0, 0.2);
   box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.14), 0 10px 50px 0 rgba(0, 0, 0, 0.12), 0 30px 10px -20px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -9349,7 +9347,7 @@ input[type=range]::-ms-thumb {
 }
 
 .timepicker-plate {
-  background-color: #eee;
+  background-color: #fff;
   border-radius: 50%;
   width: 270px;
   height: 270px;

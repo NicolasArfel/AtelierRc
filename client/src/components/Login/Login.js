@@ -27,9 +27,10 @@ const Login = () => {
                                 data-success="Email valide"></span>
                         </div>
                         <div className="input-field col s12">
-                            <textarea
-                                id="textarea1"
-                                className="materialize-textarea"></textarea>
+                            <input
+                                id="password"
+                                type="email"
+                                className="validate" />
                             <label htmlFor="password">
                                 Mot de Passe
                             </label>
