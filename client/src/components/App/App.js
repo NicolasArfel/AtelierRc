@@ -12,6 +12,10 @@ import Register from '../Register/Register';
 import Error404 from '../Error404/Error404';
 import Error403 from '../Error403/Error403';
 
+import BackProjets from '../BackOffice/BackProjets/BackProjets';
+import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
+import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
+
 const App = () => {
   return (
     <div className="App">      
@@ -21,6 +25,9 @@ const App = () => {
         {/* <Route path="/moblier" element={<Mobilier />} /> */}
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/back-projets" element={<BackProjets />} />
+        <Route path="/back-mobilier" element={<BackMobilier />} />
+        <Route path="/back-admin" element={<BackAdministration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error404 />} />
