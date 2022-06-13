@@ -1,8 +1,10 @@
 const express = require('express');
-const furnitureController = require('./controllers/api/furnitureController');
+
 
 // importer les controllers
 const projectController = require('./controllers/api/projectController');
+const furnitureController = require('./controllers/api/furnitureController');
+const projectPhotoController = require('./controllers/api/projectPhotoController');
 
 const router = express.Router();
 
@@ -14,8 +16,11 @@ router.get('/', (req, res) => {
 router.get('/api/projects', projectController.getAllProjects);
 router.get('/api/project/:id', projectController.getOne);
 
-/* Furnitures */
+/** Photos */
+router.get('/api/photos/', projectPhotoController.getAllPhotos);
+router.get('/api/photo/:id', projectPhotoController.getOne);
 
+/* Furnitures */
 router.get('/api/furnitures', furnitureController.getAllFurnitures);
 router.get('/api/furniture/:id', furnitureController.getOne);
 
