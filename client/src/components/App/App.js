@@ -12,6 +12,10 @@ import './App.css';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 
+import BackProjets from '../BackOffice/BackProjets/BackProjets';
+import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
+import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
+
 const App = () => {
   return (
     <div className="App">
@@ -22,6 +26,9 @@ const App = () => {
         {/* <Route path="/moblier" element={<Mobilier />} /> */}
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/back-projets" element={<BackProjets />} />
+        <Route path="/back-mobilier" element={<BackMobilier />} />
+        <Route path="/back-admin" element={<BackAdministration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
