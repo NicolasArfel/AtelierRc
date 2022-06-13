@@ -1,0 +1,26 @@
+video {
+   position: fixed;
+   top:0;
+   left: 0;
+    min-height: 100vh;
+    min-width: 100%;
+    opacity: 0.3;
+}
+
+.error__description {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10% 35%;
+    color: black;  
+    font-size: 3rem;
+    
+}
+
+.error__description-title {
+    font-size: 5rem; 
+}
+
+.error {
+    position: relative;
+}

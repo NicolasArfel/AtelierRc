@@ -48,9 +48,8 @@
 @media (max-width: 550px) {
     .card__image {
         width: 80%;
-        /* height: 430px; */
-        margin: auto;
+        height: 430px;
+        margin: 1.5rem;
         
-
     }
 }

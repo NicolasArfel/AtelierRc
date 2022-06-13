@@ -11,51 +11,57 @@ import projet5 from '../../projets/pers-projet-voltaire/1.jpg'
 import projet6 from '../../projets/photos-chantier-saint-maur/a.jpg'
 
 import Banner from '../Banner/Banner';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const title = 'Projets'
 const description = ''
 
 const Projets = () => {
     return (
-        <main className="container" >
-            <Banner title={title} description={description} />
-            <div className="row project__section">
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet4} src={projet4} />
-                    </div>
-                </Link>
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet2} src={projet2} />
-                    </div>
-                </Link>
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet3} src={projet3} />
+        <div>
+            <Header/>
+            <main className="container" >
+                <Banner title={title} description={description} />
+                <div className="row project__section">
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet4} src={projet4} />
+                        </div>
+                    </Link>
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet2} src={projet2} />
+                        </div>
+                    </Link>
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet3} src={projet3} />
 
-                    </div>
-                </Link>
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet5} src={projet5} />
+                        </div>
+                    </Link>
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet5} src={projet5} />
 
-                    </div>
-                </Link>
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet1} src={projet1} />
+                        </div>
+                    </Link>
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet1} src={projet1} />
 
-                    </div>
-                </Link>
-                <Link to="/projet/:slug" >
-                    <div className="card-image card__image ">
-                        <img className="responsive-img z-depth-2" alt={projet6} src={projet6} />
+                        </div>
+                    </Link>
+                    <Link to="/projet/:slug" >
+                        <div className="card-image card__image ">
+                            <img className="responsive-img z-depth-2" alt={projet6} src={projet6} />
 
-                    </div>
-                </Link>
-            </div>
-        </main>
+                        </div>
+                    </Link>
+                </div>
+            </main>
+            <Footer/>
+        </div>
     )
 }
 

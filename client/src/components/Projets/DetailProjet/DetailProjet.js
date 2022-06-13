@@ -12,83 +12,89 @@ import projet5 from '../../../projets/Chantier-meulire-Andrsey/5.jpg'
 import projet6 from '../../../projets/Chantier-meulire-Andrsey/6.jpg'
 import projet7 from '../../../projets/Chantier-meulire-Andrsey/7.jpg'
 import projet8 from '../../../projets/Chantier-meulire-Andrsey/8.jpg'
+import Header from '../../Header/Header';
+import Footer from '../../Footer/Footer';
 
 const title = `Description du projet ${projet1}`
 
 const DetailProjet = () => {
     return (
-        <main className="container" >
-            <Banner title={title} />
-            <div className="row detail__project">
-                <div className="col s6 sticky__details-project">
-                    <div className="col s12">
-                        <div className="card card__detail">
-                            <div className="card-content black-text">
-                                <h2 className="center card-title card__title">Atelier Versailles</h2>
-                                <p className='card__section-title'>Projet :</p>
-                                <p>Grand appartement haussmannien à moderniser, acheté par la famille 10 ans en arrière.</p>
-                            </div>
-                            <div className="card-content">
-                                <p className='card__section-title'>Style :</p>
-                                <p>Un style chaleureux, intemporel, avec des choix colorimétriques osés mais toujours élégants.</p>
-                            </div>
-                            <div className="card-content">
-                                <p>Surface: 200m²</p>
-                            </div>
-                            <div className="card-content">
-                                <p className='card__section-title'>Demande :</p>
-                                <p>
-                                    Optimiser tous les volumes pour que chaque pièce corresponde au mode de vie de cette famille de 5 personnes, créer des rangements mais surtout réussir à garder le cachet de l’immeuble haussmannien.
-                                </p>
+        <div>
+            <Header />
+            <main className="container" >
+                <Banner title={title} />
+                <div className="row detail__project">
+                    <div className="col s6 sticky__details-project">
+                        <div className="col s12">
+                            <div className="card card__detail">
+                                <div className="card-content black-text">
+                                    <h2 className="center card-title card__title">Atelier Versailles</h2>
+                                    <p className='card__section-title'>Projet :</p>
+                                    <p>Grand appartement haussmannien à moderniser, acheté par la famille 10 ans en arrière.</p>
+                                </div>
+                                <div className="card-content">
+                                    <p className='card__section-title'>Style :</p>
+                                    <p>Un style chaleureux, intemporel, avec des choix colorimétriques osés mais toujours élégants.</p>
+                                </div>
+                                <div className="card-content">
+                                    <p>Surface: 200m²</p>
+                                </div>
+                                <div className="card-content">
+                                    <p className='card__section-title'>Demande :</p>
+                                    <p>
+                                        Optimiser tous les volumes pour que chaque pièce corresponde au mode de vie de cette famille de 5 personnes, créer des rangements mais surtout réussir à garder le cachet de l’immeuble haussmannien.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="col s6">
-                    <article className="card card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet1} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet2} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet3} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet4} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet5} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet6} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet7} />
-                        </div>
-                    </article>
-                    <article className="card  card__article">
-                        <div className="card-image">
-                            <img className="responsive-img z-depth-2" alt={projet1} src={projet8} />
-                        </div>
-                    </article>
+                    <div className="col s6">
+                        <article className="card card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet1} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet2} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet3} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet4} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet5} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet6} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet7} />
+                            </div>
+                        </article>
+                        <article className="card  card__article">
+                            <div className="card-image">
+                                <img className="responsive-img z-depth-2" alt={projet1} src={projet8} />
+                            </div>
+                        </article>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer />
+        </div>
     )
 }
 

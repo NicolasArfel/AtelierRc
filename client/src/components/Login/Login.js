@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Banner from "../Banner/Banner";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 import './Login.css'
 
 const title = 'Se connecter';
@@ -7,52 +9,56 @@ const description = 'Grâce à votre espace personnel, vous serez en mesure de r
 
 const Login = () => {
     return (
-
-        <main className="login container center" >
-            <Banner title={title} description={description} />
-            <div className="row ">
-                <form className="col s6 left login__form">
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                id="email"
-                                type="email"
-                                className="validate" />
-                            <label htmlFor="email">
-                                Email
-                            </label>
-                            <span
-                                className="helper-text"
-                                data-error="Email non valide"
-                                data-success="Email valide"></span>
+        <div>
+            <Header/>
+            <main className="login container center" >
+                <Banner title={title} description={description} />
+                <div className="row ">
+                    <form className="col s6 left login__form">
+                        <div className="row">
+                            <div className="input-field col s12">
+                                <input
+                                    id="email"
+                                    type="email"
+                                    className="validate" />
+                                <label htmlFor="email">
+                                    Email
+                                </label>
+                                <span
+                                    className="helper-text"
+                                    data-error="Email non valide"
+                                    data-success="Email valide"></span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                    id="password"
+                                    type="email"
+                                    className="validate" />
+                                <label htmlFor="password">
+                                    Mot de Passe
+                                </label>
+                            </div>
+                            <button
+                                className="btn waves-effect waves-light grey darken-3 button"
+                                type="submit"
+                                name="action">
+                                Se connecter
+                            </button>
                         </div>
-                        <div className="input-field col s12">
-                            <input
-                                id="password"
-                                type="email"
-                                className="validate" />
-                            <label htmlFor="password">
-                                Mot de Passe
-                            </label>
-                        </div>
-                        <button
-                            className="btn waves-effect waves-light grey darken-3 button"
-                            type="submit"
-                            name="action">
-                            Se connecter
-                        </button>
+                    </form>
+                    <div className="column col s6">
+                        <p>Vous n'avez pas de compte ? Inscrivez-vous !</p>
+                        <Link to='/register'>
+                            <button className="button btn-large waves-effect waves-light grey darken-3">
+                                S'inscrire
+                            </button>
+                        </Link>
                     </div>
-                </form>
-                <div className="column col s6">
-                    <p>Vous n'avez pas de compte ? Inscrivez-vous !</p>
-                    <Link to='/register'>
-                        <button className="button btn-large waves-effect waves-light grey darken-3">
-                            S'inscrire
-                        </button>
-                    </Link>
                 </div>
-            </div>
-        </main>
+            </main>
+            <Footer/>
+        </div>
+
     )
 };
 
