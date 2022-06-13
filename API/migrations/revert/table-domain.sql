@@ -2,7 +2,7 @@
 
 BEGIN;
 
-DROP TABLE "furniture_photo";
+DROP TABLE IF EXISTS"furniture_photo";
 
 ALTER TABLE "project_photo"
   RENAME TO  "photo";

@@ -7,7 +7,7 @@ const projectDatamapper = {
             return result.rows;
     },
 
-    async findByP(id) {
+    async findByPk(id) {
         const preparedQuery = {
             text: `SELECT * FROM "project" WHERE "id" = $1`,
             values: [id]
