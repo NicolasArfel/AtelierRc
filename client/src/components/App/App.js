@@ -18,7 +18,7 @@ import BackAdministration from '../BackOffice/BackAdministration/BackAdministrat
 
 const App = () => {
   return (
-    <div className="App">      
+    <div className="App">
       <Routes>
         <Route path="/" element={<Projets />} />
         <Route path="/projet/:slug" element={<DetailProjet />} />
@@ -30,9 +30,9 @@ const App = () => {
         <Route path="/back-admin" element={<BackAdministration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Error404 />} />
         <Route path="/403" element={<Error403 />} />
-      </Routes>      
+        <Route path="*" element={<Error404 />} />
+      </Routes>
     </div>
   );
 }

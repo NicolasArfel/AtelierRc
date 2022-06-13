@@ -11,8 +11,7 @@ const description = `Romain Caillon, 75010 Paris. romaincaillon.archi@gmail.com`
 
 const Contact = () => {
     return (
-        <div>
-
+        <>
             <Header />
             <main className="container" >
                 <Banner title={title} description={description} />
@@ -45,7 +44,7 @@ const Contact = () => {
                 </div>
             </main>
             <Footer />
-        </div>
+        </>
     )
 }
 
