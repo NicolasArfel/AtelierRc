@@ -19,7 +19,7 @@ const DetailProjet = () => {
     return (
         <main className="container" >
             <Banner title={title} />
-            <div className="row">
+            <div className="row detail__project">
                 <div className="col s6 sticky__details-project">
                     <div className="col s12">
                         <div className="card card__detail">
