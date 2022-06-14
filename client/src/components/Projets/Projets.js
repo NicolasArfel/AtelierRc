@@ -27,6 +27,7 @@ const Projets = () => {
                     <Link to="/projet/:slug" >
                         <div className="card-image card__image ">
                             <img className="responsive-img z-depth-2" alt={projet4} src={projet4} />
+                            <h2 className='card__image-title' >Titre image</h2>
                         </div>
                     </Link>
                     <Link to="/projet/:slug" >

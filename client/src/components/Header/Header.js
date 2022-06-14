@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 
 import './Header.css';
-const logoInsta = '../../images/icons8-instagram.svg'
+const logoInsta = '../../images/instagram-brands.svg'
 const LogoRC = '../../images/Atelier.png'
 
 const activeLink = ({ isActive }) => {

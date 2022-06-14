@@ -2,7 +2,7 @@ import React from 'react'
 
 import './Footer.css'
 const LogoRC = '../../images/Atelier.png'
-const logoInsta = '../../images/icons8-instagram.svg'
+const logoInsta = '../../images/instagram-brands.svg'
 
 const footer = () => {
     return (
