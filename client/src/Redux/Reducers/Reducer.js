@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import ProjetsReducer from './ProjetsReducer'
+import ProjectsReducer from './ProjectsReducer'
 
 const rootReducer = combineReducers({
-    Projets : ProjetsReducer
+    ProjectsReducer
 });
 
 export default rootReducer;
