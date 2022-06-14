@@ -18,7 +18,7 @@ const DetailProjet = () => {
 
     // We use a .find method to store in a selectors folder. It allows you to sort the projects according to the url thanks to the 'SLUG' parameter
     const projet = useSelector((state) => findProject(state.ProjectsReducer.projects, slug))
-    console.log(projet);
+    // console.log(projet);
 
     return (
         <div>
@@ -27,8 +27,6 @@ const DetailProjet = () => {
                 <main className="container" >
                     <Banner title={`Design par ${projet.design}`} />
                     <div className="row detail__project">
-
-
                         <div className="col s6 sticky__details-project">
                             <div className="col s12">
                                 <div className="card card__detail">
@@ -65,7 +63,7 @@ const DetailProjet = () => {
                         <div className="col s6">
                             <article className="card card__article">
                                 <div className="card-image">
-                                    <img className="responsive-img z-depth-2" alt={''} src={''} />
+                                    <img className="responsive-img z-depth-2" alt={'coucou'} src={`http://localhost:3001/image/projects/${projet.name}`} />
                                 </div>
                             </article>
                         </div>
