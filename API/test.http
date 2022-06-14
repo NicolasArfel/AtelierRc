@@ -20,11 +20,3 @@ GET http://localhost:3001/api/furnitures
 
 ### récupération d'un objet
 GET http://localhost:3001/api/furniture/1
-
-
-### récupération de toutes les photos
-# GET http://localhost:3001/api/photos
-
-
-# ### récupération d'une photo
-# GET http://localhost:3001/api/photo/1
