@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
-import { actionAxiosProjects } from '../../Redux/Actions/ProjetsActions';
+import { useSelector } from 'react-redux';
 
 import './Projets.css';
 
@@ -15,15 +14,9 @@ const description = '';
 
 const Projets = () => {
 
-    // Dispatch allow us to trigger action from 'redux action' folder
-    const dispatch = useDispatch();
+    // useSelector allows us to use the information stored in the ProjectReducer
     const projects = useSelector((state) => state.ProjectsReducer.projects)
     // console.log(projects)
-
-    // Effect active on page load
-    useEffect(() => {
-        dispatch(actionAxiosProjects());
-    }, []);
 
     return (
         <div>
@@ -37,7 +30,7 @@ const Projets = () => {
                             key={project.id}
                         >
                             <div className="card-image card__image ">
-                                <img className="responsive-img z-depth-2" alt={project.name} src={``} />
+                                <img className="responsive-img z-depth-2" alt={project.name} src={`http://localhost:3001/image/projects/${project.name}`} />
                                 <h2 className='card__image-title' >{project.slug}</h2>
                             </div>
                         </Link>

@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+
+import { actionAxiosProjects } from '../../Redux/Actions/ProjetsActions';
 
 import About from '../About/About';
 import Contact from '../Contact/Contact';
@@ -17,6 +21,15 @@ import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
 
 const App = () => {
+
+  // Dispatch allow us to trigger action from 'redux action' folder
+  const dispatch = useDispatch();
+
+  // Effect active on page load
+  useEffect(() => {
+    dispatch(actionAxiosProjects());
+  }, []);
+
   return (
     <div className="App">
 

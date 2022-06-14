@@ -7,9 +7,9 @@ export const actionAxiosProjects = () => ({
     type: AXIOS_PROJECTS
 })
 
-export const actionDispatchProjects = (axiosDataProjects) => ({
+export const actionDispatchProjects = (projects) => ({
     type: DISPATCH_PROJECTS,
     payload : {
-        projects : axiosDataProjects
+        projects
     }
 })
