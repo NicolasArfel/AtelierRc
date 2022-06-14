@@ -28,7 +28,7 @@ const App = () => {
   // Effect active on page load
   useEffect(() => {
     dispatch(actionAxiosProjects());
-  });
+  }, []);
 
   return (
     <div className="App">

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { findProject } from '../../../Redux/Selectors/projectsSelectors';
+
+import { actionAxiosProjectsPictures } from '../../../Redux/Actions/ProjetsActions';
 
 import Banner from '../../Banner/Banner';
 
@@ -13,12 +15,23 @@ import Footer from '../../Footer/Footer';
 
 const DetailProjet = () => {
 
+    // Dispatch allow us to trigger action from 'redux action' folder
+    const dispatch = useDispatch();
+
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
 
     // We use a .find method to store in a selectors folder. It allows you to sort the projects according to the url thanks to the 'SLUG' parameter
     const projet = useSelector((state) => findProject(state.ProjectsReducer.projects, slug))
     // console.log(projet);
+
+    // Effect active on page load
+    useEffect(() => {
+        dispatch(actionAxiosProjectsPictures(projet.project_id));
+    }, []);
+
+    const pictures = useSelector((state) => state.ProjectsReducer.pictures)
+    // console.log('pictures', pictures);
 
     return (
         <div>
@@ -59,15 +72,17 @@ const DetailProjet = () => {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="col s6">
-                            <article className="card card__article">
-                                <div className="card-image">
-                                    <img className="responsive-img z-depth-2" alt={'coucou'} src={`http://localhost:3001/image/projects/${projet.name}`} />
-                                </div>
-                            </article>
-                        </div>
-
+                        {pictures &&
+                            <div className="col s6">
+                                {pictures.map(picture => (
+                                    <article className="card card__article" key={picture.id}>
+                                        <div className="card-image">
+                                            <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        </div>
+                                    </article>
+                                ))}
+                            </div>
+                        }
                     </div>
                 </main>}
             <Footer />
