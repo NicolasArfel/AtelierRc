@@ -1,5 +1,5 @@
 
-const projectDatamapper  = require('../../models/projectDatamapper');
+const projectDatamapper  = require('../../models/projectDatamapper.js');
 
 
 const projectController = {

@@ -1,12 +1,12 @@
 BEGIN;
 
-TRUNCATE client, "user", status, project, furniture, client_has_favorite_furniture RESTART IDENTITY;
+TRUNCATE client, "user", status, project, furniture, client_has_favorite_furniture RESTART IDENTITY CASCADE;
 
-INSERT INTO client (email, firstname,  lastname, password, address, zip_code, city, phone_number) VALUES
-('moine.veronique@test.com', 'Véronique', NULL, 'motdepassetest', NULL, '75020', NULL, NULL);
+INSERT INTO client (email, firstname,  lastname, password, address, zip_code, city, phone_number, role) VALUES
+('moine.veronique@test.com', 'Véronique', NULL, 'motdepassetest', NULL, '75020', NULL, NULL, 'admin');
 
-INSERT INTO "user" (email, firstname,lastname, password) VALUES
-('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', 'atelierrc');
+INSERT INTO "user" (email, firstname,lastname, password, role) VALUES
+('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', 'atelierrc', 'admin');
 
 INSERT INTO status (label) VALUES
 ('Phase d''étude'),
@@ -21,6 +21,23 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 INSERT INTO furniture (name, slug, type, condition, description, availability, price, user_id) VALUES
 ('Singe vintage', 'singe-vintage', 'Objet de décoration', 'Bon état', 'Singe vintage en teck style Kay Bojesen', FALSE, NULL, 1),
 ('Fauteuil en bois courbé', 'fauteuil-en-bois-courbe', 'Meuble', 'Bon état', 'Fauteuil en bois courbé, assise cannée dit « B9 », ou « Le Corbusier » ,Jacob et Josef Kohn', FALSE, NULL, 1);
+
+INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id) VALUES
+('lamarck_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 1),
+('lamarck_pers_2.jpg', 2, 'image ©Romain-Caillon', FALSE, 1),
+('lamarck_pers_3.jpg', 3, 'image ©Romain-Caillon', FALSE, 1),
+('lamarck_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 1),
+('lamarck_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 1),
+('lamarck_pers_6.jpg', 6, 'image ©Romain-Caillon', FALSE, 1),
+('junot_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 2),
+('junot_pers_2.jpg', 2, 'image ©Romain-Caillon', FALSE, 2),
+('junot_pers_3.jpg', 3, 'image ©Romain-Caillon', FALSE, 2),
+('junot_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 2),
+('voltaire_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 3),
+('voltaire_pers_2.jpg', 2, 'image ©Romain-Caillon', FALSE, 3),
+('voltaire_pers_3.jpg', 3, 'image ©Romain-Caillon', FALSE, 3),
+('voltaire_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 3),
+('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3);
 
 COMMIT;
 

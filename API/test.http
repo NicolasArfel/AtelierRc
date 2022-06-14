@@ -5,7 +5,7 @@
 ################################################################################
 
 ### service indisponible
-GET http://localhost:3001/404
+//GET http://localhost:3001/404
 
 ############################## PROJECTS #############################
 
@@ -14,3 +14,17 @@ GET http://localhost:3001/api/projects
 
 ### récupération d'une liste
 GET http://localhost:3001/api/project/1
+
+### récupération de toutes les objets de mobilier
+GET http://localhost:3001/api/furnitures
+
+### récupération d'un objet
+GET http://localhost:3001/api/furniture/1
+
+
+### récupération de toutes les photos
+# GET http://localhost:3001/api/photos
+
+
+# ### récupération d'une photo
+# GET http://localhost:3001/api/photo/1
