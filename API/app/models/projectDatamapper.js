@@ -9,7 +9,7 @@ const projectDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: `SELECT * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = false AND project_id = $1`,
+            text: `SELECT * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1`,
             values: [id]
         }
         const result = await client.query(preparedQuery);

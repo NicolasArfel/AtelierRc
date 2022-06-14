@@ -20,3 +20,11 @@ GET http://localhost:3001/api/furnitures
 
 ### récupération d'un objet
 GET http://localhost:3001/api/furniture/1
+
+POST http://localhost:3001/api/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "hello@gmail.com",
+    "password": "kshflkqhflqhlhf"
+}

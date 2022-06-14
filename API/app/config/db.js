@@ -18,3 +18,16 @@ const { Pool } = require('pg');
          return this.originalClient.query(...params);
      },
  };
+
+// an other way to do it
+//  const Pool = require("pg").Pool
+
+// const pool = new Pool({
+//     user:process.env.DB_USER,
+//     password:process.env.DB_PASSWORD,
+//     host: "localhost",
+//     port:process.env.PORT,
+//     database:"atelierrc"
+// })
+
+// module.exports = pool;
