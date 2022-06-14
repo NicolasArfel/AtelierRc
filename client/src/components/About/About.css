@@ -11,7 +11,7 @@
 .about__img img{
     max-height: 100%;
 }
-
+  
 .about__description {
     height: 60vh;
     display: flex;
