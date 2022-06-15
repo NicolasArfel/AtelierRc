@@ -1,7 +1,7 @@
 const client = require('../config/db');
 
 const projectDatamapper = {
-
+    
     async findAll() {
             const result = await client.query('SELECT project.name AS project_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
             return result.rows;
