@@ -1,23 +1,11 @@
-
-const dotenv = require('dotenv');
+require('dotenv').config();
 const express = require('express');
-// not useful now but useful to deploy de the app
-const path = require('path');
-
 const router = require('./app/router');
-
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 
 const app = express();
-
-app.use(express.urlencoded({extended: true}));
-
-console.log('path = ',path.join(__dirname, 'public'));
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.use(express.json());
 
 const PORT = process.env.PORT || 4001;
 
@@ -28,6 +16,12 @@ app.use(cors({
 //if (process.env.NODE_ENV !== 'production') {
 // dotenv.config();
 //}
+
+app.use(express.urlencoded({ extended: true }));
+//const upload = multer({ dest: 'uploads/' });
+
+console.log('path = ',path.join(__dirname, 'public'));
+app.use(express.static(path.join(__dirname, 'public')))
 
 // on ajoute le middleware de "nettoyage" des variables
 //const bodySanitizer = require('./app/middlewares/body-sanitizer');
