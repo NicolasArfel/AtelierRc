@@ -7,8 +7,8 @@ const contactController = {
       
       try {
 
-    const {from,subject,text} = req.body;
-    console.log({from, subject, text}) ;
+    const {from,subject,text, firstname, lastname} = req.body;
+    console.log({from,subject,text, firstname, lastname}) ;
   
 
     let transporter = nodemailer.createTransport({
@@ -23,7 +23,7 @@ const contactController = {
       to:'testatelierrc@gmail.com',
       from: req.body.from,
       subject : req.body.subject,
-      text: req.body.text
+      text: 'message envoyé par : ' + req.body.firstname + ' ' + req.body.lastname + ' ' + 'adresse mail : ' + req.body.from + ' Voici son message : ' + req.body.text
     };
     
     await transporter.sendMail(mailOptions, function(err, data) {
