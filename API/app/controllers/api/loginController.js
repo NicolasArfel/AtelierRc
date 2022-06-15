@@ -1,5 +1,4 @@
 const userDatamapper  = require('../../models/userDatamapper.js');
-//const jwtToken = require('../../utils/jwtGenerator')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -33,7 +32,7 @@ const loginController = {
             console.log('access Token', accessToken);
 
             res.json({
-                accessToken
+                accessToken, user
             });
             //}
 

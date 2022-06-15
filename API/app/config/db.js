@@ -1,3 +1,10 @@
+// const { Client } = require('pg');
+// const client = new Client(process.env.DATABASE_URL);
+// client.connect();
+
+// module.exports = client;
+
+
 const debug = require('debug')('SQL:log');
 const { Pool } = require('pg');
  
