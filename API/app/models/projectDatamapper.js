@@ -1,11 +1,11 @@
 const client = require('../config/db');
 
-/**
- *  
- */
+// /**
+//  * @typedef {Object} InputData
+//  * @property {number} id - Unique identifyer of the table
+//  */
 
 const projectDatamapper = {
-
     /**
      * Get all the project without filter nore order
      * @returns all the all projects from the database
@@ -29,12 +29,17 @@ const projectDatamapper = {
             values: [id]
         }
         const result = await client.query(preparedQuery);
+
+        if(result.rowCount === 0) {
+            return null;
+        }
+        
         return result.rows;
     },
 
     /**
      * Add to the database
-     * @param {InputProject} data - the datas to insert
+     * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
     async insert(data) {
@@ -120,32 +125,36 @@ const projectDatamapper = {
         /**
          * Modify a project in the database 
          * @param {number} id - the id to modify
-         * @param {InputProject} inputData 
+         * @param {InputData} inputData 
          * @returns 
          */
-        // async update(id, inputData) {
-        //     const data = { ...inputData, id };
-        //     const savedCategory = await client.query(
-        //         'SELECT * FROM project($1)',
-        //         [data],
-        //     );
+        async update(id, inputData) {
+            const data = { ...inputData, id };
+            const savedProject = await client.query(
+                'SELECT * FROM "project"($1)',
+                [data],
+            );
     
-        //     return savedCategory.rows[0];
-        // },
+            return savedProject.rows[0];
+        },
 
         /**
          * Delete the project from the database
          * @param {number} id - the id to delete
-         * @returns the result of the delete
+         * @returns the deleted project
          */
 
         async delete(id) {
-        const deletedId = await client.query(`DELETE FROM "project" WHERE "project_id" = $1`, [id]);
-        return !!deletedId.rowCount;
+            const preparedDeleteQuery ={
+                text:`DELETE FROM "project" WHERE "id" = $1;`,
+                values:[id]
+            }
+        const deletedProject = await client.query(preparedDeleteQuery);
+        return !!deletedProject.rowCount;
         },
 
 
-        //! fonction à compléter
+        //! fonction à compléter si je souhaite utiliser le IsUnique (ne fonctionne pas pour l'instant)
         // /**
         //  * Vérify if a project already exist with this title or slug
         //  * @param {object} inputData - the result data entered by the client in the form
