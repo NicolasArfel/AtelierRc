@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Error404 = () => {
     return (
-        <main >
+        <main className="main__404" >
             <div className='error' >
                 <video autoPlay loop muted
                     src={video} type="video/mp4">

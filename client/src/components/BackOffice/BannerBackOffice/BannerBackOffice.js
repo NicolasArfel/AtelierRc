@@ -16,11 +16,11 @@ const BannerBackOffice = ({ title }) => {
                     Projets
                 </NavLink>
             </div>
-            <div className='back__office-link'>
+            {/* <div className='back__office-link'>
                 <NavLink to="/back-mobilier" className={activeLink} >
                     Mobilier
                 </NavLink>
-            </div>
+            </div> */}
             <div className='back__office-link'>
                 <NavLink to="/back-admin" className={activeLink} >
                     Administration

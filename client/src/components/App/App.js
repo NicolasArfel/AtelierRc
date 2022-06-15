@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,11 +20,15 @@ import Error403 from '../Error403/Error403';
 import BackProjets from '../BackOffice/BackProjets/BackProjets';
 import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
   const dispatch = useDispatch();
+  const location = useLocation();
+  // console.log(location)
 
   // Effect active on page load
   useEffect(() => {
@@ -33,25 +37,27 @@ const App = () => {
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
   console.log('loggé ? ', isLogged);
+  const role = useSelector((state) => state.UserReducer.role);
+  console.log('role ? ', role);
 
   return (
     <div className="App">
-
+      {location.pathname !== "/403" && <Header />}
       <Routes>
-        <Route path="/" element={<Projets />} />
+        <Route index path="/" element={<Projets />} />
         <Route path="/projet/:slug" element={<DetailProjet />} />
         {/* <Route path="/moblier" element={<Mobilier />} /> */}
         <Route path="/apropos" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/back-projets" element={<BackProjets />} />
-        <Route path="/back-mobilier" element={<BackMobilier />} />
-        <Route path="/back-admin" element={<BackAdministration />} />
+        <Route path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
+        {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
+        <Route path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
         <Route path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route path="/403" element={<Error403 />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
-
+      {location.pathname !== "/403" && <Footer />}
     </div>
   );
 }

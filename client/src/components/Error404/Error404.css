@@ -13,6 +13,10 @@ video {
   opacity: 0.3;
 }
 
+.main__404 {
+height: 100vh;
+}
+
 .error__description {
   position: relative;
   top: 25%;

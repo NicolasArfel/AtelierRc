@@ -1,22 +1,17 @@
 /* --- imports --- */
 
 import Banner from '../Banner/Banner';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import './About.css'
 
 /* --- éléments créés pour les props --- */
 
 const AboutImg = '../../images/about.jpeg'
 const title = 'À propos';
-const description = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus odit deserunt cupiditate fuga porro obcaecati sapiente, magni iusto vitae pariatur, eaque facilis exercitationem modi eos distinctio dolor inventore, ipsam dolorum!';
 
 const About = () => {
     return (
-        <div>
-            <Header />
             <main className="about container center">
-                <Banner title={title} description={description} />
+                <Banner title={title} />
                 <div className="row">
                     <div className="about__img col s6">
                         <img src={AboutImg} alt="" className='responsive-img z-depth-2' />
@@ -27,8 +22,6 @@ const About = () => {
                 </div>
 
             </main>
-            <Footer />
-        </div>
     )
 };
 

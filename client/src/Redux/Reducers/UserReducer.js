@@ -6,7 +6,8 @@ export const initialState = {
     isLogged: false,
     token: null,
     firstName: '',
-    lastName: ''
+    lastName: '',
+    role: 'visiteur'
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -28,6 +29,7 @@ const reducer = (state = initialState, action = {}) => {
                 password: '',
                 firstName: action.payload.user.firstname,
                 lastName: action.payload.user.lastname,
+                role: action.payload.user.role
             };
         case LOGOUT:
             console.log('je suis dans LOGOUT');
@@ -38,6 +40,7 @@ const reducer = (state = initialState, action = {}) => {
                 firstName: '',
                 lastName: '',
                 email: '',
+                role: 'visiteur'
             };
 
         default:

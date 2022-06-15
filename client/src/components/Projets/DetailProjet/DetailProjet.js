@@ -11,9 +11,6 @@ import Banner from '../../Banner/Banner';
 
 import './DetailProjet.css';
 
-import Header from '../../Header/Header';
-import Footer from '../../Footer/Footer';
-
 const DetailProjet = () => {
 
     // Dispatch allow us to trigger action from 'redux action' folder
@@ -36,8 +33,7 @@ const DetailProjet = () => {
     // console.log('pictures', pictures);
 
     return (
-        <div>
-            <Header />
+        <>
             {projet &&
                 <main className="container" >
                     <Banner title={`Design par ${projet.design}`} />
@@ -89,8 +85,7 @@ const DetailProjet = () => {
                         }
                     </div>
                 </main>}
-            <Footer />
-        </div >
+        </ >
     )
 }
 

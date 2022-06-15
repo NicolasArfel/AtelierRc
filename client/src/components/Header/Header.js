@@ -15,6 +15,7 @@ const Header = () => {
     let navigate = useNavigate();
 
     const isLogged = useSelector((state) => state.UserReducer.isLogged);
+    const role = useSelector((state) => state.UserReducer.role);
 
     const activeLink = ({ isActive }) => {
         return isActive ? "active-link" : ""
@@ -57,6 +58,15 @@ const Header = () => {
                                 </li>
                                 :
                                 <>
+                                    {role === 'admin' ?
+                                        <li className='navlink'>
+                                            <NavLink to="/back-projets" className={activeLink} >
+                                                Backoffice
+                                            </NavLink>
+                                        </li>
+                                        :
+                                        null
+                                    }
                                     <li>
                                         <Link to="/">
                                             <i className="black-text material-icons">person</i>
@@ -108,6 +118,15 @@ const Header = () => {
                                 </li>
                                 :
                                 <>
+                                    {role === 'admin' ?
+                                        <li className='navlink'>
+                                            <NavLink to="/back-projets" className={activeLink} >
+                                                Backoffice
+                                            </NavLink>
+                                        </li>
+                                        :
+                                        null
+                                    }
                                     <li>
                                         <Link to="/">
                                             <i className="black-text right material-icons login">person</i>
