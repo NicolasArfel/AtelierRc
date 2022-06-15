@@ -18,4 +18,13 @@ router.get('/api/project/:id', projectController.getOne);
 router.get('/api/furnitures', furnitureController.getAllFurnitures);
 router.get('/api/furniture/:id', furnitureController.getOne);
 
+/* Login admin */
+router.post('/api/login', loginController.login);
+
+/* admin interface */
+router.post('/api/admin/project')
+router.patch('api/admin/project/:id')
+router.delete('api/admin/project/:id')
+
+
 module.exports = router;
