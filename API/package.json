@@ -4,6 +4,9 @@
   "description": "## Présentation du projet",
   "main": "index.js",
   "scripts": {
+    "dev": "node-dev index.js --no-notify",
+    "deploy": "sqitch deploy --db-user atelierrc",
+    "seeding": "psql -U atelierrc -d rcatelier -f data/seeding.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +26,7 @@
     "eslint": "^8.17.0",
     "express": "^4.18.1",
     "multer": "^1.4.5-lts.1",
+    "node-dev": "^7.4.3",
     "path": "^0.12.7",
     "pg": "^8.7.3"
   }
