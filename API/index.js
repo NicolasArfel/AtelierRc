@@ -8,7 +8,11 @@ const router = require('./app/router');
 
 const cors = require('cors');
 const multer = require('multer');
-const path = require('path');
+const bodyParser = require('body-parser');
+
+// const jwt = require('express-jwt');
+
+dotenv.config();
 
 const app = express();
 
@@ -22,12 +26,15 @@ app.use(express.json());
 const PORT = process.env.PORT || 4001;
 
 app.use(cors({
-  origin: "*"
+    origin: "*"
 }));
 
 //if (process.env.NODE_ENV !== 'production') {
-// dotenv.config();
+   // dotenv.config();
 //}
+
+
+//const upload = multer({ dest: 'uploads/' });
 
 // on ajoute le middleware de "nettoyage" des variables
 //const bodySanitizer = require('./app/middlewares/body-sanitizer');
