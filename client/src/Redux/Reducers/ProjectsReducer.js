@@ -1,18 +1,25 @@
-import { DISPATCH_PROJECTS } from "../Actions/ProjetsActions";
+import { DISPATCH_PROJECTS, DISPATCH_PROJECTS_PICTURES } from "../Actions/ProjetsActions";
 
 export const initialState = {
-    projects: []
+    projects: [],
+    pictures: []
 };
 
 const reducer = (state = initialState, action = {}) => {
-    // console.log('payload projects =' ,action.payload);
+   
     switch (action.type) {
         case DISPATCH_PROJECTS:
+            console.log('JE SUIS DANS DISPATCH_PROJECTS');
             return {
                 ...state,
                 projects: action.payload.projects,
             }
-
+        case DISPATCH_PROJECTS_PICTURES:
+            console.log('JE SUIS DANS DISPATCH_PROJECTS_PICTURES');
+            return {
+                ...state,
+                pictures: action.payload.pictures,
+            }
         default:
             return state;
     }

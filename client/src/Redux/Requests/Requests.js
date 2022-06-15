@@ -15,3 +15,17 @@ export async function getAllProjects() {
     console.error(err);
   }
 }
+
+export async function getAllProjectsPictures(project_id) {
+  // console.log('project_id', project_id);
+  try {
+    const response = await axiosInstance.get(`/api/project/${project_id}`);
+    // console.log('requests response', response);
+
+    return response.data;
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
