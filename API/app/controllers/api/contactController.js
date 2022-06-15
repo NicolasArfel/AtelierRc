@@ -1,4 +1,6 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-handlebars');
+
 
 const contactController = {
 
@@ -18,13 +20,33 @@ const contactController = {
         pass:process.env.PASSMAIL
       }
     })
-    
-    let mailOptions = {
-      to:'testatelierrc@gmail.com',
-      from: req.body.from,
-      subject : req.body.subject,
-      text: 'message envoyé par : ' + req.body.firstname + ' ' + req.body.lastname + ' ' + 'adresse mail : ' + req.body.from + ' Voici son message : ' + req.body.text
-    };
+
+  //   transporter.use('compile', hbs({
+  //     viewPath: '../../views/email',
+  //     extName: '.hbs'
+  // }));
+
+
+  let options = {
+    viewEngine: {
+  
+  }};
+
+  transporter.use("compile", hbs(options))
+
+
+
+
+  let mailOptions = {
+    from: req.body.from,
+    to: 'testatelierrc@gmail.com', 
+    subject: 'Nodemailer - Test',
+    text: 'Wooohooo it works!!',
+    template: 'index',
+    context: {
+        name: 'Accime Esterling'
+    } // send extra values to template
+};
     
     await transporter.sendMail(mailOptions, function(err, data) {
       if(err) {

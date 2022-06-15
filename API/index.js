@@ -2,9 +2,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require('express');
-const nodemailer = require("nodemailer");
 // not useful now but useful to deploy de the app
 const path = require('path');
+
 
 const router = require('./app/router');
 
@@ -29,27 +29,6 @@ app.use(cors({
     origin: "*"
 }));
 
-// let transporter = nodemailer.createTransport({
-//   service:"gmail",
-//   auth:{
-//     user:process.env.EMAIL,
-//     pass:process.env.PASSMAIL
-//   }
-// })
-
-// let mailOptions = {
-//   to: 'testatelierrc@gmail.com',
-//   subject :'Testing',
-//   text: 'It works'
-// };
-
-// transporter.sendMail(mailOptions, function(err, data) {
-//   if(err) {
-//     console.log('Erros Occurs');
-//   } else {
-//     console.log('Email sent!!!!');
-//   }
-//   });
 
 // if (process.env.NODE_ENV !== 'production') {
 //    dotenv.config();
