@@ -1,15 +1,25 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+
+import { useSelector, useDispatch } from 'react-redux';
+
+import { actionLogout } from '../../Redux/Actions/UserActions';
 
 import './Header.css';
 const logoInsta = '../../images/instagram-brands.svg'
 const LogoRC = '../../images/Atelier.png'
 
-const activeLink = ({ isActive }) => {
-    return isActive ? "active-link" : ""
-}
-
 const Header = () => {
+
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+
+    const isLogged = useSelector((state) => state.UserReducer.isLogged);
+
+    const activeLink = ({ isActive }) => {
+        return isActive ? "active-link" : ""
+    }
+
     return (
         <div>
             <header className="center">
@@ -39,11 +49,32 @@ const Header = () => {
                                     Contact
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink to="/login" className={activeLink}>
-                                    Connexion
-                                </NavLink>
-                            </li>
+                            {!isLogged ?
+                                <li>
+                                    <NavLink to="/login" className={activeLink}>
+                                        Connexion
+                                    </NavLink>
+                                </li>
+                                :
+                                <>
+                                    <li>
+                                        <Link to="/">
+                                            <i className="black-text material-icons">person</i>
+                                        </Link>
+                                    </li>
+                                    <button
+                                        className="btn-flat"
+                                        onClick={() => {
+                                            dispatch(
+                                                actionLogout(),
+                                            );
+                                            navigate("../login", { replace: true });
+                                        }}
+                                    >
+                                        <i className="material-icons">exit_to_app</i>
+                                    </button>
+                                </>
+                            }
                         </ul>
                         <ul id="nav-mobile" className="sidenav">
                             <div className="col l4 s12 logoInsta">
@@ -69,11 +100,31 @@ const Header = () => {
                                     Contact
                                 </NavLink>
                             </li>
-                            <li>
-                                <Link to="/login">
-                                    Connexion
-                                </Link>
-                            </li>
+                            {!isLogged ?
+                                <li>
+                                    <Link to="/login">
+                                        Connexion
+                                    </Link>
+                                </li>
+                                :
+                                <>
+                                    <li>
+                                        <Link to="/">
+                                            <i className="black-text right material-icons login">person</i>
+                                        </Link>
+                                    </li>
+                                    <button
+                                        className="btn-flat"
+                                        onClick={() => {
+                                            dispatch(
+                                                actionLogout(),
+                                            );
+                                        }}
+                                    >
+                                        <i className="black-text right material-icons login">exit_to_app</i>
+                                    </button>
+                                </>
+                            }
                         </ul>
                         <span data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons grey-text">menu</i></span>
                     </div>
@@ -81,9 +132,6 @@ const Header = () => {
                     <div className="col l4 s12 logoInsta hide-on-med-and-down">
                         <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='insta' src={logoInsta} /></a>
                     </div>
-
-                    {/* {!isLogged && <i class="black-text right material-icons login">person</i> }
-                    {isLogged && <i class="black-text right material-icons login">exit_to_app</i> } */}
 
                 </nav>
             </header>

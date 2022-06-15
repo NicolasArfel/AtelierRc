@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
@@ -30,7 +31,7 @@ const App = () => {
     dispatch(actionAxiosProjects());
   }, []);
 
-  const isLogged = useSelector((state) => state.UserReducer.isLogged) ;
+  const isLogged = useSelector((state) => state.UserReducer.isLogged);
   console.log('loggé ? ', isLogged);
 
   return (
@@ -45,8 +46,8 @@ const App = () => {
         <Route path="/back-projets" element={<BackProjets />} />
         <Route path="/back-mobilier" element={<BackMobilier />} />
         <Route path="/back-admin" element={<BackAdministration />} />
-        {!isLogged && <Route path="/login" element={<Login />} />}
-        {!isLogged && <Route path="/register" element={<Register />} />}
+        <Route path="/login" element={isLogged ? <Projets /> : <Login />} />
+        <Route path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route path="/403" element={<Error403 />} />
         <Route path="*" element={<Error404 />} />
       </Routes>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -69,7 +70,9 @@ const DetailProjet = () => {
                                             <p>{projet.demande}</p>
                                         </div>
                                     }
-                                    <p>{projet.client}</p>
+                                    <div className="card-content">
+                                        <p>{projet.client}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +90,7 @@ const DetailProjet = () => {
                     </div>
                 </main>}
             <Footer />
-        </div>
+        </div >
     )
 }
 

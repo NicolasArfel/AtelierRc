@@ -23,19 +23,19 @@ const Login = () => {
             <main className="login container center" >
                 <Banner title={title} description={description} />
                 <div className="row ">
-                    <LoginForm 
-                    title={title}
-                    email={email}
-                    password={password}
-                    isLogged={isLogged}
-                    changeInputValue={(value, name) => {
-                        // console.log('changeField', { value, name });
-                        dispatch(changeInputValue(value, name));
-                    }}
-                    handleLogin={() => {
-                       dispatch(actionSubmitLogin())
-                    }}
-                     />
+                    <LoginForm
+                        title={title}
+                        email={email}
+                        password={password}
+                        isLogged={isLogged}
+                        changeInputValue={(value, name) => {
+                            // console.log('changeField', { value, name });
+                            dispatch(changeInputValue(value, name));
+                        }}
+                        handleLogin={() => {
+                            dispatch(actionSubmitLogin())
+                        }}
+                    />
                     <div className="column col s6">
                         <p>Vous n'avez pas de compte ? Inscrivez-vous !</p>
                         <Link to='/register'>

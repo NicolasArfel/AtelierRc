@@ -1,6 +1,7 @@
 export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SAVE_USER = 'SAVE_USER';
+export const LOGOUT = 'LOGOUT';
 
 export const changeInputValue = (value, name) => ({
     type: CHANGE_INPUT_VALUE,
@@ -20,4 +21,6 @@ export const actionSaveUser = (user, token) => ({
         user,
         token,
     },
-  });
+});
+
+export const actionLogout = () => ({ type: LOGOUT });

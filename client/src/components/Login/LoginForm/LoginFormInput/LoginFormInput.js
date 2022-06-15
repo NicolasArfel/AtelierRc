@@ -1,4 +1,4 @@
-const LoginFormInput = ({type, name, onChange, value, title}) => {
+const LoginFormInput = ({ type, name, onChange, value, title }) => {
 
     const handleChange = (event) => {
         onChange(event.target.value, name)
@@ -12,18 +12,17 @@ const LoginFormInput = ({type, name, onChange, value, title}) => {
                 id={type}
                 type={type}
                 onChange={handleChange}
-                className="validate" />
+            />
             <label htmlFor={type}>
-            {title}
+                {title}
             </label>
-           { type ="email" &&
-            <span
-                className="helper-text"
-                data-error="Email non valide"
-                data-success="Email valide">
-            </span>
-           } 
-
+            {/* {type=!"email" &&
+                <span
+                    className="helper-text"
+                    data-error="Email non valide"
+                    data-success="Email valide">
+                </span>
+            } */}
         </div>
     )
 }
