@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { actionAxiosProjects } from '../../Redux/Actions/ProjetsActions';
 
@@ -30,6 +30,9 @@ const App = () => {
     dispatch(actionAxiosProjects());
   }, []);
 
+  const isLogged = useSelector((state) => state.UserReducer.isLogged) ;
+  console.log('loggé ? ', isLogged);
+
   return (
     <div className="App">
 
@@ -42,8 +45,8 @@ const App = () => {
         <Route path="/back-projets" element={<BackProjets />} />
         <Route path="/back-mobilier" element={<BackMobilier />} />
         <Route path="/back-admin" element={<BackAdministration />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        {!isLogged && <Route path="/login" element={<Login />} />}
+        {!isLogged && <Route path="/register" element={<Register />} />}
         <Route path="/403" element={<Error403 />} />
         <Route path="*" element={<Error404 />} />
       </Routes>

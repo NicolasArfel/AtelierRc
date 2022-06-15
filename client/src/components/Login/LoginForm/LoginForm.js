@@ -1,20 +1,22 @@
+
 import LoginFormInput from "./LoginFormInput/LoginFormInput";
 
 
-
-
 const LoginForm = ({title, email, password, isLogged, changeInputValue, handleLogin}) => {    
-
+    
+    
     const emailTitle = 'Email';
     const passwordTitle = 'Mot de passe';
+    
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         handleLogin();
     }
+    
 
     return (
-        <form className="col s6 left login__form" onSubmit={handleSubmit}>
+        <form className="col s6 left login__form" onSubmit={handleSubmit} >
             <div className="row">  
                 <LoginFormInput 
                 type='email' 
@@ -33,7 +35,8 @@ const LoginForm = ({title, email, password, isLogged, changeInputValue, handleLo
                 <button
                     className="btn waves-effect waves-light grey darken-3 button"
                     type="submit"
-                    name="action">
+                    name="action"
+                    >
                     {title}
                 </button>
             </div>

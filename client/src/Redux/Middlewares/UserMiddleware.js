@@ -9,7 +9,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
             // console.log(responseUserReducer);
             const { email, password } = responseUserReducer.UserReducer;
             // console.log({email, password});
-
+            
             try {
                 const {user, accessToken} = await requestLogin(email, password);
                 console.log('response', {user, accessToken});
