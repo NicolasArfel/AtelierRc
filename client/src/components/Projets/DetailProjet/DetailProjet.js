@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -27,9 +27,10 @@ const DetailProjet = () => {
 
     // Effect active on page load
     useEffect(() => {
-        dispatch(actionAxiosProjectsPictures(projet.project_id));
+        projet && dispatch(actionAxiosProjectsPictures(projet.project_id));
     }, []);
 
+    // useSelector allow us to get all information stash in reducer pictures []
     const pictures = useSelector((state) => state.ProjectsReducer.pictures)
     // console.log('pictures', pictures);
 
@@ -44,7 +45,7 @@ const DetailProjet = () => {
                             <div className="col s12">
                                 <div className="card card__detail">
                                     <div className="card-content black-text">
-                                        <h2 className="center card-title card__title">{projet.slug}</h2>
+                                        <h2 className="center card-title card__title">{projet.project_name}</h2>
                                         <p className='card__section-title'>Projet :</p>
                                         {projet.program &&
                                             <p>{projet.program}</p>

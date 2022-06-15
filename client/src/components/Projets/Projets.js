@@ -31,7 +31,7 @@ const Projets = () => {
                         >
                             <div className="card-image card__image ">
                                 <img className="responsive-img z-depth-2" alt={project.name} src={`http://localhost:3001/image/projects/${project.name}`} />
-                                <h2 className='card__image-title' >{project.slug}</h2>
+                                <h2 className='card__image-title' >{project.project_name}</h2>
                             </div>
                         </Link>
                     ))}
