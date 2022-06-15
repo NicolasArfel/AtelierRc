@@ -1,51 +1,41 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import './Login.css'
+import LoginForm from "./LoginForm/LoginForm";
+import { actionSubmitLogin, changeInputValue } from '../../Redux/Actions/UserActions';
 
 const title = 'Se connecter';
 const description = 'Grâce à votre espace personnel, vous serez en mesure de retrouver vos articles préférés !';
 
 const Login = () => {
+
+    const dispatch = useDispatch();
+    const email = useSelector((state) => state.UserReducer.email);
+    const password = useSelector((state) => state.UserReducer.password);
+    const isLogged = useSelector((state) => state.UserReducer.isLogged);
+
     return (
         <div>
-            <Header/>
+            <Header />
             <main className="login container center" >
                 <Banner title={title} description={description} />
                 <div className="row ">
-                    <form className="col s6 left login__form">
-                        <div className="row">
-                            <div className="input-field col s12">
-                                <input
-                                    id="email"
-                                    type="email"
-                                    className="validate" />
-                                <label htmlFor="email">
-                                    Email
-                                </label>
-                                <span
-                                    className="helper-text"
-                                    data-error="Email non valide"
-                                    data-success="Email valide"></span>
-                            </div>
-                            <div className="input-field col s12">
-                                <input
-                                    id="password"
-                                    type="email"
-                                    className="validate" />
-                                <label htmlFor="password">
-                                    Mot de Passe
-                                </label>
-                            </div>
-                            <button
-                                className="btn waves-effect waves-light grey darken-3 button"
-                                type="submit"
-                                name="action">
-                                Se connecter
-                            </button>
-                        </div>
-                    </form>
+                    <LoginForm 
+                    title={title}
+                    email={email}
+                    password={password}
+                    isLogged={isLogged}
+                    changeInputValue={(value, name) => {
+                        // console.log('changeField', { value, name });
+                        dispatch(changeInputValue(value, name));
+                    }}
+                    handleLogin={() => {
+                       dispatch(actionSubmitLogin())
+                    }}
+                     />
                     <div className="column col s6">
                         <p>Vous n'avez pas de compte ? Inscrivez-vous !</p>
                         <Link to='/register'>
@@ -56,7 +46,7 @@ const Login = () => {
                     </div>
                 </div>
             </main>
-            <Footer/>
+            <Footer />
         </div>
 
     )

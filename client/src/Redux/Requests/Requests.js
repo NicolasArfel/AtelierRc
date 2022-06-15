@@ -29,3 +29,13 @@ export async function getAllProjectsPictures(project_id) {
   }
 }
 
+export async function requestLogin(email, password) {
+  try {
+    const response = await axiosInstance.post('/api/login', {email, password});
+    console.log('je suis dans requestLogin');
+    return response.data;
+    
+  } catch (err) {
+    console.error(err);
+  }
+}
