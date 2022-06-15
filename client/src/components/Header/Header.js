@@ -90,28 +90,28 @@ const Header = () => {
                             <div className="col l4 s12 logoInsta">
                                 <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='insta' src={logoInsta} /></a>
                             </div>
-                            <li>
+                            <li className="li__side-nav">
                                 <NavLink to="/" className={activeLink} >
                                     Projets
                                 </NavLink>
                             </li>
-                            {/* <li>
+                            {/* <li className="li__side-nav">
                                 <NavLink to="/moblier" className={activeLink} >
                                     Mobilier
                                 </NavLink>
                             </li> */}
-                            <li>
+                            <li className="li__side-nav">
                                 <NavLink to="/apropos" className={activeLink} >
                                     A propos
                                 </NavLink>
                             </li>
-                            <li>
+                            <li className="li__side-nav">
                                 <NavLink to="/contact" className={activeLink} >
                                     Contact
                                 </NavLink>
                             </li>
                             {!isLogged ?
-                                <li>
+                                <li className="li__side-nav">
                                     <Link to="/login">
                                         Connexion
                                     </Link>
@@ -119,7 +119,7 @@ const Header = () => {
                                 :
                                 <>
                                     {role === 'admin' ?
-                                        <li className='navlink'>
+                                        <li className='navlink li__side-nav'>
                                             <NavLink to="/back-projets" className={activeLink} >
                                                 Backoffice
                                             </NavLink>
@@ -127,9 +127,9 @@ const Header = () => {
                                         :
                                         null
                                     }
-                                    <li>
+                                    <li className="li__side-nav">
                                         <Link to="/">
-                                            <i className="black-text right material-icons login">person</i>
+                                            <i className="black-text material-icons personn__side-nav">person</i>
                                         </Link>
                                     </li>
                                     <button

@@ -21,6 +21,10 @@ nav {
     right: 10px;
 }
 
+.personn__side-nav {
+    margin: 0px 32px 0px 92px !important;
+}
+
 .logoInsta {
     margin-bottom: 3em;
 }
@@ -50,6 +54,10 @@ nav {
 
 .sidenav-trigger:hover {
     cursor: pointer;
+}
+
+.li__side-nav::after {
+    background-color: rgba(233, 233, 233, 0);
 }
 
 li {
