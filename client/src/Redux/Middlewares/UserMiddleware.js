@@ -36,6 +36,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
         case LOGOUT: {
             console.log('je suis dans LOGOUT middleware');
             // on supprime le token de axios
+            localStorage.removeItem('token');
             localStorage.removeItem('user');
             removeAuthorization();
             next(action);

@@ -42,7 +42,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {location.pathname !== "/403" && location.pathname !== "/404" && <Header />}
+      <Header />
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
@@ -57,7 +57,7 @@ const App = () => {
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="/404" element={<Error404 />} />
       </Routes>
-      {location.pathname !== "/403" && location.pathname !== "/404" && <Footer />}
+      <Footer />
     </div>
   );
 }
