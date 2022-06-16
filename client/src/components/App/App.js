@@ -55,7 +55,7 @@ const App = () => {
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route exact path="/403" element={<Error403 />} />
-        <Route exact path="/*" element={<Error404 />} />
+        <Route exact path="*" element={<Error404 />} />
       </Routes>
       <Footer />
     </div>
