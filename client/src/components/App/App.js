@@ -43,15 +43,20 @@ const App = () => {
 
   return (
     <div className="App">
-      {location.pathname !== "/403" && location.pathname !== "/404" && <Header />}
+      <Header />
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
         {/* <Route path="/moblier" element={<Mobilier />} /> */}
         <Route exact path="/apropos" element={<About />} />
+<<<<<<< HEAD
         <Route exact path="/contact" element={<Contact />} />
         {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
         <Route exact path="/back-projets" element={<BackProjets /> } />
+=======
+        <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
+        <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
+>>>>>>> front-components
         {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
         {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
         <Route exact path="/back-admin" element={ <BackAdministration /> } />
@@ -59,9 +64,9 @@ const App = () => {
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route exact path="/403" element={<Error403 />} />
-        <Route exact path="/404" element={<Error404 />} />
+        <Route exact path="/*" element={<Error404 />} />
       </Routes>
-      {location.pathname !== "/403" && location.pathname !== "/404" && <Footer />}
+      <Footer />
     </div>
   );
 }

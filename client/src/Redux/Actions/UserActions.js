@@ -15,10 +15,10 @@ export const actionSubmitLogin = () => ({
     type: SUBMIT_LOGIN,
 })
 
-export const actionSaveUser = (user, token) => ({
+export const actionSaveUser = (decodedJwt, token) => ({
     type: SAVE_USER,
     payload: {
-        user,
+        decodedJwt,
         token,
     },
 });
