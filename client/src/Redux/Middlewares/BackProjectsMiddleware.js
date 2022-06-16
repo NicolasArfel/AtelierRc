@@ -16,16 +16,29 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 client,
                 design,
                 photo_credit } = stateBackProject.BackProjectsReducer;
-                // console.log({project_name,
-                //     location,
-                //     date,
-                //     program,
-                //     surface,
-                //     type,
-                //     client,
-                //     design,
-                //     photo_credit});
-                
+                console.log({project_name,
+                    location,
+                    date,
+                    program,
+                    surface,
+                    type,
+                    client,
+                    design,
+                    photo_credit});
+                try {
+                    const response = await postNewProject( project_name,
+                        location,
+                        date,
+                        program,
+                        surface,
+                        type,
+                        client,
+                        design,
+                        photo_credit );
+                        console.log('reponse back', response)
+                } catch (err) {
+                    console.error(err)
+                }
                 
 
             break;
