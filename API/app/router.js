@@ -23,9 +23,9 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* admin interface */
-// router.post('/api/admin/project', projectController.createAProject);
+router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
-// router.patch('api/admin/project/:id')
+// router.patch('/api/admin/project/:id', projectController.update)
 router.delete('/api/admin/project/:id', projectController.delete);
 
 
