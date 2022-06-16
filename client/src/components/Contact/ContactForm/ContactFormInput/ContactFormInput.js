@@ -13,7 +13,7 @@ const ContactFormInput = ({ title, type, name, value, onChange }) => {
                     id={type}
                     type={type}
                     name={name}
-                    placeholder={title}
+                    placeholder={'*' + title}
                     value={value}
                     className="validate"
                     onChange={handleChange}
