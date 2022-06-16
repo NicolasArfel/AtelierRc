@@ -31,7 +31,7 @@ const Projets = () => {
                     </Link>
                 ))}
                 {/****************************************************** A enlever ***************************/}
-                {projects.map(project => (
+                {/* {projects.map(project => (
                     <Link
                         to={`/projet/${project.slug}`}
                         key={project.id}
@@ -50,7 +50,7 @@ const Projets = () => {
                         <img className="responsive-img z-depth-2" alt={project.name} src={`http://localhost:3001/image/projects/${project.name}`} />
                         <h2 className='card__image-title' >{project.project_name}</h2>
                     </Link>
-                ))}
+                ))} */}
                 {/****************************************************** A enlever ***************************/}
             </div>
         </main>
