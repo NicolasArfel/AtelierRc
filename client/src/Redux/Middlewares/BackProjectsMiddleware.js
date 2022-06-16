@@ -1,5 +1,6 @@
 import { POST_PROJECT } from "../Actions/BackProjectsActions";
-import { postNewProject } from "../Requests/Requests";
+import { postNewProject } from "../Requests/BackAdminProjectRequests";
+
 
 const BackProjectsMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
@@ -8,6 +9,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             const stateBackProject = store.getState();
             // console.log(stateBackProject);
             const { project_name,
+                slug,
                 location,
                 date,
                 program,
@@ -15,8 +17,9 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 type,
                 client,
                 design,
-                photo_credit } = stateBackProject.BackProjectsReducer;
+                project_photo_credit } = stateBackProject.BackProjectsReducer;
                 console.log({project_name,
+                    slug,
                     location,
                     date,
                     program,
@@ -24,9 +27,10 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                     type,
                     client,
                     design,
-                    photo_credit});
+                    project_photo_credit});
                 try {
                     const response = await postNewProject( project_name,
+                        slug,
                         location,
                         date,
                         program,
@@ -34,7 +38,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                         type,
                         client,
                         design,
-                        photo_credit );
+                        project_photo_credit );
                         console.log('reponse back', response)
                 } catch (err) {
                     console.error(err)

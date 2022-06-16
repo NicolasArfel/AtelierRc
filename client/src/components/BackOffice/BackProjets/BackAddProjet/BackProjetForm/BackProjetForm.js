@@ -2,6 +2,7 @@ import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
 
 
 const BackProjetForm = ({ projectName,
+    slug,
     location,
     date,
     program,
@@ -14,6 +15,7 @@ const BackProjetForm = ({ projectName,
     handlePostProject }) => {
 
     const projectTitle = 'Nom du projet';
+    const slugTitle = 'URL';
     const locationTitle = 'Localisation';
     const dateTitle = 'Année';
     const programTitle = 'Programme';
@@ -37,6 +39,13 @@ const BackProjetForm = ({ projectName,
                     name='project_name'
                     title={projectTitle}
                     value={projectName}
+                    onChange={changeInputValue}
+                />
+                <BackProjetFormInput
+                    type='text'
+                    name='slug'
+                    title={slugTitle}
+                    value={slug}
                     onChange={changeInputValue}
                 />
                 <BackProjetFormInput

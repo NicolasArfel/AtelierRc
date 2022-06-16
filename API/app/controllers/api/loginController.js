@@ -1,5 +1,4 @@
-const userDatamapper = require('../../models/userDatamapper.js');
-//const jwtToken = require('../../utils/jwtGenerator')
+const userDatamapper  = require('../../models/userDatamapper.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 

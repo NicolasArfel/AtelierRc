@@ -1,7 +1,6 @@
 
 const dotenv = require('dotenv');
 dotenv.config();
-
 const express = require('express');
 // not useful now but useful to deploy de the app
 const path = require('path');
