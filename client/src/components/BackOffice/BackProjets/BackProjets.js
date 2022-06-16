@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { changeBackInputValue } from '../../../Redux/Actions/BackProjectsActions';
+import { actionPostProject, changeBackInputValue } from '../../../Redux/Actions/BackProjectsActions';
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 import BackProjetForm from './BackProjetForm/BackProjetForm';
@@ -14,7 +14,7 @@ const BackProjets = () => {
   const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
   const location = useSelector((state) => state.BackProjectsReducer.location);
   const date = useSelector((state) => state.BackProjectsReducer.date);
-  const program = useSelector((state) => state.BackProjectsReducer.location);
+  const program = useSelector((state) => state.BackProjectsReducer.program);
   const surface = useSelector((state) => state.BackProjectsReducer.surface);
   const type = useSelector((state) => state.BackProjectsReducer.type);
   const client = useSelector((state) => state.BackProjectsReducer.client);
@@ -38,6 +38,9 @@ const BackProjets = () => {
           changeInputValue={(value, name) => {
             // console.log('changeField', { value, name });
             dispatch(changeBackInputValue(value, name));
+          }}
+          handlePostProject={() => {
+            dispatch(actionPostProject())
           }}
         />
         <div className="col s12 right table__back-projects">

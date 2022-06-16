@@ -10,7 +10,8 @@ const BackProjetForm = ({ projectName,
     client,
     design,
     photoCredit,
-    changeInputValue }) => {
+    changeInputValue,
+    handlePostProject }) => {
 
     const projectTitle = 'Nom du projet';
     const locationTitle = 'Localisation';
@@ -22,25 +23,21 @@ const BackProjetForm = ({ projectName,
     const designTitle = 'Conception';
     const creditTitle = 'Crédit Photo';
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        handlePostProject();
+    }
+
     return (
 
-        <form className="col s6 left contact__form">
-            {/* <div className="file-field input-field col s12">
-            <div className="btn">
-              <span>File</span>
-              <input type="file" multiple />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" placeholder="Upload one or more files" />
-            </div>
-          </div> */}
+        <form className="col s6 left contact__form" onSubmit={handleSubmit}>
             <div>
                 <BackProjetFormInput
                     type='text'
                     name='project_name'
                     title={projectTitle}
                     value={projectName}
-                onChange={changeInputValue}
+                    onChange={changeInputValue}
                 />
                 <BackProjetFormInput
                     type='text'
@@ -98,7 +95,7 @@ const BackProjetForm = ({ projectName,
                     value={photoCredit}
                     onChange={changeInputValue}
                 />
-                
+
             </div>
             <button className="btn waves-effect waves-light grey darken-3 button" type="submit" name="action">Ajouter le projet</button>
         </form>
