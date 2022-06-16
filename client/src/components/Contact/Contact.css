@@ -10,6 +10,14 @@
     font-size: 1.2em;
 }
 
+.error__sending-email {
+    color: red;
+}
+
+.succed__sending-email {
+    color: green;
+}
+
 .contact__img {
     max-width: 70%;
 }
