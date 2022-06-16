@@ -1,17 +1,21 @@
 import { CHANGE_INPUT_VALUE, LOGOUT, SAVE_USER } from "../Actions/UserActions";
 
+const user = JSON.parse(localStorage.getItem('user'));
+const token = JSON.parse(localStorage.getItem('token'));
+
+// console.log('storageUser', user)
+
 export const initialState = {
-    email: '',
+    email: user ? user.email : '',
     password: '',
-    isLogged: false,
-    token: null,
-    firstName: '',
-    lastName: '',
-    role: 'visiteur'
+    isLogged: user && true,
+    token: user ? token : null,
+    firstName: user ? user.firstname : '',
+    lastName: user ? user.lastname : '',
+    role: user ? user.role : 'visiteur'
 };
 
 const reducer = (state = initialState, action = {}) => {
-
     switch (action.type) {
         case CHANGE_INPUT_VALUE:
             console.log('je suis dans CHANGE_INPUT_VALUE');
@@ -27,9 +31,9 @@ const reducer = (state = initialState, action = {}) => {
                 isLogged: true,
                 token: action.payload.token,
                 password: '',
-                firstName: action.payload.user.firstname,
-                lastName: action.payload.user.lastname,
-                role: action.payload.user.role
+                firstName: action.payload.decodedJwt.firstname,
+                lastName: action.payload.decodedJwt.lastname,
+                role: action.payload.decodedJwt.role
             };
         case LOGOUT:
             console.log('je suis dans LOGOUT');

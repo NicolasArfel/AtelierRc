@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 import { actionSaveUser, LOGOUT, SAVE_USER, SUBMIT_LOGIN } from "../Actions/UserActions";
 import { requestLogin, saveAuthorization, removeAuthorization } from "../Requests/Requests";
 
@@ -11,9 +13,13 @@ const UserMiddleware = (store) => (next) => async (action) => {
             // console.log({email, password});
 
             try {
-                const { user, accessToken } = await requestLogin(email, password);
-                console.log('response', { user, accessToken });
-                store.dispatch(actionSaveUser(user, accessToken))
+                const { accessToken } = await requestLogin(email, password);
+                // console.log('response', { accessToken });
+                const decodedJwt = jwt_decode(accessToken);
+                // console.log('decodedJwt', decodedJwt);
+                localStorage.setItem('user', JSON.stringify(decodedJwt))
+                localStorage.setItem('token', JSON.stringify(accessToken))
+                store.dispatch(actionSaveUser(decodedJwt, accessToken))
 
             } catch (err) {
                 console.error(err);
@@ -30,6 +36,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
         case LOGOUT: {
             console.log('je suis dans LOGOUT middleware');
             // on supprime le token de axios
+            localStorage.removeItem('user');
             removeAuthorization();
             next(action);
             break;
