@@ -62,7 +62,7 @@ const BackProjetForm = ({ projectName,
                 />
                 <BackProjetFormInput
                     type='text'
-                    name='surface'
+                    name='surface_area'
                     title={surfaceTitle}
                     value={surface}
                     onChange={changeInputValue}

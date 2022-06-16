@@ -5,7 +5,7 @@ export const initialState = {
     location: '',
     date: '',
     program: '',
-    surface: '',
+    surface_area: '',
     type: '',
     client: '',
     design: '',
