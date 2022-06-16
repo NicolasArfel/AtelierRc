@@ -78,6 +78,7 @@ const DetailProjet = () => {
                                     <article className="card card__article" key={picture.id}>
                                         <div className="card-image">
                                             <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                            {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
                                         </div>
                                     </article>
                                 ))}

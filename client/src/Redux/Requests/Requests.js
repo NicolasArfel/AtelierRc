@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
+  // baseURL: "http://www.salleanthony.fr:6520"
   baseURL: "http://localhost:3001"
 });
 
