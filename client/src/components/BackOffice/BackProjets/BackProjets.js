@@ -1,65 +1,45 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { changeBackInputValue } from '../../../Redux/Actions/BackProjectsActions';
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
+import BackProjetForm from './BackProjetForm/BackProjetForm';
 import './BackProjets.css'
 
 const title = 'Back Office'
 
 const BackProjets = () => {
+
+  const dispatch = useDispatch();
+  const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
+  const location = useSelector((state) => state.BackProjectsReducer.location);
+  const date = useSelector((state) => state.BackProjectsReducer.date);
+  const program = useSelector((state) => state.BackProjectsReducer.location);
+  const surface = useSelector((state) => state.BackProjectsReducer.surface);
+  const type = useSelector((state) => state.BackProjectsReducer.type);
+  const client = useSelector((state) => state.BackProjectsReducer.client);
+  const design = useSelector((state) => state.BackProjectsReducer.design);
+  const photoCredit = useSelector((state) => state.BackProjectsReducer.photo_credit);
+
   return (
     <main className="container" >
       <BannerBackOffice title={title} />
       <div className="row">
-        <form className="col s6 left contact__form">
-          {/* <div className="file-field input-field col s12">
-            <div className="btn">
-              <span>File</span>
-              <input type="file" multiple />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" placeholder="Upload one or more files" />
-            </div>
-          </div> */}
-          <div>
-            <div className="input-field col s12">
-              <input id="project_name" type="text" className="validate" />
-              <label htmlFor="project_name">Nom</label>
-            </div>
-            <div className="input-field col s12">
-              <input id="project-localisation" type="text" className="validate" />
-              <label htmlFor="project-localisation">Localisation</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-date" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-date">Date</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-programme" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-programme">Programme</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-surface" type="number" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-surface">Surface</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-type" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-type">Type</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-commenditaire" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-commenditaire">Commenditaire</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-conception" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-conception">Conception</label>
-            </div>
-            <div className="input-field col s12">
-              <textarea id="project-credit-photo" type="text" className="materialize-textarea" ></textarea>
-              <label htmlFor="project-credit-photo">Crédit photo</label>
-            </div>
-          </div>
-          <button className="btn waves-effect waves-light grey darken-3 button" type="submit" name="action">Ajouter le projet</button>
-        </form>
+        <BackProjetForm
+          projectName={projectName}
+          location={location}
+          date={date}
+          program={program}
+          surface={surface}
+          type={type}
+          client={client}
+          design={design}
+          photoCredit={photoCredit}
+          changeInputValue={(value, name) => {
+            // console.log('changeField', { value, name });
+            dispatch(changeBackInputValue(value, name));
+          }}
+        />
         <div className="col s12 right table__back-projects">
           <table className="centered responsive-table striped">
             <thead>

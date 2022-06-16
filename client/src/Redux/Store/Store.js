@@ -3,11 +3,12 @@ import reducer from '../Reducers/Reducer'
 
 import ProjetsMiddleware from '../Middlewares/ProjetsMiddleware'
 import UserMiddleware from '../Middlewares/UserMiddleware';
+import BackProjectsMiddleware from '../Middlewares/BackProjectsMiddleware';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-    applyMiddleware(ProjetsMiddleware, UserMiddleware),
+    applyMiddleware(ProjetsMiddleware, UserMiddleware, BackProjectsMiddleware),
 );
 
 const store = createStore(reducer, enhancers);

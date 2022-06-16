@@ -4,6 +4,33 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
 });
 
+export async function postNewProject(project_name,
+  location,
+  date,
+  program,
+  surface,
+  type,
+  client,
+  design,
+  photo_credit) {
+  try {
+    const response = await axiosInstance.post('/api/admin/project', {
+      project_name,
+      location,
+      date,
+      program,
+      surface,
+      type,
+      client,
+      design,
+      photo_credit
+    });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function getAllProjects() {
   try {
     const response = await axiosInstance.get("/api/projects");
