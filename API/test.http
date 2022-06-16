@@ -22,7 +22,7 @@ GET http://localhost:3001/api/furnitures
 GET http://localhost:3001/api/furniture/1
 
 ### suppression d'un projet
-DELETE http://localhost:3001/api/project/46
+DELETE http://localhost:3001/api/admin/project/4
 
 # POST http://localhost:3001/api/login HTTP/1.1
 # content-type: application/json

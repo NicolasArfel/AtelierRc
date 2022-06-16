@@ -26,7 +26,7 @@ router.post('/api/login', loginController.login);
 // router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
 // router.patch('api/admin/project/:id')
-router.delete('api/project/:id', projectController.delete);
+router.delete('/api/admin/project/:id', projectController.delete);
 
 
 module.exports = router;

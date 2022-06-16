@@ -84,12 +84,24 @@ CREATE TABLE "furniture" (
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE "photo" (
+CREATE TABLE "project_photo" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL UNIQUE,
     "position" INT NOT NULL,
     "photo_credit" TEXT,
     "cover_photo" BOOLEAN,
+    "project_id" INT NOT NULL REFERENCES "project" ("id") ON DELETE CASCADE,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
+    "updated_at" TIMESTAMPTZ
+);
+
+CREATE TABLE "furniture_photo"(
+    "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "name" TEXT NOT NULL UNIQUE,
+    "position" INT NOT NULL,
+    "photo_credit" TEXT,
+    "cover_photo" BOOLEAN,
+    "furniture_id" INT NOT NULL REFERENCES "furniture" ("id") ON DELETE CASCADE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );

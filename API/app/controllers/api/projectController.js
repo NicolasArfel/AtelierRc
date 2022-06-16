@@ -33,7 +33,7 @@ const projectController = {
            
             if (!project) {
                //console.log('je suis dans le if de getOne');
-               res.status(401).send("error: The project you are looking for does not exists");
+               res.status(404).send("error: The project you are looking for does not exists");
                //throw new ApiError('Post not found', { statusCode: 404 });
                //res.send('project not found');
             } 
@@ -108,7 +108,7 @@ const projectController = {
        try {
          const updateProject = await projectDatamapper.findByPk(req.params.id);
          if (!project) {
-            res.status(401).json("error: The project you are looking for does not exists");
+            res.status(404).json("error: The project you are looking for does not exists");
              //throw new ApiError('Post not found', { statusCode: 404 });
             //  res.send('project not found');
          } if(req.body.name || req.body.slug){
@@ -120,7 +120,7 @@ const projectController = {
                } else {
                   field = slug;
                }
-               res.status(401).json("error: The project you are looking for does not exists");
+               res.status(404).json("error: The project you are looking for does not exists");
                //throw new ApiError('Project not found', { statusCode: 404 });
                //  res.send('project not found');
             }
@@ -132,8 +132,7 @@ const projectController = {
          res.status(500).json(error.toString());
        }
     },
-
-   //! Ne fonctionne pas pour le moment 
+ 
     /**
      * Project controller to delete a record
      * @param {object} req Express request object
@@ -142,14 +141,14 @@ const projectController = {
      */
     async delete(req, res) {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
-      console.log("je suis dans le controller delete ", deleteProject)
+      console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
-         res.status(401).send("error: The project you are looking for does not exists");
+         res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
       // 204 : No Content
-      return res.status(204).json();
+      return res.status(204).json(toString('The project has been deleted'));
   },
 };
 
