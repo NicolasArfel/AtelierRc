@@ -33,7 +33,7 @@ const loginController = {
             console.log('access Token', accessToken);
 
             res.json({
-                accessToken, user
+                accessToken
             });
             //}
 
