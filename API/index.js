@@ -1,10 +1,10 @@
 
 const dotenv = require('dotenv');
 dotenv.config();
-
 const express = require('express');
 // not useful now but useful to deploy de the app
 const path = require('path');
+
 
 const router = require('./app/router');
 
@@ -13,7 +13,6 @@ const multer = require('multer');
 const bodyParser = require('body-parser');
 
 // const jwt = require('express-jwt');
-
 
 const app = express();
 
@@ -30,9 +29,10 @@ app.use(cors({
     origin: "*"
 }));
 
-//if (process.env.NODE_ENV !== 'production') {
-   // dotenv.config();
-//}
+
+// if (process.env.NODE_ENV !== 'production') {
+//    dotenv.config();
+// }
 
 
 //const upload = multer({ dest: 'uploads/' });
