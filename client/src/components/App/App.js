@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -27,8 +27,6 @@ const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
   const dispatch = useDispatch();
-  const location = useLocation();
-  // console.log(location)
 
   // Effect active on page load
   useEffect(() => {
