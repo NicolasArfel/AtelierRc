@@ -2,14 +2,6 @@
 
 BEGIN;
 
-DROP TABLE IF EXISTS"furniture_photo";
-
-ALTER TABLE "project_photo"
-  RENAME TO  "photo";
-
-ALTER TABLE "photo"
-  DROP COLUMN  "project_id" INT NOT NULL REFERENCES "project" ("id");
-
 ALTER TABLE "furniture"
   ALTER COLUMN "slug" TYPE TEXT;
 

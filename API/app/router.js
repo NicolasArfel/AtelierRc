@@ -5,6 +5,7 @@ const projectController = require('./controllers/api/projectController');
 const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
+const adminController = require('./controllers/api/adminController');
 const { Router } = require('express');
 
 const router = express.Router();
@@ -25,10 +26,15 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* admin interface */
-// router.post('/api/admin/project', projectController.createAProject);
+router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
-// router.patch('api/admin/project/:id')
-router.delete('/api/project/:id', projectController.delete);
+// router.patch('/api/admin/project/:id', projectController.update)
+router.delete('/api/admin/project/:id', projectController.delete);
 
+/* Contact */
+router.post('/api/contact', contactController.mail);
+
+/*  Admin */
+// router.patch('/api/admin/profile/:id', adminController.profile);
 
 module.exports = router;

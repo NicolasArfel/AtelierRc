@@ -27,75 +27,62 @@ const projectController = {
     * @param {*} res Express response object
     * @returns Route API JSON response with the project
     */
-   async getOne(req, res) {
-      //try {
-      const project = await projectDatamapper.findByPk(req.params.id);
-
-      if (!project) {
-         //console.log('je suis dans le if de getOne');
-         res.status(401).send("error: The project you are looking for does not exists");
-         //throw new ApiError('Post not found', { statusCode: 404 });
-         //res.send('project not found');
-      }
-
-      return res.json(project);
+    async getOne(req, res) {
+       //try {
+            const project = await projectDatamapper.findByPk(req.params.id);
+           
+            if (!project) {
+               //console.log('je suis dans le if de getOne');
+               res.status(404).send("error: The project you are looking for does not exists");
+               //throw new ApiError('Post not found', { statusCode: 404 });
+               //res.send('project not found');
+            } 
+            
+            return res.json(project);
 
       //   } catch(error) {
       //      console.trace(error);
       //     res.status(500).json(error.toString());
       //   }
-   },
+    },
 
-   /**
-   //  * Project controller to create a record
-   //  * @param {*} req Express req.object (not used)
-   //  * @param {*} res Express response object
-   //  * @returns Route API JSON response
-    */
+    /**
+     * Project controller to create a record
+     * @param {*} req Express req.object (not used)
+     * @param {*} res Express response object
+     * @returns Route API JSON response
+     */
 
-   // async createAProject(req, res) {
-   //    const data = req.body;
-   //    try {
-   //       console.log('data',data);
-   //       await projectDatamapper.insert(data);
-   //       return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
+     async createAProject(req, res) {
+       const data = req.body;
+       
+       try {
 
-   //    } catch (error) {
-   //       //console.trace(error);
-   //       if (error.detail === `Key (name)=(${data.project_name}) already exists.`) {
-   //          console.log('je suis dans le if de mon controller');
-   //          return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-   //       }
-   //       if (error.code === '23514') {
-   //          console.log('je suis dans le 2e if de mon controller');
-   //          return res.status(500).json(`"Le slug ${data.slug} n'est pas correct"`);
-   //       } else {
-   //          res.status(500).json(error.toString());
-   //       }
-   //       console.trace(error);
-   //    }
-   // },
-
-   //! si j'utilise le isUnique du dataMapper :    
-   //     async create(req, res) {
-   //       const data = req.body;
-   //       const project = await projectDatamapper.isUnique(data);
-   //       if (project) {
-   //           let field;
-   //           if (project.name === req.body.name) {
-   //               field = 'project_name';
-   //           } 
-   //           if (project_photo.photo_name === req.body.name) {
-   //           field = 'photo_name'
-   //           } else {
-   //               field = 'slug';
-   //           console.error(`Category already exists with this ${field}`, { statusCode: 400 });
-   //       }
-
-   //       const savedProject = await projectDatamapper.insert(data);
-   //       return res.json(savedProject);
-   //   },
-
+          if(data.photo_name === ""){
+            return res.status(200).json(`Merci de remplir le champs photo_name`);
+          } if (data.project_name) {
+            return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
+          } else {
+            await projectDatamapper.insert(data);
+            return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
+          }
+          
+       } catch (error) {
+         //console.trace(error);
+         if(error.detail === `Key (name)=(${data.project_name}) already exists.`){
+         //console.log('je suis dans le if de mon controller');
+         return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
+         } 
+         // if(error.code === '23514'){
+         // console.log('je suis dans le 2e if de mon controller');
+         // return res.status(500).json(`"Le slug ${data.slug} n'est pas correct"`);
+         // } 
+         else {
+            res.status(500).json(error.toString());
+         }
+         console.trace(error);
+       }
+    },
 
    //! terminer cette méthode du controller
    /**
@@ -142,15 +129,15 @@ const projectController = {
     */
    async delete(req, res) {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
-      console.log("je suis dans le controller delete ", deleteProject)
+      console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
-         res.status(401).send("error: The project you are looking for does not exists");
+         res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
       // 204 : No Content
-      return res.status(204).json();
-   },
+      return res.status(204).json(toString('The project has been deleted'));
+  },
 };
 
 module.exports = projectController;
