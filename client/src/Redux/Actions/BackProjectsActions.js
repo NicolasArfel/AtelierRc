@@ -16,6 +16,10 @@ export const actionPostProject = () => ({
     type : POST_PROJECT,
 })
 
-export const actionDeleteProject = () => ({
+export const actionDeleteProject = (id) => ({
     type : DELETE_PROJECT,
+    payload: {
+        id,
+    }
 })
+

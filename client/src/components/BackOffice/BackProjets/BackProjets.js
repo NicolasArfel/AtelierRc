@@ -1,27 +1,22 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { actionAxiosProjects } from '../../../Redux/Actions/ProjetsActions';
-import { deleteProject } from '../../../Redux/Requests/BackAdminProjectRequests';
+import { Link} from 'react-router-dom';
+import { actionDeleteProject } from '../../../Redux/Actions/BackProjectsActions';
+
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
-
-
 import './BackProjets.css'
 
 const title = 'Back Office'
 
 const BackProjets = () => {
 
-  // const dispatch = useDispatch();
-  const {slug} = useParams();
-  const projects = useSelector((state) => state.ProjectsReducer.projects, slug);
-  // useEffect(() => {
-  //   const filteredProjects = projects.filter((project) => project.project_id !== slug);
-  //   dispatch(actionAxiosProjects(filteredProjects))
-  // },[projects])
+  const dispatch = useDispatch();
   
-  console.log(projects);
+  const projects = useSelector((state) => state.ProjectsReducer.projects);
+  
+  
+  console.log('projects dans backprojet',projects);
   return (
     <main className="container" >
       <BannerBackOffice title={title} />
@@ -49,7 +44,7 @@ const BackProjets = () => {
                   type="submit" 
                   name="supprimer"
                   onClick={() => {
-                    deleteProject(project.project_id)                    
+                    dispatch(actionDeleteProject(project.project_id)  )                  
                   }}
                   >Supprimer</button>
                   <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3" 

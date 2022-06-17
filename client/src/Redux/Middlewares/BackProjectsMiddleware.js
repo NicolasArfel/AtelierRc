@@ -1,20 +1,31 @@
-import { DELETE_PROJECT, POST_PROJECT } from "../Actions/BackProjectsActions";
-import { actionDispatchProjects } from "../Actions/ProjetsActions";
-import { postNewProject } from "../Requests/BackAdminProjectRequests";
-import { getAllProjects } from "../Requests/Requests";
+import {actionDispatchProjects} from '../Actions/ProjetsActions'
+import {  DELETE_PROJECT, POST_PROJECT } from "../Actions/BackProjectsActions";
+import { deleteProject, postNewProject } from "../Requests/BackAdminProjectRequests";
+import { filteredProjects } from "../Selectors/projectsSelectors";
+
 
 
 const BackProjectsMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
         case DELETE_PROJECT : {
 
-            const responseProjects = await getAllProjects();
-                // console.log('projects middleware response', responseProjects);
+            const responseProjects = await deleteProject(action.payload.id);
+            console.log('response delete',responseProjects.status)
+
+            if(responseProjects.status === 204) {
+                const responseProjectReducer = store.getState();
+                // console.log(responseProjectReducer.ProjectsReducer.projects)
+                const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
+                console.log(newState)
                 store.dispatch(
-                    actionDispatchProjects(responseProjects)
-                );
+                    actionDispatchProjects(newState)
+                    );
+            }
+                // console.log('projects middleware response', responseProjects);
+
             break;
         }
+
         case POST_PROJECT: {
             console.log('je suis dans POST_PROJECT');
             const stateBackProject = store.getState();

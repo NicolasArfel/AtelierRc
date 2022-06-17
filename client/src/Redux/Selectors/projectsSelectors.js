@@ -4,3 +4,10 @@ export function findProject(ProjectsReducer, searchedSlug) {
     })
     return projet;
 }
+
+export function filteredProjects(projects, id) {
+    const newProjectsList = projects.filter((project) => {
+        return project.project_id !== id;
+    })
+    return newProjectsList;
+}
