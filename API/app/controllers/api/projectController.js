@@ -120,7 +120,7 @@ const projectController = {
       }
    },
 
-   //! Ne fonctionne pas pour le moment 
+   
    /**
     * Project controller to delete a record
     * @param {object} req Express request object
@@ -131,7 +131,7 @@ const projectController = {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
       console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
-         res.status(404).send("error: The project you are looking for does not exists");
+         return res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
