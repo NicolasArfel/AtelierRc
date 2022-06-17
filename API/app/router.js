@@ -6,6 +6,7 @@ const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
+// const uploadController = require('./controllers/api/uploadController');
 const { Router } = require('express');
 
 const router = express.Router();
@@ -26,13 +27,15 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* admin interface */
-router.post('/api/admin/project', projectController.createAProject);
-// router.post('/api/admin/project', projectController.create);
+router.post('/api/admin/project',projectController.createAProject);
 // router.patch('/api/admin/project/:id', projectController.update)
 router.delete('/api/admin/project/:id', projectController.delete);
 
 /* Contact */
 router.post('/api/contact', contactController.mail);
+
+/* Upload images */
+// router.post('/api/admin/upload-projects-images', );
 
 /*  Admin */
 // router.patch('/api/admin/profile/:id', adminController.profile);

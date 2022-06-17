@@ -46,6 +46,7 @@ const projectController = {
       //   }
     },
 
+
     /**
      * Project controller to create a record
      * @param {*} req Express req.object (not used)
@@ -55,14 +56,38 @@ const projectController = {
 
      async createAProject(req, res) {
        const data = req.body;
+       const allProjects = await projectDatamapper.findAll();
+       console.log('all projects : ', allProjects);
+       const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
+       console.log('Existing project :', checkIfProjectExists);
        
-       try {
+       const checkIfphotoExist = allProjects.find(element  => element.photo_name === data.photo_name);
+       if (checkIfphotoExist !== undefined){
+        return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
+       } else {
+         // ici la logique photo
+         
+       }
 
-          if(data.photo_name === ""){
-            return res.status(200).json(`Merci de remplir le champs photo_name`);
-          } if (data.project_name) {
+       try {
+        // const slugRegex = data.slug;
+        // const regex = '^[a-z0-9]+(?:-[a-z0-9]+)*$';
+
+        if(data.photo_name === ""){
+            return res.status(500).json(`Merci de remplir le champs photo_name`);
+            
+            // Je doit comparer la value data.project_name qui vient du req.body avec la base de donnée.
+            // Je fait un appel au datamapper exemple : const allProject = await projectDatamapper.findAll();
+
+            // Console.log(allProject) pour visualiser la structure de la reponse.
+            // const resultallProjectName = allProject.find(element => element.name === project_name)
+            // } if (resultallProjectName) {
+
+          } if (checkIfProjectExists !== undefined) {
             return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-          } else {
+          } 
+          
+          else {
             await projectDatamapper.insert(data);
             return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
           }
@@ -83,6 +108,22 @@ const projectController = {
          console.trace(error);
        }
     },
+
+    // async addPhotoToProject(req, res) {
+  //   // NO CODE EXEMPLE
+
+  //   // => ICI LA LOGIQUE UPLOAD MULTI FILE
+
+  //   // req.body.file.length pour recuperer le nombre d'images envoyé depuis le front
+  //   // Admettons que l'on récupère 10 images on boucle comme ceci :
+
+  //   // => ICI LA LOGIQUE BOUCLE INSERTION DANS LA TABLE PROJECT_PHOTO 
+
+  //   for (let index = 0; index < req.body.file.length; index++) {
+  //    await projectDatamapper.addImageToProject(data);
+  //   }
+
+  // },
 
    //! terminer cette méthode du controller
     /**
@@ -133,7 +174,7 @@ const projectController = {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
       console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
-         res.status(404).send("error: The project you are looking for does not exists");
+         return res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
