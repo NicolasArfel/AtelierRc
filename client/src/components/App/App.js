@@ -28,11 +28,8 @@ const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
   const dispatch = useDispatch();
-<<<<<<< HEAD
-=======
   
   // console.log(location)
->>>>>>> front-form-projet
 
   // Effect active on page load
   useEffect(() => {
