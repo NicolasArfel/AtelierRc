@@ -22,11 +22,17 @@ import BackProjets from '../BackOffice/BackProjets/BackProjets';
 import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
 
 const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
   const dispatch = useDispatch();
+<<<<<<< HEAD
+=======
+  
+  // console.log(location)
+>>>>>>> front-form-projet
 
   // Effect active on page load
   useEffect(() => {
@@ -47,9 +53,12 @@ const App = () => {
         {/* <Route path="/moblier" element={<Mobilier />} /> */}
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
-        <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
+        {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
+        <Route exact path="/back-projets" element={ <BackProjets /> } />
         {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
-        <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
+        {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
+        <Route exact path="/back-admin" element={ <BackAdministration /> } />
+        <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route exact path="/403" element={<Error403 />} />
