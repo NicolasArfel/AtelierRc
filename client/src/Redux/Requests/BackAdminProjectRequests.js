@@ -6,13 +6,10 @@ const axiosInstance = axios.create({
 });
 
 export async function deleteProject(projectId) {
-  
-
   try {
-
     await axiosInstance.delete(`api/admin/project/${projectId}`);
     console.log(`le projet avec id ${projectId} est supprimé`);
-    // actionDeleteProject();
+    
    
   } catch (err) {
     console.error(err)
