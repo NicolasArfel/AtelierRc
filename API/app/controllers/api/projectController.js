@@ -26,7 +26,12 @@ const projectController = {
            console.trace(error);
            res.status(500).json(error.toString());
         }
-    }
+    },
+
+   //  async update(req, res) {
+   //     try{}
+   //     catch{}
+   //  }
 };
 
 module.exports = projectController;

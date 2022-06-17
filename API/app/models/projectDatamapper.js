@@ -61,6 +61,11 @@ const projectDatamapper = {
         const result = await client.query(preparedQuery);
         return result.rowCount;
     },
-};
+
+//     async update(data) {
+    
+// }
+
+}
 
 module.exports = projectDatamapper;

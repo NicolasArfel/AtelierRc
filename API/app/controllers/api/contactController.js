@@ -22,30 +22,17 @@ const contactController = {
     })
 
   //   transporter.use('compile', hbs({
-  //     viewPath: '../../views/email',
-  //     extName: '.hbs'
+  //     viewEngine: 'express-handlebars',
+  //     viewPath: '../../emails/layouts/'
   // }));
-
-
-  let options = {
-    viewEngine: {
   
-  }};
-
-  transporter.use("compile", hbs(options))
-
-
-
 
   let mailOptions = {
     from: req.body.from,
     to: 'testatelierrc@gmail.com', 
-    subject: 'Nodemailer - Test',
-    text: 'Wooohooo it works!!',
+    subject: req.body.subject,
+    text: req.body.text,
     template: 'index',
-    context: {
-        name: 'Accime Esterling'
-    } // send extra values to template
 };
     
     await transporter.sendMail(mailOptions, function(err, data) {
