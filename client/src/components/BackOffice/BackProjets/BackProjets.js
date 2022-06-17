@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteProject } from '../../../Redux/Requests/BackAdminProjectRequests';
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 
@@ -37,7 +38,18 @@ const BackProjets = () => {
                   <td>{project.project_name}</td>
                   <td>{project.surface_area}</td>
                   <td>{project.client}</td>
-                  <td><button className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3" type="submit" name="supprimer">Supprimer</button><button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3" type="submit" name="supprimer">Modifier</button></td>
+                  <td>
+                  <button className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3" 
+                  type="submit" 
+                  name="supprimer"
+                  onClick={() => {
+                    deleteProject(project.id)
+                  }}
+                  >Supprimer</button>
+                  <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3" 
+                  type="submit" 
+                  name="supprimer">Modifier</button>
+                  </td>
                 </tr>
               ))}
             </tbody>
