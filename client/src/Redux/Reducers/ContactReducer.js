@@ -23,10 +23,12 @@ const ContactReducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 error: true,
+                succed: false,
             }
         case SUCCED_SENDING_EMAIL:
             return {
                 ...state,
+                error: false,
                 succed: true,
                 lastname: '',
                 firstname: '',
