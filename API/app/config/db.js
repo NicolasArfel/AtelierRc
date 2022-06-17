@@ -26,7 +26,7 @@ const { Pool } = require('pg');
      },
  };
 
-// an other way to do it
+// // an other way to do it
 //  const Pool = require("pg").Pool
 
 // const pool = new Pool({

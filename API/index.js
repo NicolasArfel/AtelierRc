@@ -5,6 +5,7 @@ const express = require('express');
 // not useful now but useful to deploy de the app
 const path = require('path');
 
+
 const router = require('./app/router');
 
 const cors = require('cors');
@@ -30,9 +31,10 @@ app.use(cors({
     origin: "*"
 }));
 
-//if (process.env.NODE_ENV !== 'production') {
-   // dotenv.config();
-//}
+
+// if (process.env.NODE_ENV !== 'production') {
+//    dotenv.config();
+// }
 
 
 //const upload = multer({ dest: 'uploads/' });
