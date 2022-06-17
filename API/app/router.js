@@ -1,6 +1,6 @@
 const express = require('express');
 
-// importer les controllers
+// controllers imports
 const projectController = require('./controllers/api/projectController');
 const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
@@ -27,7 +27,7 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* admin interface */
-router.post('/api/admin/project',projectController.createAProject);
+router.post('/api/admin/add-project', projectController.createAProject);
 // router.patch('/api/admin/project/:id', projectController.update)
 router.delete('/api/admin/project/:id', projectController.delete);
 

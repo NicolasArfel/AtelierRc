@@ -8,23 +8,17 @@ const router = require('./app/router');
 const cors = require('cors');
 // const bodyParser = require('body-parser');
 const multer = require('multer');
+// const jwt = require('express-jwt');
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'public/image/projects')
   },
   filename: (req, file, cb) => {
     console.log(file);
-    cb(null, file.originalname + '_' + Date.now() + '_' + path.extname(file.originalname))
+    cb(null, file.originalname)
   }
 });
-
-const upload = multer({
-  storage: storage,
-  limits:{fileSize: 1024 * 1024 * 5},
-  fileFilter: function(req, file, cb){
-    checkFileType(file, cb);
-  }});
-
 
 // Check File Type
 function checkFileType(file, cb){
@@ -42,6 +36,12 @@ function checkFileType(file, cb){
   }
 }
 
+const upload = multer({
+  storage: storage,
+  limits:{fileSize: 1024 * 1024 * 5},
+  fileFilter: function(req, file, cb){
+    checkFileType(file, cb);
+  }});
 
 const app = express();
 
@@ -53,10 +53,6 @@ app.get("/upload", (req, res) => {
 app.post("/upload", upload.single('image'), (req, res) => {
   res.status(200).json('Image uploaded');
 })
-
-// const jwt = require('express-jwt');
-
-
 
 
 app.use(express.urlencoded({extended: true}));

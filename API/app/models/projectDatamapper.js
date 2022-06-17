@@ -42,7 +42,7 @@ const projectDatamapper = {
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-     async insert(data) {
+     async insert(data, photoName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -130,7 +130,7 @@ const projectDatamapper = {
               ($1, $2, $3, $4, $5);`,
 
             values: [
-                data.photo_name,
+                photoName,
                 data.position,
                 data.photo_credit,
                 data.cover_photo,

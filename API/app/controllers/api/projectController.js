@@ -66,7 +66,7 @@ const projectController = {
         return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
        } else {
          // ici la logique photo
-         
+
        }
 
        try {
@@ -88,7 +88,8 @@ const projectController = {
           } 
           
           else {
-            await projectDatamapper.insert(data);
+            const photoName = file.originalname;
+            await projectDatamapper.insert(data,photoName);
             return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
           }
           
