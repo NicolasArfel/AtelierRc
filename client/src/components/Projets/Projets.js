@@ -27,7 +27,7 @@ const Projets = () => {
                         className="card-image card__image "
                     >
                         {/* <img className="responsive-img z-depth-2" alt={project.name} src={`http://www.salleanthony.fr:6520/image/projects/${project.name}`} /> */}
-                        <img className="responsive-img z-depth-2" alt={project.name} src={`http://localhost:3001/image/projects/${project.name}`} />
+                        <img className="responsive-img " alt={project.name} src={`http://localhost:3001/image/projects/${project.name}`} />
                         <h2 className='card__image-title' >{project.project_name}</h2>
                     </Link>
                 ))}
