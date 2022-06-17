@@ -159,23 +159,23 @@ const projectDatamapper = {
         //     return savedProject.rows[0];
         // },
 
-        async update(id, project) {
-            const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
-            console.log(fields)
-            const values = Object.values(project);
+        // async update(id, project) {
+        //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
+        //     console.log(fields)
+        //     const values = Object.values(project);
     
-            const savedProject = await client.query(
-                `
-                    UPDATE "project" SET
-                        ${fields}
-                    WHERE id = $${fields.length + 1}
-                    RETURNING *
-                `,
-                [...values, id],
-            );
+        //     const savedProject = await client.query(
+        //         `
+        //             UPDATE "project" SET
+        //                 ${fields}
+        //             WHERE id = $${fields.length + 1}
+        //             RETURNING *
+        //         `,
+        //         [...values, id],
+        //     );
     
-            return savedProject.rows[0];
-        },
+        //     return savedProject.rows[0];
+        // },
 
 
         /**
