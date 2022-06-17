@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import React from 'react'
 
 const ContactFormInput = ({ title, type, name, value, onChange }) => {
@@ -21,6 +23,14 @@ const ContactFormInput = ({ title, type, name, value, onChange }) => {
             </div>
         </div>
     )
+}
+
+ContactFormInput.propTypes = {
+    title: PropTypes.string.isRequired, 
+    type: PropTypes.string.isRequired, 
+    name: PropTypes.string.isRequired, 
+    value: PropTypes.string.isRequired, 
+    onChange : PropTypes.func.isRequired,
 }
 
 export default ContactFormInput

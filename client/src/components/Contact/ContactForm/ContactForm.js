@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react'
 import { useSelector } from 'react-redux';
 
@@ -73,6 +74,15 @@ const ContactForm = ({ firstname, lastname, email, subject, text, changeInputVal
             </button>
         </form>
     )
+}
+ContactForm.propTypes = {
+    firstname: PropTypes.string.isRequired, 
+    lastname: PropTypes.string.isRequired, 
+    email: PropTypes.string.isRequired, 
+    subject: PropTypes.string.isRequired, 
+    text: PropTypes.string.isRequired, 
+    changeInputValue: PropTypes.func.isRequired, 
+    handleContact: PropTypes.func.isRequired, 
 }
 
 export default ContactForm

@@ -12,9 +12,9 @@ const title = 'Back Office'
 
 const BackProjets = () => {
 
-
-
   const projects = useSelector((state) => state.ProjectsReducer.projects);
+
+  
   console.log(projects);
   return (
     <main className="container" >
@@ -43,7 +43,8 @@ const BackProjets = () => {
                   type="submit" 
                   name="supprimer"
                   onClick={() => {
-                    deleteProject(project.id)
+                    deleteProject(project.project_id)
+                    
                   }}
                   >Supprimer</button>
                   <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3" 

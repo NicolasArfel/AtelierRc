@@ -1,16 +1,19 @@
 import axios from "axios";
 
+
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
 });
 
 export async function deleteProject(projectId) {
+  
 
   try {
 
-    await axiosInstance.delete(`api/project/${projectId}`);
-    console.log(`le projet avec id ${projectId} est supprimé`)
-
+    await axiosInstance.delete(`api/admin/project/${projectId}`);
+    console.log(`le projet avec id ${projectId} est supprimé`);
+    // actionDeleteProject();
+   
   } catch (err) {
     console.error(err)
   }

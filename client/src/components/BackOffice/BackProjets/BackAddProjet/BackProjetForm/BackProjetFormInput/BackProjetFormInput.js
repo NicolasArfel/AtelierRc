@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const BackProjetFormInput = ({ type, name, onChange, value, title }) => {
 
     const handleChange = (event) => {
@@ -19,6 +21,14 @@ const BackProjetFormInput = ({ type, name, onChange, value, title }) => {
 
         </div>
     )
+}
+
+BackProjetFormInput.propTypes = {
+    type : PropTypes.string.isRequired, 
+    name: PropTypes.string.isRequired, 
+    onChange: PropTypes.func.isRequired, 
+    value: PropTypes.string.isRequired, 
+    title: PropTypes.string.isRequired,
 }
 
 export default BackProjetFormInput;

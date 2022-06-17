@@ -1,5 +1,6 @@
-import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
+import PropTypes from 'prop-types';
 
+import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
 
 const BackProjetForm = ({ projectName,
     slug,
@@ -110,6 +111,21 @@ const BackProjetForm = ({ projectName,
         </form>
     )
 
+}
+
+BackProjetForm.propTypes = {
+    projectName: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    program: PropTypes.string.isRequired,
+    surface: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    client: PropTypes.string.isRequired,
+    design: PropTypes.string.isRequired,
+    photoCredit: PropTypes.string.isRequired,
+    changeInputValue: PropTypes.string.isRequired,
+    handlePostProject: PropTypes.string.isRequired,
 }
 
 export default BackProjetForm;

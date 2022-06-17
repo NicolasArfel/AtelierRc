@@ -5,7 +5,7 @@ import BackProjetForm from "./BackProjetForm/BackProjetForm";
 
 
 const BackAddProjet = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
   const slug = useSelector((state) => state.BackProjectsReducer.slug);
   const location = useSelector((state) => state.BackProjectsReducer.location);
@@ -20,30 +20,30 @@ const BackAddProjet = () => {
   const projects = useSelector((state) => state.ProjectsReducer.projects);
   const title = 'Back Office'
 
-    return (
-        <main className="container" >
+  return (
+    <main className="container" >
       <BannerBackOffice title={title} />
-     
+
       <div className="row">
-      <BackProjetForm
-                projectName={projectName}
-                slug={slug}
-                location={location}
-                date={date}
-                program={program}
-                surface={surface}
-                type={type}
-                client={client}
-                design={design}
-                photoCredit={photoCredit}
-                changeInputValue={(value, name) => {
-                    // console.log('changeField', { value, name });
-                    dispatch(changeBackInputValue(value, name));
-                }}
-                handlePostProject={() => {
-                    dispatch(actionPostProject())
-                }}
-            />
+        <BackProjetForm
+          projectName={projectName}
+          slug={slug}
+          location={location}
+          date={date}
+          program={program}
+          surface={surface}
+          type={type}
+          client={client}
+          design={design}
+          photoCredit={photoCredit}
+          changeInputValue={(value, name) => {
+            // console.log('changeField', { value, name });
+            dispatch(changeBackInputValue(value, name));
+          }}
+          handlePostProject={() => {
+            dispatch(actionPostProject())
+          }}
+        />
         <div className="col s12 right table__back-projects">
           <table className="centered responsive-table striped">
             <thead>
@@ -56,7 +56,7 @@ const BackAddProjet = () => {
             </thead>
             <tbody>
               {projects.map(project => (
-                  
+
                 <tr>
                   <td>{project.project_name}</td>
                   <td>{project.surface_area}</td>
@@ -64,13 +64,13 @@ const BackAddProjet = () => {
                   <td><button className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3" type="submit" name="supprimer">Supprimer</button><button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3" type="submit" name="supprimer">Modifier</button></td>
                 </tr>
               ))}
-              
+
             </tbody>
           </table>
         </div>
       </div>
     </main>
-    )
+  )
 }
 
 export default BackAddProjet;
