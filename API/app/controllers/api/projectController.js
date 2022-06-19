@@ -46,86 +46,7 @@ const projectController = {
       //   }
     },
 
-
-    /**
-     * Project controller to create a record
-     * @param {*} req Express req.object (not used)
-     * @param {*} res Express response object
-     * @returns Route API JSON response
-     */
-
-     async createAProject(req, res) {
-       const data = req.body;
-       const allProjects = await projectDatamapper.findAll();
-       console.log('all projects : ', allProjects);
-       const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
-       console.log('Existing project :', checkIfProjectExists);
-       
-       const checkIfphotoExist = allProjects.find(element  => element.photo_name === data.photo_name);
-       if (checkIfphotoExist !== undefined){
-        return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-       } else {
-         // ici la logique photo
-
-       }
-
-       try {
-        // const slugRegex = data.slug;
-        // const regex = '^[a-z0-9]+(?:-[a-z0-9]+)*$';
-
-        if(data.photo_name === ""){
-            return res.status(500).json(`Merci de remplir le champs photo_name`);
-            
-            // Je doit comparer la value data.project_name qui vient du req.body avec la base de donnée.
-            // Je fait un appel au datamapper exemple : const allProject = await projectDatamapper.findAll();
-
-            // Console.log(allProject) pour visualiser la structure de la reponse.
-            // const resultallProjectName = allProject.find(element => element.name === project_name)
-            // } if (resultallProjectName) {
-
-          } if (checkIfProjectExists !== undefined) {
-            return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-          } 
-          
-          else {
-            const photoName = file.originalname;
-            await projectDatamapper.insert(data,photoName);
-            return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
-          }
-          
-       } catch (error) {
-         //console.trace(error);
-         if(error.detail === `Key (name)=(${data.project_name}) already exists.`){
-         //console.log('je suis dans le if de mon controller');
-         return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-         } 
-         // if(error.code === '23514'){
-         // console.log('je suis dans le 2e if de mon controller');
-         // return res.status(500).json(`"Le slug ${data.slug} n'est pas correct"`);
-         // } 
-         else {
-            res.status(500).json(error.toString());
-         }
-         console.trace(error);
-       }
-    },
-
-    // async addPhotoToProject(req, res) {
-  //   // NO CODE EXEMPLE
-
-  //   // => ICI LA LOGIQUE UPLOAD MULTI FILE
-
-  //   // req.body.file.length pour recuperer le nombre d'images envoyé depuis le front
-  //   // Admettons que l'on récupère 10 images on boucle comme ceci :
-
-  //   // => ICI LA LOGIQUE BOUCLE INSERTION DANS LA TABLE PROJECT_PHOTO 
-
-  //   for (let index = 0; index < req.body.file.length; index++) {
-  //    await projectDatamapper.addImageToProject(data);
-  //   }
-
-  // },
-
+  
    //! terminer cette méthode du controller
     /**
      * Project controller to update a record
@@ -164,6 +85,7 @@ const projectController = {
    //       res.status(500).json(error.toString());
    //     }
    // },
+   
  
     /**
      * Project controller to delete a record

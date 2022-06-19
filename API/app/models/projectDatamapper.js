@@ -42,7 +42,7 @@ const projectDatamapper = {
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-     async insert(data, photoName) {
+     async insert(data, originalName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -64,7 +64,7 @@ const projectDatamapper = {
                     ) VALUES ($1) RETURNING id;`,
 
                     values:[
-                        data.label
+                        data.status_id
                     ]
         }
         
@@ -103,7 +103,7 @@ const projectDatamapper = {
                                 data.design,
                                 data.project_photo_credit,
                                 data.user_id,
-                                statusId,
+                                statusId // status_id, à enlever si je remets la 1ère requête
                             ]
                         }
         
@@ -111,9 +111,9 @@ const projectDatamapper = {
         console.log('je suis ici', result1);
         const projectId = result1.rows[0].id;
 
-        if(data.photo_name === ""){
-            data.photo_name = null;
-            console.error(`Merci de remplir le champs ${data.photo_name}`);
+        if(originalName === ""){
+            originalName = null;
+            console.error(`Merci de remplir le champs ${originalName}`);
         }
 
 
@@ -130,7 +130,7 @@ const projectDatamapper = {
               ($1, $2, $3, $4, $5);`,
 
             values: [
-                photoName,
+                originalName,
                 data.position,
                 data.photo_credit,
                 data.cover_photo,
