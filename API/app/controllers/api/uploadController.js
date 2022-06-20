@@ -71,9 +71,11 @@ exports.upload = async (req, res) => {
     
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
-    
+        
+        console.log("toto",checkIfphotoExist);
+
         if (checkIfphotoExist !== undefined) {
-            return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
+            return res.status(500).json(`"La photo ${originalname} existe déjà, merci de saisir un autre nom"`);
         }
 
         if (data.project_name === "") {
