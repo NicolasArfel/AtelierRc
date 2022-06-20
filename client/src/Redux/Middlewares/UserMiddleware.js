@@ -1,10 +1,24 @@
 import jwt_decode from "jwt-decode";
 
-import { actionSaveUser, LOGOUT, SAVE_USER, SUBMIT_LOGIN } from "../Actions/UserActions";
+import { actionSaveUser, LOGOUT, SAVE_USER, SUBMIT_LOGIN, SUBMIT_PROFIL } from "../Actions/UserActions";
 import { requestLogin, saveAuthorization, removeAuthorization } from "../Requests/Requests";
 
 const UserMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
+        case SUBMIT_PROFIL: {
+            console.log('je suis dans SUBMIT_PROFIL');
+            const responseUserReducer = store.getState();
+            
+            const { firstName, lastName,email, password } = responseUserReducer.UserReducer;
+            console.log({ firstName, lastName, email, password });
+            try {
+
+            } catch (err) {
+                console.error(err)
+            }
+            break;
+        }
+
         case SUBMIT_LOGIN: {
             console.log('je suis  dans SUBMIT_LOGIN');
             const responseUserReducer = store.getState();

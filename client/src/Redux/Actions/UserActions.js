@@ -2,6 +2,11 @@ export const CHANGE_INPUT_VALUE = 'CHANGE_INPUT_VALUE';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SAVE_USER = 'SAVE_USER';
 export const LOGOUT = 'LOGOUT';
+export const SUBMIT_PROFIL = 'SUBMIT_PROFIL'
+
+export const actionSubmitProfil = () => ({
+    type : SUBMIT_PROFIL,
+})
 
 export const changeInputValue = (value, name) => ({
     type: CHANGE_INPUT_VALUE,

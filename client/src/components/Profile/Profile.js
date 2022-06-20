@@ -1,10 +1,20 @@
+import { useDispatch, useSelector } from "react-redux";
+import { actionSubmitProfil, changeInputValue } from "../../Redux/Actions/UserActions";
 import Banner from "../Banner/Banner";
 import './Profile.css'
+import ProfileForm from "./ProfileForm/ProfileForm";
 
 const title = 'Profil';
 const description = `Vous pouvez modifer les informations vous concernant ici .`;
 
 const Profile = () => {
+    const dispatch = useDispatch();
+    const firstName = useSelector((state) => state.UserReducer.firstName);
+    const lastName = useSelector((state) => state.UserReducer.lastName);
+    const email = useSelector((state) => state.UserReducer.email);
+    const password = useSelector((state) => state.UserReducer.password);
+    const isLogged = useSelector((state) => state.UserReducer.isLogged);
+
     return (
         <>
             <Banner title={title} description={description} />
@@ -16,78 +26,22 @@ const Profile = () => {
                     {/* <p>Adresse : Perpette les alouettes</p> */}
                     {/* <p>Ville : 75010 Paris</p> */}
                 </div>
-                <form className="col s6 right register__form">
-                    <div className="row">
-                        <div className="input-field col s12">
-                            <input
-                                id="last_name"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="last_name">Nom</label>
-                        </div>
-                        <div className="input-field col s12">
-                            <input
-                                id="first_name"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="first_name">Prénom</label>
-                        </div>
-                        <div className="input-field col s12">
-                            <input
-                                id="email"
-                                type="email"
-                                className="validate" />
-                            <label htmlFor="email">Email</label>
-                            <span
-                                className="helper-text"
-                                data-error="Email non valide"
-                                data-success="Email valide"
-                            ></span>
-                        </div>
-                        {/* <div className="input-field col s12">
-                            <input
-                                id="adress"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="adress">Adresse</label>
-                        </div> */}
-                        {/* <div className="input-field col s12">
-                            <input
-                                id="zip_code"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="zip_code">Code Postal</label>
-                        </div> */}
-                        {/* <div className="input-field col s12">
-                            <input
-                                id="city"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="city">Ville</label>
-                        </div> */}
-                        {/* <div className="input-field col s12">
-                            <input
-                                id="phone_number"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="phone_number">Numéro de téléphone</label>
-                        </div> */}
-                        <div className="input-field col s12">
-                            <input
-                                id="password"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="password">Mot de Passe</label>
-                        </div>
-                        <div className="input-field col s12">
-                            <input
-                                id="confirm_password"
-                                type="text"
-                                className="validate" />
-                            <label htmlFor="confirm_password">
-                                Confirmer le Mot de Passe
-                            </label>
-                        </div>
+                <ProfileForm
+                    title={title}
+                    firstName={firstName}
+                    lastName={lastName}
+                    email={email}
+                    password={password}
+                    isLogged={isLogged}
+                    changeInputValue={(value, name) => {
+                        // console.log('changeField', { value, name });
+                        dispatch(changeInputValue(value, name));
+                    }}
+                    handleChangeProfile={() => {
+                        dispatch(actionSubmitProfil())
+                    }}
+                />
+
                         <button
                             className="button btn waves-effect waves-light grey darken-3 "
                             type="submit"
@@ -96,9 +50,7 @@ const Profile = () => {
                             Valider les informations saisies
                         </button>
                     </div>
-                </form>
 
-            </div>
         </>
     )
 }
