@@ -52,27 +52,29 @@ exports.uploadImage = upload.single('cover_image');
 
 exports.upload = async (req, res) => {
 
-    const originalname = req.file.originalname
-
-    const data = req.body;
-
-    const allProjects = await projectDatamapper.findAll();
-    // console.log('all projects : ', allProjects);
-
-    // Checking if the project already exists
-    const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
-    // console.log('Existing project :', checkIfProjectExists);
-
-    //Checking if the photo already exists
-    const checkIfphotoExist = allProjects.find(element => element.photo_name === data.photo_name);
-
-    if (checkIfphotoExist !== undefined) {
-        return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-    }
-
     try {
-        // const slugRegex = data.slug;
-        // const regex = '^[a-z0-9]+(?:-[a-z0-9]+)*$';
+
+        const originalname = req.file.originalname
+
+        const data = req.body;
+    
+        const spacingProjectName = data.project_name.replace(/  +/g, " ")
+        const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
+        console.log(slugProjectName)
+    
+        const allProjects = await projectDatamapper.findAll();
+        // console.log('all projects : ', allProjects);
+    
+        // Checking if the project already exists
+        const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
+        // console.log('Existing project :', checkIfProjectExists);
+    
+        //Checking if the photo already exists
+        const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
+    
+        if (checkIfphotoExist !== undefined) {
+            return res.status(500).json(`"La photo ${data.project_name} existe déjà, merci de saisir un autre nom"`);
+        }
 
         if (data.project_name === "") {
             return res.status(500).json(`Merci de remplir le champs nom du projet (project_name)`);
@@ -86,7 +88,7 @@ exports.upload = async (req, res) => {
         if (checkIfProjectExists !== undefined) {
             return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
         } else {
-            await projectDatamapper.insert(data, originalname);
+            await projectDatamapper.insert(data, originalname, spacingProjectName, slugProjectName);
             return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
         }
 

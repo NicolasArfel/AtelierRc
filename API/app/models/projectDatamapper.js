@@ -37,12 +37,23 @@ const projectDatamapper = {
         return result.rows;
     },
 
+
+    async findAllStatus() {
+        const preparedQuery = {
+            text: `SELECT * FROM "status"`,
+        }
+        const result = await client.query(preparedQuery);
+        
+        return result.rows;
+    },
+
+
     /**
      * Add to the database
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-     async insert(data, originalName) {
+     async insert(data, originalName, spacingProjectName, slugProjectName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -56,20 +67,6 @@ const projectDatamapper = {
         // if (result.rows.length > 0) {
         //     return { error: "Le nom du projet existe déjà"}
         // }
-
-        const prepareStatusProject = {
-            text:`INSERT INTO "status"
-                    (
-                        "label"
-                    ) VALUES ($1) RETURNING id;`,
-
-                    values:[
-                        data.status_id
-                    ]
-        }
-        
-        const result = await client.query(prepareStatusProject);
-        const statusId = result.rows[0].id;
 
         const preparedProjectQuery = {
             text: ` INSERT INTO "project"
@@ -92,8 +89,8 @@ const projectDatamapper = {
                     RETURNING id;`,
 
                             values: [
-                                data.project_name,
-                                data.slug,
+                                spacingProjectName,
+                                slugProjectName,
                                 data.location,
                                 data.date,
                                 data.program,
@@ -103,7 +100,7 @@ const projectDatamapper = {
                                 data.design,
                                 data.project_photo_credit,
                                 data.user_id,
-                                statusId // status_id, à enlever si je remets la 1ère requête
+                                data.status_id
                             ]
                         }
         

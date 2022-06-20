@@ -46,6 +46,17 @@ const projectController = {
       //   }
     },
 
+
+    async getStatus(req, res) {
+       try {
+          const status = await projectDatamapper.findAllStatus();
+          return res.json(status)
+       } catch (error) {
+         console.trace(error);
+         res.status(500).json(error.toString());
+       }
+    },
+
   
    //! terminer cette méthode du controller
     /**
