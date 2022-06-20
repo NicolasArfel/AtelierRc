@@ -29,7 +29,7 @@ router.post('/api/login', loginController.login);
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
-// router.patch('/api/admin/project/:id', projectController.update)
+router.put('/api/admin/project/:id', projectController.updateOneProject)
 router.delete('/api/admin/project/:id', projectController.delete);
 
 /* Contact */

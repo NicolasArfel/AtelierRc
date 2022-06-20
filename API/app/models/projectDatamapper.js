@@ -192,6 +192,26 @@ const projectDatamapper = {
         const deletedProject = await client.query(preparedDeleteQuery);
         return !!deletedProject.rowCount;
         },
+
+
+        async updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit) {
+
+
+            const preparedQuery = {
+                text: `UPDATE "project" SET name=$2, slug=$3, location=$4, date=$5, program=$6, surface_area=$7, type=$8, client=$9, design=$10, photo_credit=$11 WHERE id=$1`,
+                values:[id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result.rows;
+        },
 };
 
 module.exports = projectDatamapper;
