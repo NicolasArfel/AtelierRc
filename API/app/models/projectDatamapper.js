@@ -139,6 +139,38 @@ const projectDatamapper = {
 
         },
 
+        async addImageToProject(data, originalname) {
+
+            // if(originalName === ""){
+            //     originalName = null;
+            //     console.error(`Merci de remplir le champs ${originalName}`);
+            // }
+
+            const preparedPhotoQuery = {
+            text: `
+                  INSERT INTO "project_photo"  (
+                            "name", 
+                            "position", 
+                            "photo_credit", 
+                            "cover_photo", 
+                            "project_id"
+                            )
+                         VALUES 
+                  ($1, $2, $3, $4, $5);`,
+    
+                values: [
+                    originalname,
+                    data.position,
+                    data.photo_credit,
+                    data.cover_photo,
+                    data.project_id
+                ]
+            }
+            const result = await client.query(preparedPhotoQuery);
+            return result.rowCount;
+    
+            },
+
         //! fonction à compléter
         // /**
         //  * Modify a project in the database 
