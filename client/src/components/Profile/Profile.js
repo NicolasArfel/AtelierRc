@@ -12,9 +12,9 @@ const Profile = () => {
                 <div className='column col s6 left user__info'>
                     <h3>Romain Caillon</h3>
                     <p>Email : romaincaillon.archi@gmail.com</p>
-                    <p>Numéro de Téléphone : 0601020304</p>
-                    <p>Adresse : Perpette les alouettes</p>
-                    <p>Ville : 75010 Paris</p>
+                    {/* <p>Numéro de Téléphone : 0601020304</p> */}
+                    {/* <p>Adresse : Perpette les alouettes</p> */}
+                    {/* <p>Ville : 75010 Paris</p> */}
                 </div>
                 <form className="col s6 right register__form">
                     <div className="row">
@@ -44,34 +44,34 @@ const Profile = () => {
                                 data-success="Email valide"
                             ></span>
                         </div>
-                        <div className="input-field col s12">
+                        {/* <div className="input-field col s12">
                             <input
                                 id="adress"
                                 type="text"
                                 className="validate" />
                             <label htmlFor="adress">Adresse</label>
-                        </div>
-                        <div className="input-field col s12">
+                        </div> */}
+                        {/* <div className="input-field col s12">
                             <input
                                 id="zip_code"
                                 type="text"
                                 className="validate" />
                             <label htmlFor="zip_code">Code Postal</label>
-                        </div>
-                        <div className="input-field col s12">
+                        </div> */}
+                        {/* <div className="input-field col s12">
                             <input
                                 id="city"
                                 type="text"
                                 className="validate" />
                             <label htmlFor="city">Ville</label>
-                        </div>
-                        <div className="input-field col s12">
+                        </div> */}
+                        {/* <div className="input-field col s12">
                             <input
                                 id="phone_number"
                                 type="text"
                                 className="validate" />
                             <label htmlFor="phone_number">Numéro de téléphone</label>
-                        </div>
+                        </div> */}
                         <div className="input-field col s12">
                             <input
                                 id="password"
