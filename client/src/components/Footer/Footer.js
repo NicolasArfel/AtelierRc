@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './Footer.css'
-const LogoRC = '../../images/Atelier.png'
+const LogoRC = '../../images/logo-simple.png'
 const logoInsta = '../../images/instagram-brands.svg'
 
 const footer = () => {

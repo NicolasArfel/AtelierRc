@@ -17,6 +17,7 @@ const ProfileFormInput = ({ type, name, onChange, value, title }) => {
             <label htmlFor={type}>
                 {title}
             </label>
+
             {type=!"email" &&
                 <span
                     className="helper-text"
@@ -24,6 +25,7 @@ const ProfileFormInput = ({ type, name, onChange, value, title }) => {
                     data-success="Email valide">
                 </span>
             }
+        
         </div>
     )
 }

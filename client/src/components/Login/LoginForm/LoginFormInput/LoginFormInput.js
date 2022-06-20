@@ -18,13 +18,14 @@ const LoginFormInput = ({ type, name, onChange, value, title }) => {
             <label htmlFor={type}>
                 {title}
             </label>
-            {/* {type=!"email" &&
+            {type=!"email" &&
                 <span
                     className="helper-text"
                     data-error="Email non valide"
                     data-success="Email valide">
                 </span>
-            } */}
+            }
+            
         </div>
     )
 }
