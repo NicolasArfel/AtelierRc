@@ -68,7 +68,7 @@ const Header = () => {
                                         null
                                     }
                                     <li>
-                                        <Link to="/">
+                                        <Link to="/profile">
                                             <i className="black-text material-icons">person</i>
                                         </Link>
                                     </li>
@@ -128,7 +128,7 @@ const Header = () => {
                                         null
                                     }
                                     <li className="li__side-nav">
-                                        <Link to="/">
+                                        <Link to="/profile">
                                             <i className="black-text material-icons personn__side-nav">person</i>
                                         </Link>
                                     </li>

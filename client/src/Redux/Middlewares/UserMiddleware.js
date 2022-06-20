@@ -1,6 +1,7 @@
 import jwt_decode from "jwt-decode";
 
 import { actionSaveUser, LOGOUT, SAVE_USER, SUBMIT_LOGIN, SUBMIT_PROFIL } from "../Actions/UserActions";
+import { updateProfile } from "../Requests/ProfileRequests";
 import { requestLogin, saveAuthorization, removeAuthorization } from "../Requests/Requests";
 
 const UserMiddleware = (store) => (next) => async (action) => {
@@ -9,13 +10,22 @@ const UserMiddleware = (store) => (next) => async (action) => {
             console.log('je suis dans SUBMIT_PROFIL');
             const responseUserReducer = store.getState();
             
-            const { firstName, lastName,email, password } = responseUserReducer.UserReducer;
-            console.log({ firstName, lastName, email, password });
-            try {
+            const { firstName, lastName,email, password, token } = responseUserReducer.UserReducer;
+            console.log('nouveau contenu', { firstName, lastName, email, password,token });
+            
+            const decodedJwt = jwt_decode(token);
+            console.log('tokendec', decodedJwt)
 
-            } catch (err) {
+            const userId = decodedJwt.id
+
+            try {
+                const response = await updateProfile(userId, firstName,lastName,email,password)
+                console.log('reponse put',response) 
+                
+            }catch (err) {
                 console.error(err)
             }
+
             break;
         }
 

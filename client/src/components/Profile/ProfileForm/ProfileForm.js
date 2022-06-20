@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
 import ProfileFormInput from "./ProfileFormInput/ProfileFormInput";
-import { useNavigate } from "react-router-dom";
+
 
 const ProfileForm = ({ title, firstName,lastName, email, password, isLogged, changeInputValue, handleChangeProfile }) => {
 
-    let navigate = useNavigate();
+    
 
     const firstNameTitle = 'Prénom';
     const lastNameTitle = 'Nom';
@@ -16,7 +16,7 @@ const ProfileForm = ({ title, firstName,lastName, email, password, isLogged, cha
     const handleSubmit = async (event) => {
         event.preventDefault();
         await handleChangeProfile();
-        isLogged && navigate("../", { replace: true });
+        
     }
 
     return (
@@ -62,7 +62,7 @@ const ProfileForm = ({ title, firstName,lastName, email, password, isLogged, cha
                     type="submit"
                     name="action"
                 >
-                    {title}
+                    Valider les informations saisies
                 </button>
             </div>
         </form>
@@ -75,7 +75,7 @@ ProfileForm.propTypes = {
     password: PropTypes.string.isRequired, 
     isLogged: PropTypes.bool.isRequired,
     changeInputValue: PropTypes.func.isRequired,
-    handleLogin: PropTypes.func.isRequired,
+    handleChangeProfile: PropTypes.func.isRequired,
      
 }
 

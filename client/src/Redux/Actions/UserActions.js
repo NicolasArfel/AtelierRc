@@ -4,8 +4,11 @@ export const SAVE_USER = 'SAVE_USER';
 export const LOGOUT = 'LOGOUT';
 export const SUBMIT_PROFIL = 'SUBMIT_PROFIL'
 
-export const actionSubmitProfil = () => ({
+export const actionSubmitProfil = (id) => ({
     type : SUBMIT_PROFIL,
+    payload: {
+        id
+    }
 })
 
 export const changeInputValue = (value, name) => ({

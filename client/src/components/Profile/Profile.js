@@ -15,13 +15,15 @@ const Profile = () => {
     const password = useSelector((state) => state.UserReducer.password);
     const isLogged = useSelector((state) => state.UserReducer.isLogged);
 
+    const user = useSelector((state) => state.UserReducer)
+    
     return (
         <>
             <Banner title={title} description={description} />
             <div className="row ">
                 <div className='column col s6 left user__info'>
-                    <h3>Romain Caillon</h3>
-                    <p>Email : romaincaillon.archi@gmail.com</p>
+                    <h3>{firstName} {lastName}</h3>
+                    <p>Email : {email}</p>
                     {/* <p>Numéro de Téléphone : 0601020304</p> */}
                     {/* <p>Adresse : Perpette les alouettes</p> */}
                     {/* <p>Ville : 75010 Paris</p> */}
@@ -38,17 +40,10 @@ const Profile = () => {
                         dispatch(changeInputValue(value, name));
                     }}
                     handleChangeProfile={() => {
-                        dispatch(actionSubmitProfil())
+                        dispatch(actionSubmitProfil(user.id))
+                        console.log(user.id)
                     }}
                 />
-
-                        <button
-                            className="button btn waves-effect waves-light grey darken-3 "
-                            type="submit"
-                            name="action"
-                        >
-                            Valider les informations saisies
-                        </button>
                     </div>
 
         </>
