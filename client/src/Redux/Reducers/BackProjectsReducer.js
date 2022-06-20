@@ -1,8 +1,7 @@
-import { CHANGE_BACK_INPUT_VALUE } from "../Actions/BackProjectsActions";
+import { ACTION_AXIOS_LABEL, ACTION_ERROR_PROJECT, ACTION_SUCCEED_PROJECT, CHANGE_BACK_INPUT_VALUE } from "../Actions/BackProjectsActions";
 
 export const initialState = {
     project_name: '',
-    slug:'',
     location: '',
     date: '',
     program: '',
@@ -10,7 +9,10 @@ export const initialState = {
     type: '',
     client: '',
     design: '',
-    project_photo_credit: '',
+    photo_credit: '',
+    label: [],
+    isError: false,
+    isSucceed: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -22,7 +24,26 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 [action.payload.name]: action.payload.value,
             }
-  
+        case ACTION_AXIOS_LABEL:
+            console.log('je suis dans ACTION_AXIOS_LABEL');
+            return {
+                ...state,
+                label: action.payload.responseLabel,
+            }
+        case ACTION_SUCCEED_PROJECT:
+            console.log('je suis dans ACTION_SUCCEED_PROJECT');
+            return {
+                ...state,
+                isError: false,
+                isSucceed: true,
+            }
+        case ACTION_ERROR_PROJECT:
+            console.log('je suis dans ACTION_ERROR_PROJECT');
+            return {
+                ...state,
+                isError: true,
+                isSucceed: false,
+            }
         default:
             return state;
     }

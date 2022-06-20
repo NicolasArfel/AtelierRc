@@ -14,3 +14,7 @@
 a {
     color: black;
 }
+
+.Back__Banner-Title:hover {
+    color: rgb(150, 150, 150);
+}

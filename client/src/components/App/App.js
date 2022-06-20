@@ -10,6 +10,7 @@ import About from '../About/About';
 import Contact from '../Contact/Contact';
 import Projets from '../Projets/Projets';
 import DetailProjet from '../Projets/DetailProjet/DetailProjet';
+import { actionDispatchStatus } from '../../Redux/Actions/BackProjectsActions';
 
 import './App.css';
 import Login from '../Login/Login';
@@ -20,6 +21,7 @@ import Error403 from '../Error403/Error403';
 import BackProjets from '../BackOffice/BackProjets/BackProjets';
 // import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
+
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
@@ -28,12 +30,13 @@ const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
   const dispatch = useDispatch();
-  
+
   // console.log(location)
 
   // Effect active on page load
   useEffect(() => {
     dispatch(actionAxiosProjects());
+    dispatch(actionDispatchStatus());
   }, []);
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
@@ -51,11 +54,11 @@ const App = () => {
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
         {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
-        <Route exact path="/back-projets" element={ <BackProjets /> } />
+        <Route exact path="/back-projets" element={<BackProjets />} />
         {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
         {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
-        <Route exact path="/back-admin" element={ <BackAdministration /> } />
-        <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
+        <Route exact path="/back-admin" element={<BackAdministration />} />
+        <Route exact path="/back-projets/addProject" element={<BackAddProjet />} />
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route exact path="/403" element={<Error403 />} />

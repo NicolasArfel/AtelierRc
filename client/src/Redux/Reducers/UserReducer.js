@@ -12,7 +12,8 @@ export const initialState = {
     token: user ? token : null,
     firstName: user ? user.firstname : '',
     lastName: user ? user.lastname : '',
-    role: user ? user.role : 'visiteur'
+    role: user ? user.role : 'visiteur',
+    userId: user ? user.id : '',
 };
 
 const reducer = (state = initialState, action = {}) => {

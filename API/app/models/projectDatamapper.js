@@ -12,8 +12,8 @@ const projectDatamapper = {
      */
 
     async findAll() {
-            const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
-            return result.rows;
+        const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
+        return result.rows;
     },
 
 
@@ -30,10 +30,10 @@ const projectDatamapper = {
         }
         const result = await client.query(preparedQuery);
 
-        if(result.rowCount === 0) {
+        if (result.rowCount === 0) {
             return null;
         }
-        
+
         return result.rows;
     },
 
@@ -43,7 +43,7 @@ const projectDatamapper = {
             text: `SELECT * FROM "status"`,
         }
         const result = await client.query(preparedQuery);
-        
+
         return result.rows;
     },
 
@@ -53,7 +53,7 @@ const projectDatamapper = {
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-     async insert(data, originalName, spacingProjectName, slugProjectName) {
+    async insert(data, originalName, spacingProjectName, slugProjectName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -88,34 +88,34 @@ const projectDatamapper = {
                     ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
                     RETURNING id;`,
 
-                            values: [
-                                spacingProjectName,
-                                slugProjectName,
-                                data.location,
-                                data.date,
-                                data.program,
-                                data.surface_area,
-                                data.type,
-                                data.client,
-                                data.design,
-                                data.project_photo_credit,
-                                data.user_id,
-                                data.status_id
-                            ]
-                        }
-        
+            values: [
+                spacingProjectName,
+                slugProjectName,
+                data.location,
+                data.date,
+                data.program,
+                data.surface_area,
+                data.type,
+                data.client,
+                data.design,
+                data.project_photo_credit,
+                data.user_id,
+                data.status_id
+            ]
+        }
+
         const result1 = await client.query(preparedProjectQuery);
         console.log('je suis ici', result1);
         const projectId = result1.rows[0].id;
 
-        if(originalName === ""){
+        if (originalName === "") {
             originalName = null;
             console.error(`Merci de remplir le champs ${originalName}`);
         }
 
 
         const preparedPhotoQuery = {
-        text: `
+            text: `
               INSERT INTO "project_photo"  (
                         "name", 
                         "position", 
@@ -137,58 +137,58 @@ const projectDatamapper = {
         const result2 = await client.query(preparedPhotoQuery);
         return result2.rowCount;
 
-        },
+    },
 
-        //! fonction à compléter
-        // /**
-        //  * Modify a project in the database 
-        //  * @param {number} id - the id to modify
-        //  * @param {InputData} inputData 
-        //  * @returns 
-        //  */
-        // async update(id, inputData) {
-        //     const data = { ...inputData, id };
-        //     const savedProject = await client.query(
-        //         'SELECT * FROM "project"($1)',
-        //         [data],
-        //     );
-    
-        //     return savedProject.rows[0];
-        // },
+    //! fonction à compléter
+    // /**
+    //  * Modify a project in the database 
+    //  * @param {number} id - the id to modify
+    //  * @param {InputData} inputData 
+    //  * @returns 
+    //  */
+    // async update(id, inputData) {
+    //     const data = { ...inputData, id };
+    //     const savedProject = await client.query(
+    //         'SELECT * FROM "project"($1)',
+    //         [data],
+    //     );
 
-        // async update(id, project) {
-        //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
-        //     console.log(fields)
-        //     const values = Object.values(project);
-    
-        //     const savedProject = await client.query(
-        //         `
-        //             UPDATE "project" SET
-        //                 ${fields}
-        //             WHERE id = $${fields.length + 1}
-        //             RETURNING *
-        //         `,
-        //         [...values, id],
-        //     );
-    
-        //     return savedProject.rows[0];
-        // },
+    //     return savedProject.rows[0];
+    // },
+
+    // async update(id, project) {
+    //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
+    //     console.log(fields)
+    //     const values = Object.values(project);
+
+    //     const savedProject = await client.query(
+    //         `
+    //             UPDATE "project" SET
+    //                 ${fields}
+    //             WHERE id = $${fields.length + 1}
+    //             RETURNING *
+    //         `,
+    //         [...values, id],
+    //     );
+
+    //     return savedProject.rows[0];
+    // },
 
 
-        /**
-         * Delete the project from the database
-         * @param {number} id - the id to delete
-         * @returns the deleted project
-         */
+    /**
+     * Delete the project from the database
+     * @param {number} id - the id to delete
+     * @returns the deleted project
+     */
 
-        async delete(id) {
-            const preparedDeleteQuery ={
-                text:`DELETE FROM "project" WHERE "id" = $1;`,
-                values:[id]
-            }
+    async delete(id) {
+        const preparedDeleteQuery = {
+            text: `DELETE FROM "project" WHERE "id" = $1;`,
+            values: [id]
+        }
         const deletedProject = await client.query(preparedDeleteQuery);
         return !!deletedProject.rowCount;
-        },
+    },
 };
 
 module.exports = projectDatamapper;
