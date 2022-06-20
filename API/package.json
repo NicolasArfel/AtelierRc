@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node-dev index.js --no-notify",
     "deploy": "sqitch deploy --db-user atelierrc",
-    "seeding": "psql -U atelierrc -d atelierrc -f data/seeding.sql",
+    "seeding": "psql -U atelierrc -d rcatelier -f data/seeding.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

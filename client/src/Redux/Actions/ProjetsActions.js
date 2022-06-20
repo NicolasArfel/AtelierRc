@@ -4,6 +4,7 @@ export const DISPATCH_PROJECTS = 'DISPATCH_PROJECTS';
 export const AXIOS_PROJECTS_PICTURES = 'AXIOS_PROJECTS_PICTURES';
 export const DISPATCH_PROJECTS_PICTURES = 'DISPATCH_PROJECTS_PICTURES';
 
+
 // We create a type of action allowing us to recognize it to trigger the requests axios
 export const actionAxiosProjects = () => ({
     type: AXIOS_PROJECTS

@@ -24,10 +24,10 @@ const BackProjetFormInput = ({ type, name, onChange, value, title }) => {
 }
 
 BackProjetFormInput.propTypes = {
-    type : PropTypes.string.isRequired, 
-    name: PropTypes.string.isRequired, 
-    onChange: PropTypes.func.isRequired, 
-    value: PropTypes.string.isRequired, 
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
 }
 

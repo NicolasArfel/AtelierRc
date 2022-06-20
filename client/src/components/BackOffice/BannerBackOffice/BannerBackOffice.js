@@ -13,7 +13,7 @@ const BannerBackOffice = ({ title }) => {
             <h1 className="banner__title" > {title} </h1>
             <div className='back__office-link'>
                 <NavLink to="/back-projets" className={activeLink} >
-                    Projets
+                    <p className='Back__Banner-Title'>Projets</p>
                 </NavLink>
             </div>
             {/* <div className='back__office-link'>
@@ -23,7 +23,7 @@ const BannerBackOffice = ({ title }) => {
             </div> */}
             <div className='back__office-link'>
                 <NavLink to="/back-admin" className={activeLink} >
-                    Administration
+                    <p className='Back__Banner-Title'>Administration</p>
                 </NavLink>
             </div>
         </div>

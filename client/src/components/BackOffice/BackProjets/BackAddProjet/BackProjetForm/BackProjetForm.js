@@ -1,9 +1,12 @@
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
+import { useSelector } from 'react-redux';
 
-const BackProjetForm = ({ projectName,
-    slug,
+const BackProjetForm = ({
+    projectName,
     location,
     date,
     program,
@@ -12,11 +15,22 @@ const BackProjetForm = ({ projectName,
     client,
     design,
     photoCredit,
+    label,
+    userId,
     changeInputValue,
     handlePostProject }) => {
 
+    const labels = useSelector((state) => state.BackProjectsReducer.label);
+    const isError = useSelector((state) => state.BackProjectsReducer.isError);
+    const isSucceed = useSelector((state) => state.BackProjectsReducer.isSucceed);
+    const disabled = true;
+    // console.log('labels', labels);
+
+    const [file, setFile] = useState(null)
+    const [labelValue, setLabelValue] = useState(1)
+    // console.log('labelValue', labelValue);
+
     const projectTitle = 'Nom du projet';
-    const slugTitle = 'URL';
     const locationTitle = 'Localisation';
     const dateTitle = 'Année';
     const programTitle = 'Programme';
@@ -28,26 +42,63 @@ const BackProjetForm = ({ projectName,
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        handlePostProject();
+
+        const formData = new FormData()
+
+        formData.append('cover_image', file)
+        formData.append('project_name', projectName)
+        formData.append('location', location)
+        formData.append('date', date)
+        formData.append('program', program)
+        formData.append('surface_area', surface)
+        formData.append('type', type)
+        formData.append('client', client)
+        formData.append('design', design)
+        formData.append('photo_credit', photoCredit)
+        formData.append('cover_photo', true)
+        formData.append('status_id', labelValue)
+        formData.append('user_id', userId)
+        formData.append('position', 1)
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+
+        handlePostProject(formData, config);
     }
 
     return (
 
         <form className="col s6 left contact__form" onSubmit={handleSubmit}>
             <div>
+                <input
+                    type="file"
+                    name="cover_image"
+                    accept="image/png, image/jpeg, image/jpg"
+                    required
+                    onChange={(e) => { setFile(e.target.files[0]) }}
+                    className="input__file-cover-project"
+                />
+                <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
+                    {labels.map((option) => (
+                        <option
+                            key={option.id}
+                            value={option.id}
+                        >
+                            {'*' + option.label}
+                        </option>
+                    ))}
+                </select>
+                <label htmlFor="label">Choisi un label</label>
                 <BackProjetFormInput
                     type='text'
                     name='project_name'
-                    title={projectTitle}
+                    title={'*' + projectTitle}
                     value={projectName}
                     onChange={changeInputValue}
-                />
-                <BackProjetFormInput
-                    type='text'
-                    name='slug'
-                    title={slugTitle}
-                    value={slug}
-                    onChange={changeInputValue}
+                    required
                 />
                 <BackProjetFormInput
                     type='text'
@@ -71,7 +122,7 @@ const BackProjetForm = ({ projectName,
                     onChange={changeInputValue}
                 />
                 <BackProjetFormInput
-                    type='text'
+                    type='number'
                     name='surface_area'
                     title={surfaceTitle}
                     value={surface}
@@ -107,7 +158,15 @@ const BackProjetForm = ({ projectName,
                 />
 
             </div>
-            <button className="btn waves-effect waves-light grey darken-3 button" type="submit" name="action">Ajouter le projet</button>
+            <p>(*) Champs obligatoires</p>
+            <button
+                className="btn waves-effect waves-light grey darken-3 button"
+                type="submit"
+                name="action"
+                disabled={projectName === '' ? disabled : ''}
+            >
+                Ajouter le projet
+            </button>
         </form>
     )
 
@@ -115,7 +174,6 @@ const BackProjetForm = ({ projectName,
 
 BackProjetForm.propTypes = {
     projectName: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     program: PropTypes.string.isRequired,

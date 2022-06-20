@@ -10,33 +10,24 @@ export async function deleteProject(projectId) {
     const response = await axiosInstance.delete(`api/admin/project/${projectId}`);
     console.log(`le projet avec id ${projectId} est supprimé`);
     return response
-   
+
   } catch (err) {
     console.error(err)
   }
 }
 
-export async function postNewProject(project_name,
-  location,
-  date,
-  program,
-  surface,
-  type,
-  client,
-  design,
-  project_photo_credit) {
+export async function postNewProject(formData, config) {
   try {
-    const response = await axiosInstance.post('/api/admin/project', {
-      project_name,
-      location,
-      date,
-      program,
-      surface,
-      type,
-      client,
-      design,
-      project_photo_credit
-    });
+    const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function getLabelProject() {
+  try {
+    const response = await axiosInstance.get('/api/status');
     return response.data;
   } catch (err) {
     console.error(err);
