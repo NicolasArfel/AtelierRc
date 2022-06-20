@@ -14,9 +14,10 @@ INSERT INTO status (label) VALUES
 ('Chantier livré');
  
 INSERT INTO project (name, slug, location, date, program, surface_area, type, client, design, photo_credit, user_id, status_id) VALUES
-('Lamarck', 'lamarck','Île-de-France, Paris 18', '2022', 'Conception d’une cuisine fermée dans un Immeuble Art Déco', '25m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,3 ),
+('Lamarck', 'lamarck','Île-de-France, Paris 18', '2022', 'Conception d’une cuisine fermée dans un Immeuble Art Déco', '25m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3 ),
 ('Junot', 'junot','Île-de-France, Paris 18', '2022', 'Rénovation d’un duplex dans un immeuble Art Déco. Relier deux appartements/lots au sein d’une même copropriété. Revoir l’agencement/l’organisation du R+4 dans sa globalité. Conception d’un escalier permettant d’accéder au R+5', '80m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon', 1, 2),
-('Voltaire', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration de l’entrée et de la cuisine d’un appartement parisien', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,1),
+('Voltaire', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration de l’entrée et de la cuisine d’un appartement parisien', '15m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,1),
+-- ('La Villa Jasmin', 'la-villa-jasmin','Île-de-France, Andrésy', '2021', 'Rénovation complète d’une maison meulière', '160m²', 'Maison', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3),
 ('Test', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,2);
 INSERT INTO furniture (name, slug, type, condition, description, availability, price, user_id) VALUES
 ('Singe vintage', 'singe-vintage', 'Objet de décoration', 'Bon état', 'Singe vintage en teck style Kay Bojesen', FALSE, NULL, 1),
@@ -39,7 +40,6 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('voltaire_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 3),
 ('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3),
 ('test_pers_4.jpg', 1, 'image ©Romain-Caillon', TRUE, 4);
-
 
 COMMIT;
 
