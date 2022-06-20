@@ -7,7 +7,7 @@ import { actionLogout } from '../../Redux/Actions/UserActions';
 
 import './Header.css';
 const logoInsta = '../../images/instagram-brands.svg'
-const LogoRC = '../../images/Atelier.png'
+const LogoRC = '../../images/logo-simple.png'
 
 const Header = () => {
 
