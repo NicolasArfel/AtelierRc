@@ -23,6 +23,7 @@ import BackAdministration from '../BackOffice/BackAdministration/BackAdministrat
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
+import Profile from '../Profile/Profile';
 
 const App = () => {
 
@@ -58,6 +59,8 @@ const App = () => {
         <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
+        {/* <Route exact path="/profile" element={isLogged ? <Projets /> : <Profile />} /> */}
+        <Route exact path="/profile" element={ <Profile />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
       </Routes>
