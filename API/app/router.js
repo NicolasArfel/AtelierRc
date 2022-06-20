@@ -25,7 +25,8 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 /* Login */
 router.post('/api/login', loginController.login);
 
-/* admin interface */
+/* Admin interface */
+router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
 // router.patch('/api/admin/project/:id', projectController.update)
@@ -34,7 +35,5 @@ router.delete('/api/admin/project/:id', projectController.delete);
 /* Contact */
 router.post('/api/contact', contactController.mail);
 
-/*  Admin */
-// router.patch('/api/admin/profile/:id', adminController.profile);
 
 module.exports = router;
