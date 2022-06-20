@@ -13,10 +13,11 @@ const ProfileFormInput = ({ type, name, onChange, value, title }) => {
                 name={name}                
                 type={type}
                 onChange={handleChange}
+                placeholder={title}
             />
-            <label htmlFor={type}>
+            {/* <label htmlFor={type}>
                 {title}
-            </label>
+            </label> */}
 
             {type=!"email" &&
                 <span

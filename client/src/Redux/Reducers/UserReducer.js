@@ -44,6 +44,7 @@ const reducer = (state = initialState, action = {}) => {
                 firstName: '',
                 lastName: '',
                 email: '',
+                password:'',
                 role: 'visiteur'
             };
 

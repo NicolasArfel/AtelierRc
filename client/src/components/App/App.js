@@ -24,6 +24,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
 import Profile from '../Profile/Profile';
+import Furnitures from '../Furnitures/Furnitures';
 
 const App = () => {
 
@@ -48,7 +49,7 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
-        {/* <Route path="/moblier" element={<Mobilier />} /> */}
+        <Route path="/mobilier" element={<Furnitures/>} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
         {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}

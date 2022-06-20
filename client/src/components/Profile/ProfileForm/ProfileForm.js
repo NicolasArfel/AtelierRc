@@ -22,7 +22,7 @@ const ProfileForm = ({ title, firstName,lastName, email, password, isLogged, cha
     return (
         <form className="col s6 left login__form" onSubmit={handleSubmit} >
             <div className="row">
-                <ProfileFormInput
+                {/* <ProfileFormInput
                     type='text'
                     name='firstName'
                     title={firstNameTitle}
@@ -35,7 +35,7 @@ const ProfileForm = ({ title, firstName,lastName, email, password, isLogged, cha
                     title={lastNameTitle}
                     value={lastName}
                     onChange={changeInputValue}
-                />
+                /> */}
                 <ProfileFormInput
                     type='email'
                     name='email'
