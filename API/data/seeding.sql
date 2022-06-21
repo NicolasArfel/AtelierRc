@@ -19,9 +19,10 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 ('Voltaire', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration de l’entrée et de la cuisine d’un appartement parisien', '15m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,1),
 -- ('La Villa Jasmin', 'la-villa-jasmin','Île-de-France, Andrésy', '2021', 'Rénovation complète d’une maison meulière', '160m²', 'Maison', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3),
 ('Test', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,2);
+
 INSERT INTO furniture (name, slug, type, condition, description, availability, price, user_id) VALUES
 ('Singe vintage', 'singe-vintage', 'Objet de décoration', 'Bon état', 'Singe vintage en teck style Kay Bojesen', FALSE, NULL, 1),
-('Fauteuil en bois courbé', 'fauteuil-en-bois-courbe', 'Meuble', 'Bon état', 'Fauteuil en bois courbé, assise cannée dit « B9 », ou « Le Corbusier » ,Jacob et Josef Kohn', FALSE, NULL, 1);
+('Pierre Cardin/ Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble', 'Excellent', 'Designer : Cardin, Pierre et Carré, Alain Editeur : Anonyme Circa 1970', FALSE, NULL, 1);
 
 INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id) VALUES
 ('lamarck_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 1),
@@ -40,6 +41,19 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('voltaire_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 3),
 ('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3),
 ('test_pers_4.jpg', 1, 'image ©Romain-Caillon', TRUE, 4);
+<<<<<<< HEAD
+=======
+
+INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furniture_id) VALUES
+('kaybojesen_singe_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 1),
+('kaybojesen_singe_photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE, 1),
+('kaybojesen_singe_photo_3.jpg', 3, 'photo ©Romain-Caillon', FALSE, 1),
+('pierrecardin_barroulant_photo_1', 1, 'photo ©Romain-Caillon', TRUE, 2),
+('pierrecardin_barroulant_photo_2', 2, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_3', 3, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_4', 4, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_5', 5, 'photo ©Romain-Caillon', FALSE, 2);
+>>>>>>> 98793591d017cf476edcb875c6d6536dcdc2d542
 
 COMMIT;
 
