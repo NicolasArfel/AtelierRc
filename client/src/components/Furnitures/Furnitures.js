@@ -24,7 +24,7 @@ console.log('fufu',furnitures)
                             <img className="activator" src={`http://localhost:3001/image/furnitures/${furniture.name}`} alt={furniture.name}></img>
                         </div>
                         <div className="card-action">
-                            <span className="card-title activator grey-text text-darken-4">{furniture.furniture_name}<i className="material-icons right">more_vert</i></span>
+                            <span className="card-title activator grey-text text-darken-4 furniture__card-title" >{furniture.furniture_name}<i className="material-icons right">more_vert</i></span>
                             <p><NavLink to="#">Me contacter</NavLink></p>
                         </div>
                         <div className="card-reveal furniture__card-reveal">

@@ -1,17 +1,17 @@
 .furniture__card {
     margin-bottom: 2rem;
+    font-size: 0.9rem;
+    min-width: 300px;
 }
 
 .furniture__section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
 }
 
-.furniture__card-field {
-    height: 70%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+.furniture__card-title {
+    font-size: 1.7rem;
 }
+
