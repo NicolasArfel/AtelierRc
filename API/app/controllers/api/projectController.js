@@ -123,27 +123,16 @@ const projectController = {
     
     if(projectToUpdate) {
         const id = req.params.id;
-        console.log(id)
         const  name = req.body.name;
-        console.log(name)
         const slug = req.body.slug;
-        console.log(slug)
         const location = req.body.location;
-        console.log(location)
         const date = req.body.date;
-        console.log(date)
         const program = req.body.program;
-        console.log(program)
         const surface_area = req.body.surface_area;
-        console.log(surface_area)
         const type = req.body.type;
-        console.log(type)
         const project_client = req.body.client;
-        console.log(project_client)
         const design = req.body.design;
-        console.log(design)
         const photo_credit = req.body.photo_credit;
-        console.log(photo_credit)
       
 
         const updateProject = await projectDatamapper.updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit);
