@@ -5,9 +5,13 @@
 .furniture__section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
-.furniture__img img{
-    width: 90%;
+.furniture__card-field {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }

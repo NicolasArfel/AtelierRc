@@ -10,7 +10,7 @@ const FurnituresMiddleware = (store) => (next) => async (action) => {
             const responseFurnitures = await getAllFurnitures();
             console.log('furnitures middleware response', responseFurnitures);
             store.dispatch(
-                actionDispatchFurnitures(responseFurnitures)
+                actionDispatchFurnitures(responseFurnitures.data)
             );
             
         } catch (err) {

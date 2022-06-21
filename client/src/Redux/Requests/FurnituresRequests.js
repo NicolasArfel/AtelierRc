@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseUrl: "http://localhost:3001"
+    baseURL: "http://localhost:3001"
 });
 
 export async function getAllFurnitures () {
