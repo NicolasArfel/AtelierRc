@@ -41,8 +41,6 @@ router.delete('/api/admin/project/:id', projectController.delete);
 /* Contact */
 router.post('/api/contact', contactController.mail);
 
-/* Upload images */
-
 
 /*  Admin */
 // router.patch('/api/admin/profile/:id', adminController.profile);

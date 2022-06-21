@@ -16,6 +16,11 @@ const projectDatamapper = {
             return result.rows;
     },
 
+//     async findAllPhotos() {
+//         const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id');
+//         return result.rows;
+// },
+
 
     /**
      * Get the project by his id
@@ -139,11 +144,11 @@ const projectDatamapper = {
 
         },
 
-        async addImageToProject(data, originalname) {
+        async addImageToProject(photo_credit, project_id, originalname, position) {
 
-            // if(originalName === ""){
-            //     originalName = null;
-            //     console.error(`Merci de remplir le champs ${originalName}`);
+            // if(originalname === ""){
+            //     originalname = null;
+            //     console.error(`Merci de remplir le champs ${originalname}`);
             // }
 
             const preparedPhotoQuery = {
@@ -160,10 +165,10 @@ const projectDatamapper = {
     
                 values: [
                     originalname,
-                    data.position,
-                    data.photo_credit,
-                    data.cover_photo,
-                    data.project_id
+                    position,
+                    photo_credit,
+                    false,
+                    project_id
                 ]
             }
             const result = await client.query(preparedPhotoQuery);
