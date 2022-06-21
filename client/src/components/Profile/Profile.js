@@ -18,7 +18,7 @@ const Profile = () => {
     const user = useSelector((state) => state.UserReducer)
     
     return (
-        <>
+        <main className="container">
             <Banner title={title} description={description} />
             <div className="row ">
                 <div className='column col s6 left user__info'>
@@ -46,7 +46,7 @@ const Profile = () => {
                 />
                     </div>
 
-        </>
+        </main>
     )
 }
 
