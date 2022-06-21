@@ -21,18 +21,22 @@ const contactController = {
       }
     })
 
-  //   transporter.use('compile', hbs({
-  //     viewEngine: 'express-handlebars',
-  //     viewPath: '../../emails/layouts/'
-  // }));
+  const templateMail = `
+  <p>Bonjour Romain, </p>
+  <p>Vous avez reçu un nouveau message de : <strong>${firstname} ${lastname} </strong></p>
+  <p>Voici le contenu du message : </p>
+  <p><strong>${text}</strong></p>
+  <p>S vous souhaitez lui répondre, voici son adresse mail :<strong> ${from}</strong>`
   
 
   let mailOptions = {
     from: req.body.from,
     to: 'testatelierrc@gmail.com', 
     subject: req.body.subject,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     text: req.body.text,
-    template: 'index',
+    html: templateMail,
 };
     
     await transporter.sendMail(mailOptions, function(err, data) {
