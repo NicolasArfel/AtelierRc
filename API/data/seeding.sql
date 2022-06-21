@@ -41,8 +41,6 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('voltaire_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 3),
 ('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3),
 ('test_pers_4.jpg', 1, 'image ©Romain-Caillon', TRUE, 4);
-<<<<<<< HEAD
-=======
 
 INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furniture_id) VALUES
 ('kaybojesen_singe_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 1),
@@ -53,7 +51,6 @@ INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furnitur
 ('pierrecardin_barroulant_photo_3', 3, 'photo ©Romain-Caillon', FALSE, 2),
 ('pierrecardin_barroulant_photo_4', 4, 'photo ©Romain-Caillon', FALSE, 2),
 ('pierrecardin_barroulant_photo_5', 5, 'photo ©Romain-Caillon', FALSE, 2);
->>>>>>> 98793591d017cf476edcb875c6d6536dcdc2d542
 
 COMMIT;
 
