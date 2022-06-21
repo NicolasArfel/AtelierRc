@@ -33,11 +33,11 @@ const Header = () => {
                                     Projets
                                 </NavLink>
                             </li>
-                            {/* <li>
-                                <NavLink to="/moblier" className={activeLink} >
+                            <li>
+                                <NavLink to="/mobilier" className={activeLink} >
                                     Mobilier
                                 </NavLink>
-                            </li> */}
+                            </li>
                         </ul>
                         <ul className="right hide-on-med-and-down">
                             <li>
@@ -97,11 +97,11 @@ const Header = () => {
                                     Projets
                                 </NavLink>
                             </li>
-                            {/* <li className="li__side-nav">
-                                <NavLink to="/moblier" className={activeLink} >
+                            <li className="li__side-nav">
+                                <NavLink to="/mobilier" className={activeLink} >
                                     Mobilier
                                 </NavLink>
-                            </li> */}
+                            </li>
                             <li className="li__side-nav">
                                 <NavLink to="/apropos" className={activeLink} >
                                     A propos
