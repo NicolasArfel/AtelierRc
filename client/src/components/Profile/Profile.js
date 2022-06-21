@@ -5,7 +5,7 @@ import './Profile.css'
 import ProfileForm from "./ProfileForm/ProfileForm";
 
 const title = 'Profil';
-const description = `Vous pouvez modifer les informations vous concernant ici .`;
+const description = `Vous pouvez modifier les informations vous concernant ici .`;
 
 const Profile = () => {
     const dispatch = useDispatch();

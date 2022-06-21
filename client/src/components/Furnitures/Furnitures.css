@@ -1,0 +1,13 @@
+.furniture__card {
+    margin-bottom: 2rem;
+}
+
+.furniture__section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.furniture__img img{
+    width: 90%;
+}
