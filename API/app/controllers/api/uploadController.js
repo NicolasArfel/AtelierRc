@@ -101,20 +101,3 @@ exports.upload = async (req, res) => {
 
 }
 
-
-
-  // async addPhotoToProject(req, res) {
-  //   // NO CODE EXEMPLE
-
-  //   // => ICI LA LOGIQUE UPLOAD MULTI FILE
-
-  //   // req.body.file.length pour recuperer le nombre d'images envoyé depuis le front
-  //   // Admettons que l'on récupère 10 images on boucle comme ceci :
-
-  //   // => ICI LA LOGIQUE BOUCLE INSERTION DANS LA TABLE PROJECT_PHOTO 
-
-  //   for (let index = 0; index < req.body.file.length; index++) {
-  //    await projectDatamapper.addImageToProject(data);
-  //   }
-
-  // },

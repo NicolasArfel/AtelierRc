@@ -16,6 +16,11 @@ const projectDatamapper = {
             return result.rows;
     },
 
+//     async findAllPhotos() {
+//         const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id');
+//         return result.rows;
+// },
+
 
     /**
      * Get the project by his id
@@ -138,6 +143,38 @@ const projectDatamapper = {
         return result2.rowCount;
 
         },
+
+        async addImageToProject(photo_credit, project_id, originalname, position) {
+
+            // if(originalname === ""){
+            //     originalname = null;
+            //     console.error(`Merci de remplir le champs ${originalname}`);
+            // }
+
+            const preparedPhotoQuery = {
+            text: `
+                  INSERT INTO "project_photo"  (
+                            "name", 
+                            "position", 
+                            "photo_credit", 
+                            "cover_photo", 
+                            "project_id"
+                            )
+                         VALUES 
+                  ($1, $2, $3, $4, $5);`,
+    
+                values: [
+                    originalname,
+                    position,
+                    photo_credit,
+                    false,
+                    project_id
+                ]
+            }
+            const result = await client.query(preparedPhotoQuery);
+            return result.rowCount;
+    
+            },
 
         //! fonction à compléter
         // /**
