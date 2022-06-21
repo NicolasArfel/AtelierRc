@@ -4,7 +4,7 @@ import { AXIOS_PROJECTS, actionDispatchProjects, AXIOS_PROJECTS_PICTURES, action
 const ProjetsMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
         case AXIOS_PROJECTS:
-            console.log('je suis dans AXIOS_PROJECTS');
+            // console.log('je suis dans AXIOS_PROJECTS');
             try {
                 const responseProjects = await getAllProjects();
                 // console.log('projects middleware response', responseProjects);
@@ -19,7 +19,7 @@ const ProjetsMiddleware = (store) => (next) => async (action) => {
             break;
         case AXIOS_PROJECTS_PICTURES:
             // console.log('action =',action);
-            console.log('je suis dans AXIOS_PROJECTS_PICTURES');
+            // console.log('je suis dans AXIOS_PROJECTS_PICTURES');
             try {
                 const responseProjectsPictures = await getAllProjectsPictures(action.project_id);
                 // console.log('responseProjectsPictures', responseProjectsPictures);

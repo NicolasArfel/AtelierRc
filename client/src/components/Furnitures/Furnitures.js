@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import './Furnitures.css';
@@ -8,48 +9,62 @@ const description = `Retrouvez ici quelques meubles uniques à acheter.`;
 
 
 const Furnitures = () => {
+
+const furnitures = useSelector((state) => state.FurnituresReducer.furnitures)
+console.log('fufu',furnitures)
+
     return (
         <main className="container">
             <Banner title={title} description={description} />
-            <div class="row furniture__section">
-                <div class="col s12 m4 furniture__card">
-                    <div class="card">
-                        <div class="card-image furniture__img">
-                            <img src={image} alt="meuble"></img>
-                                <NavLink to="/" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></NavLink>
+            <div className="row furniture__section">
+                <div className="col s12 m4 furniture__card">
+                    <div className="card sticky-action">
+                        <div className="card-image waves-effect waves-block waves-light">
+                            <img className="activator" src={image} alt="mobilier"></img>
                         </div>
-                        <div class="card-content">
-                                <span class="card-title">Card Title</span>
-                            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        <div className="card-action">
+                            <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
+                            <p><NavLink to="#">This is a link</NavLink></p>
                         </div>
-                    </div>
-                </div>
-                <div class="col s12 m4 furniture__card">
-                    <div class="card">
-                        <div class="card-image furniture__img">
-                            <img src={image} alt="meuble"></img>
-                                <NavLink to="/" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></NavLink>
-                        </div>
-                        <div class="card-content">
-                                <span class="card-title">Card Title</span>
-                            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        <div className="card-reveal">
+                            <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col s12 m4 furniture__card">
-                    <div class="card">
-                        <div class="card-image furniture__img">
-                            <img src={image} alt="meuble"></img>
-                                <NavLink to="/" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></NavLink>
+                <div className="col s12 m4 furniture__card">
+                    <div className="card sticky-action">
+                        <div className="card-image waves-effect waves-block waves-light">
+                            <img className="activator" src={image} alt="mobilier"></img>
                         </div>
-                        <div class="card-content">
-                                <span class="card-title">Card Title</span>
-                            <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                        <div className="card-action">
+                            <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
+                            <p><NavLink to="#">This is a link</NavLink></p>
+                        </div>
+                        <div className="card-reveal">
+                            <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
                         </div>
                     </div>
                 </div>
+                <div className="col s12 m4 furniture__card">
+                    <div className="card sticky-action">
+                        <div className="card-image waves-effect waves-block waves-light">
+                            <img className="activator" src={image} alt="mobilier"></img>
+                        </div>
+                        <div className="card-action">
+                            <span className="card-title activator grey-text text-darken-4">Card Title<i className="material-icons right">more_vert</i></span>
+                            <p><NavLink to="#">This is a link</NavLink></p>
+                        </div>
+                        <div className="card-reveal">
+                            <span className="card-title grey-text text-darken-4">Card Title<i className="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        </div>
+                    </div>
+                </div>
+               
             </div>
-           
+
         </main>
     )
 }

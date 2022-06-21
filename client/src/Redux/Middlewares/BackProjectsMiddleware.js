@@ -1,5 +1,5 @@
 import { actionAxiosProjects, actionDispatchProjects } from '../Actions/ProjetsActions'
-import { actionAxiosErrorProjects, actionAxiosLabel, actionAxiosSucceedProjects, DELETE_PROJECT, DISPATCH_STATUS, POST_PROJECT } from "../Actions/BackProjectsActions";
+import {  actionAxiosLabel, DELETE_PROJECT, DISPATCH_STATUS, POST_PROJECT } from "../Actions/BackProjectsActions";
 import { deleteProject, getLabelProject, postNewProject } from "../Requests/BackAdminProjectRequests";
 import { filteredProjects } from "../Selectors/projectsSelectors";
 
@@ -14,7 +14,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 const responseProjectReducer = store.getState();
                 // console.log(responseProjectReducer.ProjectsReducer.projects)
                 const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
-                console.log(newState)
+                // console.log(newState)
                 store.dispatch(
                     actionDispatchProjects(newState)
                 );
@@ -32,7 +32,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
 
             try {
                 const response = await postNewProject(formData, config);
-                console.log('reponse back', response)
+                // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()
@@ -44,10 +44,10 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
             break;
         case DISPATCH_STATUS: {
-            console.log('je suis dans DISPATCH_STATUS');
+            // console.log('je suis dans DISPATCH_STATUS');
             try {
                 const responseLabel = await getLabelProject()
-                console.log('responseLabel', responseLabel);
+                // console.log('responseLabel', responseLabel);
                 store.dispatch(
                     actionAxiosLabel(responseLabel)
                 );

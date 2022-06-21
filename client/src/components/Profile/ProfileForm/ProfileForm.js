@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 
 import ProfileFormInput from "./ProfileFormInput/ProfileFormInput";
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
 
 const ProfileForm = ({ title, firstName,lastName, email, password, confirmPassword, isLogged, changeInputValue, handleChangeProfile }) => {
 
     
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     // const firstNameTitle = 'Prénom';
     // const lastNameTitle = 'Nom';
     const emailTitle = 'Email';
     const passwordTitle = 'Mot de passe';
-    const confirmPasswordTitle = 'confirmer Mot de passe';
+    const confirmPasswordTitle = 'Confirmer Mot de passe';
 
     const handleSubmit = async (event) => {
         event.preventDefault();

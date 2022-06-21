@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
@@ -21,8 +20,6 @@ const BackProjetForm = ({
     handlePostProject }) => {
 
     const labels = useSelector((state) => state.BackProjectsReducer.label);
-    const isError = useSelector((state) => state.BackProjectsReducer.isError);
-    const isSucceed = useSelector((state) => state.BackProjectsReducer.isSucceed);
     const disabled = true;
     // console.log('labels', labels);
 

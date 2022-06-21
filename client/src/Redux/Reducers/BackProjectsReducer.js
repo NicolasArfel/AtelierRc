@@ -19,13 +19,13 @@ const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
         case CHANGE_BACK_INPUT_VALUE:
-            console.log('je suis dans CHANGE_BACK_INPUT_VALUE');
+            // console.log('je suis dans CHANGE_BACK_INPUT_VALUE');
             return {
                 ...state,
                 [action.payload.name]: action.payload.value,
             }
         case ACTION_AXIOS_LABEL:
-            console.log('je suis dans ACTION_AXIOS_LABEL');
+            // console.log('je suis dans ACTION_AXIOS_LABEL');
             return {
                 ...state,
                 label: action.payload.responseLabel,
