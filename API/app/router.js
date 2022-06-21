@@ -9,6 +9,7 @@ const contactController = require('./controllers/api/contactController');
 const { upload, uploadImage } = require('./controllers/api/uploadController');
 
 const { Router } = require('express');
+const adminController = require('./controllers/api/adminController');
 
 const router = express.Router();
 
@@ -28,10 +29,11 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 /* Login admin */
 router.post('/api/login', loginController.login);
 
-/* admin interface */
-router.post('/api/admin/add-project', uploadImage, upload);
-
-// router.patch('/api/admin/project/:id', projectController.update)
+/* Admin interface */
+router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
+// router.post('/api/admin/project', projectController.);
+// router.post('/api/admin/project', projectController.create);
+router.put('/api/admin/project/:id', projectController.updateOneProject)
 router.delete('/api/admin/project/:id', projectController.delete);
 
 /* Contact */

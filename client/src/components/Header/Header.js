@@ -67,11 +67,13 @@ const Header = () => {
                                         :
                                         null
                                     }
+                                    {isLogged &&
                                     <li>
                                         <Link to="/profile">
                                             <i className="black-text material-icons">person</i>
                                         </Link>
                                     </li>
+                                    }
                                     <button
                                         className="btn-flat"
                                         onClick={() => {

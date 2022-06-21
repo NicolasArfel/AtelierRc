@@ -7,11 +7,12 @@ import './About.css'
 
 const AboutImg = '../../images/about.jpeg'
 const title = 'À propos';
+const description = '';
 
 const About = () => {
     return (
             <main className="about container center">
-                <Banner title={title} />
+                <Banner title={title}  description={description}/>
                 <div className="row">
                     <div className="about__img col s6">
                         <img src={AboutImg} alt="" className='responsive-img z-depth-2' />

@@ -12,8 +12,8 @@ const projectDatamapper = {
      */
 
     async findAll() {
-        const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
-        return result.rows;
+            const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
+            return result.rows;
     },
 
 
@@ -43,7 +43,7 @@ const projectDatamapper = {
             text: `SELECT * FROM "status"`,
         }
         const result = await client.query(preparedQuery);
-
+        
         return result.rows;
     },
 
@@ -53,7 +53,7 @@ const projectDatamapper = {
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-    async insert(data, originalName, spacingProjectName, slugProjectName) {
+     async insert(data, originalName, spacingProjectName, slugProjectName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -88,27 +88,27 @@ const projectDatamapper = {
                     ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
                     RETURNING id;`,
 
-            values: [
-                spacingProjectName,
-                slugProjectName,
-                data.location,
-                data.date,
-                data.program,
-                data.surface_area,
-                data.type,
-                data.client,
-                data.design,
-                data.project_photo_credit,
-                data.user_id,
-                data.status_id
-            ]
-        }
-
+                            values: [
+                                spacingProjectName,
+                                slugProjectName,
+                                data.location,
+                                data.date,
+                                data.program,
+                                data.surface_area,
+                                data.type,
+                                data.client,
+                                data.design,
+                                data.project_photo_credit,
+                                data.user_id,
+                                data.status_id
+                            ]
+                        }
+        
         const result1 = await client.query(preparedProjectQuery);
         console.log('je suis ici', result1);
         const projectId = result1.rows[0].id;
 
-        if (originalName === "") {
+        if(originalName === ""){
             originalName = null;
             console.error(`Merci de remplir le champs ${originalName}`);
         }
@@ -188,7 +188,27 @@ const projectDatamapper = {
         }
         const deletedProject = await client.query(preparedDeleteQuery);
         return !!deletedProject.rowCount;
-    },
+        },
+
+
+        async updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit) {
+
+
+            const preparedQuery = {
+                text: `UPDATE "project" SET name=$2, slug=$3, location=$4, date=$5, program=$6, surface_area=$7, type=$8, client=$9, design=$10, photo_credit=$11 WHERE id=$1`,
+                values:[id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result.rows;
+        },
 };
 
 module.exports = projectDatamapper;

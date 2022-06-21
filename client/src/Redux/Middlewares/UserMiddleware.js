@@ -11,16 +11,22 @@ const UserMiddleware = (store) => (next) => async (action) => {
             const responseUserReducer = store.getState();
             
             const { firstName, lastName,email, password, token } = responseUserReducer.UserReducer;
-            console.log('nouveau contenu', { firstName, lastName, email, password,token });
+            // console.log('nouveau contenu', { firstName, lastName, email, password,token });
             
             const decodedJwt = jwt_decode(token);
-            console.log('tokendec', decodedJwt)
+            // console.log('tokendec', decodedJwt)
 
             const userId = decodedJwt.id
+            // console.log('usermiddle',userId)
 
             try {
                 const response = await updateProfile(userId, firstName,lastName,email,password)
+                // console.log('toto',userId, firstName,lastName,email,password) 
                 console.log('reponse put',response) 
+                if (response.status === 200) {
+                    store.dispatch(actionSaveUser(decodedJwt, token));
+                    
+                }
                 
             }catch (err) {
                 console.error(err)

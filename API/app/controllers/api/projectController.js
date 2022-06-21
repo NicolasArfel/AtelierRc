@@ -1,5 +1,4 @@
 // I import the datamappers
-const { update } = require('../../models/projectDatamapper.js');
 const projectDatamapper  = require('../../models/projectDatamapper.js');
 
 
@@ -115,6 +114,33 @@ const projectController = {
       // 204 : No Content
       return res.status(204).json(toString('The project has been deleted'));
   },
+
+  async updateOneProject(req, res) {
+    const projectToUpdate = await projectDatamapper.findByPk(req.params.id);
+    if (!projectToUpdate) {
+        res.send('project not found');
+    }
+    
+    if(projectToUpdate) {
+        const id = req.params.id;
+        const  name = req.body.name;
+        const slug = req.body.slug;
+        const location = req.body.location;
+        const date = req.body.date;
+        const program = req.body.program;
+        const surface_area = req.body.surface_area;
+        const type = req.body.type;
+        const project_client = req.body.client;
+        const design = req.body.design;
+        const photo_credit = req.body.photo_credit;
+      
+
+        const updateProject = await projectDatamapper.updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit);
+        res.send('Project has been updated');
+    }
+        }
+
+
 };
 
 module.exports = projectController;

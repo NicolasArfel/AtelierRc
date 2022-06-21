@@ -8,6 +8,7 @@ const token = JSON.parse(localStorage.getItem('token'));
 export const initialState = {
     email: user ? user.email : '',
     password: '',
+    confirmPassword: '',
     isLogged: user && true,
     token: user ? token : null,
     firstName: user ? user.firstname : '',
@@ -32,6 +33,7 @@ const reducer = (state = initialState, action = {}) => {
                 isLogged: true,
                 token: action.payload.token,
                 password: '',
+                confirmPassword:'',
                 firstName: action.payload.decodedJwt.firstname,
                 lastName: action.payload.decodedJwt.lastname,
                 role: action.payload.decodedJwt.role

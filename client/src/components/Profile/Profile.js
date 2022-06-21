@@ -13,10 +13,13 @@ const Profile = () => {
     const lastName = useSelector((state) => state.UserReducer.lastName);
     const email = useSelector((state) => state.UserReducer.email);
     const password = useSelector((state) => state.UserReducer.password);
+    const confirmPassword = useSelector((state) => state.UserReducer.confirmPassword);
     const isLogged = useSelector((state) => state.UserReducer.isLogged);
 
     const user = useSelector((state) => state.UserReducer)
     
+    const samePassword = password === confirmPassword;
+
     return (
         <main className="container">
             <Banner title={title} description={description} />
@@ -34,14 +37,19 @@ const Profile = () => {
                     lastName={lastName}
                     email={email}
                     password={password}
+                    confirmPassword={confirmPassword}
                     isLogged={isLogged}
                     changeInputValue={(value, name) => {
                         // console.log('changeField', { value, name });
                         dispatch(changeInputValue(value, name));
                     }}
                     handleChangeProfile={() => {
-                        dispatch(actionSubmitProfil(user.id))
-                        console.log(user.id)
+                        if(samePassword) {
+                        dispatch(actionSubmitProfil(user.userId))
+                        console.log(user.userId)
+                        } else {
+                            alert('Votre confirmation de Mot de passe doit être la même');
+                        }
                     }}
                 />
                     </div>
