@@ -1,6 +1,6 @@
 import { actionAxiosProjects, actionDispatchProjects } from '../Actions/ProjetsActions'
-import { actionAxiosLabel, actionErrorUploadCoverPhotoProject, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT } from "../Actions/BackProjectsActions";
-import { deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject } from "../Requests/BackAdminProjectRequests";
+import { actionAxiosLabel, actionErrorUploadCoverPhotoProject, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT } from "../Actions/BackProjectsActions";
+import { deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject, uploadMorePhotoProject } from "../Requests/BackAdminProjectRequests";
 import { filteredProjects } from "../Selectors/projectsSelectors";
 import { AxiosError } from 'axios';
 
@@ -25,9 +25,8 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 const responseProjectReducer = store.getState();
                 // console.log(responseProjectReducer.ProjectsReducer.projects)
                 const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
-                console.log(newState)
                 store.dispatch(
-                    actionDispatchProjects(newState)
+                    dispatchGetOnlyProjects(newState)
                 );
             }
             // console.log('projects middleware response', responseProjects);
@@ -62,11 +61,29 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             try {
                 const response = await updateCoverPhotoProject(project_id, formData, config);
                 // console.log('reponse back', AxiosError)
-                if (AxiosError) {
+                if (!response) {
                     store.dispatch(
                         actionErrorUploadCoverPhotoProject()
                     );
                 }
+                if (response.status === 200) {
+                    store.dispatch(
+                        actionAxiosProjects()
+                    );
+                }
+            } catch (err) {
+                console.error(err)
+            }
+        }
+            break;
+        case POST_MULTY_PHOTO_PROJECT: {
+            // console.log('je suis dans POST_MULTY_PHOTO_PROJECT');
+
+            const { project_id, formData, config } = action.payload
+            // console.log('stateBackProject = ', formData);
+
+            try {
+                const response = await uploadMorePhotoProject(project_id, formData, config);
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()

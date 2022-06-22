@@ -9,6 +9,7 @@ export const POST_COVER_PHOTO_PROJECT = 'POST_COVER_PHOTO_PROJECT';
 export const ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT = 'ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT';
 export const ACTION_AXIOS_GET_ONLY_PROJECTS = 'ACTION_AXIOS_GET_ONLY_PROJECTS';
 export const DISPATCH_ONLY_PROJECTS = 'DISPATCH_ONLY_PROJECTS';
+export const POST_MULTY_PHOTO_PROJECT = 'POST_MULTY_PHOTO_PROJECT';
 
 export const actionAxiosGetOnlyProjects = () => ({
     type: ACTION_AXIOS_GET_ONLY_PROJECTS
@@ -47,6 +48,15 @@ export const actionPostProject = (formData, config) => ({
 
 export const actionPostCoverPhotoProject = (project_id, formData, config) => ({
     type: POST_COVER_PHOTO_PROJECT,
+    payload: {
+        project_id,
+        formData,
+        config
+    }
+})
+
+export const actionPostMultyFilePhotoProject = (project_id, formData, config) => ({
+    type: POST_MULTY_PHOTO_PROJECT,
     payload: {
         project_id,
         formData,

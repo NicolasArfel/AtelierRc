@@ -44,6 +44,15 @@ export async function updateCoverPhotoProject(project_id, formData, config) {
   }
 }
 
+export async function uploadMorePhotoProject(project_id, formData, config) {
+  try {
+    const response = await axiosInstance.post(`/api/admin/add-images/${project_id}`, formData, { config });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export async function UpdateProject(project_id, newData) {
   try {
     const response = await axiosInstance.put(`/api/admin/project/${project_id}`, newData);

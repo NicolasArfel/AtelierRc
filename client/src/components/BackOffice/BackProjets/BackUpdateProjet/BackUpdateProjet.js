@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -10,7 +11,7 @@ import { findProject } from '../../../../Redux/Selectors/projectsSelectors';
 import BannerBackOffice from '../../BannerBackOffice/BannerBackOffice';
 import { actionAxiosProjectsPictures } from '../../../../Redux/Actions/ProjetsActions';
 import BackUpdateProjetForm from './BackUpdateProjetForm/BackUpdateProjetForm';
-import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
+import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
 
 
 const title = 'Back Office'
@@ -22,7 +23,9 @@ const BackUpdateProjet = () => {
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
 
-    const [file, setFile] = useState(null)
+    const [coverFile, setCoverFile] = useState(null)
+    const [multyFile, setMultyFile] = useState(null)
+    console.log('multyFile', multyFile);
 
     const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
     const location = useSelector((state) => state.BackProjectsReducer.location);
@@ -52,7 +55,7 @@ const BackUpdateProjet = () => {
 
         const formData = new FormData()
 
-        formData.append('cover_image', file)
+        formData.append('cover_image', coverFile)
 
         const config = {
             headers: {
@@ -65,11 +68,36 @@ const BackUpdateProjet = () => {
 
     }
 
+    const handleSubmitMultiPhoto = (event) => {
+
+        event.preventDefault();
+
+        const formData = new FormData()
+
+        // ajout de plusieurs fichier aux formData de façon dynamique
+        Object.entries(multyFile).forEach(([key, value]) => {
+            console.log('array file', [key, value])
+            formData.append('uploadedImages', value)
+        },
+        );
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+
+        console.log('project id =', projet.project_id);
+        dispatch(actionPostMultyFilePhotoProject(projet.project_id, formData, config));
+    }
+
     return (
         <>
             {projet && <main className="container" >
                 <BannerBackOffice title={title} />
-                <h3>Projet : {projet.project_name}</h3>
+                <Link to={`/projet/${projet.slug}`}>
+                    <h3 className='title__backOffice-Project'>{projet.project_name}</h3>
+                </Link>
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
                         <div className="col s12">
@@ -98,49 +126,48 @@ const BackUpdateProjet = () => {
                         </div>
                     </div>
                     <div className="col s6 sticky__details-project">
-                        <div className='upload__form-project'>
-                            {isError && <p className="ErrorUpload__coverPhotoProject">Il est impossible d'utiliser l'image à plusieurs reprises.</p>}
-                            <form className="col s6 left contact__form" onSubmit={handleSubmitCoverPhoto}>
-                                <div className='label__file-cover'>
-                                    <input
-                                        id='file'
-                                        type="file"
-                                        name="cover_image"
-                                        accept="image/png, image/jpeg, image/jpg"
-                                        required
-                                        onChange={(e) => { setFile(e.target.files[0]) }}
-                                        className="input__file-cover-project"
-                                    />
-                                    <button
-                                        className="btn waves-effect waves-light grey darken-3 button"
-                                        type="submit"
-                                        name="action"
-                                    >
-                                        Modifier la photo de cover
-                                    </button>
-                                </div>
-                            </form>
-                            <form className="col s6 left contact__form" onSubmit={handleSubmitCoverPhoto}>
-                                <div className='label__file-cover'>
-                                    <input
-                                        id='file'
-                                        type="file"
-                                        name="cover_image"
-                                        accept="image/png, image/jpeg, image/jpg"
-                                        required
-                                        onChange={(e) => { setFile(e.target.files[0]) }}
-                                        className="input__file-cover-project"
-                                    />
-                                    <button
-                                        className="btn waves-effect waves-light grey darken-3 button"
-                                        type="submit"
-                                        name="action"
-                                    >
-                                        Ajouter d'autres photos
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        {isError && <p className="ErrorUpload__coverPhotoProject">Il est impossible d'utiliser l'image à plusieurs reprises.</p>}
+                        <form className="col s6 left contact__form" onSubmit={handleSubmitCoverPhoto}>
+                            <div className='label__file-cover'>
+                                <input
+                                    id='file'
+                                    type="file"
+                                    name="cover_image"
+                                    accept="image/png, image/jpeg, image/jpg"
+                                    required
+                                    onChange={(e) => { setCoverFile(e.target.files[0]) }}
+                                    className="input__file-cover-project"
+                                />
+                                <button
+                                    className="btn waves-effect waves-light grey darken-3 button"
+                                    type="submit"
+                                    name="action"
+                                >
+                                    Modifier la photo de cover
+                                </button>
+                            </div>
+                        </form>
+                        <form className="col s6 left contact__form" onSubmit={handleSubmitMultiPhoto}>
+                            <div className='label__file-cover'>
+                                <input
+                                    id='file'
+                                    type="file"
+                                    name="uploadedImages"
+                                    accept="image/png, image/jpeg, image/jpg"
+                                    multiple
+                                    required
+                                    onChange={(e) => { setMultyFile(e.target.files) }}
+                                    className="input__file-cover-project"
+                                />
+                                <button
+                                    className="btn waves-effect waves-light grey darken-3 button"
+                                    type="submit"
+                                    name="action"
+                                >
+                                    Ajouter d'autres photos
+                                </button>
+                            </div>
+                        </form>
                         <div className="col s12 update__project">
                             {pictures.map(picture => (
                                 <article className="card card__article preview__update-project" key={picture.id}>

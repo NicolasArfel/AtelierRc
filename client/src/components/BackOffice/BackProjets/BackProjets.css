@@ -28,7 +28,7 @@
 }
 
 .preview__update-project {
-    width: 45%!important;
+    width: 30% !important;
 }
 
 .isConfirm__form-update-project {
@@ -37,4 +37,8 @@
 
 .ErrorUpload__coverPhotoProject {
     color: red;
+}
+
+.title__backOffice-Project:hover {
+    color: grey;
 }
