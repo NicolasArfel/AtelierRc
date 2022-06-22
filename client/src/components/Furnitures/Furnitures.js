@@ -33,6 +33,14 @@ const furnitures = useSelector((state) => state.FurnituresReducer.furnitures)
                             Me contacter
                             </NavLink>
                             </p>
+                            <p>
+                            <NavLink 
+                            to={`/mobilier/${furniture.slug} `}
+
+                            >
+                            Plus d'infos
+                            </NavLink>
+                            </p>
                         </div>
                         <div className="card-reveal furniture__card-reveal">
                             <span className="card-title grey-text text-darken-4 furniture__card-title">{furniture.furniture_name}<i className="material-icons right">close</i></span>

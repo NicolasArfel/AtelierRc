@@ -14,7 +14,7 @@ const Projets = () => {
 
     // useSelector allows us to use the information stored in the ProjectReducer
     const projects = useSelector((state) => state.ProjectsReducer.projects)
-    console.log(projects)
+    // console.log(projects)
 
     return (
         <main className="container" >

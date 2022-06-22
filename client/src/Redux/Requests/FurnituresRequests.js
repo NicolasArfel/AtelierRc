@@ -18,7 +18,7 @@ export async function getAllFurnituresPictures (furniture_id) {
     try {
         const response = await axiosInstance.get(`/api/furniture/${furniture_id}`);
         console.log('furnitures pictures request', response);
-        return response
+        return response.data
     }catch(err) {
         console.error(err)
     }

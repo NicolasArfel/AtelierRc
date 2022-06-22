@@ -29,6 +29,7 @@ import Profile from '../Profile/Profile';
 import Furnitures from '../Furnitures/Furnitures';
 import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
 import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
+import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
 
 const App = () => {
 
@@ -41,7 +42,7 @@ const App = () => {
   useEffect(() => {
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
-    dispatch(actionDispatchStatus());
+    dispatch(actionDispatchStatus());    
   }, []);
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
@@ -56,6 +57,7 @@ const App = () => {
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
         <Route exact path="/mobilier" element={<Furnitures/>} />
+        <Route exact path="/mobilier/:slug" element={<FurnitureDetail/>} />
         <Route exact path="/contact/mobilier/:slug" element={<FurnituresContact/>} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
