@@ -31,6 +31,9 @@ router.post('/api/admin/project', projectController.createAProject);
 // router.post('/api/admin/project', projectController.create);
 router.put('/api/admin/project/:id', projectController.updateOneProject)
 router.delete('/api/admin/project/:id', projectController.delete);
+// router.post('/api/admin/furniture', furnitureController.createAFurniture);
+// router.put('/api/admin/furniture/:id', furnitureController.updateOneFurniture)
+router.delete('/api/admin/furniture/:id', furnitureController.delete);
 
 /* Contact */
 router.post('/api/contact', contactController.mail);

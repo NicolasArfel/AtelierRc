@@ -17,7 +17,12 @@ const furnitureDatamapper = {
     },
 
     async delete(id) {
-        await client.query(`DELETE FROM "furniture" WHERE "furniture_id" = $1`, [id]);
+        const preparedDeleteQuery ={
+            text:`DELETE FROM "furniture" WHERE "id" = $1;`,
+            values:[id]
+        }
+    const deletedFurniture = await client.query(preparedDeleteQuery);
+    return !!deletedFurniture.rowCount;
     },
 
     async insert(data) {
@@ -55,6 +60,25 @@ const furnitureDatamapper = {
         const result = await client.query(preparedQuery);
         return result.rowCount;
     },
+
+    // async updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit) {
+
+
+    //     const preparedQuery = {
+    //         text: `UPDATE "project" SET name=$2, slug=$3, location=$4, date=$5, program=$6, surface_area=$7, type=$8, client=$9, design=$10, photo_credit=$11 WHERE id=$1`,
+    //         values:[id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit]
+    //     };
+    
+    
+    //     const result = await client.query(preparedQuery);
+
+    
+    //     // if(result.rowCount === 0) {
+    //     //     return null;
+    //     // }
+        
+    //     return result.rows;
+    // },
 };
 
 module.exports = furnitureDatamapper;

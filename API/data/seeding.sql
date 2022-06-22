@@ -21,7 +21,8 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 
 INSERT INTO furniture (name, slug, type, condition, description, availability, price, user_id) VALUES
 ('Singe vintage', 'singe-vintage', 'Objet de décoration', 'Bon état', 'Singe vintage en teck style Kay Bojesen', FALSE, NULL, 1),
-('Pierre Cardin/ Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble', 'Excellent', 'Designer : Cardin, Pierre et Carré, Alain Editeur : Anonyme Circa 1970', FALSE, NULL, 1);
+('Pierre Cardin/ Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble', 'Excellent', 'Designer : Cardin, Pierre et Carré, Alain Editeur : Anonyme Circa 1970', FALSE, NULL, 1),
+('Pierre', 'pierre-roulant', 'Meule', 'Exllent', 'Design', FALSE, NULL, 1);
 
 INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id) VALUES
 ('lamarck_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 1),
@@ -49,7 +50,8 @@ INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furnitur
 ('pierrecardin_barroulant_photo_2', 2, 'photo ©Romain-Caillon', FALSE, 2),
 ('pierrecardin_barroulant_photo_3', 3, 'photo ©Romain-Caillon', FALSE, 2),
 ('pierrecardin_barroulant_photo_4', 4, 'photo ©Romain-Caillon', FALSE, 2),
-('pierrecardin_barroulant_photo_5', 5, 'photo ©Romain-Caillon', FALSE, 2);
+('pierrecardin_barroulant_photo_5', 5, 'photo ©Romain-Caillon', FALSE, 2),
+('test_photo_1', 1, 'photo ©Romain-Caillon', TRUE, 3);
 
 COMMIT;
 
