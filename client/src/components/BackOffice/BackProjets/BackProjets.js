@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionDeleteProject} from '../../../Redux/Actions/BackProjectsActions';
+import { actionDeleteProject, actionAxiosGetOnlyProjects } from '../../../Redux/Actions/BackProjectsActions';
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 import './BackProjets.css'
+import { useEffect } from 'react';
 
 const title = 'Back Office'
 
@@ -12,9 +13,13 @@ const BackProjets = () => {
 
   const dispatch = useDispatch();
 
-  const projects = useSelector((state) => state.ProjectsReducer.projects);
+  const onlyProjects = useSelector((state) => state.BackProjectsReducer.onlyProjects);
+  console.log('projectBack', onlyProjects);
 
-  console.log('projects dans backprojet', projects);
+  useEffect(() => {
+    dispatch(actionAxiosGetOnlyProjects())
+  }, [dispatch]);
+
   return (
     <main className="container" >
       <BannerBackOffice title={title} />
@@ -32,22 +37,27 @@ const BackProjets = () => {
               </tr>
             </thead>
             <tbody>
-              {projects.map(project => (
+              {onlyProjects.map(project => (
                 <tr key={project.id}>
                   <td>{project.project_name}</td>
                   <td>{project.surface_area}</td>
                   <td>{project.client}</td>
                   <td>
-                    <button className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3"
+                    <button
+                      className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3"
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        dispatch(actionDeleteProject(project.project_id))
+                        dispatch(actionDeleteProject(project.id))
                       }}
                     >Supprimer</button>
-                    <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
-                      type="submit"
-                      name="supprimer">Modifier</button>
+                    <Link to={`/back-projets/updateProject/${project.slug}`}>
+                      <button
+                        key={project.id}
+                        className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
+                        type="submit"
+                      >Modifier</button>
+                    </Link>
                   </td>
                 </tr>
               ))}

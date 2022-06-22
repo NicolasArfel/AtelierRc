@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,11 +25,11 @@ const DetailProjet = () => {
     // Effect active on page load
     useEffect(() => {
         projet && dispatch(actionAxiosProjectsPictures(projet.project_id));
-    }, []);
+    }, [dispatch, projet]);
 
     // useSelector allow us to get all information stash in reducer pictures []
     const pictures = useSelector((state) => state.ProjectsReducer.pictures)
-    // console.log('pictures', pictures);
+    console.log('pictures', pictures);
 
     return (
         <>

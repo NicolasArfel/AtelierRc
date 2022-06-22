@@ -1,6 +1,7 @@
-import { ACTION_AXIOS_LABEL, ACTION_ERROR_PROJECT, ACTION_SUCCEED_PROJECT, CHANGE_BACK_INPUT_VALUE } from "../Actions/BackProjectsActions";
+import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT } from "../Actions/BackProjectsActions";
 
 export const initialState = {
+    onlyProjects: [],
     project_name: '',
     location: '',
     date: '',
@@ -12,12 +13,17 @@ export const initialState = {
     photo_credit: '',
     label: [],
     isError: false,
-    isSucceed: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
 
     switch (action.type) {
+        case DISPATCH_ONLY_PROJECTS:
+            console.log('je suis dans DISPATCH_ONLY_PROJECTS');
+            return {
+                ...state,
+                onlyProjects: action.payload.responseProjects,
+            }
         case CHANGE_BACK_INPUT_VALUE:
             // console.log('je suis dans CHANGE_BACK_INPUT_VALUE');
             return {
@@ -30,17 +36,25 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 label: action.payload.responseLabel,
             }
-        case ACTION_SUCCEED_PROJECT:
-            console.log('je suis dans ACTION_SUCCEED_PROJECT');
+        case ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT:
+            console.log('je suis dans ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT');
             return {
                 ...state,
-                isError: false,
-                isSucceed: true,
+                isError: true,
             }
-        case ACTION_ERROR_PROJECT:
-            console.log('je suis dans ACTION_ERROR_PROJECT');
+        case RESET_INPUT_FORM_ADD_PROJECT:
+            console.log('je suis dans RESET_INPUT_FORM_ADD_PROJECT');
             return {
                 ...state,
+                project_name: '',
+                location: '',
+                date: '',
+                program: '',
+                surface_area: '',
+                type: '',
+                client: '',
+                design: '',
+                photo_credit: '',
                 isError: true,
                 isSucceed: false,
             }

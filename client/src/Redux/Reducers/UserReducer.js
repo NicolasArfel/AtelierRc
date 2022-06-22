@@ -1,20 +1,25 @@
+import jwt_decode from "jwt-decode";
+
 import { CHANGE_INPUT_VALUE, LOGOUT, SAVE_USER } from "../Actions/UserActions";
 
-const user = JSON.parse(localStorage.getItem('user'));
-const token = JSON.parse(localStorage.getItem('token'));
-
+const token = (localStorage.getItem('token'));
+// console.log('storageUser', token)
+let decodedJwt = false
+if (token) {
+    decodedJwt = jwt_decode(token);
+    console.log(decodedJwt);
+}
 // console.log('storageUser', user)
 
 export const initialState = {
-    email: user ? user.email : '',
+    email: decodedJwt ? decodedJwt.email : '',
     password: '',
     confirmPassword: '',
-    isLogged: user && true,
-    token: user ? token : null,
-    firstName: user ? user.firstname : '',
-    lastName: user ? user.lastname : '',
-    role: user ? user.role : 'visiteur',
-    userId: user ? user.id : '',
+    isLogged: decodedJwt && true,
+    firstName: decodedJwt ? decodedJwt.firstname : '',
+    lastName: decodedJwt ? decodedJwt.lasntame : '',
+    role: decodedJwt ? decodedJwt.role : 'visiteur',
+    userId: decodedJwt ? decodedJwt.id : '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -31,9 +36,8 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 // on est connecté donc on sauvegarde le pseudo, et on met isLogged=true
                 isLogged: true,
-                token: action.payload.token,
                 password: '',
-                confirmPassword:'',
+                confirmPassword: '',
                 firstName: action.payload.decodedJwt.firstname,
                 lastName: action.payload.decodedJwt.lastname,
                 role: action.payload.decodedJwt.role
@@ -47,7 +51,7 @@ const reducer = (state = initialState, action = {}) => {
                 firstName: '',
                 lastName: '',
                 email: '',
-                password:'',
+                password: '',
                 role: 'visiteur'
             };
 

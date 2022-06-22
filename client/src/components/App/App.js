@@ -30,6 +30,7 @@ import Furnitures from '../Furnitures/Furnitures';
 import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
 import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
 import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
+import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpdateProjet';
 
 const App = () => {
 
@@ -46,9 +47,9 @@ const App = () => {
   }, []);
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
-  console.log('loggé ? ', isLogged);
+  // console.log('loggé ? ', isLogged);
   const role = useSelector((state) => state.UserReducer.role);
-  console.log('role ? ', role);
+  // console.log('role ? ', role);
 
   return (
     <div className="App">
@@ -59,17 +60,16 @@ const App = () => {
         <Route exact path="/mobilier" element={<Furnitures/>} />
         <Route exact path="/mobilier/:slug" element={<FurnitureDetail/>} />
         <Route exact path="/contact/mobilier/:slug" element={<FurnituresContact/>} />
+        <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
-        {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
-        <Route exact path="/back-projets" element={<BackProjets />} />
-        {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
-        {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
-        <Route exact path="/back-admin" element={ <BackAdministration /> } />
-        <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
-        <Route exact path="/login" element={isLogged && role === 'admin' ? <BackAdministration /> : <Login />} />
-        <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
-        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login/>} />
+        <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
+        <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
+        <Route exact path="/back-projets/addProject" element={role === 'admin' ? <BackAddProjet /> : <Error403 />} />
+        <Route exact path="/back-projets/updateProject/:slug" element={role === 'admin' ? <BackUpdateProjet /> : <Error403 />} />
+        <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
+        <Route exact path="/register" element={isLogged ? <Error404 /> : <Register />} />
+        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
       </Routes>

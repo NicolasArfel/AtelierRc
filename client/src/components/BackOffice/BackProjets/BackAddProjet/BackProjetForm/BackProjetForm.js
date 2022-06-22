@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import BackProjetFormInput from "./BackProjetFormInput/BackProjetFormInput";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetInputFormAddProject } from '../../../../../Redux/Actions/BackProjectsActions';
+import { useNavigate } from 'react-router-dom';
 
 const BackProjetForm = ({
     projectName,
@@ -19,9 +21,13 @@ const BackProjetForm = ({
     changeInputValue,
     handlePostProject }) => {
 
+    const dispatch = useDispatch();
+
     const labels = useSelector((state) => state.BackProjectsReducer.label);
     const disabled = true;
     // console.log('labels', labels);
+
+    let navigate = useNavigate();
 
     const [file, setFile] = useState(null)
     const [labelValue, setLabelValue] = useState(1)
@@ -64,6 +70,9 @@ const BackProjetForm = ({
         }
 
         handlePostProject(formData, config);
+        dispatch(resetInputFormAddProject())
+        let path = `/back-projets`;
+        navigate(path);
     }
 
     return (
@@ -119,7 +128,7 @@ const BackProjetForm = ({
                     onChange={changeInputValue}
                 />
                 <BackProjetFormInput
-                    type='number'
+                    type='text'
                     name='surface_area'
                     title={surfaceTitle}
                     value={surface}
