@@ -1,4 +1,4 @@
-import { CHANGE_INPUT_VALUE, ERROR_SENDING_EMAIL, SUCCED_SENDING_EMAIL } from "../Actions/ContactActions";
+import { ADD_SUBJECT_VALUE, CHANGE_INPUT_VALUE, ERROR_SENDING_EMAIL, REFRESH_CONTACT_STATE, SUCCED_SENDING_EMAIL } from "../Actions/ContactActions";
 
 export const initialState = {
     lastname: '',
@@ -36,6 +36,19 @@ const ContactReducer = (state = initialState, action = {}) => {
                 subject: '',
                 text: '',
             }
+
+        case REFRESH_CONTACT_STATE :
+            return {
+                ...state,
+                error: false,
+                succed: false,
+            }
+        
+        case ADD_SUBJECT_VALUE :
+        return {
+                ...state, 
+                subject: action.payload.value
+        }
         default:
             return state;
     }

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Banner from '../Banner/Banner';
 import ContactForm from './ContactForm/ContactForm';
 
 import './Contact.css';
-import { actionSubmitContact, changeInputValue } from '../../Redux/Actions/ContactActions';
+import { actionRefreshContactState, actionSubmitContact, changeInputValue } from '../../Redux/Actions/ContactActions';
 
 const ContactImg = '../../images/contact_img.png';
 
@@ -20,6 +20,10 @@ const Contact = () => {
     const email = useSelector((state) => state.ContactReducer.email);
     const subject = useSelector((state) => state.ContactReducer.subject);
     const text = useSelector((state) => state.ContactReducer.text);
+
+    useEffect(() => {
+        dispatch(actionRefreshContactState());        
+     }, [dispatch]);
 
     return (
         <main className="container" >

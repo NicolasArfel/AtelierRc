@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { actionSubmitContact, changeInputValue } from "../../../Redux/Actions/ContactActions";
+import { actionAddSubjectValue, actionRefreshContactState, actionSubmitContact, changeInputValue } from "../../../Redux/Actions/ContactActions";
 import { findFurniture } from "../../../Redux/Selectors/furnituresSelectors";
 import Banner from "../../Banner/Banner";
 import FurnituresContactForm from "./FurnituresContactForm/FurnituresContactForm";
@@ -19,6 +20,12 @@ const FurnituresContact = () => {
     const lastname = useSelector((state) => state.ContactReducer.lastname);
     const email = useSelector((state) => state.ContactReducer.email);
     const text = useSelector((state) => state.ContactReducer.text);
+    const subject = useSelector((state) => state.ContactReducer.subject);
+
+    useEffect(() => {
+        dispatch(actionRefreshContactState()); 
+        dispatch(actionAddSubjectValue(`Demande d'informations pour : ${furniture.furniture_name}`))       
+     }, [dispatch, furniture.furniture_name]);
 
     return (
 
@@ -32,7 +39,8 @@ const FurnituresContact = () => {
                     firstname={firstname}
                     lastname={lastname}
                     email={email}
-                    subject={`Demande d'informations pour : ${furniture.furniture_name}`}
+                    subject={subject}
+                    // subject={`Demande d'informations pour : ${furniture.furniture_name}`}
                     text={text}
                     changeInputValue={(value, name) => {
                         // console.log('changeField', { value, name });
