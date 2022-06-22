@@ -1,5 +1,5 @@
-import { actionDispatchFurnitures, AXIOS_FURNITURES } from "../Actions/FurnituresActions";
-import { getAllFurnitures } from "../Requests/FurnituresRequests";
+import { actionDispatchFurnitures, AXIOS_FURNITURES, AXIOS_FURNITURES_PICTURES } from "../Actions/FurnituresActions";
+import { getAllFurnitures, getAllFurnituresPictures } from "../Requests/FurnituresRequests";
 
 const FurnituresMiddleware = (store) => (next) => async (action) => {
 
@@ -17,7 +17,15 @@ const FurnituresMiddleware = (store) => (next) => async (action) => {
             console.error(err);
         }
         break;
-        
+        case AXIOS_FURNITURES_PICTURES:
+            console.log ('Je suis dans AXIOS PICTURES');
+            try {
+                const responseFurnituresPictures = await getAllFurnituresPictures(action.furniture_id)
+
+            } catch (err) {
+                console.error(err)
+            }
+        break;
         default:
             next(action);
     }
