@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { actionAxiosFurnituresPictures } from "../../../Redux/Actions/FurnituresActions";
 
 import { findFurniture } from "../../../Redux/Selectors/furnituresSelectors";
@@ -50,6 +50,15 @@ const FurnitureDetail = () => {
                                     <p className='card__section-title'>{furniture.photo_credit}</p>
                                 </div>
                             </div>
+                            <NavLink to='/mobilier'>
+                            <button
+                                className="btn waves-effect waves-light grey darken-3 button"
+                                name="action"
+                            >
+                                Revenir aux mobiliers
+                            </button>
+
+                            </NavLink>
                         </div>
                     </div>
                     {pictures &&
