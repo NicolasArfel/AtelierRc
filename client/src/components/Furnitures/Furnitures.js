@@ -27,7 +27,7 @@ const furnitures = useSelector((state) => state.FurnituresReducer.furnitures)
                             <span className="card-title activator grey-text text-darken-4 furniture__card-title" >{furniture.furniture_name}<i className="material-icons right">more_vert</i></span>
                             <p>
                             <NavLink 
-                            to="/contact"
+                            to={`/contact/mobilier/${furniture.slug} `}
 
                             >
                             Me contacter
