@@ -57,13 +57,18 @@ exports.multiUpload = async (req, res) => {
 
     const files = req.files;
     //console.log("je suis ici :", files);
-    const project_id = req.params.id;
+    const project_id = Number(req.params.id);
+    console.log('project_id', project_id);
     const data = req.body;
-    const position = data.position
+
+    const currentProject = await projectDatamapper.findByPk(project_id);
+    // console.log('all projects : ', currentProject.length);
+    const position = currentProject.length + 1;
+    console.log(position);
 
     try {
-        files.forEach(async(file, i) => {
-            await projectDatamapper.addImageToProject(data.photo_credit, project_id, file.filename, Number(position)+i);
+        files.forEach(async file => {
+            await projectDatamapper.addImageToProject(data.photo_credit, project_id, file.filename, position);
         })
         return res.status(200).json(`les images du projet ont bien été ajoutées`);
 

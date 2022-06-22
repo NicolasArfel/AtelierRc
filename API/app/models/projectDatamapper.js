@@ -20,7 +20,7 @@ const projectDatamapper = {
 
     async findAllProjects() {
         const result = await client.query(
-            'SELECT * FROM project'
+            'SELECT project.name AS project_name, * FROM project'
         );
         return result.rows;
     },
