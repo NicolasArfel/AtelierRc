@@ -44,6 +44,7 @@ const contactController = {
         console.log('Error occurs');
       } else {
         console.log('Email sent!');
+        res.status(200).json('Email sent !')
       }
       });
     
