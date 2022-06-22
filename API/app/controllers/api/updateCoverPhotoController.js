@@ -48,56 +48,59 @@ const upload = multer({
     },
 })
 
-exports.uploadImage = upload.single('cover_image');
+exports.uploadImageCover = upload.single('cover_image');
 
-exports.upload = async (req, res) => {
+exports.uploadCoverPhoto = async (req, res) => {
 
     try {
 
         const originalname = req.file.originalname
 
         const data = req.body;
-    
-        const spacingProjectName = data.project_name.replace(/  +/g, " ")
-        const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
-        console.log(slugProjectName)
-    
+        const id = Number(req.params.id);
+        console.log(id);
+
         const allProjects = await projectDatamapper.findAll();
         // console.log('all projects : ', allProjects);
-    
-        // Checking if the project already exists
-        const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
-        // console.log('Existing project :', checkIfProjectExists);
-    
+
+        const currentProject = await projectDatamapper.findByPk(id);
+        // console.log('all projects : ', currentProject.length);
+        const position = currentProject.length + 1;
+        console.log(position);
+
+        const checkIfProjectExists = allProjects.find(element => element.project_id === id);
+        console.log('Existing project :', checkIfProjectExists);
+
+        // const checkIfCoverExists = allProjects.find(element => element.cover_photo === true);
+        // console.log (checkIfCoverExists);
+
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
-        
-        console.log("toto",checkIfphotoExist);
+
+        // console.log("toto",checkIfphotoExist);
 
         if (checkIfphotoExist !== undefined) {
             return res.status(500).json(`"La photo ${originalname} existe déjà, merci de saisir un autre nom"`);
         }
 
-        if (data.project_name === "") {
-            return res.status(500).json(`Merci de remplir le champs nom du projet (project_name)`);
-        } 
-
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
-            return res.status(500).json(`Merci de remplir le champs nome de la photo (photo_name)`);
-        } 
-
-        if (checkIfProjectExists !== undefined) {
-            return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-        } else {
-            await projectDatamapper.insert(data, originalname, spacingProjectName, slugProjectName);
-            return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
+            return res.status(500).json(`Merci de remplir le champs name de la photo (photo_name)`);
         }
+        console.log('je lance l\'update');
+        const resultUpdate = await projectDatamapper.updateCoverPhoto(data, originalname, id);
+
+        if (checkIfProjectExists && checkIfProjectExists.cover_photo === true) {
+            console.log(' je suis dans if de checkIfProjectExists');
+            await projectDatamapper.turnOffCoverPhoto(checkIfProjectExists.id, position);
+
+        }
+
+        return res.status(200).json(`la photo ${originalname} de couverture a bien été modifiée`);
+
 
     } catch (error) {
         console.trace(error);
         res.status(500).json(error.toString());
     }
-
 }
-

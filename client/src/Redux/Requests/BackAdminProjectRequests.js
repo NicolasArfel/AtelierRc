@@ -5,6 +5,16 @@ const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
 });
 
+export async function findAllProjects() {
+  try {
+    const response = await axiosInstance.get(`/api/getOnlyProjects`);
+    return response
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export async function deleteProject(projectId) {
   try {
     const response = await axiosInstance.delete(`api/admin/project/${projectId}`);
@@ -19,6 +29,24 @@ export async function deleteProject(projectId) {
 export async function postNewProject(formData, config) {
   try {
     const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function updateCoverPhotoProject(project_id, formData, config) {
+  try {
+    const response = await axiosInstance.put(`/api/admin/project/${project_id}/coverphoto`, formData, { config });
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function UpdateProject(project_id, newData) {
+  try {
+    const response = await axiosInstance.put(`/api/admin/project/${project_id}`, newData);
     return response;
   } catch (err) {
     console.error(err);

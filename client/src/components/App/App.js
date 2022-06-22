@@ -27,6 +27,7 @@ import Footer from '../Footer/Footer';
 import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
 import Profile from '../Profile/Profile';
 import Furnitures from '../Furnitures/Furnitures';
+import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpdateProjet';
 
 const App = () => {
 
@@ -55,12 +56,10 @@ const App = () => {
         <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
-        {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
         <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
-        {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
-        {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
         <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
         <Route exact path="/back-projets/addProject" element={role === 'admin' ? <BackAddProjet /> : <Error403 />} />
+        <Route exact path="/back-projets/updateProject/:slug" element={role === 'admin' ? <BackUpdateProjet /> : <Error403 />} />
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Error404 /> : <Register />} />
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
