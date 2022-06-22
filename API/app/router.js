@@ -1,15 +1,15 @@
 const express = require('express');
 
-// controllers imports
+// importer les controllers
 const projectController = require('./controllers/api/projectController');
 const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
-// const adminController = require('./controllers/api/adminController');
-const { upload, uploadImage } = require('./controllers/api/uploadController');
-
-const { Router } = require('express');
 const adminController = require('./controllers/api/adminController');
+// const adminController = require('./controllers/api/adminController');
+const { upload, uploadImage } = require('./controllers/api/uploadController'); 
+const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
+
 
 const router = express.Router();
 
@@ -34,13 +34,17 @@ router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 // router.post('/api/admin/project', projectController.);
 // router.post('/api/admin/project', projectController.create);
 router.put('/api/admin/project/:id', projectController.updateOneProject)
+/* admin interface - create project and upoad images*/
+router.post('/api/admin/add-project', uploadImage, upload);
+router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+
+
+// router.patch('/api/admin/project/:id', projectController.update)
 router.delete('/api/admin/project/:id', projectController.delete);
 
 /* Contact */
 router.post('/api/contact', contactController.mail);
 
-/* Upload images */
-// router.post('/api/admin/upload-projects-images', );
 
 /*  Admin */
 // router.patch('/api/admin/profile/:id', adminController.profile);

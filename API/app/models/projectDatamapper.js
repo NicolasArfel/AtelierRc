@@ -16,6 +16,11 @@ const projectDatamapper = {
             return result.rows;
     },
 
+//     async findAllPhotos() {
+//         const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id');
+//         return result.rows;
+// },
+
 
     /**
      * Get the project by his id
@@ -30,10 +35,10 @@ const projectDatamapper = {
         }
         const result = await client.query(preparedQuery);
 
-        if (result.rowCount === 0) {
+        if(result.rowCount === 0) {
             return null;
         }
-
+        
         return result.rows;
     },
 
@@ -115,7 +120,7 @@ const projectDatamapper = {
 
 
         const preparedPhotoQuery = {
-            text: `
+        text: `
               INSERT INTO "project_photo"  (
                         "name", 
                         "position", 
@@ -137,55 +142,87 @@ const projectDatamapper = {
         const result2 = await client.query(preparedPhotoQuery);
         return result2.rowCount;
 
-    },
+        },
 
-    //! fonction à compléter
-    // /**
-    //  * Modify a project in the database 
-    //  * @param {number} id - the id to modify
-    //  * @param {InputData} inputData 
-    //  * @returns 
-    //  */
-    // async update(id, inputData) {
-    //     const data = { ...inputData, id };
-    //     const savedProject = await client.query(
-    //         'SELECT * FROM "project"($1)',
-    //         [data],
-    //     );
+        async addImageToProject(photo_credit, project_id, originalname, position) {
 
-    //     return savedProject.rows[0];
-    // },
+            // if(originalname === ""){
+            //     originalname = null;
+            //     console.error(`Merci de remplir le champs ${originalname}`);
+            // }
 
-    // async update(id, project) {
-    //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
-    //     console.log(fields)
-    //     const values = Object.values(project);
+            const preparedPhotoQuery = {
+            text: `
+                  INSERT INTO "project_photo"  (
+                            "name", 
+                            "position", 
+                            "photo_credit", 
+                            "cover_photo", 
+                            "project_id"
+                            )
+                         VALUES 
+                  ($1, $2, $3, $4, $5);`,
+    
+                values: [
+                    originalname,
+                    position,
+                    photo_credit,
+                    false,
+                    project_id
+                ]
+            }
+            const result = await client.query(preparedPhotoQuery);
+            return result.rowCount;
+    
+            },
 
-    //     const savedProject = await client.query(
-    //         `
-    //             UPDATE "project" SET
-    //                 ${fields}
-    //             WHERE id = $${fields.length + 1}
-    //             RETURNING *
-    //         `,
-    //         [...values, id],
-    //     );
+        //! fonction à compléter
+        // /**
+        //  * Modify a project in the database 
+        //  * @param {number} id - the id to modify
+        //  * @param {InputData} inputData 
+        //  * @returns 
+        //  */
+        // async update(id, inputData) {
+        //     const data = { ...inputData, id };
+        //     const savedProject = await client.query(
+        //         'SELECT * FROM "project"($1)',
+        //         [data],
+        //     );
+    
+        //     return savedProject.rows[0];
+        // },
 
-    //     return savedProject.rows[0];
-    // },
+        // async update(id, project) {
+        //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
+        //     console.log(fields)
+        //     const values = Object.values(project);
+    
+        //     const savedProject = await client.query(
+        //         `
+        //             UPDATE "project" SET
+        //                 ${fields}
+        //             WHERE id = $${fields.length + 1}
+        //             RETURNING *
+        //         `,
+        //         [...values, id],
+        //     );
+    
+        //     return savedProject.rows[0];
+        // },
 
 
-    /**
-     * Delete the project from the database
-     * @param {number} id - the id to delete
-     * @returns the deleted project
-     */
+        /**
+         * Delete the project from the database
+         * @param {number} id - the id to delete
+         * @returns the deleted project
+         */
 
-    async delete(id) {
-        const preparedDeleteQuery = {
-            text: `DELETE FROM "project" WHERE "id" = $1;`,
-            values: [id]
-        }
+        async delete(id) {
+            const preparedDeleteQuery ={
+                text:`DELETE FROM "project" WHERE "id" = $1;`,
+                values:[id]
+            }
         const deletedProject = await client.query(preparedDeleteQuery);
         return !!deletedProject.rowCount;
         },

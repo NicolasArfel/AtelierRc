@@ -57,21 +57,21 @@ exports.upload = async (req, res) => {
         const originalname = req.file.originalname
 
         const data = req.body;
-    
+
         const spacingProjectName = data.project_name.replace(/  +/g, " ")
         const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
         console.log(slugProjectName)
-    
+
         const allProjects = await projectDatamapper.findAll();
         // console.log('all projects : ', allProjects);
-    
+
         // Checking if the project already exists
         const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
         // console.log('Existing project :', checkIfProjectExists);
-    
+
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
-        
+
         console.log("toto",checkIfphotoExist);
 
         if (checkIfphotoExist !== undefined) {
@@ -80,12 +80,12 @@ exports.upload = async (req, res) => {
 
         if (data.project_name === "") {
             return res.status(500).json(`Merci de remplir le champs nom du projet (project_name)`);
-        } 
+        }
 
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
             return res.status(500).json(`Merci de remplir le champs nome de la photo (photo_name)`);
-        } 
+        }
 
         if (checkIfProjectExists !== undefined) {
             return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
@@ -101,20 +101,3 @@ exports.upload = async (req, res) => {
 
 }
 
-
-
-  // async addPhotoToProject(req, res) {
-  //   // NO CODE EXEMPLE
-
-  //   // => ICI LA LOGIQUE UPLOAD MULTI FILE
-
-  //   // req.body.file.length pour recuperer le nombre d'images envoyé depuis le front
-  //   // Admettons que l'on récupère 10 images on boucle comme ceci :
-
-  //   // => ICI LA LOGIQUE BOUCLE INSERTION DANS LA TABLE PROJECT_PHOTO 
-
-  //   for (let index = 0; index < req.body.file.length; index++) {
-  //    await projectDatamapper.addImageToProject(data);
-  //   }
-
-  // },

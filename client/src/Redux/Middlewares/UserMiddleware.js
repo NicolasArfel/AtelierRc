@@ -9,26 +9,24 @@ const UserMiddleware = (store) => (next) => async (action) => {
         case SUBMIT_PROFIL: {
             console.log('je suis dans SUBMIT_PROFIL');
             const responseUserReducer = store.getState();
-            
-            const { firstName, lastName,email, password, token } = responseUserReducer.UserReducer;
+
+            const { firstName, lastName, email, password, token } = responseUserReducer.UserReducer;
             // console.log('nouveau contenu', { firstName, lastName, email, password,token });
-            
+
             const decodedJwt = jwt_decode(token);
             // console.log('tokendec', decodedJwt)
-
             const userId = decodedJwt.id
             // console.log('usermiddle',userId)
 
             try {
-                const response = await updateProfile(userId, firstName,lastName,email,password)
+                const response = await updateProfile(userId, firstName, lastName, email, password)
                 // console.log('toto',userId, firstName,lastName,email,password) 
-                console.log('reponse put',response) 
+                console.log('reponse put', response)
                 if (response.status === 200) {
                     store.dispatch(actionSaveUser(decodedJwt, token));
-                    
                 }
-                
-            }catch (err) {
+
+            } catch (err) {
                 console.error(err)
             }
 
@@ -44,10 +42,9 @@ const UserMiddleware = (store) => (next) => async (action) => {
 
             try {
                 const { accessToken } = await requestLogin(email, password);
-                // console.log('response', { accessToken });
+                console.log('response', { accessToken });
                 const decodedJwt = jwt_decode(accessToken);
                 // console.log('decodedJwt', decodedJwt);
-                localStorage.setItem('user', JSON.stringify(decodedJwt))
                 localStorage.setItem('token', JSON.stringify(accessToken))
                 store.dispatch(actionSaveUser(decodedJwt, accessToken))
 

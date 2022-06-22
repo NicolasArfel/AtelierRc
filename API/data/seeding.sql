@@ -41,6 +41,7 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3),
 ('test_pers_4.jpg', 1, 'image ©Romain-Caillon', TRUE, 4);
 
+
 COMMIT;
 
 

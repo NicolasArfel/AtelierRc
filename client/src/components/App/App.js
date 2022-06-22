@@ -42,9 +42,9 @@ const App = () => {
   }, []);
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
-  console.log('loggé ? ', isLogged);
+  // console.log('loggé ? ', isLogged);
   const role = useSelector((state) => state.UserReducer.role);
-  console.log('role ? ', role);
+  // console.log('role ? ', role);
 
   return (
     <div className="App">
@@ -52,18 +52,18 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
-        <Route path="/mobilier" element={<Furnitures/>} />
+        <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
         {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
-        <Route exact path="/back-projets" element={<BackProjets />} />
+        <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
         {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
         {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
-        <Route exact path="/back-admin" element={ <BackAdministration /> } />
-        <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
-        <Route exact path="/login" element={isLogged && role === 'admin' ? <BackAdministration /> : <Login />} />
-        <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
-        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login/>} />
+        <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
+        <Route exact path="/back-projets/addProject" element={role === 'admin' ? <BackAddProjet /> : <Error403 />} />
+        <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
+        <Route exact path="/register" element={isLogged ? <Error404 /> : <Register />} />
+        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
       </Routes>

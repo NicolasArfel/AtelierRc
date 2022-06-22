@@ -1,33 +1,34 @@
-const userDatamapper  = require('../../models/userDatamapper.js');
+const userDatamapper = require('../../models/userDatamapper.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const loginController = {
 
-    async login (req, res) {
+    async login(req, res) {
 
         function generateAccessToken(user) {
-            return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1800s'});
-         }
+            return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { algorithm: 'HS256', expiresIn: '1800' })
+        }
 
         try {
             const { email, password } = req.body;
             console.log({ email, password });
             const user = await userDatamapper.findUser(email);
-            console.log("my user in the database",user);
+            console.log("my user in the database", user);
 
-            if(email !== user?.email){
+            if (email !== user?.email) {
                 return res.status(401).json('mot de passe ou indentifiant invalide')
             }
             // ou je peux faire le if suivant :
             // if(!user){
             //     return res.status(401).json('mot de passe ou indentifiant invalide_1')
             // }
-            if(password !== user?.password){
+            if (password !== user?.password) {
                 return res.status(401).json('mot de passe ou indentifiant invalide')
             }
 
             // if (user && (await bcrypt.compare(password, user.password))) {
+
             const accessToken = generateAccessToken(user);
             console.log('access Token', accessToken);
 
