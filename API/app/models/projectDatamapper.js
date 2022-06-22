@@ -244,8 +244,48 @@ const projectDatamapper = {
             //     return null;
             // }
             
-            return result.rows;
+            return result;
         },
+
+        async updateCoverPhoto(data, id, originalname) {
+
+            const preparedQuery = {
+                text: `UPDATE "project_photo" SET name=$2, photo_credit=$3, position=$4, cover_photo=$5 WHERE id=$1`,
+                values:[id, originalname, data.photo_credit, 1, true]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result;
+
+
+        },
+
+        async turnOffCoverPhoto(photo_id) {
+
+            const preparedQuery = {
+                text: `UPDATE "project_photo" SET cover_photo=$2 WHERE id=$1`,
+                values:[photo_id, false]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result;
+        
+
+        }
 };
 
 module.exports = projectDatamapper;

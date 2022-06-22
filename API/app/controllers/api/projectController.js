@@ -122,9 +122,14 @@ const projectController = {
     }
     
     if(projectToUpdate) {
+
+        const spacingProjectName = req.body.name.replace(/  +/g, " ")
+        const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
+       
+
         const id = req.params.id;
-        const  name = req.body.name;
-        const slug = req.body.slug;
+        const name = spacingProjectName;
+        const slug = slugProjectName;
         const location = req.body.location;
         const date = req.body.date;
         const program = req.body.program;
@@ -137,8 +142,11 @@ const projectController = {
 
         const updateProject = await projectDatamapper.updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit);
         res.send('Project has been updated');
+        console.log(updateProject);
     }
-        }
+        },
+
+        
 
 
 };
