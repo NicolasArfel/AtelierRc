@@ -12,8 +12,9 @@ const loginController = {
 
         try {
             const { email, password } = req.body;
-            console.log({ email, password });
+           // console.log({ email, password });
             const user = await userDatamapper.findUser(email);
+            
             console.log("my user in the database",user);
 
             if(email !== user?.email){
@@ -23,18 +24,26 @@ const loginController = {
             // if(!user){
             //     return res.status(401).json('mot de passe ou indentifiant invalide_1')
             // }
-            if(password !== user?.password){
+            const validPassword = await bcrypt.compare(password, user.password)
+            console.log("validPassword :", validPassword);
+
+            if(!validPassword){
                 return res.status(401).json('mot de passe ou indentifiant invalide')
             }
 
-            // if (user && (await bcrypt.compare(password, user.password))) {
-            const accessToken = generateAccessToken(user);
-            console.log('access Token', accessToken);
+            if (user && validPassword) {
+            //console.log(user);
+            const {id, email, lastname, firstname, role} = user
+            const newUser = {id, email, lastname, firstname, role};
+            console.log(newUser);
+
+            const accessToken = generateAccessToken(newUser);
+            //console.log('access Token', accessToken);
 
             res.json({
                 accessToken,
             });
-            //}
+            }
 
         } catch (error) {
             console.trace(error);

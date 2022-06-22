@@ -6,7 +6,7 @@ INSERT INTO client (email, firstname,  lastname, password, address, zip_code, ci
 ('moine.veronique@test.com', 'Véronique', NULL, 'motdepassetest', NULL, '75020', NULL, NULL, 'admin');
 
 INSERT INTO "user" (email, firstname,lastname, password, role) VALUES
-('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', 'atelierrc', 'admin');
+('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', '$2a$10$AA9o95ZQRuwDdZXqOWD5keaGGWiuYaX7BWmwQbSZh8dKoTbJCEXke', 'admin');
 
 INSERT INTO status (label) VALUES
 ('Phase d''étude'),
