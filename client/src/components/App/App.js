@@ -30,6 +30,7 @@ import Furnitures from '../Furnitures/Furnitures';
 import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
 import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
 import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
+import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 
 const App = () => {
 
@@ -64,6 +65,7 @@ const App = () => {
         {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
         <Route exact path="/back-projets" element={<BackProjets />} />
         {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
+        <Route path="/back-mobilier" element={ <BackMobilier />} />
         {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
         <Route exact path="/back-admin" element={ <BackAdministration /> } />
         <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
