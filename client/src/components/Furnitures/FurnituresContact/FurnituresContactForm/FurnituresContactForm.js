@@ -55,7 +55,7 @@ const FurnituresContactForm = ({ firstname, lastname, email, subject, text, chan
                     title={subjectTitle}
                     value={subject}
                     onChange={changeInputValue}
-                    disabled="true"
+                    // disabled="true"
                 />
                 <FurnituresContactFormInput
                     type='text'

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { changeInputValue } from "../../../Redux/Actions/ContactActions";
+import { actionSubmitContact, changeInputValue } from "../../../Redux/Actions/ContactActions";
 import { findFurniture } from "../../../Redux/Selectors/furnituresSelectors";
 import Banner from "../../Banner/Banner";
 import FurnituresContactForm from "./FurnituresContactForm/FurnituresContactForm";
@@ -25,7 +25,7 @@ const FurnituresContact = () => {
         <main className="container" >
             <Banner title={title} description={description} />
             <div className="row">
-                <article className="col s6">
+                <article className="col s6 contact__image-container">
                     <img alt='ContactImg' className='contact__img z-depth-2' src={`http://localhost:3001/image/furnitures/${furniture.name}`} />
                 </article>
                 <FurnituresContactForm
@@ -39,7 +39,7 @@ const FurnituresContact = () => {
                         dispatch(changeInputValue(value, name));
                     }}
                     handleContact={() => {
-                        // dispatch(actionSubmitContact())
+                        dispatch(actionSubmitContact())
                     }}
                 />
             </div>

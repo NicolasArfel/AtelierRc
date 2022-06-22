@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import React from 'react'
 
@@ -25,12 +25,12 @@ const FurnituresContactFormInput = ({ title, type, name, value, onChange }) => {
     )
 }
 
-FurnituresContactFormInput.propTypes = {
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-}
+// FurnituresContactFormInput.propTypes = {
+//     title: PropTypes.string.isRequired,
+//     type: PropTypes.string.isRequired,
+//     name: PropTypes.string.isRequired,
+//     value: PropTypes.string.isRequired,
+//     onChange: PropTypes.func.isRequired,
+// }
 
 export default FurnituresContactFormInput

@@ -18,7 +18,15 @@
     color: green;
 }
 
+.contact__image-container {
+    display: flex;
+    height: 80vh;
+}
 .contact__img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
     max-width: 70%;
 }
 
