@@ -45,44 +45,18 @@ const projectController = {
       //   }
     },
 
-    /**
-     * Project controller to create a record
-     * @param {*} req Express req.object (not used)
-     * @param {*} res Express response object
-     * @returns Route API JSON response
-     */
 
-     async createAProject(req, res) {
-       const data = req.body;
-       
+    async getStatus(req, res) {
        try {
-
-          if(data.photo_name === ""){
-            return res.status(200).json(`Merci de remplir le champs photo_name`);
-          } if (data.project_name) {
-            return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-          } else {
-            await projectDatamapper.insert(data);
-            return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
-          }
-          
+          const status = await projectDatamapper.findAllStatus();
+          return res.json(status)
        } catch (error) {
-         //console.trace(error);
-         if(error.detail === `Key (name)=(${data.project_name}) already exists.`){
-         //console.log('je suis dans le if de mon controller');
-         return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
-         } 
-         // if(error.code === '23514'){
-         // console.log('je suis dans le 2e if de mon controller');
-         // return res.status(500).json(`"Le slug ${data.slug} n'est pas correct"`);
-         // } 
-         else {
-            res.status(500).json(error.toString());
-         }
          console.trace(error);
+         res.status(500).json(error.toString());
        }
     },
 
+  
    //! terminer cette méthode du controller
     /**
      * Project controller to update a record
@@ -121,6 +95,7 @@ const projectController = {
    //       res.status(500).json(error.toString());
    //     }
    // },
+   
  
     /**
      * Project controller to delete a record
@@ -132,13 +107,25 @@ const projectController = {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
       console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
-         res.status(404).send("error: The project you are looking for does not exists");
+         return res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
       // 204 : No Content
       return res.status(204).json(toString('The project has been deleted'));
   },
+
+
+  async deletePhoto(req, res) {
+   const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
+   console.log("je suis dans le controller delete", deleteThisPhoto)
+   if (!deleteThisPhoto) {
+      return res.status(404).send("error: The photo you are looking for does not exists");
+   }
+   await projectDatamapper.deletePhoto(req.params.id);
+   // 204 : No Content
+   return res.status(204).json(toString('The photo has been deleted'));
+},
 
   async updateOneProject(req, res) {
     const projectToUpdate = await projectDatamapper.findByPk(req.params.id);
@@ -147,34 +134,32 @@ const projectController = {
     }
     
     if(projectToUpdate) {
+
+        const spacingProjectName = req.body.name.replace(/  +/g, " ")
+        const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
+       
+
         const id = req.params.id;
-        console.log(id)
-        const  name = req.body.name;
-        console.log(name)
-        const slug = req.body.slug;
-        console.log(slug)
+        const name = spacingProjectName;
+        const slug = slugProjectName;
         const location = req.body.location;
-        console.log(location)
         const date = req.body.date;
-        console.log(date)
         const program = req.body.program;
-        console.log(program)
         const surface_area = req.body.surface_area;
-        console.log(surface_area)
         const type = req.body.type;
-        console.log(type)
         const project_client = req.body.client;
-        console.log(project_client)
         const design = req.body.design;
-        console.log(design)
         const photo_credit = req.body.photo_credit;
-        console.log(photo_credit)
+        const status_id = req.body.status_id;
       
 
         const updateProject = await projectDatamapper.updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit);
         res.send('Project has been updated');
+        console.log(updateProject);
     }
-        }
+        },
+
+        
 
 
 };

@@ -4,17 +4,10 @@ dotenv.config();
 const express = require('express');
 // not useful now but useful to deploy de the app
 const path = require('path');
-
-
 const router = require('./app/router');
-
 const cors = require('cors');
-const multer = require('multer');
-const bodyParser = require('body-parser');
-
+// const bodyParser = require('body-parser');
 // const jwt = require('express-jwt');
-
-
 
 const app = express();
 
@@ -35,9 +28,6 @@ app.use(cors({
 // if (process.env.NODE_ENV !== 'production') {
 //    dotenv.config();
 // }
-
-
-//const upload = multer({ dest: 'uploads/' });
 
 // on ajoute le middleware de "nettoyage" des variables
 //const bodySanitizer = require('./app/middlewares/body-sanitizer');

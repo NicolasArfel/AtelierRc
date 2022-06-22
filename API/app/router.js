@@ -6,7 +6,11 @@ const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
-const { Router } = require('express');
+const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
+const { uploadCoverPhotoFurniture, uploadImageCoverFurniture } = require('./controllers/api/updateCoverPhotoFurnitureController');
+const { upload, uploadImage } = require('./controllers/api/uploadController'); 
+const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
+
 
 const router = express.Router();
 
@@ -27,12 +31,19 @@ router.post('/api/login', loginController.login);
 
 /* Admin interface */
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
-router.post('/api/admin/project', projectController.createAProject);
-// router.post('/api/admin/project', projectController.create);
-router.put('/api/admin/project/:id', projectController.updateOneProject)
+router.put('/api/admin/project/:id', projectController.updateOneProject);
+router.put('/api/admin/furniture/:id', furnitureController.updateOneFurniture);
+router.put('/api/admin/project/:id/coverphoto', uploadImageCover, uploadCoverPhoto);
+router.put('/api/admin/furniture/:id/coverphoto', uploadCoverPhotoFurniture, uploadImageCoverFurniture);
+
+/* admin interface - create project and upoad images*/
+router.post('/api/admin/add-project', uploadImage, upload);
+router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+router.delete('/api/admin/delete-images/:id', projectController.deletePhoto);
+
+
 router.delete('/api/admin/project/:id', projectController.delete);
 // router.post('/api/admin/furniture', furnitureController.createAFurniture);
-// router.put('/api/admin/furniture/:id', furnitureController.updateOneFurniture)
 router.delete('/api/admin/furniture/:id', furnitureController.delete);
 
 /* Contact */

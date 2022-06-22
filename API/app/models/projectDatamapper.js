@@ -12,9 +12,14 @@ const projectDatamapper = {
      */
 
     async findAll() {
-            const result = await client.query('SELECT project.name AS project_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
+            const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true');
             return result.rows;
     },
+
+//     async findAllPhotos() {
+//         const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id');
+//         return result.rows;
+// },
 
 
     /**
@@ -25,7 +30,7 @@ const projectDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: `SELECT project.name AS project_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1`,
+            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1`,
             values: [id]
         }
         const result = await client.query(preparedQuery);
@@ -37,12 +42,37 @@ const projectDatamapper = {
         return result.rows;
     },
 
+    async findPhotoByPk(id) {
+        const preparedQuery = {
+            text: `SELECT * FROM "project_photo" WHERE id = $1`,
+            values: [id]
+        }
+        const result = await client.query(preparedQuery);
+
+        if(result.rowCount === 0) {
+            return null;
+        }
+        
+        return result.rows;
+    },
+
+
+    async findAllStatus() {
+        const preparedQuery = {
+            text: `SELECT * FROM "status"`,
+        }
+        const result = await client.query(preparedQuery);
+        
+        return result.rows;
+    },
+
+
     /**
      * Add to the database
      * @param {InputData} data - the data to insert
      * @returns The project inserted in the database
      */
-     async insert(data) {
+     async insert(data, originalName, spacingProjectName, slugProjectName) {
 
         // console.log('je suis dans le console.log (data)', data);
 
@@ -56,20 +86,6 @@ const projectDatamapper = {
         // if (result.rows.length > 0) {
         //     return { error: "Le nom du projet existe déjà"}
         // }
-
-        const prepareStatusProject = {
-            text:`INSERT INTO "status"
-                    (
-                        "label"
-                    ) VALUES ($1) RETURNING id;`,
-
-                    values:[
-                        data.label
-                    ]
-        }
-        
-        const result = await client.query(prepareStatusProject);
-        const statusId = result.rows[0].id;
 
         const preparedProjectQuery = {
             text: ` INSERT INTO "project"
@@ -92,8 +108,8 @@ const projectDatamapper = {
                     RETURNING id;`,
 
                             values: [
-                                data.project_name,
-                                data.slug,
+                                spacingProjectName,
+                                slugProjectName,
                                 data.location,
                                 data.date,
                                 data.program,
@@ -103,7 +119,7 @@ const projectDatamapper = {
                                 data.design,
                                 data.project_photo_credit,
                                 data.user_id,
-                                statusId,
+                                data.status_id
                             ]
                         }
         
@@ -111,9 +127,9 @@ const projectDatamapper = {
         console.log('je suis ici', result1);
         const projectId = result1.rows[0].id;
 
-        if(data.photo_name === ""){
-            data.photo_name = null;
-            console.error(`Merci de remplir le champs ${data.photo_name}`);
+        if(originalName === ""){
+            originalName = null;
+            console.error(`Merci de remplir le champs ${originalName}`);
         }
 
 
@@ -130,7 +146,7 @@ const projectDatamapper = {
               ($1, $2, $3, $4, $5);`,
 
             values: [
-                data.photo_name,
+                originalName,
                 data.position,
                 data.photo_credit,
                 data.cover_photo,
@@ -141,6 +157,38 @@ const projectDatamapper = {
         return result2.rowCount;
 
         },
+
+        async addImageToProject(photo_credit, project_id, originalname, position) {
+
+            // if(originalname === ""){
+            //     originalname = null;
+            //     console.error(`Merci de remplir le champs ${originalname}`);
+            // }
+
+            const preparedPhotoQuery = {
+            text: `
+                  INSERT INTO "project_photo"  (
+                            "name", 
+                            "position", 
+                            "photo_credit", 
+                            "cover_photo", 
+                            "project_id"
+                            )
+                         VALUES 
+                  ($1, $2, $3, $4, $5);`,
+    
+                values: [
+                    originalname,
+                    position,
+                    photo_credit,
+                    false,
+                    project_id
+                ]
+            }
+            const result = await client.query(preparedPhotoQuery);
+            return result.rowCount;
+    
+            },
 
         //! fonction à compléter
         // /**
@@ -193,6 +241,15 @@ const projectDatamapper = {
         return !!deletedProject.rowCount;
         },
 
+        async deletePhoto(id) {
+            const preparedPhotoDeleteQuery ={
+                text:`DELETE FROM "project_photo" WHERE "id" = $1;`,
+                values:[id]
+            }
+        const deletedPhoto = await client.query(preparedPhotoDeleteQuery);
+        return !!deletedPhoto.rowCount;
+        },
+
 
         async updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit) {
 
@@ -210,8 +267,48 @@ const projectDatamapper = {
             //     return null;
             // }
             
-            return result.rows;
+            return result;
         },
+
+        async updateCoverPhoto(data, id, originalname) {
+
+            const preparedQuery = {
+                text: `UPDATE "project_photo" SET name=$2, photo_credit=$3, position=$4, cover_photo=$5 WHERE id=$1`,
+                values:[id, originalname, data.photo_credit, 1, true]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result;
+
+
+        },
+
+        async turnOffCoverPhoto(photo_id) {
+
+            const preparedQuery = {
+                text: `UPDATE "project_photo" SET cover_photo=$2 WHERE id=$1`,
+                values:[photo_id, false]
+            };
+        
+        
+            const result = await client.query(preparedQuery);
+    
+        
+            // if(result.rowCount === 0) {
+            //     return null;
+            // }
+            
+            return result;
+        
+
+        }
 };
 
 module.exports = projectDatamapper;
