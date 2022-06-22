@@ -59,24 +59,24 @@ exports.uploadCoverPhoto = async (req, res) => {
         const data = req.body;
         const id = Number(req.params.id);
         console.log(id);
-    
+
         const allProjects = await projectDatamapper.findAll();
         // console.log('all projects : ', allProjects);
-    
+
+        const currentProject = await projectDatamapper.findByPk(id);
+        // console.log('all projects : ', currentProject.length);
+        const position = currentProject.length + 1;
+        console.log(position);
+
         const checkIfProjectExists = allProjects.find(element => element.project_id === id);
-        // console.log('Existing project :', checkIfProjectExists);
+        console.log('Existing project :', checkIfProjectExists);
 
         // const checkIfCoverExists = allProjects.find(element => element.cover_photo === true);
         // console.log (checkIfCoverExists);
-        if(checkIfProjectExists && checkIfProjectExists.cover_photo === true) {
-
-            const TurnedOffPhoto = await projectDatamapper.turnOffCoverPhoto(checkIfProjectExists.id);
-        
-        }
 
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
-        
+
         // console.log("toto",checkIfphotoExist);
 
         if (checkIfphotoExist !== undefined) {
@@ -86,11 +86,18 @@ exports.uploadCoverPhoto = async (req, res) => {
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
             return res.status(500).json(`Merci de remplir le champs name de la photo (photo_name)`);
-        } 
-            
-        await projectDatamapper.updateCoverPhoto(data, id, originalname);
+        }
+        console.log('je lance l\'update');
+        const resultUpdate = await projectDatamapper.updateCoverPhoto(data, originalname, id);
+
+        if (checkIfProjectExists && checkIfProjectExists.cover_photo === true) {
+            console.log(' je suis dans if de checkIfProjectExists');
+            await projectDatamapper.turnOffCoverPhoto(checkIfProjectExists.id, position);
+
+        }
+
         return res.status(200).json(`la photo ${originalname} de couverture a bien été modifiée`);
-    
+
 
     } catch (error) {
         console.trace(error);

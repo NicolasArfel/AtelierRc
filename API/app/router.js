@@ -8,9 +8,8 @@ const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
 const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
 // const adminController = require('./controllers/api/adminController');
-const { upload, uploadImage } = require('./controllers/api/uploadController'); 
+const { upload, uploadImage } = require('./controllers/api/uploadController');
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
-const { updateCoverPhoto } = require('./models/projectDatamapper');
 
 
 const router = express.Router();
@@ -21,7 +20,9 @@ router.get('/', (req, res) => {
 
 /** Projects */
 router.get('/api/projects', projectController.getAllProjects);
+router.get('/api/getOnlyProjects', projectController.findAllProjects)
 router.get('/api/project/:id', projectController.getOne);
+router.get('/api/status', projectController.getStatus);
 
 /* Furnitures */
 router.get('/api/furnitures', furnitureController.getAllFurnitures);
