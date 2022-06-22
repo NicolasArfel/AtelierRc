@@ -39,7 +39,7 @@ const contactController = {
     html: templateMail,
 };
     
-    await transporter.sendMail(mailOptions, function(err, data) {
+    transporter.sendMail(mailOptions, function(err, data) {
       if(err) {
         console.log('Error occurs');
       } else {
