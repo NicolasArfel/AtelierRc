@@ -13,6 +13,17 @@ const { uploadMany, multiUpload } = require('./controllers/api/uploadManyControl
 // importer les middlewares
 const authenticateToken = require('./middlewares/authenticateToken');
 
+
+// import the validator schema
+validator = require('./validation/validator');
+
+// import the validators on by one
+/** createSchema */
+const projectCreateSchema = require('./validation/schema/projectCreateSchema');
+
+/** updateSchema */
+const projectUpdateSchema = require('./validation/schema/projectUpdateSchema');
+
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -39,7 +50,7 @@ router.post('/api/login', loginController.login);
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 
 /* admin interface - create project and upload images*/
-router.post('/api/admin/add-project', uploadImage, upload);
+router.post('/api/admin/add-project', validator('body', projectCreateSchema), uploadImage, upload);
 router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
