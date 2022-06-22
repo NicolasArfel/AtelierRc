@@ -115,6 +115,18 @@ const projectController = {
       return res.status(204).json(toString('The project has been deleted'));
   },
 
+
+  async deletePhoto(req, res) {
+   const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
+   console.log("je suis dans le controller delete", deleteThisPhoto)
+   if (!deleteThisPhoto) {
+      return res.status(404).send("error: The photo you are looking for does not exists");
+   }
+   await projectDatamapper.deletePhoto(req.params.id);
+   // 204 : No Content
+   return res.status(204).json(toString('The photo has been deleted'));
+},
+
   async updateOneProject(req, res) {
     const projectToUpdate = await projectDatamapper.findByPk(req.params.id);
     if (!projectToUpdate) {

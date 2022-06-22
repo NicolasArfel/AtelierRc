@@ -36,6 +36,8 @@ router.put('/api/admin/project/:id', projectController.updateOneProject)
 /* admin interface - create project and upoad images*/
 router.post('/api/admin/add-project', uploadImage, upload);
 router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+// ajouté par Véro 22/06/2022
+router.delete('/api/admin/delete-images/:id', projectController.deletePhoto);
 
 
 // router.patch('/api/admin/project/:id', projectController.update)

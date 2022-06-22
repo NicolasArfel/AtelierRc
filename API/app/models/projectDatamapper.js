@@ -42,6 +42,20 @@ const projectDatamapper = {
         return result.rows;
     },
 
+    async findPhotoByPk(id) {
+        const preparedQuery = {
+            text: `SELECT * FROM "project_photo" WHERE id = $1`,
+            values: [id]
+        }
+        const result = await client.query(preparedQuery);
+
+        if(result.rowCount === 0) {
+            return null;
+        }
+        
+        return result.rows;
+    },
+
 
     async findAllStatus() {
         const preparedQuery = {
@@ -225,6 +239,15 @@ const projectDatamapper = {
             }
         const deletedProject = await client.query(preparedDeleteQuery);
         return !!deletedProject.rowCount;
+        },
+
+        async deletePhoto(id) {
+            const preparedPhotoDeleteQuery ={
+                text:`DELETE FROM "project_photo" WHERE "id" = $1;`,
+                values:[id]
+            }
+        const deletedPhoto = await client.query(preparedPhotoDeleteQuery);
+        return !!deletedPhoto.rowCount;
         },
 
 
