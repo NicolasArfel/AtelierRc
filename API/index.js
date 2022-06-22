@@ -10,6 +10,7 @@ const cors = require('cors');
 // const jwt = require('express-jwt');
 
 const app = express();
+require('./app/helpers/apiDoc')(app);
 
 app.use(express.urlencoded({extended: true}));
 

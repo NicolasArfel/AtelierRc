@@ -7,11 +7,11 @@ const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
 const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
-// const adminController = require('./controllers/api/adminController');
 const { upload, uploadImage } = require('./controllers/api/uploadController'); 
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
-const { updateCoverPhoto } = require('./models/projectDatamapper');
 
+// importer les middlewares
+const authenticateToken = require('./middlewares/authenticateToken');
 
 const router = express.Router();
 
@@ -20,6 +20,11 @@ router.get('/', (req, res) => {
 });
 
 /** Projects */
+    /**
+     * GET /api/projects
+     * @summary Get all projects
+     * @tags Projects
+     */
 router.get('/api/projects', projectController.getAllProjects);
 router.get('/api/project/:id', projectController.getOne);
 
@@ -30,25 +35,24 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 /* Login admin */
 router.post('/api/login', loginController.login);
 
-/* Admin interface */
+/* Admin interface - Update profile */
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
-// router.post('/api/admin/project', projectController.);
-// router.post('/api/admin/project', projectController.create);
+
+/* admin interface - create project and upload images*/
+router.post('/api/admin/add-project', uploadImage, upload);
+router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+// Ajouté par Véro 22/06/2022
+router.get('/api/status', projectController.getStatus);
+
+/* Admin interface - modify project and images */
 router.put('/api/admin/project/:id', projectController.updateOneProject);
 router.put('/api/admin/project/:id/coverphoto', uploadImageCover, uploadCoverPhoto);
 
-/* admin interface - create project and upoad images*/
-router.post('/api/admin/add-project', uploadImage, upload);
-router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+/* Admin interface - delete project and images */
 // ajouté par Véro 22/06/2022
 router.delete('/api/admin/delete-images/:id', projectController.deletePhoto);
-
-
-
-// router.patch('/api/admin/project/:id', projectController.update)
-router.delete('/api/admin/project/:id', projectController.delete);
-
-/* Contact */
+router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete);
+/* Contact form */
 router.post('/api/contact', contactController.mail);
 
 
