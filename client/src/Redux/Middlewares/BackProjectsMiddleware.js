@@ -1,8 +1,8 @@
-import { actionAxiosProjects, actionDispatchProjects } from '../Actions/ProjetsActions'
+import { actionAxiosProjects } from '../Actions/ProjetsActions'
 import { actionAxiosLabel, actionErrorUploadCoverPhotoProject, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT } from "../Actions/BackProjectsActions";
 import { deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject, uploadMorePhotoProject } from "../Requests/BackAdminProjectRequests";
 import { filteredProjects } from "../Selectors/projectsSelectors";
-import { AxiosError } from 'axios';
+
 
 const BackProjectsMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {

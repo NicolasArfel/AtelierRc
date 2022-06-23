@@ -31,37 +31,23 @@ const FurnitureDetail = () => {
                 <Banner title={furniture.furniture_name} description={furniture.description} />
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
-                                    <h2 className="left card-title card__title">{furniture.furniture_name}</h2>
+                                    <h2 className="left card-title card__title">{furniture.furniture_name}/{furniture.type}</h2>
                         <div className="col s12">
-                            <div className="card card__detail">
-                                <div className="card-content black-text">
-                                    {/* <p className='card__section-title'>Etat de l'article :</p> */}
-                                    <p>{furniture.condition}</p>
-                                </div>
-                                <div className="card-content">
-                                    <p className='card__section-title'>Description:</p>
+                            <div className="card card__detail">                               
+                                <div className="card-content">                                    
                                     <p>{furniture.description}</p>
+                                    <p >{furniture.designer}</p>
+                                    <p >{furniture.editor}</p>
+                                    <p >{furniture.date}</p>
                                 </div>
                                 <div className="card-content">
-                                    <p className='card__section-title'>Type :</p>
-                                    <p>{furniture.type}</p>
+                                    <p >{furniture.size}</p>
+                                    <p >{furniture.condition}</p>
+                                    <p >{furniture.statut}</p>
                                 </div>
                                 <div className="card-content">
-                                    <p className='card__section-title'>{furniture.photo_credit}</p>
+                                   <p >{furniture.photo_credit}</p>
                                 </div>
-                                {/* <div className="card-content">
-                                    <p className='card__section-title'>{furniture.designer}</p>
-                                    <p className='card__section-title'>{furniture.editor}</p>
-                                    <p className='card__section-title'>{furniture.date}</p>
-                                </div>
-                                <div className="card-content">
-                                    <p className='card__section-title'>{furniture.size}</p>
-                                    <p className='card__section-title'>{furniture.condition}</p>
-                                    <p className='card__section-title'>{furniture.statut}</p>
-                                </div>
-                                <div className="card-content">
-                                   <p className='card__section-title'>{furniture.photo_credit}</p>
-                                </div> */}
 
 
                             </div>
