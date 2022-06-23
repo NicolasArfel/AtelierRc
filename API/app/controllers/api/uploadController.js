@@ -51,7 +51,7 @@ const upload = multer({
 exports.uploadImage = upload.single('cover_image');
 
 exports.upload = async (req, res) => {
-
+console.log("Nous sommes ici");
     try {
 
         const originalname = req.file.originalname
