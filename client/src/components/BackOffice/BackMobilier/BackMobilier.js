@@ -45,7 +45,7 @@ const BackMobilier = () => {
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        // dispatch(actionDeleteProject(project.project_id))
+                        // dispatch(actionDeleteFurniture(furniture.furniture_id))
                       }}
                     >Supprimer</button>
                     <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
