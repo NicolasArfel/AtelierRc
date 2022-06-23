@@ -18,6 +18,23 @@
     margin-bottom: 2rem;
 }
 
+.btn__toggle-supprimer:hover {
+    color: red;
+}
+
+.cover__photo-project {
+    position: relative;
+    left: 90px;
+    top: 52px;
+    color: #1c06f4;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.btn__toggle-updateCover:hover {
+    color: rgb(156, 146, 51);
+}
+
 .update__project {
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +45,7 @@
 }
 
 .preview__update-project {
-    width: 30% !important;
+    width: 18rem !important;
 }
 
 .isConfirm__form-update-project {
@@ -41,4 +58,12 @@
 
 .title__backOffice-Project:hover {
     color: grey;
+}
+
+.card__button-flex-projet {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-around;
 }

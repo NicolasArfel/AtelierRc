@@ -26,6 +26,16 @@ export async function deleteProject(projectId) {
   }
 }
 
+export async function deletePhotoProject(id) {
+  try {
+    const response = await axiosInstance.delete(`/api/admin/delete-images/${id}`);
+    return response
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export async function postNewProject(formData, config) {
   try {
     const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
@@ -35,9 +45,9 @@ export async function postNewProject(formData, config) {
   }
 }
 
-export async function updateCoverPhotoProject(project_id, formData, config) {
+export async function updateCoverPhotoProject(id) {
   try {
-    const response = await axiosInstance.put(`/api/admin/project/${project_id}/coverphoto`, formData, { config });
+    const response = await axiosInstance.put(`/api/admin/project/${id}/coverphoto`);
     return response;
   } catch (err) {
     console.error(err);

@@ -32,7 +32,7 @@ const loginController = {
             }
 
             if (user && validPassword) {
-            //console.log(user);
+            console.log(user);
             const {id, email, lastname, firstname, role} = user
             const newUser = {id, email, lastname, firstname, role};
             console.log(newUser);
