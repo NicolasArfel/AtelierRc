@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { actionDeleteFurniture } from '../../../Redux/Actions/BackFurnituresActions';
 
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 
@@ -13,6 +14,9 @@ const BackMobilier = () => {
 
   const furnitures = useSelector((state) => state.FurnituresReducer.furnitures);
 
+  // useEffect(() => {
+  //   dispatch(actionAxiosGetOnlyFurnitures())
+  // }, [dispatch]);
   console.log('mobilier dans backprojet', furnitures);
   return (
     <main className="container" >
@@ -45,7 +49,7 @@ const BackMobilier = () => {
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        // dispatch(actionDeleteProject(project.project_id))
+                        dispatch(actionDeleteFurniture(furniture.furniture_id));
                       }}
                     >Supprimer</button>
                     <button className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"

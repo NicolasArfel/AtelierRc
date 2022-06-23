@@ -213,41 +213,6 @@ const projectDatamapper = {
         return result.rowCount;
     },
 
-    //! fonction à compléter
-    // /**
-    //  * Modify a project in the database
-    //  * @param {number} id - the id to modify
-    //  * @param {InputData} inputData
-    //  * @returns
-    //  */
-    // async update(id, inputData) {
-    //     const data = { ...inputData, id };
-    //     const savedProject = await client.query(
-    //         'SELECT * FROM "project"($1)',
-    //         [data],
-    //     );
-
-    //     return savedProject.rows[0];
-    // },
-
-    // async update(id, project) {
-    //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
-    //     console.log(fields)
-    //     const values = Object.values(project);
-
-    //     const savedProject = await client.query(
-    //         `
-    //             UPDATE "project" SET
-    //                 ${fields}
-    //             WHERE id = $${fields.length + 1}
-    //             RETURNING *
-    //         `,
-    //         [...values, id],
-    //     );
-
-    //     return savedProject.rows[0];
-    // },
-
     /**
      * Delete the project from the database
      * @param {number} id - the id to delete

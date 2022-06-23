@@ -50,10 +50,6 @@ router.post('/api/login', loginController.login);
 
 /* Admin interface - Update profile */
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
-// router.post('/api/admin/project', projectController.);
-// router.post('/api/admin/project', projectController.create);
-router.put('/api/admin/project/:id', projectController.updateOneProject);
-router.put('/api/admin/project/:id/coverphoto', projectController.switchCoverPhotoProject);
 
 /* admin interface - create project and upload images*/
 router.post('/api/admin/add-project', validator('body', projectCreateSchema), uploadImage, upload);
@@ -71,6 +67,11 @@ router.delete('/api/admin/delete-images/:id', projectController.deletePhoto);
 router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete);
 /* Contact form */
 router.post('/api/contact', contactController.mail);
+
+/*Admin interface - create furniture and upload images */
+
+/* Admin interface - delete furniture and images */
+router.delete('/api/admin/furniture/:id', furnitureController.delete);
 
 
 /*  Admin */
