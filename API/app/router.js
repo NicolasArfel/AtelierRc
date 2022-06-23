@@ -19,9 +19,9 @@ validator = require('./validation/validator');
 
 // import the validators on by one
 /** createSchema */
-const projectCreateSchema = require('./validation/schema/projectCreateSchema');
-const statusCreateSchema = require('./validation/schema/statusCreateSchema');
-const projectPhotoCreateSchema = require('./validation/schema/projectPhotoCreateSchema');
+// const projectCreateSchema = require('./validation/schema/projectCreateSchema');
+// const statusCreateSchema = require('./validation/schema/statusCreateSchema');
+// const projectPhotoCreateSchema = require('./validation/schema/projectPhotoCreateSchema');
 
 /** updateSchema */
 const projectUpdateSchema = require('./validation/schema/projectUpdateSchema');
@@ -54,7 +54,7 @@ router.post('/api/login', loginController.login);
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 
 /* admin interface - create project and upload images*/
-router.post('/api/admin/add-project', uploadImage, validator('body', statusCreateSchema, projectPhotoCreateSchema, projectCreateSchema), upload);  //
+router.post('/api/admin/add-project', uploadImage, upload);  // validator('body', statusCreateSchema, projectPhotoCreateSchema, projectCreateSchema)
 router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
