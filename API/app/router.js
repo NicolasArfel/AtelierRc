@@ -68,6 +68,11 @@ router.delete('/api/admin/project/:id', authenticateToken(), projectController.d
 /* Contact form */
 router.post('/api/contact', contactController.mail);
 
+/*Admin interface - create furniture and upload images */
+
+/* Admin interface - delete furniture and images */
+router.delete('/api/admin/furniture/:id', furnitureController.delete);
+
 
 /*  Admin */
 // router.patch('/api/admin/profile/:id', adminController.profile);
