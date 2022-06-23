@@ -6,7 +6,6 @@ const furnitureController = require('./controllers/api/furnitureController');
 const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
-const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
 // const adminController = require('./controllers/api/adminController');
 const { upload, uploadImage } = require('./controllers/api/uploadController');
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
@@ -36,7 +35,7 @@ router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 // router.post('/api/admin/project', projectController.);
 // router.post('/api/admin/project', projectController.create);
 router.put('/api/admin/project/:id', projectController.updateOneProject);
-router.put('/api/admin/project/:id/coverphoto', uploadImageCover, uploadCoverPhoto);
+router.put('/api/admin/project/:id/coverphoto', projectController.switchCoverPhotoProject);
 
 /* admin interface - create project and upoad images*/
 router.post('/api/admin/add-project', uploadImage, upload);

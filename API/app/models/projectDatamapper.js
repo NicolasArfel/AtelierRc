@@ -50,6 +50,20 @@ const projectDatamapper = {
         return result.rows;
     },
 
+    async findProjectByPkPhoto(id) {
+        const preparedQuery = {
+            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_photo.id = $1`,
+            values: [id],
+        };
+        const result = await client.query(preparedQuery);
+
+        if (result.rowCount === 0) {
+            return null;
+        }
+
+        return result.rows;
+    },
+
     async findPhotoByPk(id) {
         const preparedQuery = {
             text: `SELECT * FROM "project_photo" WHERE id = $1`,
@@ -322,6 +336,17 @@ const projectDatamapper = {
         // if(result.rowCount === 0) {
         //     return null;
         // }
+
+        return result;
+    },
+
+    async turnONCoverPhoto(id) {
+        const preparedQuery = {
+            text: `UPDATE "project_photo" SET cover_photo=$2, position=$3 WHERE id=$1`,
+            values: [id, true, 1],
+        };
+
+        const result = await client.query(preparedQuery);
 
         return result;
     },
