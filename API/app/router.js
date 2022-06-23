@@ -36,7 +36,7 @@ router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 // router.post('/api/admin/project', projectController.);
 // router.post('/api/admin/project', projectController.create);
 router.put('/api/admin/project/:id', projectController.updateOneProject);
-router.put('/api/admin/project/:id/coverphoto', uploadImageCover, uploadCoverPhoto);
+router.put('/api/admin/project/:id/coverphoto', projectController.switchCoverPhotoProject);
 
 /* admin interface - create project and upoad images*/
 router.post('/api/admin/add-project', uploadImage, upload);

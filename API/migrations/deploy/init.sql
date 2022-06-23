@@ -79,7 +79,7 @@ CREATE TABLE "furniture" (
     "description" TEXT,
     "availability" BOOLEAN NOT NULL,
     "price" NUMERIC(15,4),
-     
+    "user_id" INT NOT NULL REFERENCES "user" ("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
