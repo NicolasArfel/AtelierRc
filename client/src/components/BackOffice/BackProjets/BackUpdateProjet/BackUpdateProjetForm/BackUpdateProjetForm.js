@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import BackUpdateProjetFormInput from './BackUpdateProjetFormInput/BackUpdateProjetFormInput'
 import { useNavigate } from 'react-router-dom';
-import { resetInputFormAddProject } from '../../../../../Redux/Actions/BackProjectsActions';
 
 const BackUpdateProjetForm = ({
     project_id,
@@ -25,11 +24,9 @@ const BackUpdateProjetForm = ({
 
     const labels = useSelector((state) => state.BackProjectsReducer.label);
     // console.log('labels', labels);
-    const disabled = true;
 
     let isConfirm = false;
 
-    const dispatch = useDispatch();
     let navigate = useNavigate();
 
     const projectTitle = 'Nom du projet';

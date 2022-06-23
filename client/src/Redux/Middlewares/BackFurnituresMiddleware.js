@@ -1,4 +1,4 @@
-import { actionDeleteFurniture, DELETE_FURNITURE, dispatchGetOnlyFurnitures } from "../Actions/BackFurnituresActions";
+import { actionDeleteFurniture, DELETE_FURNITURE } from "../Actions/BackFurnituresActions";
 import { filteredFurnitures } from "../Selectors/furnituresSelectors";
 
 const BackFurnituresMiddleware = (store) => (next) => async (action) => {

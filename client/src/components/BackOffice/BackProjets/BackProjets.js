@@ -13,8 +13,8 @@ const BackProjets = () => {
 
   const dispatch = useDispatch();
 
-  const onlyProjects = useSelector((state) => state.BackProjectsReducer.onlyProjects);
-  console.log('projectBack', onlyProjects);
+  const projects = useSelector((state) => state.ProjectsReducer.projects)
+  console.log('projectBack', projects);
 
   useEffect(() => {
     dispatch(actionAxiosGetOnlyProjects())
@@ -37,7 +37,7 @@ const BackProjets = () => {
               </tr>
             </thead>
             <tbody>
-              {onlyProjects.map(project => (
+              {projects.map(project => (
                 <tr key={project.id}>
                   <td>{project.project_name}</td>
                   <td>{project.surface_area}</td>
@@ -48,7 +48,7 @@ const BackProjets = () => {
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        dispatch(actionDeleteProject(project.id))
+                        dispatch(actionDeleteProject(project.project_id))
                       }}
                     >Supprimer</button>
                     <Link to={`/back-projets/updateProject/${project.slug}`}>

@@ -1,7 +1,7 @@
 import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT } from "../Actions/BackProjectsActions";
 
 export const initialState = {
-    onlyProjects: [],
+    // onlyProjects: [],
     project_name: '',
     location: '',
     date: '',

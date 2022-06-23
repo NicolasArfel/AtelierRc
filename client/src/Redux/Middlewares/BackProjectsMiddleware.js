@@ -40,7 +40,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
                 // console.log(newState)
                 store.dispatch(
-                    dispatchGetOnlyProjects(newState)
+                    actionAxiosProjects(newState)
                 );
             }
             // console.log('projects middleware response', responseProjects);
