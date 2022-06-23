@@ -1,11 +1,10 @@
-import {  DELETE_FURNITURE, dispatchGetOnlyFurnitures } from "../Actions/BackFurnituresActions";
-import { deleteFurniture } from "../Requests/BackAdminFurnituresRequests";
+import { actionDeleteFurniture, DELETE_FURNITURE, dispatchGetOnlyFurnitures } from "../Actions/BackFurnituresActions";
 import { filteredFurnitures } from "../Selectors/furnituresSelectors";
 
 const BackFurnituresMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
-        case DELETE_FURNITURE : {
-            const response = await deleteFurniture(action.payload.id);
+        case DELETE_FURNITURE: {
+            const response = await actionDeleteFurniture(action.payload.id);
             console.log('response delete furniture', response)
 
             if (response.status === 204) {
@@ -20,7 +19,7 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
             break;
         }
 
-        
+
         default:
             next(action);
     }

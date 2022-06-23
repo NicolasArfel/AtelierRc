@@ -31,10 +31,10 @@ const FurnitureDetail = () => {
                 <Banner title={furniture.furniture_name} description={furniture.description} />
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
-                                    <h2 className="left card-title card__title">{furniture.furniture_name}/{furniture.type}</h2>
+                        <h2 className="left card-title card__title">{furniture.furniture_name}/{furniture.type}</h2>
                         <div className="col s12">
-                            <div className="card card__detail">                               
-                                <div className="card-content">                                    
+                            <div className="card card__detail">
+                                <div className="card-content">
                                     <p>{furniture.description}</p>
                                     <p >{furniture.designer}</p>
                                     <p >{furniture.editor}</p>
@@ -46,18 +46,18 @@ const FurnitureDetail = () => {
                                     <p >{furniture.statut}</p>
                                 </div>
                                 <div className="card-content">
-                                   <p >{furniture.photo_credit}</p>
+                                    <p >{furniture.photo_credit}</p>
                                 </div>
 
 
                             </div>
                             <NavLink to='/mobilier'>
-                            <button
-                                className="btn waves-effect waves-light grey darken-3 button"
-                                name="action"
-                            >
-                                Revenir aux mobiliers
-                            </button>
+                                <button
+                                    className="btn waves-effect waves-light grey darken-3 button"
+                                    name="action"
+                                >
+                                    Revenir aux mobiliers
+                                </button>
 
                             </NavLink>
                         </div>
