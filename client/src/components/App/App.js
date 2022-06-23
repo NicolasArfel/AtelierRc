@@ -44,8 +44,8 @@ const App = () => {
   useEffect(() => {
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
-    dispatch(actionDispatchStatus());    
-  }, []);
+    dispatch(actionDispatchStatus());
+  }, [dispatch]);
 
   const isLogged = useSelector((state) => state.UserReducer.isLogged);
   // console.log('loggé ? ', isLogged);
@@ -58,9 +58,9 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
-        <Route exact path="/mobilier" element={<Furnitures/>} />
-        <Route exact path="/mobilier/:slug" element={<FurnitureDetail/>} />
-        <Route exact path="/contact/mobilier/:slug" element={<FurnituresContact/>} />
+        <Route exact path="/mobilier" element={<Furnitures />} />
+        <Route exact path="/mobilier/:slug" element={<FurnitureDetail />} />
+        <Route exact path="/contact/mobilier/:slug" element={<FurnituresContact />} />
         <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
@@ -76,7 +76,7 @@ const App = () => {
         {/* <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } /> */}
         <Route exact path="/login" element={isLogged && role === 'admin' ? <BackProjets /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
-        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login/>} />
+        <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
       </Routes>

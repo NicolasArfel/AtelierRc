@@ -49,25 +49,6 @@ const BackUpdateProjet = () => {
         projet && dispatch(actionAxiosProjectsPictures(projet.project_id));
     }, [dispatch, projet]);
 
-    const handleSubmitCoverPhoto = (event) => {
-
-        event.preventDefault();
-
-        const formData = new FormData()
-
-        formData.append('cover_image', coverFile)
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-
-        console.log('project id =', projet.project_id);
-        dispatch(actionPostCoverPhotoProject(projet.project_id, formData, config));
-
-    }
-
     const handleSubmitMultiPhoto = (event) => {
 
         event.preventDefault();
@@ -126,27 +107,6 @@ const BackUpdateProjet = () => {
                         </div>
                     </div>
                     <div className="col s6 sticky__details-project">
-                        {isError && <p className="ErrorUpload__coverPhotoProject">Il est impossible d'utiliser l'image à plusieurs reprises.</p>}
-                        <form className="col s6 left contact__form" onSubmit={handleSubmitCoverPhoto}>
-                            <div className='label__file-cover'>
-                                <input
-                                    id='file'
-                                    type="file"
-                                    name="cover_image"
-                                    accept="image/png, image/jpeg, image/jpg"
-                                    required
-                                    onChange={(e) => { setCoverFile(e.target.files[0]) }}
-                                    className="input__file-cover-project"
-                                />
-                                <button
-                                    className="btn waves-effect waves-light grey darken-3 button"
-                                    type="submit"
-                                    name="action"
-                                >
-                                    Modifier la photo de cover
-                                </button>
-                            </div>
-                        </form>
                         <form className="col s6 left contact__form" onSubmit={handleSubmitMultiPhoto}>
                             <div className='label__file-cover'>
                                 <input
@@ -170,9 +130,24 @@ const BackUpdateProjet = () => {
                         </form>
                         <div className="col s12 update__project">
                             {pictures.map(picture => (
-                                <article className="card card__article preview__update-project" key={picture.id}>
+                                <article className="card__article preview__update-project" key={picture.id}>
                                     <div className="card-image">
                                         <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        <div className='card__button-flex-projet'>
+                                            <button
+                                                className='btn-flat'
+                                            >Supprimer
+                                            </button>
+                                            <button
+                                                className='btn-flat'
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    console.log('photo id =', picture.id);
+                                                    dispatch(actionPostCoverPhotoProject(picture.id));
+                                                }}
+                                            >Ajouter cover
+                                            </button>
+                                        </div>
                                         {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
                                     </div>
                                 </article>

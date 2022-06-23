@@ -56,17 +56,12 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         case POST_COVER_PHOTO_PROJECT: {
             // console.log('je suis dans POST_PROJECT');
 
-            const { project_id, formData, config } = action.payload
+            const { id } = action.payload
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await updateCoverPhotoProject(project_id, formData, config);
+                const response = await updateCoverPhotoProject(id);
                 // console.log('reponse back', AxiosError)
-                if (!response) {
-                    store.dispatch(
-                        actionErrorUploadCoverPhotoProject()
-                    );
-                }
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()

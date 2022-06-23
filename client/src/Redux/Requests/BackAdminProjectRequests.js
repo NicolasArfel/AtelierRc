@@ -35,9 +35,9 @@ export async function postNewProject(formData, config) {
   }
 }
 
-export async function updateCoverPhotoProject(project_id, formData, config) {
+export async function updateCoverPhotoProject(id) {
   try {
-    const response = await axiosInstance.put(`/api/admin/project/${project_id}/coverphoto`, formData, { config });
+    const response = await axiosInstance.put(`/api/admin/project/${id}/coverphoto`);
     return response;
   } catch (err) {
     console.error(err);

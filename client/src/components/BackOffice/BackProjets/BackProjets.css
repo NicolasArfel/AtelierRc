@@ -28,7 +28,7 @@
 }
 
 .preview__update-project {
-    width: 30% !important;
+    width: 18rem !important;
 }
 
 .isConfirm__form-update-project {
@@ -41,4 +41,12 @@
 
 .title__backOffice-Project:hover {
     color: grey;
+}
+
+.card__button-flex-projet {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-around;
 }

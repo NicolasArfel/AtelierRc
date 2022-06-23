@@ -46,12 +46,10 @@ export const actionPostProject = (formData, config) => ({
     }
 })
 
-export const actionPostCoverPhotoProject = (project_id, formData, config) => ({
+export const actionPostCoverPhotoProject = (id) => ({
     type: POST_COVER_PHOTO_PROJECT,
     payload: {
-        project_id,
-        formData,
-        config
+        id
     }
 })
 

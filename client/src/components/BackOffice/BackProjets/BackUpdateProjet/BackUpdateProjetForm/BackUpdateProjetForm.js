@@ -60,7 +60,7 @@ const BackUpdateProjetForm = ({
     }
 
     return (
-        <form className="col s6 left contact__form" onSubmit={handleSubmit}>
+        <form className="col s12 left contact__form" onSubmit={handleSubmit}>
             {isConfirm === true ? <p className='isConfirm__form-update-project'>Changements enregistrés</p> : ''}
             <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                 {labels.map((option) => (
