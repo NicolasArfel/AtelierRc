@@ -8,7 +8,7 @@ const FurnituresMiddleware = (store) => (next) => async (action) => {
         // console.log ('Je suis dans AXIOS_Furniture de Furnitures');
         try {
             const responseFurnitures = await getAllFurnitures();
-            console.log('furnitures middleware response', responseFurnitures);
+            // console.log('furnitures middleware response', responseFurnitures);
             store.dispatch(
                 actionDispatchFurnitures(responseFurnitures.data)
             );
@@ -21,7 +21,7 @@ const FurnituresMiddleware = (store) => (next) => async (action) => {
             console.log ('Je suis dans AXIOS PICTURES');
             try {
                 const responseFurnituresPictures = await getAllFurnituresPictures(action.furniture_id)
-                console.log('responseFurnituresPictures', responseFurnituresPictures)
+                // console.log('responseFurnituresPictures', responseFurnituresPictures)
                 store.dispatch(
                     actionDispatchFurnituresPictures(responseFurnituresPictures))
             } catch (err) {

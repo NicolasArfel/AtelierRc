@@ -14,7 +14,7 @@ const FurnitureDetail = () => {
     const { slug } = useParams();
 
     const furniture = useSelector((state) => findFurniture(state.FurnituresReducer.furnitures, slug))
-    console.log(furniture.furniture_id)
+    console.log('furniture', furniture)
 
     useEffect(() => {
         dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
