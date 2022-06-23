@@ -30,6 +30,7 @@ import Furnitures from '../Furnitures/Furnitures';
 import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
 import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
 import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
+import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpdateProjet';
 import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 
 const App = () => {
@@ -63,13 +64,15 @@ const App = () => {
         <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
-        {/* <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} /> */}
-        <Route exact path="/back-projets" element={<BackProjets />} />
-        {/* <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} /> */}
-        <Route path="/back-mobilier" element={ <BackMobilier />} />
-        {/* <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} /> */}
-        <Route exact path="/back-admin" element={ <BackAdministration /> } />
-        <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } />
+        <Route exact path="/back-projets/addProject" element={role === 'admin' ? <BackAddProjet /> : <Error403 />} />
+        <Route exact path="/back-projets/updateProject/:slug" element={role === 'admin' ? <BackUpdateProjet /> : <Error403 />} />
+        <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
+        <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
+        <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} />
+        {/* <Route exact path="/back-projets" element={<BackProjets />} /> */}
+        {/* <Route path="/back-mobilier" element={ <BackMobilier />} /> */}
+        {/* <Route exact path="/back-admin" element={ <BackAdministration /> } /> */}
+        {/* <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } /> */}
         <Route exact path="/login" element={isLogged && role === 'admin' ? <BackAdministration /> : <Login />} />
         <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login/>} />

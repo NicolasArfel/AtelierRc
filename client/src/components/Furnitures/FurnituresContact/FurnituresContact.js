@@ -40,7 +40,6 @@ const FurnituresContact = () => {
                     lastname={lastname}
                     email={email}
                     subject={subject}
-                    // subject={`Demande d'informations pour : ${furniture.furniture_name}`}
                     text={text}
                     changeInputValue={(value, name) => {
                         // console.log('changeField', { value, name });
