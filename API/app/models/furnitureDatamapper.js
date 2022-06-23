@@ -9,11 +9,11 @@ const furnitureDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: 'SELECT furniture.name AS furniture_name, * FROM "furniture" INNER JOIN furniture_photo ON furniture_photo.furniture_id = furniture.id WHERE furniture_id = $1',
+            text: 'SELECT furniture.name AS furniture_name,furniture_photo AS photo_name, * FROM "furniture" INNER JOIN furniture_photo ON furniture_photo.furniture_id = furniture.id WHERE furniture_id = $1',
             values: [id]
         }
         const result = await client.query(preparedQuery);
-        return result.rows[0];
+        return result.rows;
     },
 
     async delete(id) {
