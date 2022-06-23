@@ -45,7 +45,8 @@ const UserMiddleware = (store) => (next) => async (action) => {
                 console.log('response', { accessToken });
                 const decodedJwt = jwt_decode(accessToken);
                 // console.log('decodedJwt', decodedJwt);
-                localStorage.setItem('token', JSON.stringify(accessToken))
+                // localStorage.setItem('token', JSON.stringify(accessToken))
+                localStorage.setItem('token', accessToken)
                 store.dispatch(actionSaveUser(decodedJwt, accessToken))
 
             } catch (err) {

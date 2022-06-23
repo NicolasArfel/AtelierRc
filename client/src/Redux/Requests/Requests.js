@@ -43,10 +43,10 @@ export async function requestLogin(email, password) {
 
 export function saveAuthorization(token) {
   // on va modifier les valeurs par defaut de notre instance axios pour sauvegarder le token
-  axiosInstance.defaults.headers.common.Authorization = `bearer ${token}`;
+  axiosInstance.defaults.headers.common.authorization = `${token}`;
 }
 
 export function removeAuthorization() {
   // on supprime le token par defaut de notre instance
-  axiosInstance.defaults.headers.common.Authorization = '';
+  axiosInstance.defaults.headers.common.authorization = '';
 }

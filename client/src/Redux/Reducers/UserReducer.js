@@ -2,7 +2,7 @@ import jwt_decode from "jwt-decode";
 
 import { CHANGE_INPUT_VALUE, LOGOUT, SAVE_USER } from "../Actions/UserActions";
 
-const token = (localStorage.getItem('token'));
+const token = localStorage.getItem('token');
 // console.log('storageUser', token)
 let decodedJwt = false
 if (token) {

@@ -28,7 +28,10 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
         case DELETE_PROJECT: {
 
-            const responseProjects = await deleteProject(action.payload.id);
+            const token = localStorage.getItem('token');
+            // console.log('token =', token);
+
+            const responseProjects = await deleteProject(action.payload.id, token);
             // console.log('response delete', responseProjects.status)
 
             if (responseProjects.status === 204) {
