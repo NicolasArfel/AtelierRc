@@ -9,15 +9,17 @@ module.exports = () => (req, res, next) => {
     if (authHeader) {
         // console.log(req.headers);
         // console.log(authHeader);
-        const token = authHeader 
-        // && authHeader.split(' ')[1] 
-        
-        // car on a 'Bearer qqlkhflqhflhqf', 
+        const token = authHeader
+
+        const verify = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        // console.log('verify',verify.role);
+
         // on a donc un espace, l'index 0, c'est bearer et l'index 1, le reste (convention de nommage pour les jwt dans le authorization)
         console.log(token)
         if (token == null) return res.sendStatus(401) // ou (!token)
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             if (err) return res.sendStatus(403);
+            if (verify.role !== 'admin') return res.sendStatus(401);
             req.user = user
             next()
         })
