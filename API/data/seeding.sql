@@ -47,12 +47,12 @@ INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furnitur
 ('kaybojesen_singe_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 1),
 ('kaybojesen_singe_photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE, 1),
 ('kaybojesen_singe_photo_3.jpg', 3, 'photo ©Romain-Caillon', FALSE, 1),
-('pierrecardin_barroulant_photo_1', 1, 'photo ©Romain-Caillon', TRUE, 2),
-('pierrecardin_barroulant_photo_2', 2, 'photo ©Romain-Caillon', FALSE, 2),
-('pierrecardin_barroulant_photo_3', 3, 'photo ©Romain-Caillon', FALSE, 2),
-('pierrecardin_barroulant_photo_4', 4, 'photo ©Romain-Caillon', FALSE, 2),
-('pierrecardin_barroulant_photo_5', 5, 'photo ©Romain-Caillon', FALSE, 2),
-('test_photo_1', 1, 'photo ©Romain-Caillon', TRUE, 3);
+('pierrecardin_barroulant_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 2),
+('pierrecardin_barroulant_photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_3.jpg', 3, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_4.jpg', 4, 'photo ©Romain-Caillon', FALSE, 2),
+('pierrecardin_barroulant_photo_5.jpg', 5, 'photo ©Romain-Caillon', FALSE, 2),
+('test_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 3);
 
 COMMIT;
 
