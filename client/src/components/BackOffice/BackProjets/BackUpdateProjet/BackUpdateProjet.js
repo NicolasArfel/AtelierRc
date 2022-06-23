@@ -11,7 +11,7 @@ import { findProject } from '../../../../Redux/Selectors/projectsSelectors';
 import BannerBackOffice from '../../BannerBackOffice/BannerBackOffice';
 import { actionAxiosProjectsPictures } from '../../../../Redux/Actions/ProjetsActions';
 import BackUpdateProjetForm from './BackUpdateProjetForm/BackUpdateProjetForm';
-import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
+import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject, actionDeletePhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
 
 
 const title = 'Back Office'
@@ -22,8 +22,6 @@ const BackUpdateProjet = () => {
 
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
-
-    const [coverFile, setCoverFile] = useState(null)
     const [multyFile, setMultyFile] = useState(null)
     console.log('multyFile', multyFile);
 
@@ -38,7 +36,6 @@ const BackUpdateProjet = () => {
     const photoCredit = useSelector((state) => state.BackProjectsReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
     const pictures = useSelector((state) => state.ProjectsReducer.pictures);
-    const isError = useSelector((state) => state.BackProjectsReducer.isError)
 
     // We use a .find method to store in a selectors folder. It allows you to sort the projects according to the url thanks to the 'SLUG' parameter
     const projet = useSelector((state) => findProject(state.ProjectsReducer.projects, slug))
@@ -119,6 +116,7 @@ const BackUpdateProjet = () => {
                                     onChange={(e) => { setMultyFile(e.target.files) }}
                                     className="input__file-cover-project"
                                 />
+                                <p>*Ne sont acceptées que les images de type : jpeg, jpg, png et taille 15mb.</p>
                                 <button
                                     className="btn waves-effect waves-light grey darken-3 button"
                                     type="submit"
@@ -132,23 +130,30 @@ const BackUpdateProjet = () => {
                             {pictures.map(picture => (
                                 <article className="card__article preview__update-project" key={picture.id}>
                                     <div className="card-image">
-                                        <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        <div className="card__image-photo-project">
+                                            {picture.cover_photo === true ? <p className='cover__photo-project'>Cover</p> : ''}
+                                            <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        </div>
                                         <div className='card__button-flex-projet'>
-                                            <button
-                                                className='btn-flat'
+                                            {picture.cover_photo === false ? <button
+                                                className='btn-flat btn__toggle-supprimer'
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    console.log('photo id =', picture.id);
+                                                    dispatch(actionDeletePhotoProject(picture.id));
+                                                }}
                                             >Supprimer
-                                            </button>
-                                            <button
-                                                className='btn-flat'
+                                            </button> : ''}
+                                            {picture.cover_photo === false ? <button
+                                                className='btn-flat btn__toggle-updateCover'
                                                 onClick={(event) => {
                                                     event.preventDefault();
                                                     console.log('photo id =', picture.id);
                                                     dispatch(actionPostCoverPhotoProject(picture.id));
                                                 }}
                                             >Ajouter cover
-                                            </button>
+                                            </button> : ''}
                                         </div>
-                                        {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
                                     </div>
                                 </article>
                             ))}

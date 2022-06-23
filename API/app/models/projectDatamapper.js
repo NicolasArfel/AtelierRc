@@ -38,7 +38,7 @@ const projectDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1`,
+            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1 ORDER BY project_photo.position`,
             values: [id],
         };
         const result = await client.query(preparedQuery);
