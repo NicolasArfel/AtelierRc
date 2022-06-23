@@ -1,6 +1,6 @@
 const multer = require('multer')
 const path = require('path')
-const projectDatamapper = require('../../models/furnitureDatamapper');
+const furnitureDatamapper = require('../../models/furnitureDatamapper');
 
 
 // /**
@@ -48,50 +48,56 @@ const upload = multer({
     },
 })
 
-exports.uploadImageCoverFurniture = upload.single('cover_image');
+exports.uploadImageFurniture = upload.single('cover_image');
 
-exports.uploadCoverPhotoFurniture = async (req, res) => {
+exports.uploadFurniture = async (req, res) => {
 
     try {
 
         const originalname = req.file.originalname
 
         const data = req.body;
-        const id = Number(req.params.id);
-        console.log(id);
     
-        const allFurnitures= await furnitureDatamapper.findAll();
-        // console.log('all projects : ', allFurnitures);
+        const spacingFurnitureName = data.furniture_name.replace(/  +/g, " ")
+        const slugFurnitureName = spacingFurnitureName.replace(/ +/g, "-").toLowerCase()
+        console.log(slugFurnitureName)
     
-        const checkIfFurnitureExists = allFurnitures.find(element => element.furniture_id === id);
+        const allFurnitures = await furnitureDatamapper.findAll();
+        // console.log('all furnitures : ', allFurnitures);
+    
+        // Checking if the furniture already exists
+        const checkIfFurnitureExists = allFurnitures.find(element => element.furniture_name === datafurniture_name);
         // console.log('Existing furniture :', checkIfFurnitureExists);
-
-        if(checkIfFurnitureExists && checkIfFurnitureExists.cover_photo === true) {
-
-            const TurnedOffPhoto = await furnitureDatamapper.turnOffCoverPhoto(checkIfFurnitureExists.id);
-        
-        }
-
+    
         //Checking if the photo already exists
-        const checkIfphotoExist = allFurnitures.find(element => element.photo_name === originalname);
+        const checkIfFurnitureExist = allFurnitures.find(element => element.photo_name === originalname);
         
-        // console.log("toto",checkIfphotoExist);
+        console.log("toto",checkIfFurnitureExist);
 
         if (checkIfphotoExist !== undefined) {
             return res.status(500).json(`"La photo ${originalname} existe déjà, merci de saisir un autre nom"`);
         }
 
+        if (data.furniture_name === "") {
+            return res.status(500).json(`Merci de remplir le champs nom du mobilier (project_name)`);
+        } 
+
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
-            return res.status(500).json(`Merci de remplir le champs name de la photo (photo_name)`);
+            return res.status(500).json(`Merci de remplir le champs nome de la photo (photo_name)`);
         } 
-            
-        await furnitureDatamapper.updateCoverPhoto(data, id, originalname);
-        return res.status(200).json(`la photo ${originalname} de couverture a bien été modifiée`);
-    
+
+        if (checkIfProjectExists !== undefined) {
+            return res.status(500).json(`"Le mobilier ${data.furniture_name} existe déjà, merci de saisir un autre nom"`);
+        } else {
+            await projectDatamapper.insert(data, originalname, spacingProjectName, slugProjectName);
+            return res.status(200).json(`le mobilier ${data.furniture_name} a bien été ajouté`);
+        }
 
     } catch (error) {
         console.trace(error);
         res.status(500).json(error.toString());
     }
+
 }
+
