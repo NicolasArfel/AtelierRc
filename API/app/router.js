@@ -7,7 +7,7 @@ const loginController = require('./controllers/api/loginController');
 const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
 const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
-const { upload, uploadImage } = require('./controllers/api/uploadController'); 
+const { upload, uploadImage } = require('./controllers/api/uploadController');
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
 
 // importer les middlewares
