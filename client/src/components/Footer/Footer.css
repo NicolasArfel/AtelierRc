@@ -5,6 +5,12 @@
 
 .footer-contact {
     text-align: initial;
+    font-size: 0.8rem;
+    margin-top: 3rem;
+}
+
+.footer-contact p {
+    margin: 0.3rem 0;
 }
 
 .page-footer {

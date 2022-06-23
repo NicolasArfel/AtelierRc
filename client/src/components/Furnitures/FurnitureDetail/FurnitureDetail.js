@@ -14,14 +14,14 @@ const FurnitureDetail = () => {
     const { slug } = useParams();
 
     const furniture = useSelector((state) => findFurniture(state.FurnituresReducer.furnitures, slug))
-    console.log(furniture.furniture_id)
+    console.log(furniture)
 
     useEffect(() => {
         dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
     }, [dispatch, furniture.furniture_id]);
 
     const pictures = useSelector((state) => state.FurnituresReducer.pictures)
-    console.log('pictures', pictures);
+    // console.log('pictures', pictures);
 
 
     return (
@@ -31,11 +31,11 @@ const FurnitureDetail = () => {
                 <Banner title={furniture.furniture_name} description={furniture.description} />
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
+                                    <h2 className="left card-title card__title">{furniture.furniture_name}</h2>
                         <div className="col s12">
                             <div className="card card__detail">
                                 <div className="card-content black-text">
-                                    <h2 className="center card-title card__title">{furniture.furniture_name}</h2>
-                                    <p className='card__section-title'>Etat de l'article :</p>
+                                    {/* <p className='card__section-title'>Etat de l'article :</p> */}
                                     <p>{furniture.condition}</p>
                                 </div>
                                 <div className="card-content">
@@ -49,6 +49,21 @@ const FurnitureDetail = () => {
                                 <div className="card-content">
                                     <p className='card__section-title'>{furniture.photo_credit}</p>
                                 </div>
+                                {/* <div className="card-content">
+                                    <p className='card__section-title'>{furniture.designer}</p>
+                                    <p className='card__section-title'>{furniture.editor}</p>
+                                    <p className='card__section-title'>{furniture.date}</p>
+                                </div>
+                                <div className="card-content">
+                                    <p className='card__section-title'>{furniture.size}</p>
+                                    <p className='card__section-title'>{furniture.condition}</p>
+                                    <p className='card__section-title'>{furniture.statut}</p>
+                                </div>
+                                <div className="card-content">
+                                   <p className='card__section-title'>{furniture.photo_credit}</p>
+                                </div> */}
+
+
                             </div>
                             <NavLink to='/mobilier'>
                             <button
