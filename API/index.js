@@ -10,6 +10,8 @@ const cors = require('cors');
 // const jwt = require('express-jwt');
 
 const app = express();
+// required for the api doc using swagger and jsdoc
+require('./app/helpers/apiDoc')(app);
 
 app.use(express.urlencoded({extended: true}));
 
