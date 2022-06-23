@@ -6,7 +6,7 @@ INSERT INTO client (email, firstname,  lastname, password, address, zip_code, ci
 ('moine.veronique@test.com', 'Véronique', NULL, 'motdepassetest', NULL, '75020', NULL, NULL, 'admin');
 
 INSERT INTO "user" (email, firstname,lastname, password, role) VALUES
-('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', 'atelierrc', 'admin');
+('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', '$2a$10$AA9o95ZQRuwDdZXqOWD5keaGGWiuYaX7BWmwQbSZh8dKoTbJCEXke', 'admin');
 
 INSERT INTO status (label) VALUES
 ('Phase d''étude'),
@@ -18,8 +18,7 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 ('Junot', 'junot','Île-de-France, Paris 18', '2022', 'Rénovation d’un duplex dans un immeuble Art Déco. Relier deux appartements/lots au sein d’une même copropriété. Revoir l’agencement/l’organisation du R+4 dans sa globalité. Conception d’un escalier permettant d’accéder au R+5', '80m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon', 1, 2),
 ('Voltaire', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration de l’entrée et de la cuisine d’un appartement parisien', '15m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,1),
 -- ('La Villa Jasmin', 'la-villa-jasmin','Île-de-France, Andrésy', '2021', 'Rénovation complète d’une maison meulière', '160m²', 'Maison', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3),
-('Test', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,2);
-
+('Test', 'test','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,2);
 INSERT INTO furniture (name, slug, type, condition, description, availability, price, user_id) VALUES
 ('Singe vintage', 'singe-vintage', 'Objet de décoration', 'Bon état', 'Singe vintage en teck style Kay Bojesen', FALSE, NULL, 1),
 ('Pierre Cardin/ Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble', 'Excellent', 'Designer : Cardin, Pierre et Carré, Alain Editeur : Anonyme Circa 1970', FALSE, NULL, 1);
