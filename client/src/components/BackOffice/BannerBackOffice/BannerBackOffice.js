@@ -21,11 +21,11 @@ const BannerBackOffice = ({ title }) => {
                     <p className='Back__Banner-Title'>Mobilier</p>
                 </NavLink>
             </div>
-            <div className='back__office-link'>
+            {/* <div className='back__office-link'>
                 <NavLink to="/back-admin" className={activeLink} >
                     <p className='Back__Banner-Title'>Administration</p>
                 </NavLink>
-            </div>
+            </div> */}
         </div>
     )
 }
