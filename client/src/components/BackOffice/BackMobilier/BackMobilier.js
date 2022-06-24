@@ -72,10 +72,15 @@ const BackMobilier = () => {
                     >
                     Supprimer
                     </button>
-                    <button 
-                      className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
-                      type="submit"
-                      name="supprimer">Modifier</button>
+                    
+                    <Link to={`/back-mobilier/updateMobilier/${furniture.slug}`} > 
+                      <button 
+                        className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
+                        type="submit"
+                        name="supprimer">
+                        Modifier
+                        </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

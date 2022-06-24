@@ -12,6 +12,7 @@ const BackAddFurnituresForm = ({
     description,
     // availability,
     photoCredit,
+    userId,
     changeInputValue,
     handlePostFurnitures }) => {
 
@@ -43,11 +44,13 @@ const BackAddFurnituresForm = ({
         formData.append('editor', editor)
         formData.append('designer', designer)
         formData.append('date', date)
+        formData.append('availability', true)
         formData.append('dimensions', dimensions)
         formData.append('description', description)
         formData.append('photo_credit', photoCredit)
         formData.append('cover_photo', true)
         formData.append('condition', labelValue)
+        formData.append('user_id', userId)
 
         const config = {
             headers: {

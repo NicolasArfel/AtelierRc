@@ -15,7 +15,7 @@ const title = 'Back Office'
 /* --- BackAddFurnitures component --- */
 
 const BackAddFurnitures = () => {
-  
+
     const dispatch = useDispatch();
 
     /* --- import state from BackFurnituresReducer --- */
@@ -29,6 +29,8 @@ const BackAddFurnitures = () => {
     const description = useSelector((state) => state.BackFurnituresReducer.description);
     const availability = useSelector((state) => state.BackFurnituresReducer.availability);
     const photoCredit = useSelector((state) => state.BackFurnituresReducer.photoCredit);
+    const userId = useSelector((state) => state.UserReducer.userId);
+
 
     return (
         <main className="container" >
@@ -46,6 +48,7 @@ const BackAddFurnitures = () => {
             description={description}
             availability={availability}
             photoCredit={photoCredit}
+            userId={userId}
             changeInputValue={(value, name) => {
               console.log('changeField', { value, name });
               dispatch(changeBackInputValue(value, name));
