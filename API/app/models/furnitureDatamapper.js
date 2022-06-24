@@ -16,8 +16,14 @@ const furnitureDatamapper = {
         return result.rows;
     },
 
+
     async delete(id) {
-        await client.query(`DELETE FROM "furniture" WHERE "id" = $1`, [id]);
+        const preparedDeleteQuery = {
+            text: `DELETE FROM "furniture" WHERE "id" = $1;`,
+            values: [id],
+        };
+        const deletedFurniture = await client.query(preparedDeleteQuery);
+        return !!deletedFurniture.rowCount;
     },
 
     async insert(data) {

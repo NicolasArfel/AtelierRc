@@ -17,17 +17,16 @@ const FurnitureDetail = () => {
     console.log(furniture)
 
     useEffect(() => {
-        dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
-    }, [dispatch, furniture.furniture_id]);
+       furniture && dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
+    }, [dispatch, furniture]);
 
     const pictures = useSelector((state) => state.FurnituresReducer.pictures)
     // console.log('pictures', pictures);
 
 
     return (
-        <div>
-
-            <main className="container" >
+        <>
+            {furniture && <main className="container" >
                 <Banner title={furniture.furniture_name} description={furniture.description} />
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
@@ -75,10 +74,10 @@ const FurnitureDetail = () => {
                         </div>
                     }
                 </div>
-            </main>
+            </main>}
 
 
-        </div>
+        </>
 
     )
 }
