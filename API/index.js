@@ -7,13 +7,15 @@ const path = require('path');
 const router = require('./app/router');
 const cors = require('cors');
 // const jwt = require('express-jwt');
-const multer = require('multer');
-const bodyParser = multer();
+// const multer = require('multer');
+// const bodyParser = multer();
+// const bodyParser = require('body-parser');
 
 const app = express();
 // required for the api doc using swagger and jsdoc
 require('./app/helpers/apiDoc')(app);
 
+// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({extended: true}));
 
 // // on utlise .none() pour dire qu'on attends pas de fichier, uniquement des inputs "classiques" !
@@ -30,10 +32,6 @@ app.use(cors({
     origin: "*"
 }));
 
-
-// if (process.env.NODE_ENV !== 'production') {
-//    dotenv.config();
-// }
 
 // on ajoute le middleware de "nettoyage" des variables
 //const bodySanitizer = require('./app/middlewares/body-sanitizer');

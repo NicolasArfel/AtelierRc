@@ -11,7 +11,8 @@ const debug = require('debug')('Validator:log');
  * Renvoi une erreur 400 si la validation échoue.
  */
 module.exports = (prop, schema) => async (request, _, next) => {
-    console.log(request.body)
+    console.log("je suis dans le validator",request.body)
+    console.log("je suis dans le validator req.file:", request.file)
     try {
         // la "value" on s'en fiche on la récupère pas
         // request['body'] == request.body

@@ -153,7 +153,7 @@ const projectDatamapper = {
                 originalName,
                 data.position,
                 data.photo_credit,
-                data.cover_photo,
+                true,
                 projectId,
             ],
         };

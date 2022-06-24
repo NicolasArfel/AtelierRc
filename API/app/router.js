@@ -19,12 +19,12 @@ validator = require('./validation/validator');
 
 // import the validators on by one
 /** createSchema */
-// const projectCreateSchema = require('./validation/schema/projectCreateSchema');
-// const statusCreateSchema = require('./validation/schema/statusCreateSchema');
-// const projectPhotoCreateSchema = require('./validation/schema/projectPhotoCreateSchema');
+const projectCreateSchema = require('./validation/schema/projectCreateSchema');
+const projectPhotoCreateSchema = require('./validation/schema/projectPhotoCreateSchema');
 
 /** updateSchema */
-const projectUpdateSchema = require('./validation/schema/projectUpdateSchema');
+//const projectUpdateSchema = require('./validation/schema/projectUpdateSchema');
+const userUpdateSchema = require('./validation/schema/userUpdateSchema');
 
 const router = express.Router();
 
@@ -41,7 +41,6 @@ router.get('/', (req, res) => {
 router.get('/api/projects', projectController.getAllProjects);
 router.get('/api/getOnlyProjects', projectController.findAllProjects)
 router.get('/api/project/:id', projectController.getOne);
-router.get('/api/status', projectController.getStatus);
 
 /* Furnitures */
 router.get('/api/furnitures', furnitureController.getAllFurnitures);
@@ -51,22 +50,22 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* Admin interface - Update profile */
-router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
+router.put('/api/admin/profile/:id', authenticateToken(), validator('body', userUpdateSchema), adminController.updateAdminProfile);
 
 /* admin interface - create project and upload images*/
-router.post('/api/admin/add-project', uploadImage, upload);  // validator('body', statusCreateSchema, projectPhotoCreateSchema, projectCreateSchema)
-router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
+router.post('/api/admin/add-project', authenticateToken(), uploadImage, validator('body', projectCreateSchema), validator('file', projectPhotoCreateSchema), upload);  // 
+router.post('/api/admin/add-images/:id', authenticateToken(), uploadMany, multiUpload);
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
 
 /* Admin interface - modify project and images */
-router.put('/api/admin/project/:id', projectController.updateOneProject);
-router.put('/api/admin/project/:id/coverphoto', uploadImageCover, uploadCoverPhoto);
+router.put('/api/admin/project/:id', authenticateToken(), projectController.updateOneProject); // validator('body', projectUpdateSchema)
+router.put('/api/admin/project/:id/coverphoto', authenticateToken(), uploadImageCover, uploadCoverPhoto);
 
 /* Admin interface - delete project and images */
 // ajouté par Véro 22/06/2022
-router.delete('/api/admin/delete-images/:id', projectController.deletePhoto);
-router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete);
+router.delete('/api/admin/delete-images/:id', authenticateToken(), projectController.deletePhoto);
+router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete); // 
 /* Contact form */
 router.post('/api/contact', contactController.mail);
 
