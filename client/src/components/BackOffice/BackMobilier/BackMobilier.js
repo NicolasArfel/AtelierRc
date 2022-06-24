@@ -14,9 +14,6 @@ const BackMobilier = () => {
 
   const furnitures = useSelector((state) => state.FurnituresReducer.furnitures);
 
-  // useEffect(() => {
-  //   dispatch(actionAxiosGetOnlyFurnitures())
-  // }, [dispatch]);
   console.log('mobilier dans backprojet', furnitures);
   return (
     <main className="container" >
