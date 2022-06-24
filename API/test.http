@@ -24,6 +24,9 @@ GET http://localhost:3001/api/furnitures
 ### récupération d'un objet
 GET http://localhost:3001/api/furniture/1
 
+### Get all the status
+GET http://localhost:3001/api/status
+
 
 ### user can loggin onto is back-office
 # POST http://localhost:3001/api/login HTTP/1.1

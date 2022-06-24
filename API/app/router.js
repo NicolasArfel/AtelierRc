@@ -52,16 +52,17 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* Admin interface - Update profile */
-router.put('/api/admin/profile/:id', authenticateToken(), validator('body', userUpdateSchema), adminController.updateAdminProfile);
+router.put('/api/admin/profile/:id', authenticateToken(), validator('body', userUpdateSchema), adminController.updateAdminProfile); 
 
 /* admin interface - create project and upload images*/
 router.post('/api/admin/add-project', authenticateToken(), uploadImage, validator('body', projectCreateSchema), validator('file', projectPhotoCreateSchema), upload);  // 
-router.post('/api/admin/add-images/:id', authenticateToken(), uploadMany, multiUpload);
+router.post('/api/admin/add-images/:id', authenticateToken(), uploadMany, multiUpload); //
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
 
 /* Admin interface - modify project and images */
-router.put('/api/admin/project/:id',  authenticateToken(), projectController.updateOneProject);
+router.put('/api/admin/project/:id', authenticateToken(), projectController.updateOneProject); // 
+//! All routes checked before here
 router.put('/api/admin/project/:id/coverphoto', authenticateToken(), projectController.switchCoverPhotoProject);
 
 /* Admin interface - delete project and images */

@@ -17,12 +17,11 @@ module.exports = () => (req, res, next) => {
     if (token == null) return res.sendStatus(401) // ou (!token)
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) =>{
         if(err)return res.sendStatus(403);
-        if(jwt.verify.role !== 'admin') return res.sendStatus(401);
+        if(jwt.verifyToken.role !== 'admin') return res.sendStatus(401);
         req.user = user
         next()
     })
     } else {
         return res.status(403).json({ errorMessage: 'no token supplied' })
     }
-
 }
