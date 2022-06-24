@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BackAddFurnituresFormInput from "./BackAddFurnituresFormInput/BackAddFurnituresFormInput";
 
 const BackAddFurnituresForm = ({
@@ -11,9 +12,13 @@ const BackAddFurnituresForm = ({
     description,
     // availability,
     photoCredit,
-    changeInputValue, }) => {
+    changeInputValue,
+    handlePostFurnitures }) => {
 
     const disabled = true;
+
+    const [file, setFile] = useState(null)
+    const [labelValue, setLabelValue] = useState(1)
     // const dispatch = useDispatch();
     const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
 
@@ -27,21 +32,48 @@ const BackAddFurnituresForm = ({
     const descriptionTitle = 'Description';
     const creditTitle = 'Crédit Photo';
 
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
+        const formData = new FormData()
+
+        formData.append('cover_image', file)
+        formData.append('furniture_name', furnitureName)
+        formData.append('type', type)
+        formData.append('editor', editor)
+        formData.append('designer', designer)
+        formData.append('date', date)
+        formData.append('dimensions', dimensions)
+        formData.append('description', description)
+        formData.append('photo_credit', photoCredit)
+        formData.append('cover_photo', true)
+        formData.append('condition', labelValue)
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+
+        handlePostFurnitures(formData, config);
+        // dispatch(resetInputFormAddProject())
+        // let path = `/back-projets`;
+        // navigate(path);
+    }
 
     return (
 
-        <form className="col s6 left contact__form" >
+        <form className="col s6 left contact__form" onSubmit={handleSubmit} >
             <div>
                 <input
                     type="file"
                     name="cover_image"
                     accept="image/png, image/jpeg, image/jpg"
                     required
-                    // onChange={(e) => { setFile(e.target.files[0]) }}
+                    onChange={(e) => { setFile(e.target.files[0]) }}
                     className="input__file-cover-project"
                 />
-                <select name='condition' value={conditions} onChange={changeInputValue}>
+                <select name='condition' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                     {conditionsLabels.map((option) => (
                         <option
                             key={option}

@@ -1,6 +1,7 @@
 /* --- import modules --- */
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { actionPostFurniture, changeBackInputValue } from "../../../../Redux/Actions/BackFurnituresActions";
 
 /* --- import components --- */
 
@@ -14,6 +15,8 @@ const title = 'Back Office'
 /* --- BackAddFurnitures component --- */
 
 const BackAddFurnitures = () => {
+  
+    const dispatch = useDispatch();
 
     /* --- import state from BackFurnituresReducer --- */
     const furnitureName = useSelector((state) => state.BackFurnituresReducer.furnitureName);
@@ -44,12 +47,12 @@ const BackAddFurnitures = () => {
             availability={availability}
             photoCredit={photoCredit}
             changeInputValue={(value, name) => {
-              // console.log('changeField', { value, name });
-            //   dispatch(changeBackInputValue(value, name));
+              console.log('changeField', { value, name });
+              dispatch(changeBackInputValue(value, name));
             }}
-            handlePostProject={(formData, config) => {
-              // console.log(formData, config);
-            //   dispatch(actionPostProject(formData, config))
+            handlePostFurnitures={(formData, config) => {
+              console.log('formdata et config',formData, config);
+              dispatch(actionPostFurniture(formData, config))
             }}
           />
         </div>

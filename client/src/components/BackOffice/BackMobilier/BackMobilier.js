@@ -65,6 +65,7 @@ const BackMobilier = () => {
                       name="supprimer"
                       onClick={() => {
                         dispatch(
+                          /* --- we send the furnitures id we want to delete --- */
                           actionDeleteFurniture(furniture.furniture_id)
                           );
                       }}

@@ -1,5 +1,7 @@
 /* --- creation of the state --- */
 
+import { CHANGE_BACK_INPUT_VALUE } from "../Actions/BackFurnituresActions";
+
 export const initialState = {
     furniture_name: '',
     type: '',
@@ -17,7 +19,12 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
-
+        case CHANGE_BACK_INPUT_VALUE:
+            // console.log('je suis dans CHANGE_BACK_INPUT_VALUE');
+            return {
+                ...state,
+                [action.payload.name]: action.payload.value,
+            }
 
 
         default:

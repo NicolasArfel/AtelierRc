@@ -1,6 +1,6 @@
-import {   DELETE_FURNITURE } from "../Actions/BackFurnituresActions";
-import { actionDispatchFurnitures } from "../Actions/FurnituresActions";
-import { deleteFurniture } from "../Requests/BackAdminFurnituresRequests";
+import {   DELETE_FURNITURE, POST_FURNITURE } from "../Actions/BackFurnituresActions";
+import { actionAxiosFurnitures, actionDispatchFurnitures } from "../Actions/FurnituresActions";
+import { deleteFurniture, postNewFurniture } from "../Requests/BackAdminFurnituresRequests";
 import { filteredFurnitures } from "../Selectors/furnituresSelectors";
 
 const BackFurnituresMiddleware = (store) => (next) => async (action) => {
@@ -19,6 +19,25 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
             }
 
             break;
+        }
+
+        case POST_FURNITURE: {
+            // console.log('je suis dans POST_FURNITURE');
+
+            const { formData, config } = action.payload
+            // console.log('stateBackProject = ', formData);
+
+            try {
+                const response = await postNewFurniture(formData, config);
+                // console.log('reponse back', response)
+                if (response.status === 200) {
+                    store.dispatch(
+                        actionAxiosFurnitures()
+                    );
+                }
+            } catch (err) {
+                console.error(err)
+            }
         }
         
         default:

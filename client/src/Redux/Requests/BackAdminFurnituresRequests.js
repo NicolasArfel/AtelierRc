@@ -15,3 +15,13 @@ export async function deleteFurniture(furnitureId) {
       console.error(err)
     }
   }
+
+
+  export async function postNewFurniture(formData, config) {
+    try {
+      // const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
+      // return response;
+    } catch (err) {
+      console.error(err);
+    }
+  }
