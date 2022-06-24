@@ -25,9 +25,9 @@ INSERT INTO furniture (name, slug, type, designer, editor, date, dimensions, con
 ('Kay Bojesen Singe', 'kay-bojesen-singe', 'Objet de décoration','Bojesen, Kay','Anonyme', NULL,'15 x 15 x 20 cm (Largeur x Profondeur x Hauteur)', 'Bon état', NULL, FALSE, NULL, 1),
 ('Pierre Cardin Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble','Cardin, Pierre et Carré, Alain','Anonyme','Circa 1970','70 x 70cm (Diamètre x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Hans Nagel Bougeoirs modulables Nagel s22 et Coupelles Nagel s200', 'hans-nagel-bougeoirs-modulables-nagel-s22-et-coupelles-nagel-s200', 'Objet de décoration','Nagel, Hans','Nagel','Circa 1960_1970','Dimensions d’un bougeoir : 10.2 x 6.5cm (Diamètre x Hauteur) Dimensions d’une coupelle : 13,8 x 5cm (Diamètre x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Alvar Aalto chaise modèle 68', 'alvar-aalto-chaise-modèle-68', 'Meuble','Aalto, Alvar','Artek','Circa 1930','45.5 x 45 x 69.5cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Charles Dudouyt chaise basse paillée', 'charles-dudouyt-chaise-basse-paillée', 'Meuble','Dudouyt, Charles','Anonyme','Circa 1950_1960','48 x 42 x 70cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Eero Saarinen chaise « conference »', 'eero-saarinen-chaise-«-conference-»', 'Meuble','Saarinen, Eero','Knoll','Circa 1960','57 x 58 x 81cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1);
+('Alvar Aalto chaise modèle 68', 'alvar-aalto-chaise-modele-68', 'Meuble','Aalto, Alvar','Artek','Circa 1930','45.5 x 45 x 69.5cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
+('Charles Dudouyt chaise basse paillée', 'charles-dudouyt-chaise-basse-paillee', 'Meuble','Dudouyt, Charles','Anonyme','Circa 1950_1960','48 x 42 x 70cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
+('Eero Saarinen chaise « conference »', 'eero-saarinen-chaise-conference', 'Meuble','Saarinen, Eero','Knoll','Circa 1960','57 x 58 x 81cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1);
 
 
 INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id) VALUES

@@ -67,7 +67,7 @@ router.put('/api/admin/project/:id/coverphoto', authenticateToken(), projectCont
 /* Admin interface - delete project and images */
 // ajouté par Véro 22/06/2022
 router.delete('/api/admin/delete-images/:id', authenticateToken(), projectController.deletePhoto);
-router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete); // 
+router.delete('/api/admin/project/:id', projectController.delete); // authenticateToken()
 
 /* Contact form */
 router.post('/api/contact', contactController.mail);
