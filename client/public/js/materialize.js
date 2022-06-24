@@ -245,6 +245,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     } else if (node.dataset) {
       delete node.dataset[key];
     } else {
+      // eslint-disable-next-line no-restricted-globals
       cash(node).removeAttr("data-" + name);
     }
   }

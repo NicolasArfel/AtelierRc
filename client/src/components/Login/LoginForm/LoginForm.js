@@ -1,19 +1,20 @@
+import PropTypes from 'prop-types';
 
 import LoginFormInput from "./LoginFormInput/LoginFormInput";
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ title, email, password, isLogged, changeInputValue, handleLogin }) => {
 
+    let navigate = useNavigate();
 
     const emailTitle = 'Email';
     const passwordTitle = 'Mot de passe';
 
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        handleLogin();
+        await handleLogin();
+        isLogged && navigate("../", { replace: true });
     }
-
 
     return (
         <form className="col s6 left login__form" onSubmit={handleSubmit} >
@@ -43,5 +44,16 @@ const LoginForm = ({ title, email, password, isLogged, changeInputValue, handleL
         </form>
     )
 }
+
+LoginForm.propTypes = {
+    title: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired, 
+    password: PropTypes.string.isRequired, 
+    isLogged: PropTypes.bool.isRequired,
+    changeInputValue: PropTypes.func.isRequired,
+    handleLogin: PropTypes.func.isRequired,
+     
+}
+
 
 export default LoginForm;

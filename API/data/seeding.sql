@@ -1,12 +1,13 @@
 BEGIN;
 
-TRUNCATE client, "user", status, project, furniture, client_has_favorite_furniture RESTART IDENTITY CASCADE;
+TRUNCATE client, "user", status, project, furniture, project_photo, furniture_photo, client_has_favorite_furniture RESTART IDENTITY CASCADE;
 
 INSERT INTO client (email, firstname,  lastname, password, address, zip_code, city, phone_number, role) VALUES
 ('moine.veronique@test.com', 'Véronique', NULL, 'motdepassetest', NULL, '75020', NULL, NULL, 'admin');
 
 INSERT INTO "user" (email, firstname,lastname, password, role) VALUES
-('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', '$2a$10$AA9o95ZQRuwDdZXqOWD5keaGGWiuYaX7BWmwQbSZh8dKoTbJCEXke', 'admin');
+('romaincaillon.archi@gmail.com', 'Romain', 'Caillon', '$2a$10$AA9o95ZQRuwDdZXqOWD5keaGGWiuYaX7BWmwQbSZh8dKoTbJCEXke', 'admin'),
+('test@gmail.com', 'test', 'test', '$2a$10$R0RAJ./z4neyjSvCwI.GpeRd3FhuthZywl.BdqXJMtpuaQXXkgxvy', 'user');
 
 INSERT INTO status (label) VALUES
 ('Phase d''étude'),
@@ -73,6 +74,7 @@ INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furnitur
 ('eerosaarinen_chaiseconference_photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE, 6);
 
 COMMIT;
+
 
 
 

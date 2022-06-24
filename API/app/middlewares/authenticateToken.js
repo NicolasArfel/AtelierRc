@@ -3,7 +3,8 @@ dotenv.config();
 const jwt = require('jsonwebtoken');
 
 module.exports = () => (req, res, next) => {
-    
+
+    console.log('req.header', req.headers['authorization']);
     const authHeader = req.headers['authorization']
     if(authHeader){
     // console.log(req.headers);
@@ -21,7 +22,7 @@ module.exports = () => (req, res, next) => {
         next()
     })
     } else {
-        return res.status(403).json({errorMessage : 'no token supplied'})
+        return res.status(403).json({ errorMessage: 'no token supplied' })
     }
-    
+
 }
