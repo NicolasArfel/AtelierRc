@@ -38,6 +38,7 @@ const BackUpdateProjetForm = ({
     const clientTitle = 'Commenditaire';
     const designTitle = 'Conception';
     const creditTitle = 'Crédit Photo';
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -46,7 +47,8 @@ const BackUpdateProjetForm = ({
         // I check if my input is empty or not. If is not i replace some carac for build a cool slug
         if (projectName) {
             // I format my projectName to skip spaces and some other carac for build a cool name
-            const slugName = projectName.replace(/(?!\w|\s)./g, '')
+            const slugName = projectName
+                .replace(/(?!\w|\s)./g, '')
                 .replace(/\s+/g, ' ')
                 .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
             // with my new cool name i build a slug and i exploit it to navigate when my project is updated

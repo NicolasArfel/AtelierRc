@@ -65,17 +65,17 @@ const projectController = {
       } catch (error) {
          console.trace(error);
          res.status(500).json(error.toString());
-       }
-    },
-   
- 
-    /**
-     * Project controller to delete a record
-     * @param {object} req Express request object
-     * @param {object} res Express response object
-     * @returns Route API JSON response
-     */
-    async delete(req, res) {
+      }
+   },
+
+
+   /**
+    * Project controller to delete a record
+    * @param {object} req Express request object
+    * @param {object} res Express response object
+    * @returns Route API JSON response
+    */
+   async delete(req, res) {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
       console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {

@@ -8,7 +8,9 @@ const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
 // const adminController = require('./controllers/api/adminController');
 const { upload, uploadImage } = require('./controllers/api/uploadController');
+const { uploadFurniture, uploadImageFurniture } = require('./controllers/api/uploadFurnitureController');
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
+const { uploadManyFurniture, multiUploadFurniture } = require('./controllers/api/uploadManyFurnitureController');
 
 // importer les middlewares
 const authenticateToken = require('./middlewares/authenticateToken');
@@ -31,11 +33,11 @@ router.get('/', (req, res) => {
 });
 
 /** Projects */
-    /**
-     * GET /api/projects
-     * @summary Get all projects
-     * @tags Projects
-     */
+/**
+ * GET /api/projects
+ * @summary Get all projects
+ * @tags Projects
+ */
 router.get('/api/projects', projectController.getAllProjects);
 router.get('/api/getOnlyProjects', projectController.findAllProjects)
 router.get('/api/project/:id', projectController.getOne);
@@ -52,7 +54,7 @@ router.post('/api/login', loginController.login);
 router.put('/api/admin/profile/:id', adminController.updateAdminProfile);
 
 /* admin interface - create project and upload images*/
-router.post('/api/admin/add-project', validator('body', projectCreateSchema), uploadImage, upload);
+router.post('/api/admin/add-project', uploadImage, upload);
 router.post('/api/admin/add-images/:id', uploadMany, multiUpload);
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
@@ -69,8 +71,15 @@ router.delete('/api/admin/project/:id', authenticateToken(), projectController.d
 router.post('/api/contact', contactController.mail);
 
 /*Admin interface - create furniture and upload images */
+router.post('/api/admin/add-furniture', uploadImageFurniture, uploadFurniture);
+router.post('/api/admin/add-images-furniture/:id', uploadManyFurniture, multiUploadFurniture);
+
+/* Admin interface - modify project and images */
+router.put('/api/admin/furniture/:id', furnitureController.updateOneFurniture);
+router.put('/api/admin/furniture/:id/coverphoto', furnitureController.switchCoverPhotoFurniture);
 
 /* Admin interface - delete furniture and images */
+router.delete('/api/admin/delete-images-furniture/:id', furnitureController.deletePhoto);
 router.delete('/api/admin/furniture/:id', furnitureController.delete);
 
 

@@ -121,8 +121,7 @@ const projectDatamapper = {
         // }
 
         const preparedProjectQuery = {
-            text: ` INSERT INTO "project"
-                    (
+            text: ` INSERT INTO "project"(
                         "name", 
                         "slug", 
                         "location", 
