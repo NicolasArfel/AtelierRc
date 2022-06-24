@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom'
 import BackAddFurnituresFormInput from "./BackAddFurnituresFormInput/BackAddFurnituresFormInput";
 
 const BackAddFurnituresForm = ({
@@ -17,7 +18,7 @@ const BackAddFurnituresForm = ({
     handlePostFurnitures }) => {
 
     const disabled = true;
-
+    const navigate = useNavigate()
     const [file, setFile] = useState(null)
     const [labelValue, setLabelValue] = useState(1)
     // const dispatch = useDispatch();
@@ -50,6 +51,7 @@ const BackAddFurnituresForm = ({
         formData.append('photo_credit', photoCredit)
         formData.append('cover_photo', true)
         formData.append('condition', labelValue)
+        formData.append('position', 1)
         formData.append('user_id', userId)
 
         const config = {
@@ -60,8 +62,8 @@ const BackAddFurnituresForm = ({
 
         handlePostFurnitures(formData, config);
         // dispatch(resetInputFormAddProject())
-        // let path = `/back-projets`;
-        // navigate(path);
+        let path = `/back-mobilier`;
+        navigate(path);
     }
 
     return (
@@ -76,7 +78,7 @@ const BackAddFurnituresForm = ({
                     onChange={(e) => { setFile(e.target.files[0]) }}
                     className="input__file-cover-project"
                 />
-                <select name='condition' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
+                <select id='condition' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                     {conditionsLabels.map((option) => (
                         <option
                             key={option}

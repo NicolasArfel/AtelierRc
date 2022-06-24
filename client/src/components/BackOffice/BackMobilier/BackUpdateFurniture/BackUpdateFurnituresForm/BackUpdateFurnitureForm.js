@@ -17,32 +17,39 @@ const BackUpdateFurnitureForm = ({
     photoCredit,
     userId,
     changeInputValue,
-    handlePostFurnitures  }) => {
+    handlePostFurnitures }) => {
 
-    // const [file, setFile] = useState(null)
-    const [labelValue, setLabelValue] = useState(1)
-    // console.log('labelValue', labelValue);
-
-    const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
-    // console.log('labels', labels);
-
-    let isConfirm = false;
-
-    let navigate = useNavigate();
-    const furnitureTitle = 'Nom du Mobilier';
-    const typeTitle = 'Type';
-    const editorTitle = 'Editeur';
-    const designerTitle = 'Designer';
-    const dateTitle = 'Année';
-    const dimensionsTitle = 'Dimensions';
-    const conditionTitle = 'Etat';
-    const descriptionTitle = 'Description';
-    const creditTitle = 'Crédit Photo';
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-
-        await handlePostFurnitures(furniture_id, labelValue);
-
+        
+        const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
+        // const availableLabels = [{
+            //     'Disponible': true, 
+            //     'Indisponible': false }]
+            // console.log('labels', labels);
+            
+            let isConfirm = false;
+            
+            let navigate = useNavigate();
+            const furnitureTitle = 'Nom du Mobilier';
+            const typeTitle = 'Type';
+            const editorTitle = 'Editeur';
+            const designerTitle = 'Designer';
+            const dateTitle = 'Année';
+            const dimensionsTitle = 'Dimensions';
+            const conditionTitle = 'Etat';
+            const availableTitle = 'Disponibilité';
+            const descriptionTitle = 'Description';
+            const creditTitle = 'Crédit Photo';
+            const disponible = true;
+            const indisponible = false;
+            // const [file, setFile] = useState(null)
+            const [conditionLabelValue, setConditionLabelValue] = useState('Etat correct')
+            const [availableLabelValue, setAvailableLabelValue] = useState(disponible)
+            
+            const handleSubmit = async (event) => {
+                event.preventDefault();
+                
+        await handlePostFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
+       
         // I check if my input is empty or not. If is not i replace some carac for build a cool slug
         if (furnitureName) {
             // I format my projectName to skip spaces and some other carac for build a cool name
@@ -59,31 +66,52 @@ const BackUpdateFurnitureForm = ({
     return (
         <form className="col s12 left contact__form" onSubmit={handleSubmit}>
             {isConfirm === true ? <p className='isConfirm__form-update-project'>Changements enregistrés</p> : ''}
-            <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
-                {labels.map((option) => (
+            <select id='label' value={conditionLabelValue} onChange={(e) => setConditionLabelValue(e.target.value)}>
+                {conditionsLabels.map((option) => (
                     <option
-                        key={option.id}
-                        value={option.id}
+                        key={option}
+                        value={option}
                     >
-                        {'*' + option.label}
+                        {'*' + option}
                     </option>
                 ))}
             </select>
-            <label htmlFor="label">Choisi un label</label>
-            
+            <label htmlFor="label">Choisis un {conditionTitle}</label>
+            <input type="radio" id='availableLabel'  value={true} onChange={(e) => setAvailableLabelValue(e.target.value)}>
+        
+            </input>
+            <input type="radio" id='availableLabel'  value={false} onChange={(e) => setAvailableLabelValue(e.target.value)}>
+        
+            </input>
+            <label htmlFor="label">Choisis un {availableTitle}</label>
+
             <BackUpdateFurnituresFormInput
                 type='text'
-                name='project_name'
-                title={'*' + projectTitle}
-                value={projectName}
+                name='furniture_name'
+                title={'*' + furnitureTitle}
+                value={furnitureName}
                 onChange={changeInputValue}
                 required
             />
             <BackUpdateFurnituresFormInput
                 type='text'
-                name='location'
-                title={locationTitle}
-                value={location}
+                name='type'
+                title={typeTitle}
+                value={type}
+                onChange={changeInputValue}
+            />
+            <BackUpdateFurnituresFormInput
+                type='text'
+                name='editor'
+                title={editorTitle}
+                value={editor}
+                onChange={changeInputValue}
+            />
+            <BackUpdateFurnituresFormInput
+                type='text'
+                name='designer'
+                title={designerTitle}
+                value={designer}
                 onChange={changeInputValue}
             />
             <BackUpdateFurnituresFormInput
@@ -95,37 +123,16 @@ const BackUpdateFurnitureForm = ({
             />
             <BackUpdateFurnituresFormInput
                 type='text'
-                name='program'
-                title={programTitle}
-                value={program}
+                name='dimensions'
+                title={dimensionsTitle}
+                value={dimensions}
                 onChange={changeInputValue}
             />
             <BackUpdateFurnituresFormInput
                 type='text'
-                name='surface_area'
-                title={surfaceTitle}
-                value={surface}
-                onChange={changeInputValue}
-            />
-            <BackUpdateFurnituresFormInput
-                type='text'
-                name='type'
-                title={typeTitle}
-                value={type}
-                onChange={changeInputValue}
-            />
-            <BackUpdateFurnituresFormInput
-                type='text'
-                name='client'
-                title={clientTitle}
-                value={client}
-                onChange={changeInputValue}
-            />
-            <BackUpdateFurnituresFormInput
-                type='text'
-                name='design'
-                title={designTitle}
-                value={design}
+                name='description'
+                title={descriptionTitle}
+                value={description}
                 onChange={changeInputValue}
             />
             <BackUpdateFurnituresFormInput

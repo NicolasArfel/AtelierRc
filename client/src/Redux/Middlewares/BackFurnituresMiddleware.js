@@ -1,6 +1,6 @@
-import {   DELETE_FURNITURE, POST_FURNITURE } from "../Actions/BackFurnituresActions";
+import {   DELETE_FURNITURE, POST_FURNITURE, UPDATE_FURNITURE } from "../Actions/BackFurnituresActions";
 import { actionAxiosFurnitures, actionDispatchFurnitures } from "../Actions/FurnituresActions";
-import { deleteFurniture, postNewFurniture } from "../Requests/BackAdminFurnituresRequests";
+import { deleteFurniture, postNewFurniture, UpdateFurniture } from "../Requests/BackAdminFurnituresRequests";
 import { filteredFurnitures } from "../Selectors/furnituresSelectors";
 
 const BackFurnituresMiddleware = (store) => (next) => async (action) => {
@@ -39,6 +39,33 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
                 console.error(err)
             }
         }
+        break;
+
+        case UPDATE_FURNITURE: {
+            console.log('je suis dans UPDATE_FURNITURE');
+
+            const { furniture_id, conditionLabelValue, availableLabelValue} = action.payload
+            const responseBackReducer = store.getState();
+            const data = responseBackReducer.BackFurnituresReducer;
+            const newData = { ...data, conditionLabelValue: conditionLabelValue, availableLabelValue:availableLabelValue  }
+            console.log('data', newData);
+            // console.log('====================================');
+            // console.log(newData);
+            // console.log('====================================');
+
+            try {
+                const response = await UpdateFurniture(furniture_id, newData);
+                console.log('reponse back', response)
+                if (response.status === 200) {
+                    store.dispatch(
+                        actionAxiosFurnitures()
+                    );
+                }
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        break;
         
         default:
             next(action);

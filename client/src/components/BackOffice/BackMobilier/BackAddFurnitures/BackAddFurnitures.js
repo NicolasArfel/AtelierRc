@@ -19,16 +19,16 @@ const BackAddFurnitures = () => {
     const dispatch = useDispatch();
 
     /* --- import state from BackFurnituresReducer --- */
-    const furnitureName = useSelector((state) => state.BackFurnituresReducer.furnitureName);
+    const furnitureName = useSelector((state) => state.BackFurnituresReducer.furniture_name);
     const type = useSelector((state) => state.BackFurnituresReducer.type);
     const editor = useSelector((state) => state.BackFurnituresReducer.editor);
     const designer = useSelector((state) => state.BackFurnituresReducer.designer);
     const date = useSelector((state) => state.BackFurnituresReducer.date);
-    const dimensions = useSelector((state) => state.BackFurnituresReducer.editor);
+    const dimensions = useSelector((state) => state.BackFurnituresReducer.dimensions);
     const conditions = useSelector((state) => state.BackFurnituresReducer.conditions);
     const description = useSelector((state) => state.BackFurnituresReducer.description);
     const availability = useSelector((state) => state.BackFurnituresReducer.availability);
-    const photoCredit = useSelector((state) => state.BackFurnituresReducer.photoCredit);
+    const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
 
 
@@ -50,11 +50,11 @@ const BackAddFurnitures = () => {
             photoCredit={photoCredit}
             userId={userId}
             changeInputValue={(value, name) => {
-              console.log('changeField', { value, name });
+              // console.log('changeField', { value, name });
               dispatch(changeBackInputValue(value, name));
             }}
             handlePostFurnitures={(formData, config) => {
-              console.log('formdata et config',formData, config);
+              // console.log('formdata et config',formData, config);
               dispatch(actionPostFurniture(formData, config))
             }}
           />

@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 export async function deleteFurniture(furnitureId) {
     try {
       const response = await axiosInstance.delete(`/api/admin/furniture/${furnitureId}`);
-      console.log(`lemobilier avec id ${furnitureId} est supprimé`);
+      // console.log(`lemobilier avec id ${furnitureId} est supprimé`);
       return response
   
     } catch (err) {
@@ -19,8 +19,17 @@ export async function deleteFurniture(furnitureId) {
 
   export async function postNewFurniture(formData, config) {
     try {
-      // const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
-      // return response;
+      const response = await axiosInstance.post('/api/admin/add-furniture', formData, { config });
+      return response;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  export async function UpdateFurniture(furniture_id, newData) {
+    try {
+      const response = await axiosInstance.put(`/api/admin/furniture/${furniture_id}`, newData);
+      return response;
     } catch (err) {
       console.error(err);
     }

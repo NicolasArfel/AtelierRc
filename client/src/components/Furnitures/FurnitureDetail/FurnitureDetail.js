@@ -23,7 +23,6 @@ const FurnitureDetail = () => {
     const pictures = useSelector((state) => state.FurnituresReducer.pictures)
     // console.log('pictures', pictures);
 
-
     return (
         <>
             {furniture && <main className="container" >
@@ -40,9 +39,9 @@ const FurnitureDetail = () => {
                                     <p >{furniture.date}</p>
                                 </div>
                                 <div className="card-content">
-                                    <p >{furniture.size}</p>
+                                    <p >{furniture.dimensions}</p>
                                     <p >{furniture.condition}</p>
-                                    <p >{furniture.statut}</p>
+                                    {furniture.availability === true ? <p style={{color: 'green'}}>Disponible</p> : <p style={{color: 'red'}}>Indisponible</p>}
                                 </div>
                                 <div className="card-content">
                                     <p >{furniture.photo_credit}</p>
