@@ -6,7 +6,7 @@ export const initialState = {
 };
 
 const reducer = (state = initialState, action = {}) => {
-   
+
     switch (action.type) {
         case DISPATCH_PROJECTS:
             // console.log('JE SUIS DANS DISPATCH_PROJECTS');

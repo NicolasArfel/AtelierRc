@@ -66,6 +66,7 @@ export async function uploadMorePhotoProject(project_id, formData, config) {
 }
 
 export async function UpdateProject(project_id, newData) {
+  console.log(newData);
   try {
     const response = await axiosInstance.put(`/api/admin/project/${project_id}`, newData);
     return response;

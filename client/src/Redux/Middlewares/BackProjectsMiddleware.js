@@ -109,11 +109,11 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             const { project_id, labelValue } = action.payload
             const responseBackReducer = store.getState();
             const data = responseBackReducer.BackProjectsReducer;
-            // console.log(data);
+            // console.log('data', data);
             const newData = { ...data, labelValue: labelValue }
-            // console.log('====================================');
-            // console.log(newData);
-            // console.log('====================================');
+            console.log('====================================');
+            console.log(newData);
+            console.log('====================================');
 
             try {
                 const response = await UpdateProject(project_id, newData);

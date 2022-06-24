@@ -11,7 +11,7 @@ import { findProject } from '../../../../Redux/Selectors/projectsSelectors';
 import BannerBackOffice from '../../BannerBackOffice/BannerBackOffice';
 import { actionAxiosProjectsPictures } from '../../../../Redux/Actions/ProjetsActions';
 import BackUpdateProjetForm from './BackUpdateProjetForm/BackUpdateProjetForm';
-import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject, actionDeletePhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
+import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject, actionDeletePhotoProject, actionDispatchProjetFormAutoComplet } from '../../../../Redux/Actions/BackProjectsActions';
 
 
 const title = 'Back Office'
@@ -44,6 +44,7 @@ const BackUpdateProjet = () => {
     // Effect active on page load
     useEffect(() => {
         projet && dispatch(actionAxiosProjectsPictures(projet.project_id));
+        projet && dispatch(actionDispatchProjetFormAutoComplet(projet));
     }, [dispatch, projet]);
 
     const handleSubmitMultiPhoto = (event) => {
@@ -54,7 +55,7 @@ const BackUpdateProjet = () => {
 
         // ajout de plusieurs fichier aux formData de façon dynamique
         Object.entries(multyFile).forEach(([key, value]) => {
-            console.log('array file', [key, value])
+            // console.log('array file', [key, value])
             formData.append('uploadedImages', value)
         },
         );
@@ -65,7 +66,7 @@ const BackUpdateProjet = () => {
             }
         }
 
-        console.log('project id =', projet.project_id);
+        // console.log('project id =', projet.project_id);
         dispatch(actionPostMultyFilePhotoProject(projet.project_id, formData, config));
     }
 

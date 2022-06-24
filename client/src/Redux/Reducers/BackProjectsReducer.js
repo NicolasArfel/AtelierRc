@@ -1,4 +1,4 @@
-import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT } from "../Actions/BackProjectsActions";
+import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT, ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET } from "../Actions/BackProjectsActions";
 
 export const initialState = {
     // onlyProjects: [],
@@ -23,6 +23,20 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 onlyProjects: action.payload.responseProjects,
+            }
+        case ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET:
+            console.log('je suis dans DISPATCH_ONLY_PROJECTS');
+            return {
+                ...state,
+                project_name: action.payload.project.project_name,
+                location: action.payload.project.location,
+                date: action.payload.project.date,
+                program: action.payload.project.program,
+                surface_area: action.payload.project.surface_area,
+                type: action.payload.project.type,
+                client: action.payload.project.client,
+                design: action.payload.project.design,
+                photo_credit: action.payload.project.photo_credit,
             }
         case CHANGE_BACK_INPUT_VALUE:
             // console.log('je suis dans CHANGE_BACK_INPUT_VALUE');
