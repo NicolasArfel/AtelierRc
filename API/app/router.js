@@ -41,7 +41,6 @@ router.get('/', (req, res) => {
 router.get('/api/projects', projectController.getAllProjects);
 router.get('/api/getOnlyProjects', projectController.findAllProjects)
 router.get('/api/project/:id', projectController.getOne);
-router.get('/api/status', projectController.getStatus);
 
 /* Furnitures */
 router.get('/api/furnitures', furnitureController.getAllFurnitures);

@@ -11,9 +11,17 @@ export const ACTION_AXIOS_GET_ONLY_PROJECTS = 'ACTION_AXIOS_GET_ONLY_PROJECTS';
 export const DISPATCH_ONLY_PROJECTS = 'DISPATCH_ONLY_PROJECTS';
 export const POST_MULTY_PHOTO_PROJECT = 'POST_MULTY_PHOTO_PROJECT';
 export const ACTION_DELETE_PHOTO_PROJECT = 'ACTION_DELETE_PHOTO_PROJECT';
+export const ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET = 'ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET';
 
 export const actionAxiosGetOnlyProjects = () => ({
     type: ACTION_AXIOS_GET_ONLY_PROJECTS
+})
+
+export const actionDispatchProjetFormAutoComplet = (project) => ({
+    type: ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET,
+    payload: {
+        project
+    }
 })
 
 export const dispatchGetOnlyProjects = (responseProjects) => ({

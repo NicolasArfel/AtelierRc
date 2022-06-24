@@ -142,12 +142,12 @@ const projectController = {
 
       const id = Number(req.params.id)
       let newProjectName = req.body.project_name
-      // console.log('req.body', req.body);
+      console.log('req.body', req.body);
 
       const projects = await projectDatamapper.findAll();
       console.log('projects', projects);
 
-      const findSameProjectName = projects.find(element => element.project_name === req.body.project_name)
+      const findSameProjectName = projects.find(element => element.project_name === req.body.project_name && element.project_id !== id)
       // console.log('findSameProjectName = ', findSameProjectName);
 
       let ProjectNameBeforChange = projects.find(element => element.project_id === id)
