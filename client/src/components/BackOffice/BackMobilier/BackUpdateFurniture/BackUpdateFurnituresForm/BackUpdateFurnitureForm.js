@@ -11,56 +11,44 @@ const BackUpdateFurnitureForm = ({
     designer,
     date,
     dimensions,
-    conditions,
+    // conditions,
     description,
-    availability,
+    // availability,
     photoCredit,
     userId,
     changeInputValue,
-    handlePostFurnitures }) => {
+    handleUpdateFurnitures }) => {
 
+
+    const conditionsLabels = [
+        'Bon état',
+        'Etat correct',
+        'Excellent état',
+        'Pour pièces']
+    const availableLabels = [
+        true,
+        false ]
+
+    let isConfirm = false;
+
+    const furnitureTitle = 'Nom du Mobilier';
+    const typeTitle = 'Type';
+    const editorTitle = 'Editeur';
+    const designerTitle = 'Designer';
+    const dateTitle = 'Année';
+    const dimensionsTitle = 'Dimensions';
+    const conditionTitle = 'Etat';
+    const availableTitle = 'Disponibilité';
+    const descriptionTitle = 'Description';
+    const creditTitle = 'Crédit Photo';
+    // const [file, setFile] = useState(null)
+    const [conditionLabelValue, setConditionLabelValue] = useState('Bon état')
+    const [availableLabelValue, setAvailableLabelValue] = useState(true)
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        await handleUpdateFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
         
-        const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
-        // const availableLabels = [{
-            //     'Disponible': true, 
-            //     'Indisponible': false }]
-            // console.log('labels', labels);
-            
-            let isConfirm = false;
-            
-            let navigate = useNavigate();
-            const furnitureTitle = 'Nom du Mobilier';
-            const typeTitle = 'Type';
-            const editorTitle = 'Editeur';
-            const designerTitle = 'Designer';
-            const dateTitle = 'Année';
-            const dimensionsTitle = 'Dimensions';
-            const conditionTitle = 'Etat';
-            const availableTitle = 'Disponibilité';
-            const descriptionTitle = 'Description';
-            const creditTitle = 'Crédit Photo';
-            const disponible = true;
-            const indisponible = false;
-            // const [file, setFile] = useState(null)
-            const [conditionLabelValue, setConditionLabelValue] = useState('Etat correct')
-            const [availableLabelValue, setAvailableLabelValue] = useState(disponible)
-            
-            const handleSubmit = async (event) => {
-                event.preventDefault();
-                
-        await handlePostFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
-       
-        // I check if my input is empty or not. If is not i replace some carac for build a cool slug
-        if (furnitureName) {
-            // I format my projectName to skip spaces and some other carac for build a cool name
-            const slugName = furnitureName.replace(/(?!\w|\s)./g, '')
-                .replace(/\s+/g, ' ')
-                .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-            // with my new cool name i build a slug and i exploit it to navigate when my project is updated
-            const newSlugName = slugName.replace(/ +/g, "-").toLowerCase()
-            let path = `/back-mobilier/updateMobilier/${newSlugName}`;
-            navigate(path);
-        }
     }
 
     return (
@@ -77,12 +65,17 @@ const BackUpdateFurnitureForm = ({
                 ))}
             </select>
             <label htmlFor="label">Choisis un {conditionTitle}</label>
-            <input type="radio" id='availableLabel'  value={true} onChange={(e) => setAvailableLabelValue(e.target.value)}>
-        
-            </input>
-            <input type="radio" id='availableLabel'  value={false} onChange={(e) => setAvailableLabelValue(e.target.value)}>
-        
-            </input>
+
+            <select id='label' value={availableLabelValue} onChange={(e) => setAvailableLabelValue(e.target.value)}>
+                {availableLabels.map((option) => (
+                    <option
+                        key={option}
+                        value={option }
+                    >
+                        {option === true ? '* Disponible' : '* Indisponible'}
+                    </option>
+                ))}
+            </select>
             <label htmlFor="label">Choisis un {availableTitle}</label>
 
             <BackUpdateFurnituresFormInput

@@ -26,9 +26,9 @@ const BackUpdateFurniture = () => {
     const designer = useSelector((state) => state.BackFurnituresReducer.designer);
     const date = useSelector((state) => state.BackFurnituresReducer.date);
     const dimensions = useSelector((state) => state.BackFurnituresReducer.dimensions);
-    const conditions = useSelector((state) => state.BackFurnituresReducer.conditions);
+    // const conditions = useSelector((state) => state.BackFurnituresReducer.conditions);
     const description = useSelector((state) => state.BackFurnituresReducer.description);
-    const availability = useSelector((state) => state.BackFurnituresReducer.availability);
+    // const availability = useSelector((state) => state.BackFurnituresReducer.availability);
     const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
 
@@ -79,17 +79,17 @@ const BackUpdateFurniture = () => {
                             designer={designer}
                             date={date}
                             dimensions={dimensions}
-                            conditions={conditions}
+                            // conditions={conditions}
                             description={description}
-                            availability={availability}
+                            // availability={availability}
                             photoCredit={photoCredit}
                             userId={userId}
                             changeInputValue={(value, name) => {
                                 // console.log('changeField', { value, name });
                                 dispatch(changeBackInputValue(value, name));
                             }}
-                            handlePostFurnitures={(furniture_id, conditionLabelValue, availableLabelValue) => {
-                                    // console.log('tot',furniture_id, conditionLabelValue, availableLabelValue);
+                            handleUpdateFurnitures={(furniture_id, conditionLabelValue, availableLabelValue) => {
+                                    // console.log('les deux',furniture_id, conditionLabelValue, availableLabelValue);
                                     dispatch(actionUpdateFurnitures(furniture_id, conditionLabelValue, availableLabelValue))
                                 }}
                         />

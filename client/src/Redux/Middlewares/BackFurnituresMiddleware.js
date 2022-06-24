@@ -47,11 +47,9 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
             const { furniture_id, conditionLabelValue, availableLabelValue} = action.payload
             const responseBackReducer = store.getState();
             const data = responseBackReducer.BackFurnituresReducer;
-            const newData = { ...data, conditionLabelValue: conditionLabelValue, availableLabelValue:availableLabelValue  }
-            console.log('data', newData);
-            // console.log('====================================');
-            // console.log(newData);
-            // console.log('====================================');
+            // console.log('data', data)
+            const newData = { ...data, condition: conditionLabelValue, availability:availableLabelValue  }
+            console.log('newdata', newData);
 
             try {
                 const response = await UpdateFurniture(furniture_id, newData);

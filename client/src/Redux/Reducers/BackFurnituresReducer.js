@@ -9,9 +9,9 @@ export const initialState = {
     designer: '',
     date: '',
     dimensions: '',
-    // conditions: '',
+    condition: 'Bon état',
     description: '',
-    // availability: true,
+    availability: true,
     photo_credit: '',
 }
 
