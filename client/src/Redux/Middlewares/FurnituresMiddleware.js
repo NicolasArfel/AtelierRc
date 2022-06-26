@@ -18,7 +18,7 @@ const FurnituresMiddleware = (store) => (next) => async (action) => {
         }
         break;
         case AXIOS_FURNITURES_PICTURES:
-            console.log ('Je suis dans AXIOS PICTURES');
+            // console.log ('Je suis dans AXIOS PICTURES');
             try {
                 const responseFurnituresPictures = await getAllFurnituresPictures(action.furniture_id)
                 // console.log('responseFurnituresPictures', responseFurnituresPictures)

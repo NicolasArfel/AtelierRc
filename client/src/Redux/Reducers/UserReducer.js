@@ -7,7 +7,7 @@ const token = localStorage.getItem('token');
 let decodedJwt = false
 if (token) {
     decodedJwt = jwt_decode(token);
-    console.log(decodedJwt);
+    // console.log(decodedJwt);
 }
 // console.log('storageUser', user)
 
@@ -25,13 +25,13 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case CHANGE_INPUT_VALUE:
-            console.log('je suis dans CHANGE_INPUT_VALUE');
+            // console.log('je suis dans CHANGE_INPUT_VALUE');
             return {
                 ...state,
                 [action.payload.name]: action.payload.value,
             }
         case SAVE_USER:
-            console.log('je suis dans SAVE_USER');
+            // console.log('je suis dans SAVE_USER');
             return {
                 ...state,
                 // on est connecté donc on sauvegarde le pseudo, et on met isLogged=true
@@ -43,7 +43,7 @@ const reducer = (state = initialState, action = {}) => {
                 role: action.payload.decodedJwt.role
             };
         case LOGOUT:
-            console.log('je suis dans LOGOUT');
+            // console.log('je suis dans LOGOUT');
             return {
                 ...state,
                 isLogged: false,

@@ -14,7 +14,7 @@ const BackProjets = () => {
   const dispatch = useDispatch();
 
   const projects = useSelector((state) => state.ProjectsReducer.projects)
-  console.log('projectBack', projects);
+  // console.log('projectBack', projects);
 
   useEffect(() => {
     dispatch(actionAxiosGetOnlyProjects())

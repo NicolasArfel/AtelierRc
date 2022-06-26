@@ -14,7 +14,7 @@ const BackMobilier = () => {
 
   const furnitures = useSelector((state) => state.FurnituresReducer.furnitures);
 
-  console.log('mobilier dans backprojet', furnitures);
+  // console.log('mobilier dans backprojet', furnitures);
   return (
     <main className="container" >
       <BannerBackOffice title={title} />

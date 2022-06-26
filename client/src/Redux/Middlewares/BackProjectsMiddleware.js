@@ -18,7 +18,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         case ACTION_DELETE_PHOTO_PROJECT: {
 
             const responseDeletePhotoProject = await deletePhotoProject(action.payload.id);
-            console.log(responseDeletePhotoProject)
+            // console.log('responseDeletePhotoProject =',responseDeletePhotoProject)
 
             store.dispatch(
                 actionAxiosProjects()
@@ -28,17 +28,14 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
         case DELETE_PROJECT: {
 
-            const token = localStorage.getItem('token');
-            // console.log('token =', token);
-
-            const responseProjects = await deleteProject(action.payload.id, token);
+            const responseProjects = await deleteProject(action.payload.id);
             // console.log('response delete', responseProjects.status)
 
             if (responseProjects.status === 204) {
                 const responseProjectReducer = store.getState();
                 // console.log(responseProjectReducer.ProjectsReducer.projects)
                 const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
-                // console.log(newState)
+                // console.log('newState = ',newState)
                 store.dispatch(
                     actionAxiosProjects(newState)
                 );
@@ -104,20 +101,18 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
             break;
         case UPDATE_PROJECT: {
-            console.log('je suis dans UPDATE_PROJECT');
+            // console.log('je suis dans UPDATE_PROJECT');
 
             const { project_id, labelValue } = action.payload
             const responseBackReducer = store.getState();
             const data = responseBackReducer.BackProjectsReducer;
             // console.log('data', data);
             const newData = { ...data, labelValue: labelValue }
-            console.log('====================================');
-            console.log(newData);
-            console.log('====================================');
+            // console.log(newData);
 
             try {
                 const response = await UpdateProject(project_id, newData);
-                console.log('reponse back', response)
+                // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()

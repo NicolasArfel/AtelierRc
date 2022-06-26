@@ -7,7 +7,7 @@ import { requestLogin, saveAuthorization, removeAuthorization } from "../Request
 const UserMiddleware = (store) => (next) => async (action) => {
     switch (action.type) {
         case SUBMIT_PROFIL: {
-            console.log('je suis dans SUBMIT_PROFIL');
+            // console.log('je suis dans SUBMIT_PROFIL');
             const responseUserReducer = store.getState();
 
             const { firstName, lastName, email, password, token } = responseUserReducer.UserReducer;
@@ -21,7 +21,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
             try {
                 const response = await updateProfile(userId, firstName, lastName, email, password)
                 // console.log('toto',userId, firstName,lastName,email,password) 
-                console.log('reponse put', response)
+                // console.log('reponse put', response)
                 if (response.status === 200) {
                     store.dispatch(actionSaveUser(decodedJwt, token));
                 }
@@ -34,7 +34,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
         }
 
         case SUBMIT_LOGIN: {
-            console.log('je suis  dans SUBMIT_LOGIN');
+            // console.log('je suis  dans SUBMIT_LOGIN');
             const responseUserReducer = store.getState();
             // console.log(responseUserReducer);
             const { email, password } = responseUserReducer.UserReducer;
@@ -55,14 +55,14 @@ const UserMiddleware = (store) => (next) => async (action) => {
             break;
         }
         case SAVE_USER: {
-            console.log('je suis dans SAVE_USER middleware');
+            // console.log('je suis dans SAVE_USER middleware');
             saveAuthorization(action.payload.token);
 
             next(action);
             break;
         }
         case LOGOUT: {
-            console.log('je suis dans LOGOUT middleware');
+            // console.log('je suis dans LOGOUT middleware');
             // on supprime le token de axios
             localStorage.removeItem('token');
             localStorage.removeItem('user');

@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { actionPostProject, changeBackInputValue } from "../../../../Redux/Actions/BackProjectsActions";
+
+import { actionPostProject, changeBackInputValue, actionResetFormAddProject } from "../../../../Redux/Actions/BackProjectsActions";
 import BannerBackOffice from "../../BannerBackOffice/BannerBackOffice";
 import BackProjetForm from "./BackProjetForm/BackProjetForm";
 
@@ -7,6 +9,11 @@ import BackProjetForm from "./BackProjetForm/BackProjetForm";
 const BackAddProjet = () => {
 
   const dispatch = useDispatch();
+
+  // Effect active on page load
+  useEffect(() => {
+    dispatch(actionResetFormAddProject());
+  }, [dispatch]);
 
   const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
   const location = useSelector((state) => state.BackProjectsReducer.location);

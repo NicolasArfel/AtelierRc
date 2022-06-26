@@ -20,7 +20,7 @@ const DetailProjet = () => {
 
     // We use a .find method to store in a selectors folder. It allows you to sort the projects according to the url thanks to the 'SLUG' parameter
     const projet = useSelector((state) => findProject(state.ProjectsReducer.projects, slug))
-    console.log(projet);
+    // console.log(projet);
 
     // Effect active on page load
     useEffect(() => {
@@ -29,7 +29,7 @@ const DetailProjet = () => {
 
     // useSelector allow us to get all information stash in reducer pictures []
     const pictures = useSelector((state) => state.ProjectsReducer.pictures)
-    console.log('pictures', pictures);
+    // console.log('pictures', pictures);
 
     return (
         <>

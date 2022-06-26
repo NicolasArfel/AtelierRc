@@ -24,11 +24,15 @@
 
 .cover__photo-project {
     position: relative;
-    left: 90px;
-    top: 52px;
-    color: #1c06f4;
+    left: 0px;
+    top: 32px;
+    color: #5a5a5a;
     font-weight: bolder;
     font-size: larger;
+    width: 54px;
+    margin: 0;
+    border: 1px solid;
+    border-radius: 0.2rem;
 }
 
 .btn__toggle-updateCover:hover {

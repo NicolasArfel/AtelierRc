@@ -18,7 +18,6 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 ('Lamarck', 'lamarck','Île-de-France, Paris 18', '2022', 'Conception d’une cuisine fermée dans un Immeuble Art Déco', '25m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3 ),
 ('Junot', 'junot','Île-de-France, Paris 18', '2022', 'Rénovation d’un duplex dans un immeuble Art Déco. Relier deux appartements/lots au sein d’une même copropriété. Revoir l’agencement/l’organisation du R+4 dans sa globalité. Conception d’un escalier permettant d’accéder au R+5', '80m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon', 1, 2),
 ('Voltaire', 'voltaire','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration de l’entrée et de la cuisine d’un appartement parisien', '15m²', 'Appartement', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,1),
-('Test', 'test','Île-de-France, Paris 11', '2022', 'Rénovation/restructuration', '15m²', 'Appartement', 'Commanditaire privé', 'Romain Caillon', 'Romain Caillon',1 ,2),
 ('La Villa Jasmin', 'la-villa-jasmin','Île-de-France, Andrésy', '2021', 'Rénovation complète d’une maison meulière Chantier livré en Juillet 2021', '160m²', 'Maison', 'privé', 'Romain Caillon', 'Romain Caillon',1 ,3);
 
 INSERT INTO furniture (name, slug, type, designer, editor, date, dimensions, condition, description, availability, price, user_id) VALUES
@@ -46,13 +45,12 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('voltaire_pers_3.jpg', 3, 'image ©Romain-Caillon', FALSE, 3),
 ('voltaire_pers_4.jpg', 4, 'image ©Romain-Caillon', FALSE, 3),
 ('voltaire_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 3),
-('test_pers_4.jpg', 1, 'image ©Romain-Caillon', TRUE, 4),
-('Villa-Jasmin_Photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 5),
-('Villa-Jasmin_Photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE, 5),
-('Villa-Jasmin_Photo_3.jpg', 3, 'photo ©Romain-Caillon', FALSE, 5),
-('Villa-Jasmin_Photo_4.jpg', 4, 'photo ©Romain-Caillon', FALSE, 5),
-('Villa-Jasmin_Photo_5.jpg', 5, 'photo ©Romain-Caillon', FALSE, 5),
-('Villa-Jasmin_Photo_6.jpg', 6, 'photo ©Romain-Caillon', FALSE, 5);
+('Villa-Jasmin_Photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 4),
+('Villa-Jasmin_Photo_2.jpg', 2, 'photo ©Romain-Caillon', FALSE,4),
+('Villa-Jasmin_Photo_3.jpg', 3, 'photo ©Romain-Caillon', FALSE,4),
+('Villa-Jasmin_Photo_4.jpg', 4, 'photo ©Romain-Caillon', FALSE,4),
+('Villa-Jasmin_Photo_5.jpg', 5, 'photo ©Romain-Caillon', FALSE,4),
+('Villa-Jasmin_Photo_6.jpg', 6, 'photo ©Romain-Caillon', FALSE,4);
 
 INSERT INTO furniture_photo (name, position, photo_credit, cover_photo, furniture_id) VALUES
 ('kaybojesen_singe_photo_1.jpg', 1, 'photo ©Romain-Caillon', TRUE, 1),
