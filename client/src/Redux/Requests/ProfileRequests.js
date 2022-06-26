@@ -1,5 +1,4 @@
 import axios from "axios";
-import { saveAuthorization } from "./Requests";
 
 const token = localStorage.getItem('token');
 // console.log('token =', token);
@@ -11,7 +10,7 @@ const axiosInstance = axios.create({
 export async function updateProfile(userId, first_name, last_name, email, password) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     // console.log('profilerequest',userId, first_name, last_name, email, password)
     const response = await axiosInstance.put(`/api/admin/profile/${userId}`,
       {

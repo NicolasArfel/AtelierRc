@@ -145,7 +145,7 @@ const projectController = {
       console.log('req.body', req.body);
 
       const projects = await projectDatamapper.findAll();
-      console.log('projects', projects);
+      // console.log('projects', projects);
 
       const findSameProjectName = projects.find(element => element.project_name === req.body.project_name && element.project_id !== id)
       // console.log('findSameProjectName = ', findSameProjectName);
@@ -156,7 +156,7 @@ const projectController = {
       if (newProjectName === "") {
          // console.log('Je suis dans IF newProjectName');
          newProjectName = ProjectNameBeforChange.project_name
-         console.log('newProjectName dans if =', newProjectName);
+         // console.log('newProjectName dans if =', newProjectName);
       }
 
       if (findSameProjectName !== undefined) {
@@ -168,13 +168,12 @@ const projectController = {
          return res.status(404).json('project not found');
       }
 
-      console.log('newProjectName aprés if =', newProjectName);
       const spacingProjectName = newProjectName
          .replace(/(?!\w|\s)./g, '')
          .replace(/\s+/g, ' ')
          .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
       const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
-      // console.log('slugProjectName slug =', slugProjectName);
+      console.log('slugProjectName slug =', slugProjectName);
 
       if (projectToUpdate) {
 

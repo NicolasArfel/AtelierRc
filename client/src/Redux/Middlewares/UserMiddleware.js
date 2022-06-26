@@ -42,7 +42,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
 
             try {
                 const { accessToken } = await requestLogin(email, password);
-                console.log('response', { accessToken });
+                // console.log('response', { accessToken });
                 const decodedJwt = jwt_decode(accessToken);
                 // console.log('decodedJwt', decodedJwt);
                 // localStorage.setItem('token', JSON.stringify(accessToken))

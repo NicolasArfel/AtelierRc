@@ -1,5 +1,4 @@
 import axios from "axios";
-import { saveAuthorization } from "./Requests";
 
 const token = localStorage.getItem('token');
 // console.log('token =', token);
@@ -21,10 +20,8 @@ export async function findAllProjects() {
 export async function deleteProject(projectId) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.delete(`api/admin/project/${projectId}`);
-
-    // console.log(`le projet avec id ${projectId} est supprimé`);
     return response
 
   } catch (err) {
@@ -35,9 +32,9 @@ export async function deleteProject(projectId) {
 export async function deletePhotoProject(id) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.delete(`/api/admin/delete-images/${id}`);
-    return response
+      return response
 
   } catch (err) {
     console.error(err)
@@ -47,7 +44,7 @@ export async function deletePhotoProject(id) {
 export async function postNewProject(formData, config) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
     return response;
 
@@ -59,7 +56,7 @@ export async function postNewProject(formData, config) {
 export async function updateCoverPhotoProject(id) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.put(`/api/admin/project/${id}/coverphoto`);
     return response;
 
@@ -71,7 +68,7 @@ export async function updateCoverPhotoProject(id) {
 export async function uploadMorePhotoProject(project_id, formData, config) {
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post(`/api/admin/add-images/${project_id}`, formData, { config });
     return response;
 
@@ -84,7 +81,7 @@ export async function UpdateProject(project_id, newData) {
   console.log(newData);
   try {
 
-    saveAuthorization(token);
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.put(`/api/admin/project/${project_id}`, newData);
     return response;
 

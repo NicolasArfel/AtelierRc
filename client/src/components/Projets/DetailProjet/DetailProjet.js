@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { findProject } from '../../../Redux/Selectors/projectsSelectors';
@@ -42,20 +42,29 @@ const DetailProjet = () => {
                             <div className="col s12">
                                 <div className="left card card__detail">
                                     <div className="card-content black-text">
-                                                                         
-                                            <p>{projet.location} </p>
-                                            <p>{projet.date} </p>    
-                                            <p>{projet.program}</p>
-                                            <p>{projet.status}</p>
-                                    </div>                          
-                                        <div className="card-content">                                            
-                                            <p>{projet.type} de {projet.surface_area}</p>
-                                            <p>{projet.demande}</p>
-                                            <p>{projet.client} </p>
-                                            <p>{projet.design} </p>
-                                            <p>{projet.photo_credit}</p>
+
+                                        <p>{projet.location} </p>
+                                        <p>{projet.date} </p>
+                                        <p>{projet.program}</p>
+                                        <p>{projet.status}</p>
+                                    </div>
+                                    <div className="card-content">
+                                        <p>{projet.type} de {projet.surface_area}</p>
+                                        <p>{projet.demande}</p>
+                                        <p>Client: {projet.client} </p>
+                                        <p>{projet.design} </p>
+                                        <p>{projet.photo_credit}</p>
                                     </div>
                                 </div>
+                                <NavLink to='/'>
+                                    <button
+                                        className="btn waves-effect waves-light grey darken-3 button"
+                                        name="action"
+                                    >
+                                        Revenir aux projets
+                                    </button>
+
+                                </NavLink>
                             </div>
                         </div>
                         {pictures &&

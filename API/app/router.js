@@ -52,10 +52,10 @@ router.get('/api/furniture/:id', furnitureController.getOne);
 router.post('/api/login', loginController.login);
 
 /* Admin interface - Update profile */
-router.put('/api/admin/profile/:id', authenticateToken(), validator('body', userUpdateSchema), adminController.updateAdminProfile); 
+router.put('/api/admin/profile/:id', authenticateToken(), /*validator('body', userUpdateSchema),*/ adminController.updateAdminProfile);
 
 /* admin interface - create project and upload images*/
-router.post('/api/admin/add-project', authenticateToken(), uploadImage, validator('body', projectCreateSchema), validator('file', projectPhotoCreateSchema), upload);  // 
+router.post('/api/admin/add-project', authenticateToken(), uploadImage, /*validator('body', projectCreateSchema), validator('file', projectPhotoCreateSchema),*/ upload);  // 
 router.post('/api/admin/add-images/:id', authenticateToken(), uploadMany, multiUpload); //
 // Ajouté par Véro 22/06/2022
 router.get('/api/status', projectController.getStatus);
@@ -68,22 +68,22 @@ router.put('/api/admin/project/:id/coverphoto', authenticateToken(), projectCont
 /* Admin interface - delete project and images */
 // ajouté par Véro 22/06/2022
 router.delete('/api/admin/delete-images/:id', authenticateToken(), projectController.deletePhoto);
-router.delete('/api/admin/project/:id', projectController.delete); // authenticateToken()
+router.delete('/api/admin/project/:id', authenticateToken(), projectController.delete); // authenticateToken()
 
 /* Contact form */
 router.post('/api/contact', contactController.mail);
 
 /*Admin interface - create furniture and upload images */
-router.post('/api/admin/add-furniture', uploadImageFurniture, uploadFurniture);
+router.post('/api/admin/add-furniture', authenticateToken(), uploadImageFurniture, uploadFurniture);
 router.post('/api/admin/add-images-furniture/:id', uploadManyFurniture, multiUploadFurniture);
 
 /* Admin interface - modify project and images */
-router.put('/api/admin/furniture/:id', furnitureController.updateOneFurniture);
+router.put('/api/admin/furniture/:id', authenticateToken(), furnitureController.updateOneFurniture);
 router.put('/api/admin/furniture/:id/coverphoto', furnitureController.switchCoverPhotoFurniture);
 
 /* Admin interface - delete furniture and images */
-router.delete('/api/admin/delete-images-furniture/:id', furnitureController.deletePhoto);
-router.delete('/api/admin/furniture/:id', furnitureController.delete);
+router.delete('/api/admin/delete-images-furniture/:id', authenticateToken(), furnitureController.deletePhoto);
+router.delete('/api/admin/furniture/:id', authenticateToken(), furnitureController.delete);
 
 /*  Admin */
 // router.patch('/api/admin/profile/:id', adminController.profile);
