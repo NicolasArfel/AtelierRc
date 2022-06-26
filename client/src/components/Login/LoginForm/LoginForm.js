@@ -17,7 +17,7 @@ const LoginForm = ({ title, email, password, isLogged, changeInputValue, handleL
     }
 
     return (
-        <form className="col s6 left login__form" onSubmit={handleSubmit} >
+        <form className="col s12 center login__form" onSubmit={handleSubmit} >
             <div className="row">
                 <LoginFormInput
                     type='email'

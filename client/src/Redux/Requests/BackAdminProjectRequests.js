@@ -78,7 +78,7 @@ export async function uploadMorePhotoProject(project_id, formData, config) {
 }
 
 export async function UpdateProject(project_id, newData) {
-  console.log(newData);
+  // console.log(newData);
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;

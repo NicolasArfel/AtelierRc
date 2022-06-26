@@ -75,7 +75,7 @@ const App = () => {
         {/* <Route exact path="/back-admin" element={ <BackAdministration /> } /> */}
         {/* <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } /> */}
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
-        <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} />
+        {/* <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} /> */}
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />

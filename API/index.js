@@ -16,22 +16,22 @@ const app = express();
 require('./app/helpers/apiDoc')(app);
 
 // app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // // on utlise .none() pour dire qu'on attends pas de fichier, uniquement des inputs "classiques" !
 // app.use( bodyParser.none() );
 
-console.log('path = ',path.join(__dirname, 'public'));
+console.log('path = ', path.join(__dirname, 'public'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json());
 
 const PORT = process.env.PORT || 4001;
 
-app.use(cors({
-    origin: "*"
-}));
-
+const options = {
+  origin: 'http://localhost:3000',
+}
+app.use(cors(options))
 
 // on ajoute le middleware de "nettoyage" des variables
 //const bodySanitizer = require('./app/middlewares/body-sanitizer');
