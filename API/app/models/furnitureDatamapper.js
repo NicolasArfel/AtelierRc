@@ -195,4 +195,5 @@ const furnitureDatamapper = {
     },
 };
 
+
 module.exports = furnitureDatamapper;
