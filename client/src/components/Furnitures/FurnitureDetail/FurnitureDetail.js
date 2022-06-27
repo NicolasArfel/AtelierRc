@@ -26,26 +26,27 @@ const FurnitureDetail = () => {
     return (
         <>
             {furniture && <main className="container" >
-                <Banner title={furniture.furniture_name} description={furniture.description} />
+                <Banner title={'Mobilier'} description={''} />
                 <div className="row detail__project">
                     <div className="col s6 sticky__details-project">
-                        <h2 className="left card-title card__title">{furniture.furniture_name}/{furniture.type}</h2>
+                        <h2 className="left card-title card__title">{furniture.furniture_name}</h2>
                         <div className="col s12">
-                            <div className="card card__detail">
+                            <div className="left card card__detail">
                                 <div className="card-content">
-                                    {furniture.description && <p>{furniture.description}</p>}
+                                    {furniture.type}
+                                    <p>{furniture.description}</p>
                                     {furniture.designer.toLowerCase() === 'anonyme' ? '' : <p>{furniture.designer}</p>}
                                     {furniture.editor.toLowerCase() === 'anonyme' ? '' : <p>{furniture.editor}</p>}
-                                    {furniture.date && <p>{furniture.date}</p>}
+                                    <p>{furniture.date}</p>
 
                                 </div>
                                 <div className="card-content">
-                                    {furniture.dimensions && <p>{furniture.dimensions}</p>}
-                                    {furniture.condition && <p>{furniture.condition}</p>}
+                                    <p>{furniture.dimensions}</p>
+                                    <p>{furniture.condition}</p>
                                     {furniture.availability === true ? <p style={{ color: 'green' }}>Disponible</p> : <p style={{ color: 'red' }}>Indisponible</p>}
                                 </div>
                                 <div className="card-content">
-                                    {furniture.photo_credit && <p >{furniture.photo_credit}</p>}
+                                    <p >{furniture.photo_credit}</p>
                                 </div>
 
 

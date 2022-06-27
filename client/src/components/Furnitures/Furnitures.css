@@ -4,7 +4,9 @@
     min-width: 300px;
     max-width: 400px;
 }
-
+.furniture__card-image img{
+    min-height: 350px;
+}
 .furniture__section {
     display: flex;
     flex-wrap: wrap;
@@ -14,13 +16,6 @@
 
 .furniture__card-title {
     font-size: 1.7rem;
-}
-
-.furniture__card-field {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80%;
 }
 
 .card-reveal {

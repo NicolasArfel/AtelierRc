@@ -28,7 +28,6 @@ const Furnitures = () => {
                                 <p>
                                     <NavLink
                                         to={`/contact/mobilier/${furniture.slug} `}
-
                                     >
                                         Me contacter
                                     </NavLink>
@@ -36,7 +35,6 @@ const Furnitures = () => {
                                 <p>
                                     <NavLink
                                         to={`/mobilier/${furniture.slug} `}
-
                                     >
                                         Plus d'infos
                                     </NavLink>
@@ -44,15 +42,11 @@ const Furnitures = () => {
                             </div>
                             <div className="card-reveal furniture__card-reveal">
                                 <span className="card-title grey-text text-darken-4 furniture__card-title">{furniture.furniture_name}<i className="material-icons right">close</i></span>
-                                <div className="furniture__card-field">
-                                    <p>{furniture.description}</p>
-                                    {furniture.designer.toLowerCase() === 'anonyme' ? '' :<p>{furniture.designer}</p>}
-                                    {furniture.editor.toLowerCase() === 'anonyme' ? '' :<p>{furniture.editor}</p>}
-                                    <p>{furniture.date}</p>
+                                <div className="furniture__card-field"> 
                                     <p>{furniture.dimensions}</p>
                                     <p>{furniture.condition}</p>
                                     {furniture.availability === true ? <p style={{ color: 'green' }}>Disponible</p> : <p style={{ color: 'red' }}>Indisponible</p>}
-                                    <p >{furniture.photo_credit}</p>
+                                   
                                 </div>
                             </div>
                         </div>

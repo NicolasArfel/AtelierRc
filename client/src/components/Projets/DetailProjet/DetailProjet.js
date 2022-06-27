@@ -35,7 +35,7 @@ const DetailProjet = () => {
         <>
             {projet &&
                 <main className="container" >
-                    <Banner title={projet.project_name} description="" />
+                    <Banner title={'Projet'} description="" />
                     <div className="row detail__project">
                         <div className="col s6 sticky__details-project">
                             <h2 className="left card-title card__title">{projet.project_name}</h2>

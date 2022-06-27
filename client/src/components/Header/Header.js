@@ -50,13 +50,8 @@ const Header = () => {
                                     Contact
                                 </NavLink>
                             </li>
-                            {!isLogged ?
-                                <li>
-                                    <NavLink to="/login" className={activeLink}>
-                                        Connexion
-                                    </NavLink>
-                                </li>
-                                :
+                            {isLogged &&
+                                
                                 <>
                                     {role === 'admin' ?
                                         <li className='navlink'>
