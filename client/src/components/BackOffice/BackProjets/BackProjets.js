@@ -48,7 +48,12 @@ const BackProjets = () => {
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        dispatch(actionDeleteProject(project.project_id))
+                        const confirmBox = window.confirm(
+                          "Voulez-vous vraiment supprimer cet article ?"
+                        )
+                        if (confirmBox === true) {
+                          dispatch(actionDeleteProject(project.project_id))
+                        }
                       }}
                     >Supprimer</button>
                     <Link to={`/back-projets/updateProject/${project.slug}`}>

@@ -36,8 +36,8 @@ const BackMobilier = () => {
   /* --- creation of the view --- */
   return (
     <main className="container" >
-      <BannerBackOffice 
-        title={title}         
+      <BannerBackOffice
+        title={title}
       />
       <div className="row">
         <div className="col s12 right table__back-projects">
@@ -59,27 +59,34 @@ const BackMobilier = () => {
                   <td>{furniture.description}</td>
                   <td>{furniture.type}</td>
                   <td>
-                    <button 
+                    <button
                       className="btn-flat waves-effect waves-light button__back-admin-delete red lighten-3"
                       type="submit"
                       name="supprimer"
                       onClick={() => {
-                        dispatch(
-                          /* --- we send the furnitures id we want to delete --- */
-                          actionDeleteFurniture(furniture.furniture_id)
+                        const confirmBox = window.confirm(
+                          "Voulez-vous vraiment supprimer cet article ?"
+                        )
+                        if (confirmBox === true) {
+
+                          dispatch(
+                            /* --- we send the furnitures id we want to delete --- */
+                            actionDeleteFurniture(furniture.furniture_id)
+
                           );
+                        }
                       }}
                     >
-                    Supprimer
+                      Supprimer
                     </button>
-                    
-                    <Link to={`/back-mobilier/updateMobilier/${furniture.slug}`} > 
-                      <button 
+
+                    <Link to={`/back-mobilier/updateMobilier/${furniture.slug}`} >
+                      <button
                         className="button__back-admin-modify btn-flat waves-effect waves-light teal lighten-3"
                         type="submit"
                         name="supprimer">
                         Modifier
-                        </button>
+                      </button>
                     </Link>
                   </td>
                 </tr>
