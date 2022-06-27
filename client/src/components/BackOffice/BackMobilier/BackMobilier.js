@@ -31,7 +31,7 @@ const BackMobilier = () => {
   /* --- we get the furnitures state frmo the reducer --- */
   const furnitures = useSelector((state) =>
     state.FurnituresReducer.furnitures);
-  console.log('mobilier dans backprojet', furnitures);
+  // console.log('mobilier dans backprojet', furnitures);
 
   /* --- creation of the view --- */
   return (

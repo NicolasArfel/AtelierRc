@@ -27,7 +27,7 @@ BackProjetFormInput.propTypes = {
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     title: PropTypes.string.isRequired,
 }
 

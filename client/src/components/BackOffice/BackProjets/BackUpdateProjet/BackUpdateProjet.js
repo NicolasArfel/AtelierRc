@@ -140,7 +140,7 @@ const BackUpdateProjet = () => {
                                                 className='btn-flat btn__toggle-supprimer'
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    console.log('photo id =', picture.id);
+                                                    // console.log('photo id =', picture.id);
                                                     dispatch(actionDeletePhotoProject(picture.id));
                                                 }}
                                             >Supprimer
@@ -149,7 +149,7 @@ const BackUpdateProjet = () => {
                                                 className='btn-flat btn__toggle-updateCover'
                                                 onClick={(event) => {
                                                     event.preventDefault();
-                                                    console.log('photo id =', picture.id);
+                                                    // console.log('photo id =', picture.id);
                                                     dispatch(actionPostCoverPhotoProject(picture.id));
                                                 }}
                                             >Ajouter cover

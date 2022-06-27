@@ -17,7 +17,7 @@ const BackUpdateFurniture = () => {
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
     const [multyFile, setMultyFile] = useState(null)
-    console.log('multyFile', multyFile);
+    // console.log('multyFile', multyFile);
 
     const furnitureName = useSelector((state) => state.BackFurnituresReducer.furniture_name);
     const type = useSelector((state) => state.BackFurnituresReducer.type);
@@ -130,7 +130,7 @@ const BackUpdateFurniture = () => {
                                             className='btn-flat btn__toggle-supprimer'
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                console.log('photo id =', furniture.id);
+                                                // console.log('photo id =', furniture.id);
                                                 dispatch(actionDeletePhotoFurniture(furniture.id));
                                             }}
                                         >Supprimer
@@ -139,7 +139,7 @@ const BackUpdateFurniture = () => {
                                             className='btn-flat btn__toggle-updateCover'
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                console.log('photo id =', furniture.id);
+                                                // console.log('photo id =', furniture.id);
                                                 dispatch(actionPostCoverPhotoFurniture(furniture.id));
                                             }}
                                         >Ajouter cover

@@ -49,11 +49,11 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
             const data = responseBackReducer.BackFurnituresReducer;
             // console.log('data', data)
             const newData = { ...data, condition: conditionLabelValue, availability: availableLabelValue }
-            console.log('newdata', newData);
+            // console.log('newdata', newData);
 
             try {
                 const response = await UpdateFurniture(furniture_id, newData);
-                console.log('reponse back', response)
+                // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosFurnitures()
@@ -86,7 +86,7 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
 
         case ACTION_DELETE_PHOTO_FURNITURE: {
             const responseDeletePhotoProject = await deletePhotoFurniture(action.payload.id);
-            console.log(responseDeletePhotoProject)
+            // console.log(responseDeletePhotoProject)
 
             store.dispatch(
                 actionAxiosFurnitures()
