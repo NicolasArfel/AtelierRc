@@ -39,7 +39,7 @@ const reducer = (state = initialState, action = {}) => {
                 isLogged: true,
                 password: '',
                 confirmPassword: '',
-                token: action.payload.accessToken,
+                token: action.payload.token,
                 firstName: action.payload.decodedJwt.firstname,
                 lastName: action.payload.decodedJwt.lastname,
                 role: action.payload.decodedJwt.role,
