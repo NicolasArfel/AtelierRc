@@ -5,6 +5,7 @@ export const UPDATE_FURNITURE = 'UPDATE_FURNITURE';
 export const POST_MULTY_PHOTO_FURNITURE = 'POST_MULTY_PHOTO_FURNITURE';
 export const ACTION_DELETE_PHOTO_FURNITURE = 'ACTION_DELETE_PHOTO_FURNITURE';
 export const POST_COVER_PHOTO_FURNITURE = 'POST_COVER_PHOTO_FURNITURE';
+export const ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET = 'ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET';
 
 export const actionDeleteFurniture = (id) => ({
     
@@ -36,6 +37,13 @@ export const actionUpdateFurnitures = (furniture_id, conditionLabelValue, availa
         furniture_id,
         conditionLabelValue,
         availableLabelValue
+    }
+})
+
+export const actionDispatchFurnitureFormAutoComplet = (furniture) => ({
+    type: ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET,
+    payload: {
+        furniture
     }
 })
 

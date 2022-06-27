@@ -14,11 +14,8 @@ const BackUpdateFurnituresFormInput = ({ type, name, onChange, value, title }) =
                 id={type}
                 type={type}
                 onChange={handleChange}
+                placeholder={title}
             />
-            <label htmlFor={type}>
-                {title}
-            </label>
-
         </div>
     )
 }
