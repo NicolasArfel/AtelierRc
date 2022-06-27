@@ -98,7 +98,7 @@ const furnitureController = {
     const furnitures = await furnitureDatamapper.findAll();
     console.log('furnitures', furnitures);
 
-    const findSameFurnitureName = furnitures.find(element => element.furniture_name === req.body.furniture_name)
+    const findSameFurnitureName = furnitures.find(element => element.furniture_name === req.body.furniture_name && element.furniture_id !== id)
     // console.log('findSameFurnitureName = ', findSameFurnitureName);
 
     let FurnitureNameBeforChange = furnitures.find(element => element.furniture_id === id)
