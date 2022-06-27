@@ -2,9 +2,9 @@ import './Loader.css'
 
 const Loader = () => {
     return (
-        <div class="block">
-        <p class="dynamic-txts">arc.</p>
-    </div>
+        <div className="block">
+            <p className="dynamic-txts">arc.</p>
+        </div>
     )
 }
 
