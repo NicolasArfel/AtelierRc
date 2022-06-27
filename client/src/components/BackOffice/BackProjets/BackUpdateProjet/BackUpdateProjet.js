@@ -94,7 +94,7 @@ const BackUpdateProjet = () => {
                                 photoCredit={photoCredit}
                                 userId={userId}
                                 changeInputValue={(value, name) => {
-                                    // console.log('changeField', { value, name });
+                                    console.log('changeField', { value, name });
                                     dispatch(changeBackInputValue(value, name));
                                 }}
                                 handlePostProject={(project_id, labelValue) => {
