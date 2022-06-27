@@ -69,11 +69,11 @@ const projectController = {
    },
 
 
-   /**
-    * Project controller to delete a record
-    * @param {object} req Express request object
-    * @param {object} res Express response object
-    * @returns Route API JSON response
+ /**
+    * Project controller to delete one specific project
+    * @param {*} req Express req.object (not used)
+    * @param {*} res Express response object
+    * @returns Route API JSON response with the project
     */
    async delete(req, res) {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);

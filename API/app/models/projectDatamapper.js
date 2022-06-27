@@ -1,8 +1,10 @@
 const client = require("../config/db");
 
 // /**
-//  * @typedef {Object} InputData
-//  * @property {number} id - Unique identifyer of the table
+//  * @typedef {object} Category
+//  * @property {number} id - Identifiant unique Pk de la table
+//  * @property {string} route - Segment d'URL pour accéder à la catégorie (pour SEO)
+//  * @property {string} label - Le nom affichable de la catégorie
 //  */
 
 const projectDatamapper = {
