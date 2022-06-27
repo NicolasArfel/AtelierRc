@@ -51,7 +51,7 @@ const multiUpload = multer({
     },
 })
 
-exports.uploadManyFurniture = multiUpload.array('uploadedImages', 10);
+exports.uploadManyFurniture = multiUpload.array('uploadedImages', 20);
 
 exports.multiUploadFurniture = async (req, res) => {
 
@@ -67,6 +67,9 @@ exports.multiUploadFurniture = async (req, res) => {
     console.log('position = ',position);
 
     try {
+        if(position>20){
+            return res.status(403).json({error : 'you cannot load more than 20 files'});  //! ajout condition par Véronique 
+        }
         files.forEach(async file => {
             await furnitureDatamapper.addImageToFurniture(data.photo_credit, furniture_id, file.filename, position);
         })
