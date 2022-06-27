@@ -71,7 +71,7 @@ const BackProjetForm = ({
 
         handlePostProject(formData, config);
         dispatch(resetInputFormAddProject())
-        let path = `/back-projets`;
+        let path = `/back-mobilier`;
         navigate(path);
     }
 

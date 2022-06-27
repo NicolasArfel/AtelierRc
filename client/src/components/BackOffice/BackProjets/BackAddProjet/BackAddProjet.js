@@ -19,7 +19,7 @@ const BackAddProjet = () => {
   const location = useSelector((state) => state.BackProjectsReducer.location);
   const date = useSelector((state) => state.BackProjectsReducer.date);
   const program = useSelector((state) => state.BackProjectsReducer.program);
-  const surface = useSelector((state) => state.BackProjectsReducer.surface);
+  const surface = useSelector((state) => state.BackProjectsReducer.surface_area);
   const type = useSelector((state) => state.BackProjectsReducer.type);
   const client = useSelector((state) => state.BackProjectsReducer.client);
   const design = useSelector((state) => state.BackProjectsReducer.design);

@@ -32,6 +32,8 @@ import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact
 import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
 import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpdateProjet';
 import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
+import BackAddFurnitures from '../BackOffice/BackMobilier/BackAddFurnitures/BackAddFurnitures';
+import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/BackUpdateFurniture';
 
 const App = () => {
 
@@ -69,9 +71,12 @@ const App = () => {
         <Route exact path="/back-projets" element={role === 'admin' ? <BackProjets /> : <Error403 />} />
         <Route exact path="/back-admin" element={role === 'admin' ? <BackAdministration /> : <Error403 />} />
         <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} />
+        <Route path="/back-mobilier/addMobilier" element={role === 'admin' ? <BackAddFurnitures /> : <Error403 />} />
+        <Route path="/back-mobilier/updateMobilier/:slug" element={role === 'admin' ? <BackUpdateFurniture /> : <Error403 />} />
         {/* <Route exact path="/back-projets/updateProject/:slug" element={<BackUpdateProjet /> } /> */}
         {/* <Route exact path="/back-projets" element={<BackProjets />} /> */}
         {/* <Route path="/back-mobilier" element={ <BackMobilier />} /> */}
+        {/* <Route path="/back-mobilier/addMobilier" element={<BackAddFurnitures /> } /> */}
         {/* <Route exact path="/back-admin" element={ <BackAdministration /> } /> */}
         {/* <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } /> */}
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />

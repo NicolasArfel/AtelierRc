@@ -75,11 +75,11 @@ router.post('/api/contact', contactController.mail);
 
 /*Admin interface - create furniture and upload images */
 router.post('/api/admin/add-furniture', authenticateToken(), uploadImageFurniture, uploadFurniture);
-router.post('/api/admin/add-images-furniture/:id', uploadManyFurniture, multiUploadFurniture);
+router.post('/api/admin/add-images-furniture/:id', authenticateToken(),uploadManyFurniture, multiUploadFurniture);
 
 /* Admin interface - modify project and images */
 router.put('/api/admin/furniture/:id', authenticateToken(), furnitureController.updateOneFurniture);
-router.put('/api/admin/furniture/:id/coverphoto', furnitureController.switchCoverPhotoFurniture);
+router.put('/api/admin/furniture/:id/coverphoto', authenticateToken(),furnitureController.switchCoverPhotoFurniture);
 
 /* Admin interface - delete furniture and images */
 router.delete('/api/admin/delete-images-furniture/:id', authenticateToken(), furnitureController.deletePhoto);
