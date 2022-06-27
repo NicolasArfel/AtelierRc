@@ -7,6 +7,9 @@ import { resetInputFormAddProject } from '../../../../../Redux/Actions/BackProje
 import { useNavigate } from 'react-router-dom';
 
 const BackProjetForm = ({
+    imageHandler,
+    setFile,
+    file,
     projectName,
     location,
     date,
@@ -29,7 +32,6 @@ const BackProjetForm = ({
 
     let navigate = useNavigate();
 
-    const [file, setFile] = useState(null)
     const [labelValue, setLabelValue] = useState(1)
     // console.log('labelValue', labelValue);
 
@@ -71,22 +73,29 @@ const BackProjetForm = ({
 
         handlePostProject(formData, config);
         dispatch(resetInputFormAddProject())
-        let path = `/back-mobilier`;
+        let path = `/back-projets`;
         navigate(path);
+    }
+
+    const onChangeCoverImg = (e) => {
+        setFile(e.target.files[0])
+        imageHandler(e)
     }
 
     return (
 
-        <form className="col s6 left contact__form" onSubmit={handleSubmit}>
+        <form className="col s4 left contact__form" onSubmit={handleSubmit}>
             <div>
                 <input
+                    id='file'
                     type="file"
                     name="cover_image"
                     accept="image/png, image/jpeg, image/jpg"
                     required
-                    onChange={(e) => { setFile(e.target.files[0]) }}
+                    onChange={onChangeCoverImg}
                     className="input__file-cover-project"
                 />
+                <label htmlFor="file">Choisir une photo de couverture</label>
                 <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                     {labels.map((option) => (
                         <option

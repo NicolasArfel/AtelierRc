@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { actionPostProject, changeBackInputValue, actionResetFormAddProject } from "../../../../Redux/Actions/BackProjectsActions";
@@ -7,6 +7,11 @@ import BackProjetForm from "./BackProjetForm/BackProjetForm";
 
 
 const BackAddProjet = () => {
+
+  const [file, setFile] = useState(null)
+  // console.log('file', file);
+  const [readerFile, setReaderFile] = useState({})
+  // console.log('readerFile', readerFile);
 
   const dispatch = useDispatch();
 
@@ -27,6 +32,17 @@ const BackAddProjet = () => {
   const label = useSelector((state) => state.BackProjectsReducer.label);
   const userId = useSelector((state) => state.UserReducer.userId);
 
+  const imageHandler = (e) => {
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        // console.log(reader.readyState);
+        setReaderFile({ profileImg: reader.result })
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+  }
+
   const title = 'Back Office'
 
   return (
@@ -35,6 +51,9 @@ const BackAddProjet = () => {
 
       <div className="row">
         <BackProjetForm
+          imageHandler={imageHandler}
+          setFile={setFile}
+          file={file}
           projectName={projectName}
           location={location}
           date={date}
@@ -55,6 +74,23 @@ const BackAddProjet = () => {
             dispatch(actionPostProject(formData, config))
           }}
         />
+        <article className="col s4 right preview__project sticky__details-project">
+          <ul>
+            <h3>Preview du projet</h3>
+            <picture>
+              {file && <img className="responsive-img " alt='preview-img' src={readerFile.profileImg} />}
+            </picture>
+            {projectName && <ol><h4>Titre : {projectName}</h4></ol>}
+            {location && <ol><p>Localisation: {location}</p></ol>}
+            {date && <ol><p>Année: {date}</p></ol>}
+            {program && <ol><p>Programme: {program}</p></ol>}
+            {surface && <ol><p>Surface: {surface}m²</p></ol>}
+            {type && <ol><p>Type: {type}</p></ol>}
+            {client && <ol><p>Commenditaire: {client}</p></ol>}
+            {design && <ol><p>Conception: {design}</p></ol>}
+            {photoCredit && <ol><p>Crédit Photo: {photoCredit}</p></ol>}
+          </ul>
+        </article>
       </div>
     </main>
   )
