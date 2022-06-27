@@ -29,12 +29,10 @@ INSERT INTO furniture (name, slug, type, designer, editor, date, dimensions, con
 ('Alvar Aalto chaise modèle 68', 'alvar-aalto-chaise-modele-68', 'Meuble','Aalto, Alvar','Artek','Circa 1930','45.5 x 45 x 69.5cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Charles Dudouyt chaise basse paillée', 'charles-dudouyt-chaise-basse-paillee', 'Meuble','Dudouyt, Charles','Anonyme','Circa 1950_1960','48 x 42 x 70cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Eero Saarinen chaise « conference »', 'eero-saarinen-chaise-conference', 'Meuble','Saarinen, Eero','Knoll','Circa 1960','57 x 58 x 81cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Odelberg Olsen chaise de travail n°T60 U', 'odelberg-olsen-chaise-de-travail-n-°-t60-u', 'Meuble','Olsen, Odelberg','Knoll International','Circa 1947','38 x 47 x 78.7cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Fontoni & Geraci chaise pliante « Elios »', 'fontoni-&-geraci-chaise-pliante-Elios', 'Meuble','Fontoni & Geraci','Anonyme','Circa 1970','50 x 46.5 x 83cm (Largeur x Profondeur x Hauteur)', 'Bon état', NULL, FALSE, NULL, 1),
+('Odelberg Olsen chaise de travail n°T60 U', 'odelberg-olsen-chaise-de-travail-n-t60-u', 'Meuble','Olsen, Odelberg','Knoll International','Circa 1947','38 x 47 x 78.7cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
+('Fontoni & Geraci chaise pliante « Elios »', 'fontoni-geraci-chaise-pliante-elios', 'Meuble','Fontoni & Geraci','Anonyme','Circa 1970','50 x 46.5 x 83cm (Largeur x Profondeur x Hauteur)', 'Bon état', NULL, FALSE, NULL, 1),
 ('Marcel Breuer chaises b32', 'marcel-breuer-chaises-b32', 'Meuble','Breuer, Marcel','Thonet','Circa 1970','47 x 53 x 81cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Arne Jacobsen chaises série 7', 'arne-jacobsen-chaises-serie-7', 'Meuble','Jacobsen, Arne','Fritz Hansen','Circa 1955','45 x 45 x 76cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1);
-
-
+('Arne Jacobsen chaises série 7','arne-jacobsen-chaises-serie-7', 'Meuble','Jacobsen, Arne','Fritz Hansen','Circa 1955','45 x 45 x 76cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1);
 
 INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id) VALUES
 ('lamarck_pers_1.jpg', 1, 'image ©Romain-Caillon', TRUE, 1),
