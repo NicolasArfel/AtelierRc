@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,6 +34,7 @@ import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpd
 import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAddFurnitures from '../BackOffice/BackMobilier/BackAddFurnitures/BackAddFurnitures';
 import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/BackUpdateFurniture';
+import Loader from '../Loader/Loader';
 
 const App = () => {
 
@@ -41,9 +42,13 @@ const App = () => {
   const dispatch = useDispatch();
 
   // console.log(location)
-
+  const [loading, setLoading] = useState(true);
   // Effect active on page load
-  useEffect(() => {
+  useEffect(() => {  
+      setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
     dispatch(actionDispatchStatus());
@@ -56,9 +61,10 @@ const App = () => {
   // const token = useSelector((state) => state.UserReducer.token);
   // console.log('token ? ', token);
 
-  return (
+  return loading ? (
+    <Loader/> ) : (
     <div className="App">
-      <Header />
+     <Header />
       <Routes>
         <Route exact path="/" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
