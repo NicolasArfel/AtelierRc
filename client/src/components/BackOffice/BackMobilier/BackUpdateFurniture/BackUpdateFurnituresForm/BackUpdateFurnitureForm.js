@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BackUpdateFurnituresFormInput from './BackUpdateFurnitureFormInput/BackUpdateFurnituresFormInput';
 
@@ -11,14 +10,11 @@ const BackUpdateFurnitureForm = ({
     designer,
     date,
     dimensions,
-    // conditions,
     description,
-    // availability,
     photoCredit,
     userId,
     changeInputValue,
     handleUpdateFurnitures }) => {
-
 
     const conditionsLabels = [
         'Bon état',
@@ -41,14 +37,25 @@ const BackUpdateFurnitureForm = ({
     const availableTitle = 'Disponibilité';
     const descriptionTitle = 'Description';
     const creditTitle = 'Crédit Photo';
-    // const [file, setFile] = useState(null)
     const [conditionLabelValue, setConditionLabelValue] = useState('Bon état')
     const [availableLabelValue, setAvailableLabelValue] = useState(true)
 
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         await handleUpdateFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
-        
+         
+        // I check if my input is empty or not. If is not i replace some carac for build a cool slug
+        if (furnitureName) {
+            // I format my projectName to skip spaces and some other carac for build a cool name
+            const slugName = furnitureName
+                .replace(/(?!\w|\s)./g, '')
+                .replace(/\s+/g, ' ')
+                .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+            // with my new cool name i build a slug and i exploit it to navigate when my project is updated
+            const newSlugName = slugName.replace(/ +/g, "-").toLowerCase()
+            let path = `/back-mobilier/updateMobilier/${newSlugName}`;
+            navigate(path);}
     }
 
     return (

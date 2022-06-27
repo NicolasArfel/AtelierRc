@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { actionPostFurniture, actionUpdateFurnitures } from "../../../../Redux/Actions/BackFurnituresActions";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { actionDeletePhotoFurniture, actionPostCoverPhotoFurniture, actionPostFurniture, actionPostMultyFilePhotoFurniture, actionUpdateFurnitures } from "../../../../Redux/Actions/BackFurnituresActions";
 import { changeBackInputValue } from "../../../../Redux/Actions/BackFurnituresActions";
 import { actionAxiosFurnituresPictures } from "../../../../Redux/Actions/FurnituresActions";
 import { findFurniture } from "../../../../Redux/Selectors/furnituresSelectors";
@@ -19,6 +19,7 @@ const BackUpdateFurniture = () => {
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
     const [multyFile, setMultyFile] = useState(null)
+    console.log('multyFile', multyFile);
 
     const furnitureName = useSelector((state) => state.BackFurnituresReducer.furniture_name);
     const type = useSelector((state) => state.BackFurnituresReducer.type);
@@ -33,34 +34,37 @@ const BackUpdateFurniture = () => {
     const userId = useSelector((state) => state.UserReducer.userId);
 
     const furnitures = useSelector((state) => findFurniture(state.FurnituresReducer.furnitures, slug))
-    console.log(furnitures)
+    
     const pictures = useSelector((state) => state.FurnituresReducer.pictures);
+   
     useEffect(() => {
         furnitures && dispatch(actionAxiosFurnituresPictures(furnitures.furniture_id));
+        
+        
     }, [dispatch, furnitures]);
 
-    // const handleSubmitMultiPhoto = (event) => {
+    const handleSubmitMultiPhoto = (event) => {
 
-    //     event.preventDefault();
+        event.preventDefault();
 
-    //     const formData = new FormData()
+        const formData = new FormData()
 
-    //     // ajout de plusieurs fichier aux formData de façon dynamique
-    //     Object.entries(multyFile).forEach(([key, value]) => {
-    //         console.log('array file', [key, value])
-    //         formData.append('uploadedImages', value)
-    //     },
-    //     );
+        // ajout de plusieurs fichier aux formData de façon dynamique
+        Object.entries(multyFile).forEach(([key, value]) => {
+            // console.log('array file', [key, value])
+            formData.append('uploadedImages', value)
+        },
+        );
 
-    //     const config = {
-    //         headers: {
-    //             'content-type': 'multipart/form-data'
-    //         }
-    //     }
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
 
         // console.log('furniture id =', furnitures.furniture_id);
-        // dispatch(actionPostMultyFilePhotoFurniture(furnitures.furniture_id, formData, config));
-    // }
+        dispatch(actionPostMultyFilePhotoFurniture(furnitures.furniture_id, formData, config));
+    }
     return (
         <>
             {furnitures && <main className="container" >
@@ -79,9 +83,7 @@ const BackUpdateFurniture = () => {
                             designer={designer}
                             date={date}
                             dimensions={dimensions}
-                            // conditions={conditions}
                             description={description}
-                            // availability={availability}
                             photoCredit={photoCredit}
                             userId={userId}
                             changeInputValue={(value, name) => {
@@ -95,7 +97,7 @@ const BackUpdateFurniture = () => {
                         />
                     </div>
                 </div>
-                {/* <div className="col s6 sticky__details-project">
+                <div className="col s6 sticky__details-project">
                     <form className="col s6 left contact__form" onSubmit={handleSubmitMultiPhoto}>
                         <div className='label__file-cover'>
                             <input
@@ -119,29 +121,29 @@ const BackUpdateFurniture = () => {
                         </div>
                     </form>
                     <div className="col s12 update__project">
-                        {pictures.map(picture => (
-                            <article className="card__article preview__update-project" key={picture.id}>
+                        {pictures.map(furniture => (
+                            <article className="card__article preview__update-project" key={furniture.id}>
                                 <div className="card-image">
                                     <div className="card__image-photo-project">
-                                        {picture.cover_photo === true ? <p className='cover__photo-project'>Cover</p> : ''}
-                                        <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        {furniture.cover_photo === true ? <p className='cover__photo-project'>Cover</p> : ''}
+                                        <img className="responsive-img z-depth-2" alt={furniture.name} src={`http://localhost:3001/image/furnitures/${furniture.name}`} />
                                     </div>
                                     <div className='card__button-flex-projet'>
-                                        {picture.cover_photo === false ? <button
+                                        {furniture.cover_photo === false ? <button
                                             className='btn-flat btn__toggle-supprimer'
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                console.log('photo id =', picture.id);
-                                                dispatch(actionDeletePhotoFurniture(picture.id));
+                                                console.log('photo id =', furniture.id);
+                                                dispatch(actionDeletePhotoFurniture(furniture.id));
                                             }}
                                         >Supprimer
                                         </button> : ''}
-                                        {picture.cover_photo === false ? <button
+                                        {furniture.cover_photo === false ? <button
                                             className='btn-flat btn__toggle-updateCover'
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                console.log('photo id =', picture.id);
-                                                dispatch(actionPostCoverPhotoFurniture(picture.id));
+                                                console.log('photo id =', furniture.id);
+                                                dispatch(actionPostCoverPhotoFurniture(furniture.id));
                                             }}
                                         >Ajouter cover
                                         </button> : ''}
@@ -150,7 +152,7 @@ const BackUpdateFurniture = () => {
                             </article>
                         ))}
                     </div>
-                </div> */}
+                </div>
 
             </main>}
         </>

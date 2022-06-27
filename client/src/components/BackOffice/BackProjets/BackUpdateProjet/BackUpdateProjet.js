@@ -54,7 +54,7 @@ const BackUpdateProjet = () => {
 
         // ajout de plusieurs fichier aux formData de façon dynamique
         Object.entries(multyFile).forEach(([key, value]) => {
-            console.log('array file', [key, value])
+            // console.log('array file', [key, value])
             formData.append('uploadedImages', value)
         },
         );

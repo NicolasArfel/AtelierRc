@@ -7,7 +7,7 @@ const token = localStorage.getItem('token');
 let decodedJwt = false
 if (token) {
     decodedJwt = jwt_decode(token);
-    console.log(decodedJwt);
+    // console.log(decodedJwt);
 }
 // console.log('storageUser', user)
 
@@ -25,7 +25,7 @@ export const initialState = {
 const reducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case CHANGE_INPUT_VALUE:
-            console.log('je suis dans CHANGE_INPUT_VALUE');
+            // console.log('je suis dans CHANGE_INPUT_VALUE');
             return {
                 ...state,
                 [action.payload.name]: action.payload.value,
