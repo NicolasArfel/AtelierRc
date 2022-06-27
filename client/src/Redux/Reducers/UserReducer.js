@@ -16,8 +16,9 @@ export const initialState = {
     password: '',
     confirmPassword: '',
     isLogged: decodedJwt && true,
+    token: decodedJwt ? token : null,
     firstName: decodedJwt ? decodedJwt.firstname : '',
-    lastName: decodedJwt ? decodedJwt.lasntame : '',
+    lastName: decodedJwt ? decodedJwt.lastname : '',
     role: decodedJwt ? decodedJwt.role : 'visiteur',
     userId: decodedJwt ? decodedJwt.id : '',
 };
@@ -38,21 +39,25 @@ const reducer = (state = initialState, action = {}) => {
                 isLogged: true,
                 password: '',
                 confirmPassword: '',
+                token: action.payload.accessToken,
                 firstName: action.payload.decodedJwt.firstname,
                 lastName: action.payload.decodedJwt.lastname,
-                role: action.payload.decodedJwt.role
+                role: action.payload.decodedJwt.role,
+                userId: action.payload.decodedJwt.id
             };
         case LOGOUT:
             // console.log('je suis dans LOGOUT');
             return {
                 ...state,
+                email: '',
+                password: '',
+                confirmPassword: '',
                 isLogged: false,
                 token: null,
                 firstName: '',
                 lastName: '',
-                email: '',
-                password: '',
-                role: 'visiteur'
+                role: 'visiteur',
+                userId: ''
             };
 
         default:

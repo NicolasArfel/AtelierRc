@@ -1,10 +1,15 @@
 import jwt_decode from "jwt-decode";
 
-import { actionSaveUser, LOGOUT, SAVE_USER, SUBMIT_LOGIN, SUBMIT_PROFIL } from "../Actions/UserActions";
+import { actionSaveUser, LOGOUT, SUBMIT_LOGIN, SUBMIT_PROFIL } from "../Actions/UserActions";
 import { updateProfile } from "../Requests/ProfileRequests";
-import { requestLogin, saveAuthorization, removeAuthorization } from "../Requests/Requests";
+import { requestLogin } from "../Requests/Requests";
 
 const UserMiddleware = (store) => (next) => async (action) => {
+
+    const getTokenOnReducer = store.getState()
+    // console.log('getTokenOnReducer', getTokenOnReducer);
+    const token = getTokenOnReducer.UserReducer.token
+
     switch (action.type) {
         case SUBMIT_PROFIL: {
             // console.log('je suis dans SUBMIT_PROFIL');
@@ -19,7 +24,7 @@ const UserMiddleware = (store) => (next) => async (action) => {
             // console.log('usermiddle',userId)
 
             try {
-                const response = await updateProfile(userId, firstName, lastName, email, password)
+                const response = await updateProfile(userId, firstName, lastName, email, password, token)
                 // console.log('toto',userId, firstName,lastName,email,password) 
                 // console.log('reponse put', response)
                 if (response.status === 200) {
@@ -52,21 +57,12 @@ const UserMiddleware = (store) => (next) => async (action) => {
             } catch (err) {
                 console.error(err);
             }
-            break;
-        }
-        case SAVE_USER: {
-            // console.log('je suis dans SAVE_USER middleware');
-            saveAuthorization(action.payload.token);
-
-            next(action);
-            break;
+            return;
         }
         case LOGOUT: {
             // console.log('je suis dans LOGOUT middleware');
             // on supprime le token de axios
             localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            removeAuthorization();
             next(action);
             break;
         }

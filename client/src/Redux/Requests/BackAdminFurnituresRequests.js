@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const token = localStorage.getItem('token');
-// console.log('token =', token);
+// const token = localStorage.getItem('token');
+// // console.log('token =', token);
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
 });
 
-export async function deleteFurniture(furnitureId) {
+export async function deleteFurniture(furnitureId, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -21,7 +21,7 @@ export async function deleteFurniture(furnitureId) {
 }
 
 
-export async function postNewFurniture(formData, config) {
+export async function postNewFurniture(formData, config, token) {
   try {
     axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post('/api/admin/add-furniture', formData, { config });
@@ -31,7 +31,7 @@ export async function postNewFurniture(formData, config) {
   }
 }
 
-export async function UpdateFurniture(furniture_id, newData) {
+export async function UpdateFurniture(furniture_id, newData, token) {
   try {
     axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.put(`/api/admin/furniture/${furniture_id}`, newData);
@@ -41,7 +41,7 @@ export async function UpdateFurniture(furniture_id, newData) {
   }
 }
 
-export async function uploadMorePhotoFurniture(furniture_id, formData, config) {
+export async function uploadMorePhotoFurniture(furniture_id, formData, config, token) {
   try {
     axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post(`/api/admin/add-images-furniture/${furniture_id}`, formData, { config });
@@ -51,7 +51,7 @@ export async function uploadMorePhotoFurniture(furniture_id, formData, config) {
   }
 }
 
-export async function deletePhotoFurniture(id) {
+export async function deletePhotoFurniture(id, token) {
   try {
     axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.delete(`/api/admin/delete-images-furniture/${id}`);
@@ -62,7 +62,7 @@ export async function deletePhotoFurniture(id) {
   }
 }
 
-export async function updateCoverPhotoFurniture(id) {
+export async function updateCoverPhotoFurniture(id, token) {
   try {
     axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.put(`/api/admin/furniture/${id}/coverphoto`);

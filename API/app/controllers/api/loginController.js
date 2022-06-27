@@ -15,7 +15,7 @@ const loginController = {
             // console.log({ email, password });
             const user = await userDatamapper.findUser(email);
 
-            console.log("my user in the database", user);
+            // console.log("my user in the database", user);
 
             if (email !== user?.email) {
                 return res.status(401).json('mot de passe ou indentifiant invalide')
@@ -25,17 +25,17 @@ const loginController = {
             //     return res.status(401).json('mot de passe ou indentifiant invalide_1')
             // }
             const validPassword = await bcrypt.compare(password, user.password)
-            console.log("validPassword :", validPassword);
+            // console.log("validPassword :", validPassword);
 
             if (!validPassword) {
                 return res.status(401).json('mot de passe ou indentifiant invalide')
             }
 
             if (user && validPassword) {
-                console.log(user);
+                // console.log(user);
                 const { id, email, lastname, firstname, role } = user
                 const newUser = { id, email, lastname, firstname, role };
-                console.log(newUser);
+                // console.log(newUser);
 
                 const accessToken = generateAccessToken(newUser);
                 //console.log('access Token', accessToken);

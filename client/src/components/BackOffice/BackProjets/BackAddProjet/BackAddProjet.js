@@ -31,6 +31,7 @@ const BackAddProjet = () => {
   const photoCredit = useSelector((state) => state.BackProjectsReducer.photo_credit);
   const label = useSelector((state) => state.BackProjectsReducer.label);
   const userId = useSelector((state) => state.UserReducer.userId);
+  console.log('userId dans backAddProject', userId);
 
   const imageHandler = (e) => {
     const reader = new FileReader()

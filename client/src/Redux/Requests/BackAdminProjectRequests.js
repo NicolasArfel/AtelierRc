@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const token = localStorage.getItem('token');
-// console.log('token =', token);
+// const token = localStorage.getItem('token');
+// // console.log('token =', token);
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
@@ -17,7 +17,7 @@ export async function findAllProjects() {
   }
 }
 
-export async function deleteProject(projectId) {
+export async function deleteProject(projectId, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -29,7 +29,7 @@ export async function deleteProject(projectId) {
   }
 }
 
-export async function deletePhotoProject(id) {
+export async function deletePhotoProject(id, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -41,7 +41,7 @@ export async function deletePhotoProject(id) {
   }
 }
 
-export async function postNewProject(formData, config) {
+export async function postNewProject(formData, config, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -53,7 +53,7 @@ export async function postNewProject(formData, config) {
   }
 }
 
-export async function updateCoverPhotoProject(id) {
+export async function updateCoverPhotoProject(id, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -65,7 +65,7 @@ export async function updateCoverPhotoProject(id) {
   }
 }
 
-export async function uploadMorePhotoProject(project_id, formData, config) {
+export async function uploadMorePhotoProject(project_id, formData, config, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;
@@ -77,8 +77,8 @@ export async function uploadMorePhotoProject(project_id, formData, config) {
   }
 }
 
-export async function UpdateProject(project_id, newData) {
-  // console.log(newData);
+export async function UpdateProject(project_id, newData, token) {
+  console.log(newData);
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;

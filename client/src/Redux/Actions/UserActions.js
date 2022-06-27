@@ -5,7 +5,7 @@ export const LOGOUT = 'LOGOUT';
 export const SUBMIT_PROFIL = 'SUBMIT_PROFIL'
 
 export const actionSubmitProfil = (id) => ({
-    type : SUBMIT_PROFIL,
+    type: SUBMIT_PROFIL,
     payload: {
         id
     }
@@ -23,11 +23,11 @@ export const actionSubmitLogin = () => ({
     type: SUBMIT_LOGIN,
 })
 
-export const actionSaveUser = (decodedJwt, token) => ({
+export const actionSaveUser = (decodedJwt, accessToken) => ({
     type: SAVE_USER,
     payload: {
         decodedJwt,
-        token,
+        accessToken,
     },
 });
 

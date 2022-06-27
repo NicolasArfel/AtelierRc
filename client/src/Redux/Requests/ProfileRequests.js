@@ -1,13 +1,10 @@
 import axios from "axios";
 
-const token = localStorage.getItem('token');
-// console.log('token =', token);
-
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
 });
 
-export async function updateProfile(userId, first_name, last_name, email, password) {
+export async function updateProfile(userId, first_name, last_name, email, password, token) {
   try {
 
     axiosInstance.defaults.headers.common.authorization = `${token}`;

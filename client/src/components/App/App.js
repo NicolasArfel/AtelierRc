@@ -53,6 +53,8 @@ const App = () => {
   // console.log('loggé ? ', isLogged);
   const role = useSelector((state) => state.UserReducer.role);
   // console.log('role ? ', role);
+  // const token = useSelector((state) => state.UserReducer.token);
+  // console.log('token ? ', token);
 
   return (
     <div className="App">

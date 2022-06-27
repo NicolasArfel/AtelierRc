@@ -4,6 +4,11 @@ import { deletePhotoProject, deleteProject, findAllProjects, getLabelProject, po
 import { filteredProjects } from "../Selectors/projectsSelectors";
 
 const BackProjectsMiddleware = (store) => (next) => async (action) => {
+
+    const getTokenOnReducer = store.getState()
+    // console.log('getTokenOnReducer',getTokenOnReducer);
+    const token = getTokenOnReducer.UserReducer.token
+
     switch (action.type) {
         case ACTION_AXIOS_GET_ONLY_PROJECTS: {
 
@@ -17,7 +22,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
         case ACTION_DELETE_PHOTO_PROJECT: {
 
-            const responseDeletePhotoProject = await deletePhotoProject(action.payload.id);
+            const responseDeletePhotoProject = await deletePhotoProject(action.payload.id, token);
             // console.log('responseDeletePhotoProject =',responseDeletePhotoProject)
 
             store.dispatch(
@@ -28,7 +33,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
         case DELETE_PROJECT: {
 
-            const responseProjects = await deleteProject(action.payload.id);
+            const responseProjects = await deleteProject(action.payload.id, token);
             // console.log('response delete', responseProjects.status)
 
             if (responseProjects.status === 204) {
@@ -51,7 +56,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await postNewProject(formData, config);
+                const response = await postNewProject(formData, config, token);
                 // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(
@@ -70,7 +75,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await updateCoverPhotoProject(id);
+                const response = await updateCoverPhotoProject(id, token);
                 // console.log('reponse back', AxiosError)
                 if (response.status === 200) {
                     store.dispatch(
@@ -89,7 +94,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await uploadMorePhotoProject(project_id, formData, config);
+                const response = await uploadMorePhotoProject(project_id, formData, config, token);
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()
@@ -111,7 +116,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log(newData);
 
             try {
-                const response = await UpdateProject(project_id, newData);
+                const response = await UpdateProject(project_id, newData, token);
                 // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(

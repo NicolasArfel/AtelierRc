@@ -42,7 +42,7 @@ function checkFileType(file, callback) {
 
 const upload = multer({
     storage: multerConfig,
-    limits: { fileSize: 1024 * 1024 * 5 },
+    // limits: { fileSize: 1024 * 1024 * 5 },
     fileFilter: function (req, file, callback) {
         checkFileType(file, callback)
     },
@@ -99,6 +99,7 @@ exports.upload = async (req, res) => {
         if (checkIfProjectExists !== undefined) {
             return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);
         } else {
+            console.log('user_id juste avant insert project', data);
             await projectDatamapper.insert(data, originalname, spacingProjectName, slugProjectName);
             return res.status(200).json(`le projet ${data.project_name} a bien été ajouté`);
         }

@@ -33,7 +33,7 @@ const BackProjetForm = ({
     let navigate = useNavigate();
 
     const [labelValue, setLabelValue] = useState(1)
-    // console.log('labelValue', labelValue);
+    console.log('labelValue', labelValue);
 
     const projectTitle = 'Nom du projet';
     const locationTitle = 'Localisation';

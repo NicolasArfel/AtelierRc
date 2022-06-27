@@ -77,7 +77,7 @@ const projectController = {
     */
    async delete(req, res) {
       const deleteProject = await projectDatamapper.findByPk(req.params.id);
-      console.log("je suis dans le controller delete", deleteProject)
+      // console.log("je suis dans le controller delete", deleteProject)
       if (!deleteProject) {
          return res.status(404).send("error: The project you are looking for does not exists");
          //throw new ApiError('This project does not exists', { statusCode: 404 });
@@ -89,7 +89,7 @@ const projectController = {
 
    async deletePhoto(req, res) {
       const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
-      console.log("je suis dans le controller delete", deleteThisPhoto)
+      // console.log("je suis dans le controller delete", deleteThisPhoto)
       if (!deleteThisPhoto) {
          return res.status(404).json("error: The photo you are looking for does not exists");
       }
@@ -118,11 +118,11 @@ const projectController = {
          // console.log('position = ', position + 1);
 
          const findedCoverPhoto = currentProjectWithAllPhoto.find(element => element.cover_photo === true);
-         console.log('findedCoverPhoto =', findedCoverPhoto);
+         // console.log('findedCoverPhoto =', findedCoverPhoto);
 
          //? I want to swtich true to false on the project_photo found
          if (findedCoverPhoto) {
-            console.log(' je suis dans if findedCoverPhoto et je lance turnOffCoverPhoto');
+            // console.log(' je suis dans if findedCoverPhoto et je lance turnOffCoverPhoto');
             const responseFindedCoverPhoto = await projectDatamapper.turnOffCoverPhoto(findedCoverPhoto.id, position);
             // //? I want to switch false to true on the project_photo i clicked
             responseFindedCoverPhoto && await projectDatamapper.turnONCoverPhoto(id);
@@ -142,7 +142,7 @@ const projectController = {
 
       const id = Number(req.params.id)
       let newProjectName = req.body.project_name
-      console.log('req.body', req.body);
+      // console.log('req.body', req.body);
 
       const projects = await projectDatamapper.findAll();
       // console.log('projects', projects);
@@ -192,7 +192,7 @@ const projectController = {
          // console.log('id', id);
 
          const updateProject = await projectDatamapper.updateOneProject(id, name, slug, location, date, program, surface_area, type, project_client, design, photo_credit, status_id);
-         console.log(updateProject);
+         // console.log(updateProject);
          return res.status(200).json('Project has been updated');
       }
    },
