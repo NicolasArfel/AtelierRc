@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import './Login.css'
 import LoginForm from "./LoginForm/LoginForm";
@@ -18,7 +17,7 @@ const Login = () => {
     return (
         <main className="login container center" >
             <Banner title={title} description={description} />
-            <div className="row center">
+            <div className="row center login__form-container">
                 <LoginForm
                     title={title}
                     email={email}

@@ -1,5 +1,5 @@
 import { ACTION_DELETE_PHOTO_FURNITURE, DELETE_FURNITURE, POST_COVER_PHOTO_FURNITURE, POST_FURNITURE, POST_MULTY_PHOTO_FURNITURE, UPDATE_FURNITURE } from "../Actions/BackFurnituresActions";
-import { actionAxiosFurnitures, actionDispatchFurnitures } from "../Actions/FurnituresActions";
+import { actionAxiosFurnitures } from "../Actions/FurnituresActions";
 import { deleteFurniture, deletePhotoFurniture, postNewFurniture, updateCoverPhotoFurniture, UpdateFurniture, uploadMorePhotoFurniture } from "../Requests/BackAdminFurnituresRequests";
 import { filteredFurnitures } from "../Selectors/furnituresSelectors";
 
@@ -14,7 +14,7 @@ const BackFurnituresMiddleware = (store) => (next) => async (action) => {
                 const newState = filteredFurnitures(responseFurnitureReducer.FurnituresReducer.furnitures, action.payload.id);
                 // console.log('newstate', newState)
                 store.dispatch(
-                    actionDispatchFurnitures(newState)
+                    actionAxiosFurnitures(newState)
                 );
             }
 

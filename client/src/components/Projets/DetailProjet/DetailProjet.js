@@ -55,7 +55,6 @@ const DetailProjet = () => {
                                         <p>{projet.design} </p>
                                         <p>{projet.photo_credit}</p>
                                     </div>
-                                </div>
                                 <NavLink to='/'>
                                     <button
                                         className="btn waves-effect waves-light grey darken-3 button"
@@ -65,6 +64,7 @@ const DetailProjet = () => {
                                     </button>
 
                                 </NavLink>
+                                </div>
                             </div>
                         </div>
                         {pictures &&

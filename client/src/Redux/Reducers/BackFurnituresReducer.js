@@ -1,6 +1,6 @@
 /* --- creation of the state --- */
 
-import { ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET, CHANGE_BACK_INPUT_VALUE } from "../Actions/BackFurnituresActions";
+import { ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET, ACTION_REFRESH_FURNITURES_STATE, CHANGE_BACK_INPUT_VALUE } from "../Actions/BackFurnituresActions";
 
 export const initialState = {
     furniture_name: '',
@@ -35,13 +35,26 @@ const reducer = (state = initialState, action = {}) => {
                 editor: action.payload.furniture.editor,
                 designer: action.payload.furniture.designer,
                 date: action.payload.furniture.date,
-                dimensions: action.payload.furniture.dimension,
+                dimensions: action.payload.furniture.dimensions,
                 condition: action.payload.furniture.condition,
                 description: action.payload.furniture.description,
                 availability: action.payload.furniture.availability,
                 photo_credit: action.payload.furniture.photo_credit,
             }
-
+        case ACTION_REFRESH_FURNITURES_STATE:
+            return {
+                ...state,
+                furniture_name: '',
+                type: '',
+                editor: '',
+                designer: '',
+                date: '',
+                dimensions: '',
+                condition: 'Bon état',
+                description: '',
+                availability: true,
+                photo_credit: '',
+            }
 
         default:
             return state;

@@ -38,6 +38,7 @@ const BackMobilier = () => {
     <main className="container" >
       <BannerBackOffice
         title={title}
+        description={''}
       />
       <div className="row">
         <div className="col s12 right table__back-projects">

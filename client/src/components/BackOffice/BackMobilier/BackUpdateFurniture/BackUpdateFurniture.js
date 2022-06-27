@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import { actionDeletePhotoFurniture, actionDispatchFurnitureFormAutoComplet, actionPostCoverPhotoFurniture, actionPostMultyFilePhotoFurniture, actionUpdateFurnitures } from "../../../../Redux/Actions/BackFurnituresActions";
+import { actionDeletePhotoFurniture, actionDispatchFurnitureFormAutoComplet, actionPostCoverPhotoFurniture, actionPostMultyFilePhotoFurniture, actionRefreshFurnitureState, actionUpdateFurnitures } from "../../../../Redux/Actions/BackFurnituresActions";
 import { changeBackInputValue } from "../../../../Redux/Actions/BackFurnituresActions";
 import { actionAxiosFurnituresPictures } from "../../../../Redux/Actions/FurnituresActions";
 import { findFurniture } from "../../../../Redux/Selectors/furnituresSelectors";
@@ -35,6 +35,7 @@ const BackUpdateFurniture = () => {
     const pictures = useSelector((state) => state.FurnituresReducer.pictures);
 
     useEffect(() => {
+        furnitures && dispatch(actionRefreshFurnitureState());
         furnitures && dispatch(actionAxiosFurnituresPictures(furnitures.furniture_id));
         furnitures && dispatch(actionDispatchFurnitureFormAutoComplet(furnitures));
 

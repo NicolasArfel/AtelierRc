@@ -45,10 +45,14 @@ const Furnitures = () => {
                             <div className="card-reveal furniture__card-reveal">
                                 <span className="card-title grey-text text-darken-4 furniture__card-title">{furniture.furniture_name}<i className="material-icons right">close</i></span>
                                 <div className="furniture__card-field">
-                                    <p>État : {furniture.condition}</p>
-                                    <p className="furniture__description">Description : “ {furniture.description} “</p>
-                                    <p>Type : {furniture.type}</p>
-                                    <p>{furniture.photo_credit}</p>
+                                    <p>{furniture.description}</p>
+                                    {furniture.designer.toLowerCase() === 'anonyme' ? '' :<p>{furniture.designer}</p>}
+                                    {furniture.editor.toLowerCase() === 'anonyme' ? '' :<p>{furniture.editor}</p>}
+                                    <p>{furniture.date}</p>
+                                    <p>{furniture.dimensions}</p>
+                                    <p>{furniture.condition}</p>
+                                    {furniture.availability === true ? <p style={{ color: 'green' }}>Disponible</p> : <p style={{ color: 'red' }}>Indisponible</p>}
+                                    <p >{furniture.photo_credit}</p>
                                 </div>
                             </div>
                         </div>

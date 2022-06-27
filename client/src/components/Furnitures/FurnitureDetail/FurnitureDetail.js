@@ -17,7 +17,7 @@ const FurnitureDetail = () => {
     // console.log(furniture)
 
     useEffect(() => {
-       furniture && dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
+        furniture && dispatch(actionAxiosFurnituresPictures(furniture.furniture_id));
     }, [dispatch, furniture]);
 
     const pictures = useSelector((state) => state.FurnituresReducer.pictures)
@@ -33,18 +33,19 @@ const FurnitureDetail = () => {
                         <div className="col s12">
                             <div className="card card__detail">
                                 <div className="card-content">
-                                    <p>{furniture.description}</p>
-                                    <p >{furniture.designer}</p>
-                                    <p >{furniture.editor}</p>
-                                    <p >{furniture.date}</p>
+                                    {furniture.description && <p>{furniture.description}</p>}
+                                    {furniture.designer.toLowerCase() === 'anonyme' ? '' : <p>{furniture.designer}</p>}
+                                    {furniture.editor.toLowerCase() === 'anonyme' ? '' : <p>{furniture.editor}</p>}
+                                    {furniture.date && <p>{furniture.date}</p>}
+
                                 </div>
                                 <div className="card-content">
-                                    <p >{furniture.dimensions}</p>
-                                    <p >{furniture.condition}</p>
-                                    {furniture.availability === true ? <p style={{color: 'green'}}>Disponible</p> : <p style={{color: 'red'}}>Indisponible</p>}
+                                    {furniture.dimensions && <p>{furniture.dimensions}</p>}
+                                    {furniture.condition && <p>{furniture.condition}</p>}
+                                    {furniture.availability === true ? <p style={{ color: 'green' }}>Disponible</p> : <p style={{ color: 'red' }}>Indisponible</p>}
                                 </div>
                                 <div className="card-content">
-                                    <p >{furniture.photo_credit}</p>
+                                    {furniture.photo_credit && <p >{furniture.photo_credit}</p>}
                                 </div>
 
 
