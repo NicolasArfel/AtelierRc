@@ -11,6 +11,8 @@ const debug = require('debug')('Validator:log');
  * Renvoi une erreur 400 si la validation échoue.
  */
 module.exports = (prop, schema) => async (request, _, next) => {
+    console.log("je suis dans le validator",request.body)
+    console.log("je suis dans le validator req.file:", request.file)
     try {
         // la "value" on s'en fiche on la récupère pas
         // request['body'] == request.body
@@ -21,6 +23,6 @@ module.exports = (prop, schema) => async (request, _, next) => {
         // Je dois afficher l'erreur à l'utilisateur
         // STATUS HTTP pour une erreur de saise : 400
         // On réabille l'erreur en suivant notre propre normalisation
-        next(new ApiError(error.details[0].message, { statusCode: 400 }));
+        next(new Error(error.details[0].message, { statusCode: 400 }));
     }
 };

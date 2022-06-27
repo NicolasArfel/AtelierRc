@@ -51,10 +51,11 @@ const upload = multer({
 exports.uploadImage = upload.single('cover_image');
 
 exports.upload = async (req, res) => {
-
+console.log("Nous sommes ici");
     try {
 
         const originalname = req.file.originalname
+        console.log("originalname = ", originalname)
 
         const data = req.body;
     
@@ -63,14 +64,19 @@ exports.upload = async (req, res) => {
         console.log(slugProjectName)
     
         const allProjects = await projectDatamapper.findAll();
-        // console.log('all projects : ', allProjects);
+        console.log('all projects : ', allProjects);
     
         // Checking if the project already exists
-        const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
-        // console.log('Existing project :', checkIfProjectExists);
+        const checkIfProjectExists = allProjects.find(element => {
+            console.log(element.project_name) 
+            return element.project_name === data.project_name
+        });
+        //console.log("je cherche le data.project_name",data.project_name)
+        //console.log('Existing project :', checkIfProjectExists);
     
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
+        //console.log("je cherche le originalname", originalname)
         
         console.log("toto",checkIfphotoExist);
 

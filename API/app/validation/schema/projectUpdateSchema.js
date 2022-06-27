@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 module.exports = Joi.object({
-    name: Joi.string(),
+    project_name: Joi.string(),
     slug: Joi.string()
         .pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     location: Joi.string(),
@@ -12,4 +12,5 @@ module.exports = Joi.object({
     client: Joi.string(),
     design: Joi.string(),
     photo_credit: Joi.string(),
+    labelValue: Joi.number(),
 }).min(1).required();

@@ -4,7 +4,7 @@ const furnitureDatamapper = require('../../models/furnitureDatamapper');
 
 
 // /**
-//      * Furniture controller to create a record
+//      * Project controller to create a record
 //      * @param {*} req Express req.object (not used)
 //      * @param {*} res Express response object
 //      * @returns Route API JSON response
@@ -20,7 +20,7 @@ const multerConfig = multer.diskStorage({
     }
 })
 
-console.log('originalName', multerConfig.getFilename);
+// console.log('originalName', multerConfig.getFilename);
 
 function checkFileType(file, callback) {
     // console.log('file', file)
@@ -57,41 +57,41 @@ exports.uploadFurniture = async (req, res) => {
         const originalname = req.file.originalname
 
         const data = req.body;
-    
-        // const spacingFurnitureName = data.furniture_name.replace(/  +/g, " ")
-        // const slugFurnitureName = spacingFurnitureName.replace(/ +/g, "-").toLowerCase()
-        // console.log(slugFurnitureName)
-    
+
+        const spacingFurnitureName = data.furniture_name.replace(/  +/g, " ")
+        const slugFurnitureName = spacingFurnitureName.replace(/ +/g, "-").toLowerCase()
+        console.log(slugFurnitureName)
+
         const allFurnitures = await furnitureDatamapper.findAll();
-        console.log('all furnitures : ', allFurnitures);
-    
-        // Checking if the furniture already exists
-        const checkIfFurnituresExists = allFurnitures.find(element => element.furniture_name === data.furniture_name);
-        console.log('Existing furniture :', checkIfFurnituresExists);
-    
+        // console.log('allFurnitures : ', allFurnitures);
+
+        // Checking if the project already exists
+        const checkIfFurnitureExists = allFurnitures.find(element => element.furniture_name === data.furniture_name);
+        // console.log('Existing furniture :', checkIfFurnitureExists);
+
         //Checking if the photo already exists
         const checkIfphotoExist = allFurnitures.find(element => element.photo_name === originalname);
-        
-        console.log("toto",checkIfphotoExist);
+
+        console.log("toto", checkIfphotoExist);
 
         if (checkIfphotoExist !== undefined) {
-            return res.status(500).json(`"La photo ${originalname} existe déjà, merci de saisir un autre nom"`);
+            return res.status(500).json(`La photo ${originalname} existe déjà, merci de saisir un autre nom`);
         }
 
         if (data.furniture_name === "") {
-            return res.status(500).json(`Merci de remplir le champs nom du mobilier (furniture_name)`);
-        } 
+            return res.status(500).json(`Merci de remplir le champs nom de la furniture`);
+        }
 
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
             return res.status(500).json(`Merci de remplir le champs nome de la photo (photo_name)`);
-        } 
+        }
 
         if (checkIfFurnitureExists !== undefined) {
-            return res.status(500).json(`"Le mobilier ${data.furniture_name} existe déjà, merci de saisir un autre nom"`);
+            return res.status(500).json(`La furniture ${data.furniture_name} existe déjà, merci de saisir un autre nom`);
         } else {
-            await furnitureDatamapper.insert(data, originalname, spacingFurnitureName, slugFurnitureName);
-            return res.status(200).json(`le mobilier ${data.furniture_name} a bien été ajouté`);
+            await furnitureDatamapper.insertFurnitureWithCoverPhoto(data, originalname, spacingFurnitureName, slugFurnitureName);
+            return res.status(200).json(`le projet ${data.furniture_name} a bien été ajouté`);
         }
 
     } catch (error) {

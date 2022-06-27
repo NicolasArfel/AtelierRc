@@ -1,5 +1,6 @@
 const userDataMapper  = require('../../models/userDatamapper.js');
 const client = require('../../config/db');
+const bcrypt = require('bcrypt');
 
 const adminController = {
 
@@ -23,7 +24,11 @@ const adminController = {
             console.log(password)
           
 
-            const updateProfile = await userDataMapper.updateUserProfile(id, email, firstname, lastname, password);
+            const salt = await bcrypt.genSalt(10);
+            const bcryptPassword = await  bcrypt.hash( password, salt);
+            console.log(bcryptPassword)
+
+            const updateProfile = await userDataMapper.updateUserProfile(id, email, firstname, lastname, bcryptPassword);
             console.log(updateProfile);
             res.send('Profile has been updated');
         }
