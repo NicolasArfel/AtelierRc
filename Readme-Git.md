@@ -33,5 +33,5 @@
    - Se placer sur la branch parente du composant a merge => `git merge nom-de-la-branch-enfant`
    - Ajouter à git les modifications => `git add . => git commit -m description du commit" => git push`
    - Une fois chaques branch principale actualisée faire un `git merge nom-de-la-branche-principale` depuis la branch Main pour avoir le repos à jour
-
 ### N'oubliez pas de repartir d'une nouvelle branche en reprenant l'étape 3
+
