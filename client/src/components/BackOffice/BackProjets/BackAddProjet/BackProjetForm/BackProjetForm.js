@@ -180,16 +180,16 @@ const BackProjetForm = ({
 
 BackProjetForm.propTypes = {
     projectName: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    program: PropTypes.string.isRequired,
-    surface: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    client: PropTypes.string.isRequired,
-    design: PropTypes.string.isRequired,
-    photoCredit: PropTypes.string.isRequired,
-    changeInputValue: PropTypes.string.isRequired,
-    handlePostProject: PropTypes.string.isRequired,
+    location: PropTypes.string,
+    date: PropTypes.string,
+    program: PropTypes.string,
+    surface: PropTypes.string,
+    type: PropTypes.string,
+    client: PropTypes.string,
+    design: PropTypes.string,
+    photoCredit: PropTypes.string,
+    changeInputValue: PropTypes.func.isRequired,
+    handlePostProject: PropTypes.func.isRequired,
 }
 
 export default BackProjetForm;

@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react'
 import { useSelector } from 'react-redux';
 
@@ -76,14 +76,9 @@ const FurnituresContactForm = ({ firstname, lastname, email, subject, text, chan
         </form>
     )
 }
-// FurnituresContactForm.propTypes = {
-//     firstname: PropTypes.string.isRequired,
-//     lastname: PropTypes.string.isRequired,
-//     email: PropTypes.string.isRequired,
-//     subject: PropTypes.string.isRequired,
-//     text: PropTypes.string.isRequired,
-//     changeInputValue: PropTypes.func.isRequired,
-//     handleContact: PropTypes.func.isRequired,
-// }
+FurnituresContactForm.propTypes = {
+    changeInputValue: PropTypes.func.isRequired,
+    handleContact: PropTypes.func.isRequired,
+}
 
 export default FurnituresContactForm;

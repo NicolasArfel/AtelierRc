@@ -26,11 +26,11 @@ const ContactFormInput = ({ title, type, name, value, onChange }) => {
 }
 
 ContactFormInput.propTypes = {
-    title: PropTypes.string.isRequired, 
-    type: PropTypes.string.isRequired, 
-    name: PropTypes.string.isRequired, 
-    value: PropTypes.string.isRequired, 
-    onChange : PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
 }
 
 export default ContactFormInput

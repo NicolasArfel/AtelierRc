@@ -22,9 +22,9 @@ const Contact = () => {
     const text = useSelector((state) => state.ContactReducer.text);
 
     useEffect(() => {
-        dispatch(actionRefreshContactState());     
-        dispatch(actionAddSubjectValue(''))   
-     }, [dispatch]);
+        dispatch(actionRefreshContactState());
+        dispatch(actionAddSubjectValue(''))
+    }, [dispatch]);
 
     return (
         <main className="container" >

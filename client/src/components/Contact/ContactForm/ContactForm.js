@@ -76,13 +76,13 @@ const ContactForm = ({ firstname, lastname, email, subject, text, changeInputVal
     )
 }
 ContactForm.propTypes = {
-    firstname: PropTypes.string.isRequired, 
-    lastname: PropTypes.string.isRequired, 
-    email: PropTypes.string.isRequired, 
-    subject: PropTypes.string.isRequired, 
-    text: PropTypes.string.isRequired, 
-    changeInputValue: PropTypes.func.isRequired, 
-    handleContact: PropTypes.func.isRequired, 
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    subject: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    changeInputValue: PropTypes.func.isRequired,
+    handleContact: PropTypes.func.isRequired,
 }
 
 export default ContactForm
