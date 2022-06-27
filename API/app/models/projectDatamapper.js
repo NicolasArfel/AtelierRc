@@ -1,12 +1,5 @@
 const client = require("../config/db");
 
-// /**
-//  * @typedef {object} Category
-//  * @property {number} id - Identifiant unique Pk de la table
-//  * @property {string} route - Segment d'URL pour accéder à la catégorie (pour SEO)
-//  * @property {string} label - Le nom affichable de la catégorie
-//  */
-
 const projectDatamapper = {
     /**
      * Get all the project without filter nore order

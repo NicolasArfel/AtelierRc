@@ -95,22 +95,6 @@ router.put('/api/admin/profile/:id',authenticateToken(), validator('body', userU
  * @summary user (admin) if identify can create a project with a cover photo
  * @tags Admin (back-office)
  */
-// /**
-//  * @swagger
-//  * /api/admin/add-project:
-//  * post:
-//  *  description: Create a new project
-//  *  parameters:
-//  *  - name: project_name
-//  *  description: name of the project
-//  *  in: formData
-//  *  required: true
-//  *  type:String
-//  *  responses:
-//  *    200:
-//  *    description: Success 
-//  * 
-//  */
 router.post('/api/admin/add-project', authenticateToken(), uploadImage, validator('body', projectCreateSchema), validator('file', projectPhotoCreateSchema), upload);  // 
 
 /**
