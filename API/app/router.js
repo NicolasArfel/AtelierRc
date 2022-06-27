@@ -8,6 +8,7 @@ const contactController = require('./controllers/api/contactController');
 const adminController = require('./controllers/api/adminController');
 const { uploadCoverPhoto, uploadImageCover } = require('./controllers/api/updateCoverPhotoController');
 const { upload, uploadImage } = require('./controllers/api/uploadController');
+const { uploadFurniture, uploadImageFurniture } = require('./controllers/api/uploadFurnitureController')
 const { uploadMany, multiUpload } = require('./controllers/api/uploadManyController');
 
 // importer les middlewares
@@ -69,6 +70,7 @@ router.delete('/api/admin/project/:id', authenticateToken(), projectController.d
 router.post('/api/contact', contactController.mail);
 
 /*Admin interface - create furniture and upload images */
+router.post('/api/admin/add-furniture', uploadImageFurniture, uploadFurniture );
 
 /* Admin interface - delete furniture and images */
 router.delete('/api/admin/furniture/:id', furnitureController.delete);

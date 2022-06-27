@@ -30,7 +30,7 @@ const furnitureController = {
     async delete(req, res) {
       const deleteFurniture = await furnitureDatamapper.findByPk(req.params.id);
       if (!deleteFurniture) {
-         res.status(404).send("error: The furniture you are looking for does not exist");
+        return res.status(404).send("error: The furniture you are looking for does not exist");
       }
       await furnitureDatamapper.delete(req.params.id);
       // 204 : No Content
