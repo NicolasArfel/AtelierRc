@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 
-import { CHANGE_INPUT_VALUE, LOGOUT, SAVE_USER } from "../Actions/UserActions";
+import { CHANGE_INPUT_VALUE, LOGOUT, SAVE_USER, ACTION_ERROR, ACTION_RESET_INPUT_PROFILE } from "../Actions/UserActions";
 
 const token = localStorage.getItem('token');
 // console.log('storageUser', token)
@@ -21,6 +21,8 @@ export const initialState = {
     lastName: decodedJwt ? decodedJwt.lastname : '',
     role: decodedJwt ? decodedJwt.role : 'visiteur',
     userId: decodedJwt ? decodedJwt.id : '',
+    isSucceed: false,
+    isErrored: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -30,6 +32,24 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 [action.payload.name]: action.payload.value,
+            }
+        case ACTION_ERROR:
+            // console.log('je suis dans CHANGE_INPUT_VALUE');
+            return {
+                ...state,
+                isSucceed: false,
+                isErrored: true,
+                password: '',
+                confirmPassword: '',
+            }
+        case ACTION_RESET_INPUT_PROFILE:
+            // console.log('je suis dans CHANGE_INPUT_VALUE');
+            return {
+                ...state,
+                isSucceed: false,
+                isErrored: false,
+                password: '',
+                confirmPassword: '',
             }
         case SAVE_USER:
             // console.log('je suis dans SAVE_USER');
@@ -43,7 +63,9 @@ const reducer = (state = initialState, action = {}) => {
                 firstName: action.payload.decodedJwt.firstname,
                 lastName: action.payload.decodedJwt.lastname,
                 role: action.payload.decodedJwt.role,
-                userId: action.payload.decodedJwt.id
+                userId: action.payload.decodedJwt.id,
+                isSucceed: true,
+                isErrored: false,
             };
         case LOGOUT:
             // console.log('je suis dans LOGOUT');

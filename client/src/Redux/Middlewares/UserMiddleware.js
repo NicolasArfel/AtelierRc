@@ -1,6 +1,7 @@
+import { AxiosError } from "axios";
 import jwt_decode from "jwt-decode";
 
-import { actionSaveUser, LOGOUT, SUBMIT_LOGIN, SUBMIT_PROFIL } from "../Actions/UserActions";
+import { actionSaveUser, LOGOUT, SUBMIT_LOGIN, SUBMIT_PROFIL, actionError } from "../Actions/UserActions";
 import { updateProfile } from "../Requests/ProfileRequests";
 import { requestLogin } from "../Requests/Requests";
 
@@ -28,7 +29,14 @@ const UserMiddleware = (store) => (next) => async (action) => {
                 // console.log('toto',userId, firstName,lastName,email,password) 
                 // console.log('reponse put', response)
                 if (response.status === 200) {
-                    store.dispatch(actionSaveUser(decodedJwt, token));
+                    return store.dispatch(
+                        actionSaveUser(decodedJwt, token),
+                    );
+                }
+                if (response.status < 400) {
+                    return store.dispatch(
+                        actionError()
+                    );
                 }
 
             } catch (err) {

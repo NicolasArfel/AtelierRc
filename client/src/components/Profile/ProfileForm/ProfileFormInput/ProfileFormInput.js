@@ -13,6 +13,7 @@ const ProfileFormInput = ({ type, name, onChange, value, title }) => {
                 name={name}                
                 type={type}
                 onChange={handleChange}
+                required
                 placeholder={title}
             />
             {/* <label htmlFor={type}>

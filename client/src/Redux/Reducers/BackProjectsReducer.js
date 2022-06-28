@@ -1,4 +1,4 @@
-import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT, ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET, ACTION_RESET_FORM_ADD_PROJECT } from "../Actions/BackProjectsActions";
+import { ACTION_AXIOS_LABEL, ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT, CHANGE_BACK_INPUT_VALUE, DISPATCH_ONLY_PROJECTS, RESET_INPUT_FORM_ADD_PROJECT, ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET, ACTION_RESET_FORM_ADD_PROJECT, ACTION_SUCCEED_UPDATE_PROJECT, ACTION_RESET_UPDATE_PROJECT } from "../Actions/BackProjectsActions";
 
 export const initialState = {
     // onlyProjects: [],
@@ -13,6 +13,7 @@ export const initialState = {
     photo_credit: '',
     label: [],
     isError: false,
+    isSucceed: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -23,6 +24,20 @@ const reducer = (state = initialState, action = {}) => {
             return {
                 ...state,
                 onlyProjects: action.payload.responseProjects,
+            }
+        case ACTION_RESET_UPDATE_PROJECT:
+            // console.log('je suis dans ACTION_RESET_UPDATE_PROJECT');
+            return {
+                ...state,
+                isError: false,
+                isSucceed: false,
+            }
+        case ACTION_SUCCEED_UPDATE_PROJECT:
+            // console.log('je suis dans ACTION_SUCCEED_UPDATE_PROJECT');
+            return {
+                ...state,
+                isError: false,
+                isSucceed: true,
             }
         case ACTION_RESET_FORM_ADD_PROJECT:
             // console.log('je suis dans ACTION_RESET_FORM_ADD_PROJECT');

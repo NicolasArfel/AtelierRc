@@ -7,13 +7,23 @@ export const ACTION_DELETE_PHOTO_FURNITURE = 'ACTION_DELETE_PHOTO_FURNITURE';
 export const POST_COVER_PHOTO_FURNITURE = 'POST_COVER_PHOTO_FURNITURE';
 export const ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET = 'ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET';
 export const ACTION_REFRESH_FURNITURES_STATE = 'ACTION_REFRESH_FURNITURES_STATE';
+export const ACTION_RESET_UPDATE_FURNITURE = 'ACTION_RESET_UPDATE_FURNITURE';
+export const ACTION_SUCCEED_UPDATE_FURNITURE = 'ACTION_SUCCEED_UPDATE_FURNITURE';
 
 export const actionDeleteFurniture = (id) => ({
-    
+
     type: DELETE_FURNITURE,
     payload: {
         id,
     },
+})
+
+export const actionSucceedUpdateFurniture = () => ({
+    type: ACTION_SUCCEED_UPDATE_FURNITURE
+})
+
+export const actionResetUpdateFurniture = () => ({
+    type: ACTION_RESET_UPDATE_FURNITURE
 })
 
 export const changeBackInputValue = (value, name) => ({

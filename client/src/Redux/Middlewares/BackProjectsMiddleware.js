@@ -1,5 +1,5 @@
 import { actionAxiosProjects } from '../Actions/ProjetsActions'
-import { actionAxiosLabel, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT, ACTION_DELETE_PHOTO_PROJECT } from "../Actions/BackProjectsActions";
+import { actionAxiosLabel, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT, ACTION_DELETE_PHOTO_PROJECT, actionSucceedUpdateProjects } from "../Actions/BackProjectsActions";
 import { deletePhotoProject, deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject, uploadMorePhotoProject } from "../Requests/BackAdminProjectRequests";
 import { filteredProjects } from "../Selectors/projectsSelectors";
 
@@ -119,9 +119,8 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
                 const response = await UpdateProject(project_id, newData, token);
                 // console.log('reponse back', response)
                 if (response.status === 200) {
-                    store.dispatch(
-                        actionAxiosProjects()
-                    );
+                    store.dispatch(actionAxiosProjects())
+                    store.dispatch(actionSucceedUpdateProjects())
                 }
             } catch (err) {
                 console.error(err)

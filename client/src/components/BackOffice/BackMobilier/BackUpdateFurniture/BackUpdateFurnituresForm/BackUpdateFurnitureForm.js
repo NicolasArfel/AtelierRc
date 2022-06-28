@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import BackUpdateFurnituresFormInput from './BackUpdateFurnitureFormInput/BackUpdateFurnituresFormInput';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionResetUpdateFurniture } from '../../../../../Redux/Actions/BackFurnituresActions';
 
 const BackUpdateFurnitureForm = ({
     furniture_id,
@@ -16,6 +18,11 @@ const BackUpdateFurnitureForm = ({
     changeInputValue,
     handleUpdateFurnitures }) => {
 
+    const dispatch = useDispatch();
+
+    const isSucceed = useSelector((state) => state.BackFurnituresReducer.isSucceed);
+    const isError = useSelector((state) => state.BackFurnituresReducer.isError);
+
     const conditionsLabels = [
         'Bon état',
         'Etat correct',
@@ -23,7 +30,7 @@ const BackUpdateFurnitureForm = ({
         'Pour pièces']
     const availableLabels = [
         true,
-        false ]
+        false]
 
     let isConfirm = false;
 
@@ -44,7 +51,7 @@ const BackUpdateFurnitureForm = ({
     const handleSubmit = async (event) => {
         event.preventDefault();
         await handleUpdateFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
-         
+
         // I check if my input is empty or not. If is not i replace some carac for build a cool slug
         if (furnitureName) {
             // I format my projectName to skip spaces and some other carac for build a cool name
@@ -55,8 +62,13 @@ const BackUpdateFurnitureForm = ({
             // with my new cool name i build a slug and i exploit it to navigate when my project is updated
             const newSlugName = slugName.replace(/ +/g, "-").toLowerCase()
             let path = `/back-mobilier/updateMobilier/${newSlugName}`;
-            navigate(path);}
+            navigate(path);
+        }
     }
+
+    useEffect(() => {
+        dispatch(actionResetUpdateFurniture());
+    }, [dispatch]);
 
     return (
         <form className="col s12 left contact__form" onSubmit={handleSubmit}>
@@ -77,7 +89,7 @@ const BackUpdateFurnitureForm = ({
                 {availableLabels.map((option) => (
                     <option
                         key={option}
-                        value={option }
+                        value={option}
                     >
                         {option === true ? '* Disponible' : '* Indisponible'}
                     </option>
@@ -142,6 +154,8 @@ const BackUpdateFurnitureForm = ({
                 value={photoCredit}
                 onChange={changeInputValue}
             />
+            {isSucceed === true ? <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p> : ''}
+            {isError === true ? <p style={{ color: 'red' }}>Une Erreur est survenu.</p> : ''}
             <p>(*) Champs obligatoires</p>
             <button
                 className="btn waves-effect waves-light grey darken-3 button"

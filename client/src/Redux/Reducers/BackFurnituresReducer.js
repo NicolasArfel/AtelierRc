@@ -1,6 +1,6 @@
 /* --- creation of the state --- */
 
-import { ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET, ACTION_REFRESH_FURNITURES_STATE, CHANGE_BACK_INPUT_VALUE } from "../Actions/BackFurnituresActions";
+import { ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET, ACTION_REFRESH_FURNITURES_STATE, CHANGE_BACK_INPUT_VALUE, ACTION_RESET_UPDATE_FURNITURE, ACTION_SUCCEED_UPDATE_FURNITURE } from "../Actions/BackFurnituresActions";
 
 export const initialState = {
     furniture_name: '',
@@ -13,6 +13,8 @@ export const initialState = {
     description: '',
     availability: true,
     photo_credit: '',
+    isError: false,
+    isSucceed: false,
 }
 
 /* --- reducer contain all the action switch case --- */
@@ -25,7 +27,20 @@ const reducer = (state = initialState, action = {}) => {
                 ...state,
                 [action.payload.name]: action.payload.value,
             }
-
+        case ACTION_RESET_UPDATE_FURNITURE:
+            // console.log('je suis dans ACTION_RESET_UPDATE_PROJECT');
+            return {
+                ...state,
+                isError: false,
+                isSucceed: false,
+            }
+        case ACTION_SUCCEED_UPDATE_FURNITURE:
+            // console.log('je suis dans ACTION_SUCCEED_UPDATE_PROJECT');
+            return {
+                ...state,
+                isError: false,
+                isSucceed: true,
+            }
         case ACTION_DISPATCH_FURNITURE_FORM_AUTO_COMPLET:
             // console.log('je suis dans DISPATCH_ONLY_PROJECTS');
             return {
