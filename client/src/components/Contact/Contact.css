@@ -4,7 +4,9 @@
     margin: 2em 0em 2em 0em;
     text-align: initial;
 }
-
+.contact__form {
+    margin-top: 2rem;
+}
 .contact__banner-p {
     margin-left: 2em;
     font-size: 1.2em;

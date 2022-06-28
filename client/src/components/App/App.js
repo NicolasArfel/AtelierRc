@@ -45,9 +45,9 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   // Effect active on page load
   useEffect(() => {  
-      setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    //   setTimeout(() => {
+    //   setLoading(false);
+    // }, 3000);
     
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
@@ -61,12 +61,14 @@ const App = () => {
   // const token = useSelector((state) => state.UserReducer.token);
   // console.log('token ? ', token);
 
-  return loading ? (
-    <Loader/> ) : (
+  // return loading ? (
+  //   <Loader/> ) : 
+    return (
     <div className="App">
      <Header />
       <Routes>
         <Route exact path="/" element={<Projets />} />
+        <Route exact path="/projets" element={<Projets />} />
         <Route exact path="/projet/:slug" element={<DetailProjet />} />
         <Route exact path="/mobilier" element={<Furnitures />} />
         <Route exact path="/mobilier/:slug" element={<FurnitureDetail />} />
