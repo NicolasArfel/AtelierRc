@@ -23,7 +23,7 @@ const BackUpdateFurnitureForm = ({
         'Pour pièces']
     const availableLabels = [
         true,
-        false ]
+        false]
 
     let isConfirm = false;
 
@@ -44,7 +44,7 @@ const BackUpdateFurnitureForm = ({
     const handleSubmit = async (event) => {
         event.preventDefault();
         await handleUpdateFurnitures(furniture_id, conditionLabelValue, availableLabelValue);
-         
+
         // I check if my input is empty or not. If is not i replace some carac for build a cool slug
         if (furnitureName) {
             // I format my projectName to skip spaces and some other carac for build a cool name
@@ -55,7 +55,8 @@ const BackUpdateFurnitureForm = ({
             // with my new cool name i build a slug and i exploit it to navigate when my project is updated
             const newSlugName = slugName.replace(/ +/g, "-").toLowerCase()
             let path = `/back-mobilier/updateMobilier/${newSlugName}`;
-            navigate(path);}
+            navigate(path);
+        }
     }
 
     return (
@@ -77,7 +78,7 @@ const BackUpdateFurnitureForm = ({
                 {availableLabels.map((option) => (
                     <option
                         key={option}
-                        value={option }
+                        value={option}
                     >
                         {option === true ? '* Disponible' : '* Indisponible'}
                     </option>

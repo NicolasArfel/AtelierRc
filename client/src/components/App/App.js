@@ -37,6 +37,7 @@ import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/
 import Loader from '../Loader/Loader';
 import Credit from '../Credit/Credit';
 
+
 const App = () => {
 
   // Dispatch allow us to trigger action from 'redux action' folder
@@ -46,10 +47,16 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   // Effect active on page load
   useEffect(() => {  
-    //   setTimeout(() => {
-    //   setLoading(false);
-    // }, 3000);
-    
+      setTimeout(() => {
+      setLoading(false);
+      /* eslint-disable no-undef */
+        jQuery(() => {
+          jQuery('.sidenav').sidenav();
+          jQuery('.carousel').carousel();
+        })
+
+      
+    }, 3000);    
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
     dispatch(actionDispatchStatus());
@@ -62,9 +69,9 @@ const App = () => {
   // const token = useSelector((state) => state.UserReducer.token);
   // console.log('token ? ', token);
 
-  // return loading ? (
-  //   <Loader/> ) : 
-    return (
+  return loading ? (
+    <Loader /> ) : 
+     (
     <div className="App">
      <Header />
       <Routes>
