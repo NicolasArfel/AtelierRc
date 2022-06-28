@@ -25,7 +25,10 @@ const Header = () => {
         <div>
             <header className="center">
                 <nav className="center " role="navigation">
-                    <span href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC responsive-img' className='logo_header' src={LogoRC} /></span>
+                <NavLink to='/'>
+
+                    <span href='/' id="logo-container" className="brand-logo center"><img alt='LogoRC responsive-img' className='logo_header' src={LogoRC} /></span>
+                </NavLink>
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
                             <li className='navlink'>
