@@ -21,11 +21,11 @@ const BackUpdateFurnituresFormInput = ({ type, name, onChange, value, title }) =
 }
 
 BackUpdateFurnituresFormInput.propTypes = {
-    type: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    name: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    title: PropTypes.string,
 }
 
 export default BackUpdateFurnituresFormInput;

@@ -146,7 +146,9 @@ const Header = () => {
                                 </>
                             }
                         </ul>
-                        <span data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons grey-text">menu</i></span>
+                        <span data-target="nav-mobile" className="sidenav-trigger " onClick={() => {
+                            console.log('test')
+                        }}><i className="material-icons grey-text">menu</i></span>
                     </div>
 
                     {/* <div className="col l4 s12 logoInsta hide-on-med-and-down">

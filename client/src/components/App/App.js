@@ -35,6 +35,8 @@ import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAddFurnitures from '../BackOffice/BackMobilier/BackAddFurnitures/BackAddFurnitures';
 import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/BackUpdateFurniture';
 import Loader from '../Loader/Loader';
+import Credit from '../Credit/Credit';
+
 
 const App = () => {
 
@@ -45,10 +47,16 @@ const App = () => {
   const [loading, setLoading] = useState(true);
   // Effect active on page load
   useEffect(() => {  
-    //   setTimeout(() => {
-    //   setLoading(false);
-    // }, 3000);
-    
+      setTimeout(() => {
+      setLoading(false);
+      /* eslint-disable no-undef */
+        jQuery(() => {
+          jQuery('.sidenav').sidenav();
+          jQuery('.carousel').carousel();
+        })
+
+      
+    }, 3000);    
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
     dispatch(actionDispatchStatus());
@@ -61,9 +69,9 @@ const App = () => {
   // const token = useSelector((state) => state.UserReducer.token);
   // console.log('token ? ', token);
 
-  // return loading ? (
-  //   <Loader/> ) : 
-    return (
+  return loading ? (
+    <Loader /> ) : 
+     (
     <div className="App">
      <Header />
       <Routes>
@@ -94,6 +102,7 @@ const App = () => {
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
+        <Route exact path="/credit" element={<Credit />} />
       </Routes>
       <Footer />
     </div>
