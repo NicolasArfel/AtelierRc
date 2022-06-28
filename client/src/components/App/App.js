@@ -35,6 +35,7 @@ import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAddFurnitures from '../BackOffice/BackMobilier/BackAddFurnitures/BackAddFurnitures';
 import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/BackUpdateFurniture';
 import Loader from '../Loader/Loader';
+import Credit from '../Credit/Credit';
 
 const App = () => {
 
@@ -94,6 +95,7 @@ const App = () => {
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />
+        <Route exact path="/credit" element={<Credit />} />
       </Routes>
       <Footer />
     </div>
