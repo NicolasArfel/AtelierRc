@@ -51,6 +51,9 @@ router.get('/api/getOnlyProjects', projectController.findAllProjects)
  * GET /api/project/{id}
  * @summary Get project by his id
  * @tags Projects
+ * @param {number} id.path.required - project identity
+ * @returns {Object} 200 - An array of projects
+ * @returns {Object} 404 - No project found
  */
 router.get('/api/project/:id', projectController.getOne);
 
@@ -64,8 +67,11 @@ router.get('/api/project/:id', projectController.getOne);
 router.get('/api/furnitures', furnitureController.getAllFurnitures);
 /**
  * GET /api/furniture/{id}
- * @summary Get furnitures by their id
+ * @summary Get furniture by his id
  * @tags Furnitures
+ * @param {number} id.path.required - furniture identity
+ * @returns {Object} 200 - An array of Furnitures
+ * @returns {Object} 404 - No furniture found
  */
 router.get('/api/furniture/:id', furnitureController.getOne);
 
@@ -81,14 +87,43 @@ router.post('/api/login', loginController.login);
 /* Admin interface - Update profile */
 
 /**
+ * A user is create with the following parameters:
+ * @typedef {object} updateAdminProfile
+ * @property {email} email - user email
+ * @property {string} firstname - user firstname
+ * @property {string} lastname - user lastname
+ * @property {password} password - user password
+ */
+ 
+ /** 
  * PUT /api/admin/profile/{id}
  * @summary user (admin) can modify his profile info (fistname, lastname, email, password)
- * @tags Login
+ * @tags Admin (back-office)
+ * @param {number} id.path.required - user identify
+ * @param {updateAdminProfile} request.body.required - user info - multipart/form-data
+ * @return {object} 200 - Profile updated
  */
-router.put('/api/admin/profile/:id',authenticateToken(), validator('body', userUpdateSchema), adminController.updateAdminProfile); 
+router.put('/api/admin/profile/:id', validator('body', userUpdateSchema), adminController.updateAdminProfile); //authenticateToken()
 
 
 /* admin interface - create project and upload images*/
+
+/**
+ * A project is create with the following parameters:
+ * @typedef {object} upload
+ * @property {string} spacingProjectName - name of the project
+ * @property {string} slugProjectName - name slug of the project
+ * @property {string} location - location of the project
+ * @property {string} date - date of the project
+ * @property {string} program - program of the project
+ * @property {string} surface_area - surface area of the project
+ * @property {string} type - type of project
+ * @property {string} client - client of the project
+ * @property {string} client - designer of the project
+ * @property {string} project_photo_credit - photo credit of of the project
+ * @property {string} user_id - user id of of the project
+ * @property {string} status_id - status id of of the project
+ */
 
 /**
  * POST /api/admin/add-project

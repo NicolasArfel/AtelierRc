@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 module.exports = Joi.object({
-    name: Joi.string().required(),
+    name: Joi.string().max(40).required(),
     slug: Joi.string().required()
         .pattern(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
         .required(),
