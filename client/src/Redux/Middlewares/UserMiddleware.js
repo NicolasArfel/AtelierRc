@@ -27,17 +27,15 @@ const UserMiddleware = (store) => (next) => async (action) => {
             try {
                 const response = await updateProfile(userId, firstName, lastName, email, password, token)
                 // console.log('toto',userId, firstName,lastName,email,password) 
-                // console.log('reponse put', response)
-                if (response.status === 200) {
-                    return store.dispatch(
-                        actionSaveUser(decodedJwt, token),
-                    );
-                }
-                if (response.status < 400) {
-                    return store.dispatch(
-                        actionError()
-                    );
-                }
+                // console.log('accessToken', response.data.accessToken)
+
+                const accessToken = response.data.accessToken;
+
+                const decodedJwt = jwt_decode(accessToken);
+                // console.log('decodedJwt', decodedJwt);
+                localStorage.setItem('token', accessToken)
+
+                store.dispatch(actionSaveUser(decodedJwt, accessToken))
 
             } catch (err) {
                 console.error(err)
