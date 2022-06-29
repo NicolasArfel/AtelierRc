@@ -98,6 +98,7 @@ const BackUpdateFurnitureForm = ({
             <label htmlFor="label">Choisis un {availableTitle}</label>
 
             <BackUpdateFurnituresFormInput
+            
                 type='text'
                 name='furniture_name'
                 title={'*' + furnitureTitle}

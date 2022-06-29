@@ -53,6 +53,7 @@ const App = () => {
         jQuery(() => {
           jQuery('.sidenav').sidenav();
           jQuery('.carousel').carousel();
+          
         })
 
       

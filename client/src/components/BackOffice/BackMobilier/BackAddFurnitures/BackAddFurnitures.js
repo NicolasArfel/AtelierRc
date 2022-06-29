@@ -31,6 +31,7 @@ const BackAddFurnitures = () => {
     const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
 
+    
 
     return (
         <main className="container" >
