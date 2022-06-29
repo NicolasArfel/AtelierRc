@@ -24,7 +24,7 @@ INSERT INTO project (name, slug, location, date, program, surface_area, type, cl
 INSERT INTO furniture (name, slug, type, designer, editor, date, dimensions, condition, description, availability, price, user_id) VALUES
 ('Kay Bojesen Singe', 'kay-bojesen-singe', 'Objet de décoration','Bojesen, Kay','Anonyme', NULL,'15 x 15 x 20 cm (Largeur x Profondeur x Hauteur)', 'Bon état', NULL, FALSE, NULL, 1),
 ('Pierre Cardin Bar roulant', 'pierre-cardin-bar-roulant', 'Meuble','Cardin, Pierre et Carré, Alain','Anonyme','Circa 1970','70 x 70cm (Diamètre x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
-('Hans Nagel Bougeoirs modulables Nagel s22 et Coupelles Nagel s200', 'hans-nagel-bougeoirs-modulables-nagel-s22-et-coupelles-nagel-s200', 'Objet de décoration','Nagel, Hans','Nagel','Circa 1960_1970','Dimensions d’un bougeoir : 10.2 x 6.5cm (Diamètre x Hauteur) Dimensions d’une coupelle : 13,8 x 5cm (Diamètre x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
+('Hans Nagel Bougeoirs ', 'hans-nagel-bougeoirs-modulables-nagel-s22-et-coupelles-nagel-s200', 'Objet de décoration','Nagel, Hans','Nagel','Circa 1960_1970','Dimensions d’un bougeoir : 10.2 x 6.5cm (Diamètre x Hauteur) Dimensions d’une coupelle : 13,8 x 5cm (Diamètre x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Alvar Aalto chaise modèle 68', 'alvar-aalto-chaise-modele-68', 'Meuble','Aalto, Alvar','Artek','Circa 1930','45.5 x 45 x 69.5cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Charles Dudouyt chaise basse paillée', 'charles-dudouyt-chaise-basse-paillee', 'Meuble','Dudouyt, Charles','Anonyme','Circa 1950_1960','48 x 42 x 70cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
 ('Eero Saarinen chaise « conference »', 'eero-saarinen-chaise-conference', 'Meuble','Saarinen, Eero','Knoll','Circa 1960','57 x 58 x 81cm (Largeur x Profondeur x Hauteur)', 'Excellent', NULL, FALSE, NULL, 1),
@@ -62,7 +62,7 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('saint-maur_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 5),
 ('saint-maur_pers_6.jpg', 6, 'image ©Romain-Caillon', FALSE, 5),
 ('saint-maur_pers_7.jpg', 7, 'image ©Romain-Caillon', FALSE, 5),
-('saint-maur_photo_1.jpg', 8, 'image ©Romain-Caillon', FALSE, 5),
+('saint-maur_photo_1.jpg', 8, 'image ©Romain-Caillon', TRUE, 5),
 ('saint-maur_photo_2.jpg', 9, 'image ©Romain-Caillon', FALSE, 5),
 ('saint-maur_photo_3.jpg', 10, 'image ©Romain-Caillon', FALSE, 5),
 ('saint-maur_photo_4.jpg', 11, 'image ©Romain-Caillon', FALSE, 5),
