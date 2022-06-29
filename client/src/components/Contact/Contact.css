@@ -30,6 +30,8 @@
     justify-content: center;
     margin: auto;
     max-width: 70%;
+    max-height: 600px;
+    box-shadow: none !important;
 }
 
 .contact__aticle {

@@ -47,7 +47,6 @@ const BackMobilier = () => {
               <tr>
                 <th>Nom de l'article</th>
                 <th>Etat</th>
-                <th>Description</th>
                 <th>Type</th>
                 <th>Actions</th>
               </tr>
@@ -57,7 +56,6 @@ const BackMobilier = () => {
                 <tr key={furniture.id}>
                   <td>{furniture.furniture_name}</td>
                   <td>{furniture.condition}</td>
-                  <td>{furniture.description}</td>
                   <td>{furniture.type}</td>
                   <td>
                     <button
