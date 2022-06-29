@@ -3,6 +3,7 @@ import './Credit.css'
 const antho = '../../images/profilAntho.jpg';
 const nico = '../../images/profilNico.jpg';
 const alix = '../../images/profilAlix.jpg';
+const vero = '../../images/profilVero.jpg';
 
 const Credit = () => {
     return (
@@ -11,7 +12,7 @@ const Credit = () => {
             <div className="col s12 m3 credit__card-justone">
                     <div className="card">
                         <div className="card-image">
-                            <img src={nico} alt='Véronique' />
+                            <img src={vero} alt='Véronique' />
                             <span className="card-title ">Véronique</span>
 
                         </div>
