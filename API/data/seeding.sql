@@ -64,7 +64,7 @@ INSERT INTO project_photo (name, position, photo_credit, cover_photo, project_id
 ('saint-maur_pers_5.jpg', 5, 'image ©Romain-Caillon', FALSE, 6),
 ('saint-maur_pers_6.jpg', 6, 'image ©Romain-Caillon', FALSE, 6),
 ('saint-maur_pers_7.jpg', 7, 'image ©Romain-Caillon', FALSE, 6),
-('saint-maur_photo_1.jpg', 8, 'image ©Romain-Caillon', TRUE, 6),
+('saint-maur_photo_1.jpg', 8, 'image ©Romain-Caillon', FALSE, 6),
 ('saint-maur_photo_2.jpg', 9, 'image ©Romain-Caillon', FALSE, 6),
 ('saint-maur_photo_3.jpg', 10, 'image ©Romain-Caillon', FALSE, 6),
 ('saint-maur_photo_4.jpg', 11, 'image ©Romain-Caillon', FALSE, 6),
