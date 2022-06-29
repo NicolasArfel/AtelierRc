@@ -38,7 +38,7 @@ const BackProjets = () => {
             </thead>
             <tbody>
               {projects.map(project => (
-                <tr key={project.id}>
+                <tr key={project.name}>
                   <td>{project.project_name}</td>
                   <td>{project.surface_area}</td>
                   <td>{project.client}</td>

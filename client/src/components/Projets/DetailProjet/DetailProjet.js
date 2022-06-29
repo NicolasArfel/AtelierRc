@@ -46,7 +46,7 @@ const DetailProjet = () => {
                                         <p>{projet.location} </p>
                                         <p>{projet.date} </p>
                                         <p>{projet.program}</p>
-                                        <p>{projet.status}</p>
+                                        <p>{projet.label}</p>
                                     </div>
                                     <div className="card-content">
                                         <p>{projet.type} de {projet.surface_area}</p>

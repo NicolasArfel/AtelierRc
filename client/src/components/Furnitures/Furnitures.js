@@ -5,7 +5,7 @@ import './Furnitures.css';
 const image = '../../images/contact_img.png'
 
 const title = 'Mobilier';
-const description = `Retrouvez ici quelques meubles et objets de décorations à vendre. `;
+const description = `Retrouvez ici quelques meubles et objets de décorations. `;
 
 
 const Furnitures = () => {
