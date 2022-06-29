@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { actionSubmitProfil, changeInputValue } from "../../Redux/Actions/UserActions";
+import { actionError, actionSubmitProfil, changeInputValue } from "../../Redux/Actions/UserActions";
 import Banner from "../Banner/Banner";
 import './Profile.css'
 import ProfileForm from "./ProfileForm/ProfileForm";
@@ -48,7 +48,7 @@ const Profile = () => {
                         dispatch(actionSubmitProfil(user.userId))
                         console.log(user.userId)
                         } else {
-                            alert('Votre confirmation de Mot de passe doit être la même');
+                            dispatch(actionError());
                         }
                     }}
                 />

@@ -1,4 +1,4 @@
-import { AxiosError } from "axios";
+
 import jwt_decode from "jwt-decode";
 
 import { actionSaveUser, LOGOUT, SUBMIT_LOGIN, SUBMIT_PROFIL, actionError } from "../Actions/UserActions";
@@ -45,23 +45,28 @@ const UserMiddleware = (store) => (next) => async (action) => {
         }
 
         case SUBMIT_LOGIN: {
-            // console.log('je suis  dans SUBMIT_LOGIN');
+            console.log('je suis  dans SUBMIT_LOGIN');
             const responseUserReducer = store.getState();
-            // console.log(responseUserReducer);
+            console.log(responseUserReducer);
             const { email, password } = responseUserReducer.UserReducer;
-            // console.log({email, password});
+            console.log({email, password});
 
             try {
-                const { accessToken } = await requestLogin(email, password);
-                // console.log('response', { accessToken });
-                const decodedJwt = jwt_decode(accessToken);
-                // console.log('decodedJwt', decodedJwt);
-                // localStorage.setItem('token', JSON.stringify(accessToken))
-                localStorage.setItem('token', accessToken)
-                store.dispatch(actionSaveUser(decodedJwt, accessToken))
+                const response = await requestLogin(email, password);
+                // console.log('response1',response);
+                if(!response) {
+                    store.dispatch(actionError());
+                } else {
+                    const decodedJwt = jwt_decode(response.data.accessToken);
+                    // console.log('decodedJwt', decodedJwt);
+                    localStorage.setItem('token', JSON.stringify(response.data.accessToken))
+                    localStorage.setItem('token', response.data.accessToken)
+                    store.dispatch(actionSaveUser(decodedJwt, response.data.accessToken))
+                }
 
             } catch (err) {
                 console.error(err);
+                console.log('response2',err);
             }
             return;
         }

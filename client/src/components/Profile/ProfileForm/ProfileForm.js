@@ -13,7 +13,7 @@ const ProfileForm = ({ title, firstName, lastName, email, password, confirmPassw
 
     const isSucceed = useSelector((state) => state.UserReducer.isSucceed);
     // console.log('isSucceed', isSucceed);
-    const isError = useSelector((state) => state.UserReducer.isError);
+    const isErrored = useSelector((state) => state.UserReducer.isErrored);
     // console.log('isError', isError);
 
     // const navigate = useNavigate();
@@ -73,8 +73,8 @@ const ProfileForm = ({ title, firstName, lastName, email, password, confirmPassw
                     value={confirmPassword}
                     onChange={changeInputValue}
                 />
-                {isSucceed === true ? <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p> : ''}
-                {isError === true ? <p style={{ color: 'red' }}>Code d'utilisateur ou mot de passe invalide.</p> : ''}
+                {isSucceed === true && <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p>}
+                {isErrored === true && <p style={{ color: 'red' }}>Code d'utilisateur ou mot de passe invalide.</p> }
                 <button
                     className="btn waves-effect waves-light grey darken-3 button"
                     type="submit"

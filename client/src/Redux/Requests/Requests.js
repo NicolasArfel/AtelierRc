@@ -34,7 +34,7 @@ export async function getAllProjectsPictures(project_id) {
 export async function requestLogin(email, password) {
   try {
     const response = await axiosInstance.post('/api/login', { email, password });
-    return response.data;
+    return response;
 
   } catch (err) {
     console.error(err);

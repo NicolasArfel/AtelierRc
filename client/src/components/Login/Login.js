@@ -13,7 +13,6 @@ const Login = () => {
     const email = useSelector((state) => state.UserReducer.email);
     const password = useSelector((state) => state.UserReducer.password);
     const isLogged = useSelector((state) => state.UserReducer.isLogged);
-
     return (
         <main className="login container center" >
             <Banner title={title} description={description} />
