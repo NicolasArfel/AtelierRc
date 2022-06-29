@@ -11,6 +11,7 @@
     width: 50%;
     margin: auto;
     margin-bottom: 2rem;
+    box-shadow: none !important;
 }
 
 .card__section-title {
