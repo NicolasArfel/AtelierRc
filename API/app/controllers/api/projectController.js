@@ -1,3 +1,4 @@
+const fs = require('fs');
 // I import the datamappers
 const projectDatamapper = require('../../models/projectDatamapper.js');
 
@@ -83,19 +84,35 @@ const projectController = {
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
-      // 204 : No Content
+      // 204 : No ContentS
       return res.status(204).json(toString('The project has been deleted'));
    },
 
    async deletePhoto(req, res) {
-      const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
-      console.log("je suis dans le controller delete", deleteThisPhoto)
-      if (!deleteThisPhoto) {
-         return res.status(404).json("error: The photo you are looking for does not exists");
+      try {
+         const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
+         // console.log("je suis dans le controller delete", deleteThisPhoto[0].name)
+         const photoName = [];
+         photoName.push(deleteThisPhoto[0].name);
+         // console.log('photoname', photoName)
+         if (!deleteThisPhoto) {
+            return res.status(404).json("error: The photo you are looking for does not exists");
+         }
+         const response = await projectDatamapper.deletePhoto(req.params.id);
+         // console.log('delete resp',response)
+         if(response) {
+            fs.unlinkSync(`public/image/projects/${photoName}`);
+            return res.status(204).json(toString('The photo has been deleted'));
+         } else {
+            return res.status(400).json("error: The photo is not delete");
+
+         }
+
+      } catch (err) {
+         return res.status(400).send(err);
       }
-      await projectDatamapper.deletePhoto(req.params.id);
+
       // 204 : No Content
-      return res.status(204).json(toString('The photo has been deleted'));
    },
 
    async switchCoverPhotoProject(req, res) {
