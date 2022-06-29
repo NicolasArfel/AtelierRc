@@ -19,10 +19,9 @@ const furnitureController = {
   async getOne(req, res) {
     try {
       const furniture = await furnitureDatamapper.findByPk(req.params.id);
-      //  if (!furniture) {
-      //throw new ApiError('Post not found', { statusCode: 404 });
-      //  res.send('furniture not found');
-      // }
+      if (!furniture) {
+        res.status(404).json("furniture not found");
+      }
       return res.json(furniture);
     } catch (error) {
       console.trace(error);
