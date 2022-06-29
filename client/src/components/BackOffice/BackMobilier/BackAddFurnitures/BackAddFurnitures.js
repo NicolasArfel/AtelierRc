@@ -1,7 +1,8 @@
 /* --- import modules --- */
 
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { actionPostFurniture, changeBackInputValue } from "../../../../Redux/Actions/BackFurnituresActions";
+import { actionPostFurniture, actionRefreshFurnitureState, changeBackInputValue } from "../../../../Redux/Actions/BackFurnituresActions";
 
 /* --- import components --- */
 
@@ -31,7 +32,9 @@ const BackAddFurnitures = () => {
     const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
 
-    
+    useEffect(() => {
+      dispatch(actionRefreshFurnitureState());
+    }, [dispatch])
 
     return (
         <main className="container" >
