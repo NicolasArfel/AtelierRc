@@ -19,7 +19,7 @@ const Credit = () => {
                         <div className="card-content">
                             <p className='grey lighten-3'>Product Owner / Scrum Master</p>
                             <p>Animatrice de réunions, nous a guidé avec sa règle en fer.</p>
-                            <p>En contact avec le client, elle a su nous transmettre toutes les nouvelles demandes du client (elle partage les dessous de tables)</p>
+                            <p>En contact avec le client, elle a su nous transmettre toutes les nouvelles demandes du client (elle partage les dessous de table)</p>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@ const Credit = () => {
                         </div>
                         <div className="card-content">
                             <p className='grey lighten-3'>Lead Dev Back</p>
-                            <p>A travaillée dur en pleine canicule avec la DDE pour nous faire de jolies Routes</p>
-                            <p>Peux vous apprendre à coder avec un bébé sur le clavier.</p>
+                            <p>A travaillé dur en pleine canicule avec la DDE pour nous faire de jolies Routes</p>
+                            <p>Peut vous apprendre à coder avec un bébé sur le clavier.</p>
                         </div>
                     </div>
                 </div>
