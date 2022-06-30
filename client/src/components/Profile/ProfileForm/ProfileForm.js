@@ -74,7 +74,7 @@ const ProfileForm = ({ title, firstName, lastName, email, password, confirmPassw
                     onChange={changeInputValue}
                 />
                 {isSucceed === true && <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p>}
-                {isErrored === true && <p style={{ color: 'red' }}>Code d'utilisateur ou mot de passe invalide.</p> }
+                {isErrored === true && <p style={{ color: 'red' }}>Email ou mot de passe invalide.</p>}
                 <button
                     className="btn waves-effect waves-light grey darken-3 button"
                     type="submit"
