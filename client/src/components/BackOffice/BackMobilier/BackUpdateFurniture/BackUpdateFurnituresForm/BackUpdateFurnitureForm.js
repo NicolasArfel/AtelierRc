@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import BackUpdateFurnituresFormInput from './BackUpdateFurnitureFormInput/BackUpdateFurnituresFormInput';
@@ -14,7 +15,6 @@ const BackUpdateFurnitureForm = ({
     dimensions,
     description,
     photoCredit,
-    userId,
     changeInputValue,
     handleUpdateFurnitures }) => {
 
@@ -168,6 +168,20 @@ const BackUpdateFurnitureForm = ({
             </button>
         </form>
     )
+}
+
+BackUpdateFurnitureForm.propTypes = {
+    furniture_id: PropTypes.number,
+    furnitureName: PropTypes.string,
+    type: PropTypes.string,
+    editor: PropTypes.string,
+    designer: PropTypes.string,
+    date: PropTypes.string,
+    dimensions: PropTypes.string,
+    description: PropTypes.string,
+    photoCredit: PropTypes.string,
+    changeInputValue: PropTypes.func,
+    handleUpdateFurnitures: PropTypes.func,
 }
 
 export default BackUpdateFurnitureForm;

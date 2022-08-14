@@ -26,7 +26,6 @@ const BackUpdateFurniture = () => {
     const date = useSelector((state) => state.BackFurnituresReducer.date);
     const dimensions = useSelector((state) => state.BackFurnituresReducer.dimensions);
     const description = useSelector((state) => state.BackFurnituresReducer.description);
-    // const availability = useSelector((state) => state.BackFurnituresReducer.availability);
     const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
 
@@ -59,7 +58,6 @@ const BackUpdateFurniture = () => {
                 'content-type': 'multipart/form-data'
             }
         }
-
         // console.log('furniture id =', furnitures.furniture_id);
         dispatch(actionPostMultyFilePhotoFurniture(furnitures.furniture_id, formData, config));
     }

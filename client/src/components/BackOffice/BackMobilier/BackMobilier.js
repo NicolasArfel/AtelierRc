@@ -1,31 +1,24 @@
 /* --- import modules --- */
-
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 /* --- import actions --- */
-
 import { actionDeleteFurniture } from '../../../Redux/Actions/BackFurnituresActions';
 
 /* --- import component --- */
-
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 
 /* --- import css --- */
-
 import './BackMobilier.css'
 
 /* --- variables --- */
-
 const title = 'Back Office'
 
 /* --- creation of the component --- */
-
 const BackMobilier = () => {
 
   /* --- dispatch variable for using actions --- */
-
   const dispatch = useDispatch();
 
   /* --- we get the furnitures state frmo the reducer --- */

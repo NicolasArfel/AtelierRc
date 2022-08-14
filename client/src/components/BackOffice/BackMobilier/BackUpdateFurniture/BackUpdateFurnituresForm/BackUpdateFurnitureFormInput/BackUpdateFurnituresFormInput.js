@@ -9,7 +9,7 @@ const BackUpdateFurnituresFormInput = ({ type, name, onChange, value, title }) =
     return (
         <div className="input-field col s12">
             <input
-                value={value}
+                value={value == null ? '' : value}
                 name={name}
                 id={type}
                 type={type}

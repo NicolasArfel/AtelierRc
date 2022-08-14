@@ -2,40 +2,44 @@
 import React, { useEffect, useState } from 'react'
 import { Routes, Route } from 'react-router-dom';
 
+/* import actions */
 import { useDispatch, useSelector } from 'react-redux';
-
 import { actionAxiosProjects } from '../../Redux/Actions/ProjetsActions';
+import { actionDispatchStatus } from '../../Redux/Actions/BackProjectsActions';
+import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
 
+/* css import */
+import './App.css';
+
+/* reusables components */
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+
+/* components */
 import About from '../About/About';
 import Contact from '../Contact/Contact';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
+import Credit from '../Credit/Credit';
+
 import Projets from '../Projets/Projets';
 import DetailProjet from '../Projets/DetailProjet/DetailProjet';
-import { actionDispatchStatus } from '../../Redux/Actions/BackProjectsActions';
+import Furnitures from '../Furnitures/Furnitures';
+import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
+import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
 
-import './App.css';
-import Login from '../Login/Login';
-import Register from '../Register/Register';
 import Error404 from '../Error404/Error404';
 import Error403 from '../Error403/Error403';
 
 import BackProjets from '../BackOffice/BackProjets/BackProjets';
-// import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAdministration from '../BackOffice/BackAdministration/BackAdministration';
-
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
 import BackAddProjet from '../BackOffice/BackProjets/BackAddProjet/BackAddProjet';
-import Profile from '../Profile/Profile';
-import Furnitures from '../Furnitures/Furnitures';
-import { actionAxiosFurnitures } from '../../Redux/Actions/FurnituresActions';
-import FurnituresContact from '../Furnitures/FurnituresContact/FurnituresContact';
-import FurnitureDetail from '../Furnitures/FurnitureDetail/FurnitureDetail';
 import BackUpdateProjet from '../BackOffice/BackProjets/BackUpdateProjet/BackUpdateProjet';
 import BackMobilier from '../BackOffice/BackMobilier/BackMobilier';
 import BackAddFurnitures from '../BackOffice/BackMobilier/BackAddFurnitures/BackAddFurnitures';
 import BackUpdateFurniture from '../BackOffice/BackMobilier/BackUpdateFurniture/BackUpdateFurniture';
+
 import Loader from '../Loader/Loader';
-import Credit from '../Credit/Credit';
 
 
 const App = () => {
@@ -52,11 +56,8 @@ const App = () => {
       /* eslint-disable no-undef */
         jQuery(() => {
           jQuery('.sidenav').sidenav();
-          jQuery('.carousel').carousel();
-          
-        })
-
-      
+          jQuery('.carousel').carousel();          
+        })      
     }, 3000);    
     dispatch(actionAxiosFurnitures())
     dispatch(actionAxiosProjects());
@@ -82,7 +83,6 @@ const App = () => {
         <Route exact path="/mobilier" element={<Furnitures />} />
         <Route exact path="/mobilier/:slug" element={<FurnitureDetail />} />
         <Route exact path="/contact/mobilier/:slug" element={<FurnituresContact />} />
-        <Route path="/mobilier" element={<Furnitures />} />
         <Route exact path="/apropos" element={<About />} />
         <Route exact path="/contact" element={<Contact isLogged={isLogged} />} />
         <Route exact path="/back-projets/addProject" element={role === 'admin' ? <BackAddProjet /> : <Error403 />} />
@@ -92,14 +92,7 @@ const App = () => {
         <Route path="/back-mobilier" element={role === 'admin' ? <BackMobilier /> : <Error403 />} />
         <Route path="/back-mobilier/addMobilier" element={role === 'admin' ? <BackAddFurnitures /> : <Error403 />} />
         <Route path="/back-mobilier/updateMobilier/:slug" element={role === 'admin' ? <BackUpdateFurniture /> : <Error403 />} />
-        {/* <Route exact path="/back-projets/updateProject/:slug" element={<BackUpdateProjet /> } /> */}
-        {/* <Route exact path="/back-projets" element={<BackProjets />} /> */}
-        {/* <Route path="/back-mobilier" element={ <BackMobilier />} /> */}
-        {/* <Route path="/back-mobilier/addMobilier" element={<BackAddFurnitures /> } /> */}
-        {/* <Route exact path="/back-admin" element={ <BackAdministration /> } /> */}
-        {/* <Route exact path="/back-projets/addProject" element={ <BackAddProjet /> } /> */}
         <Route exact path="/login" element={isLogged ? <Projets /> : <Login />} />
-        {/* <Route exact path="/register" element={isLogged ? <Projets /> : <Register />} /> */}
         <Route exact path="/profile" element={isLogged ? <Profile /> : <Login />} />
         <Route exact path="/403" element={<Error403 />} />
         <Route exact path="*" element={<Error404 />} />

@@ -12,9 +12,7 @@ const BackAddFurnituresForm = ({
     designer,
     date,
     dimensions,
-    conditions,
     description,
-    // availability,
     photoCredit,
     userId,
     changeInputValue,
@@ -23,7 +21,6 @@ const BackAddFurnituresForm = ({
     const disabled = true;
     const navigate = useNavigate()
     const [labelValue, setLabelValue] = useState(1)
-    // const dispatch = useDispatch();
     const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
 
     const furnitureTitle = 'Nom du Mobilier';

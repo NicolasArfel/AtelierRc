@@ -18,7 +18,7 @@ const title = 'Back Office'
 const BackAddFurnitures = () => {
 
   const [file, setFile] = useState(null)
-  console.log('file', file);
+  // console.log('file', file);
   const [readerFile, setReaderFile] = useState({})
   // console.log('readerFile', readerFile);
 
@@ -33,7 +33,6 @@ const BackAddFurnitures = () => {
   const dimensions = useSelector((state) => state.BackFurnituresReducer.dimensions);
   const conditions = useSelector((state) => state.BackFurnituresReducer.conditions);
   const description = useSelector((state) => state.BackFurnituresReducer.description);
-  const availability = useSelector((state) => state.BackFurnituresReducer.availability);
   const photoCredit = useSelector((state) => state.BackFurnituresReducer.photo_credit);
   const userId = useSelector((state) => state.UserReducer.userId);
 
@@ -45,7 +44,7 @@ const BackAddFurnitures = () => {
     const reader = new FileReader()
     reader.onload = () => {
       if (reader.readyState === 2) {
-        console.log('reader.readyState',reader.readyState);
+        // console.log('reader.readyState',reader.readyState);
         setReaderFile({ profileImg: reader.result })
       }
     }
