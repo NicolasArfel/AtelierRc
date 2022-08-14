@@ -1,3 +1,4 @@
+const fs = require('fs');
 // I import the datamappers
 const projectDatamapper = require('../../models/projectDatamapper.js');
 
@@ -69,46 +70,6 @@ const projectController = {
    },
 
 
-   //! terminer cette méthode du controller
-   /**
-    * Project controller to update a record
-    * @param {object} req Express request object
-    * @param {object} res Express response object
-    * @returns Route API JSON response
-    */
-   // async update(req, res){
-   //     try {
-
-   //       const updateProject = await projectDatamapper.findByPk(req.params.id);
-   //       console.log(updateProject);
-
-   //       if (!updateProject) {
-   //          res.status(404).json("error: The project you are looking for does not exists");
-   //       //     //throw new ApiError('Post not found', { statusCode: 404 });
-   //       //    //  res.send('project not found');
-   //       } if(req.body.project_name || req.body.slug){
-   //             const existingProject = await projectDatamapper.findByPk(req.params.id);
-   //          if(existingProject){
-   //             let field;
-   //             if(existingProject.name === req.body.name){
-   //                field = 'name'
-   //             } else {
-   //                field = 'slug';
-   //            }
-   //             res.status(404).json("error: The project you are looking for does not exists");
-   //             throw new ApiError('Project not found', { statusCode: 404 });
-   //              res.send('project not found');
-   //          }
-   //       }
-   //       const savedProject = await projectDatamapper.update(req.params.id)
-   //       return res.json(savedProject);
-   //     } catch (error) {
-   //       console.trace(error);
-   //       res.status(500).json(error.toString());
-   //     }
-   // },
-
-
    /**
     * Project controller to delete a record
     * @param {object} req Express request object
@@ -123,20 +84,35 @@ const projectController = {
          //throw new ApiError('This project does not exists', { statusCode: 404 });
       }
       await projectDatamapper.delete(req.params.id);
-      // 204 : No Content
+      // 204 : No ContentS
       return res.status(204).json(toString('The project has been deleted'));
    },
 
-
    async deletePhoto(req, res) {
-      const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
-      console.log("je suis dans le controller delete", deleteThisPhoto)
-      if (!deleteThisPhoto) {
-         return res.status(404).json("error: The photo you are looking for does not exists");
+      try {
+         const deleteThisPhoto = await projectDatamapper.findPhotoByPk(req.params.id);
+         // console.log("je suis dans le controller delete", deleteThisPhoto[0].name)
+         const photoName = [];
+         photoName.push(deleteThisPhoto[0].name);
+         // console.log('photoname', photoName)
+         if (!deleteThisPhoto) {
+            return res.status(404).json("error: The photo you are looking for does not exists");
+         }
+         const response = await projectDatamapper.deletePhoto(req.params.id);
+         // console.log('delete resp',response)
+         if(response) {
+            fs.unlinkSync(`public/image/projects/${photoName}`);
+            return res.status(204).json(toString('The photo has been deleted'));
+         } else {
+            return res.status(400).json("error: The photo is not delete");
+
+         }
+
+      } catch (err) {
+         return res.status(400).send(err);
       }
-      await projectDatamapper.deletePhoto(req.params.id);
+
       // 204 : No Content
-      return res.status(204).json(toString('The photo has been deleted'));
    },
 
    async switchCoverPhotoProject(req, res) {
@@ -183,12 +159,12 @@ const projectController = {
 
       const id = Number(req.params.id)
       let newProjectName = req.body.project_name
-      // console.log('req.body', req.body);
+      console.log('req.body', req.body);
 
       const projects = await projectDatamapper.findAll();
       console.log('projects', projects);
 
-      const findSameProjectName = projects.find(element => element.project_name === req.body.project_name)
+      const findSameProjectName = projects.find(element => element.project_name === req.body.project_name && element.project_id !== id)
       // console.log('findSameProjectName = ', findSameProjectName);
 
       let ProjectNameBeforChange = projects.find(element => element.project_id === id)
@@ -238,9 +214,6 @@ const projectController = {
          return res.status(200).json('Project has been updated');
       }
    },
-
-
-
 
 };
 

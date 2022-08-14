@@ -7,7 +7,7 @@ const loginController = {
     async login (req, res) {
 
         function generateAccessToken(user) {
-            return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1800s'});
+            return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
          }
 
         try {
@@ -32,7 +32,7 @@ const loginController = {
             }
 
             if (user && validPassword) {
-            //console.log(user);
+            console.log(user);
             const {id, email, lastname, firstname, role} = user
             const newUser = {id, email, lastname, firstname, role};
             console.log(newUser);

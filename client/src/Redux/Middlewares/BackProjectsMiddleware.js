@@ -1,10 +1,14 @@
-import { actionAxiosProjects, actionDispatchProjects } from '../Actions/ProjetsActions'
-import { actionAxiosLabel, actionErrorUploadCoverPhotoProject, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT } from "../Actions/BackProjectsActions";
-import { deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject, uploadMorePhotoProject } from "../Requests/BackAdminProjectRequests";
+import { actionAxiosProjects } from '../Actions/ProjetsActions'
+import { actionAxiosLabel, ACTION_AXIOS_GET_ONLY_PROJECTS, DELETE_PROJECT, dispatchGetOnlyProjects, DISPATCH_STATUS, POST_COVER_PHOTO_PROJECT, POST_MULTY_PHOTO_PROJECT, POST_PROJECT, UPDATE_PROJECT, ACTION_DELETE_PHOTO_PROJECT, actionSucceedUpdateProjects } from "../Actions/BackProjectsActions";
+import { deletePhotoProject, deleteProject, findAllProjects, getLabelProject, postNewProject, updateCoverPhotoProject, UpdateProject, uploadMorePhotoProject } from "../Requests/BackAdminProjectRequests";
 import { filteredProjects } from "../Selectors/projectsSelectors";
-import { AxiosError } from 'axios';
 
 const BackProjectsMiddleware = (store) => (next) => async (action) => {
+
+    const getTokenOnReducer = store.getState()
+    // console.log('getTokenOnReducer',getTokenOnReducer);
+    const token = getTokenOnReducer.UserReducer.token
+
     switch (action.type) {
         case ACTION_AXIOS_GET_ONLY_PROJECTS: {
 
@@ -16,18 +20,29 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
 
             break;
         }
+        case ACTION_DELETE_PHOTO_PROJECT: {
+
+            const responseDeletePhotoProject = await deletePhotoProject(action.payload.id, token);
+            // console.log('responseDeletePhotoProject =',responseDeletePhotoProject)
+
+            store.dispatch(
+                actionAxiosProjects()
+            );
+
+            break;
+        }
         case DELETE_PROJECT: {
 
-            const responseProjects = await deleteProject(action.payload.id);
+            const responseProjects = await deleteProject(action.payload.id, token);
             // console.log('response delete', responseProjects.status)
 
             if (responseProjects.status === 204) {
                 const responseProjectReducer = store.getState();
                 // console.log(responseProjectReducer.ProjectsReducer.projects)
                 const newState = filteredProjects(responseProjectReducer.ProjectsReducer.projects, action.payload.id);
-                // console.log(newState)
+                // console.log('newState = ',newState)
                 store.dispatch(
-                    dispatchGetOnlyProjects(newState)
+                    actionAxiosProjects(newState)
                 );
             }
             // console.log('projects middleware response', responseProjects);
@@ -41,7 +56,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await postNewProject(formData, config);
+                const response = await postNewProject(formData, config, token);
                 // console.log('reponse back', response)
                 if (response.status === 200) {
                     store.dispatch(
@@ -56,17 +71,12 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         case POST_COVER_PHOTO_PROJECT: {
             // console.log('je suis dans POST_PROJECT');
 
-            const { project_id, formData, config } = action.payload
+            const { id } = action.payload
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await updateCoverPhotoProject(project_id, formData, config);
+                const response = await updateCoverPhotoProject(id, token);
                 // console.log('reponse back', AxiosError)
-                if (!response) {
-                    store.dispatch(
-                        actionErrorUploadCoverPhotoProject()
-                    );
-                }
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()
@@ -84,7 +94,7 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
             // console.log('stateBackProject = ', formData);
 
             try {
-                const response = await uploadMorePhotoProject(project_id, formData, config);
+                const response = await uploadMorePhotoProject(project_id, formData, config, token);
                 if (response.status === 200) {
                     store.dispatch(
                         actionAxiosProjects()
@@ -96,24 +106,21 @@ const BackProjectsMiddleware = (store) => (next) => async (action) => {
         }
             break;
         case UPDATE_PROJECT: {
-            console.log('je suis dans UPDATE_PROJECT');
+            // console.log('je suis dans UPDATE_PROJECT');
 
             const { project_id, labelValue } = action.payload
             const responseBackReducer = store.getState();
             const data = responseBackReducer.BackProjectsReducer;
-            // console.log(data);
+            // console.log('data', data);
             const newData = { ...data, labelValue: labelValue }
-            // console.log('====================================');
             // console.log(newData);
-            // console.log('====================================');
 
             try {
-                const response = await UpdateProject(project_id, newData);
-                console.log('reponse back', response)
+                const response = await UpdateProject(project_id, newData, token);
+                // console.log('reponse back', response)
                 if (response.status === 200) {
-                    store.dispatch(
-                        actionAxiosProjects()
-                    );
+                    store.dispatch(actionAxiosProjects())
+                    store.dispatch(actionSucceedUpdateProjects())
                 }
             } catch (err) {
                 console.error(err)

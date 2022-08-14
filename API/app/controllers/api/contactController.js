@@ -39,12 +39,11 @@ const contactController = {
     html: templateMail,
 };
     
-    transporter.sendMail(mailOptions, function(err, data) {
+    await transporter.sendMail(mailOptions, function(err, data) {
       if(err) {
         console.log('Error occurs');
       } else {
         console.log('Email sent!');
-        res.status(200).json('Email sent !')
       }
       });
     

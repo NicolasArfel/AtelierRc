@@ -8,9 +8,10 @@
 }
 
 .card__article {
-    width: 50% ;
+    width: 50%;
     margin: auto;
     margin-bottom: 2rem;
+    box-shadow: none !important;
 }
 
 .card__section-title {
@@ -22,13 +23,19 @@
     top: 20px
 }
 
+p {
+    margin-top: 1rem !important;
+}
+
 @media (max-width:992px) {
     .sticky__details-project {
         position: initial;
     }
+
     .card__detail {
-        width: 100% ;        
+        width: 100%;
     }
+
     .card__article {
         width: 70%;
     }

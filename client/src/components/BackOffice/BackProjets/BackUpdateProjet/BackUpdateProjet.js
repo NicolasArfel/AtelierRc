@@ -11,7 +11,7 @@ import { findProject } from '../../../../Redux/Selectors/projectsSelectors';
 import BannerBackOffice from '../../BannerBackOffice/BannerBackOffice';
 import { actionAxiosProjectsPictures } from '../../../../Redux/Actions/ProjetsActions';
 import BackUpdateProjetForm from './BackUpdateProjetForm/BackUpdateProjetForm';
-import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject } from '../../../../Redux/Actions/BackProjectsActions';
+import { changeBackInputValue, actionUpdateProjet, actionPostCoverPhotoProject, actionPostMultyFilePhotoProject, actionDeletePhotoProject, actionDispatchProjetFormAutoComplet } from '../../../../Redux/Actions/BackProjectsActions';
 
 
 const title = 'Back Office'
@@ -22,23 +22,20 @@ const BackUpdateProjet = () => {
 
     // Slug is a variable of URL for dynamisation routes
     const { slug } = useParams();
-
-    const [coverFile, setCoverFile] = useState(null)
     const [multyFile, setMultyFile] = useState(null)
-    console.log('multyFile', multyFile);
+    // console.log('multyFile', multyFile);
 
     const projectName = useSelector((state) => state.BackProjectsReducer.project_name);
     const location = useSelector((state) => state.BackProjectsReducer.location);
     const date = useSelector((state) => state.BackProjectsReducer.date);
     const program = useSelector((state) => state.BackProjectsReducer.program);
-    const surface = useSelector((state) => state.BackProjectsReducer.surface);
+    const surface = useSelector((state) => state.BackProjectsReducer.surface_area);
     const type = useSelector((state) => state.BackProjectsReducer.type);
     const client = useSelector((state) => state.BackProjectsReducer.client);
     const design = useSelector((state) => state.BackProjectsReducer.design);
     const photoCredit = useSelector((state) => state.BackProjectsReducer.photo_credit);
     const userId = useSelector((state) => state.UserReducer.userId);
     const pictures = useSelector((state) => state.ProjectsReducer.pictures);
-    const isError = useSelector((state) => state.BackProjectsReducer.isError)
 
     // We use a .find method to store in a selectors folder. It allows you to sort the projects according to the url thanks to the 'SLUG' parameter
     const projet = useSelector((state) => findProject(state.ProjectsReducer.projects, slug))
@@ -47,26 +44,8 @@ const BackUpdateProjet = () => {
     // Effect active on page load
     useEffect(() => {
         projet && dispatch(actionAxiosProjectsPictures(projet.project_id));
+        projet && dispatch(actionDispatchProjetFormAutoComplet(projet));
     }, [dispatch, projet]);
-
-    const handleSubmitCoverPhoto = (event) => {
-
-        event.preventDefault();
-
-        const formData = new FormData()
-
-        formData.append('cover_image', coverFile)
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        }
-
-        console.log('project id =', projet.project_id);
-        dispatch(actionPostCoverPhotoProject(projet.project_id, formData, config));
-
-    }
 
     const handleSubmitMultiPhoto = (event) => {
 
@@ -76,7 +55,7 @@ const BackUpdateProjet = () => {
 
         // ajout de plusieurs fichier aux formData de façon dynamique
         Object.entries(multyFile).forEach(([key, value]) => {
-            console.log('array file', [key, value])
+            // console.log('array file', [key, value])
             formData.append('uploadedImages', value)
         },
         );
@@ -87,7 +66,7 @@ const BackUpdateProjet = () => {
             }
         }
 
-        console.log('project id =', projet.project_id);
+        // console.log('project id =', projet.project_id);
         dispatch(actionPostMultyFilePhotoProject(projet.project_id, formData, config));
     }
 
@@ -115,7 +94,7 @@ const BackUpdateProjet = () => {
                                 photoCredit={photoCredit}
                                 userId={userId}
                                 changeInputValue={(value, name) => {
-                                    // console.log('changeField', { value, name });
+                                    console.log('changeField', { value, name });
                                     dispatch(changeBackInputValue(value, name));
                                 }}
                                 handlePostProject={(project_id, labelValue) => {
@@ -126,27 +105,6 @@ const BackUpdateProjet = () => {
                         </div>
                     </div>
                     <div className="col s6 sticky__details-project">
-                        {isError && <p className="ErrorUpload__coverPhotoProject">Il est impossible d'utiliser l'image à plusieurs reprises.</p>}
-                        <form className="col s6 left contact__form" onSubmit={handleSubmitCoverPhoto}>
-                            <div className='label__file-cover'>
-                                <input
-                                    id='file'
-                                    type="file"
-                                    name="cover_image"
-                                    accept="image/png, image/jpeg, image/jpg"
-                                    required
-                                    onChange={(e) => { setCoverFile(e.target.files[0]) }}
-                                    className="input__file-cover-project"
-                                />
-                                <button
-                                    className="btn waves-effect waves-light grey darken-3 button"
-                                    type="submit"
-                                    name="action"
-                                >
-                                    Modifier la photo de cover
-                                </button>
-                            </div>
-                        </form>
                         <form className="col s6 left contact__form" onSubmit={handleSubmitMultiPhoto}>
                             <div className='label__file-cover'>
                                 <input
@@ -159,6 +117,7 @@ const BackUpdateProjet = () => {
                                     onChange={(e) => { setMultyFile(e.target.files) }}
                                     className="input__file-cover-project"
                                 />
+                                <p>*Ne sont acceptées que les images de type : jpeg, jpg, png et taille 15mb.</p>
                                 <button
                                     className="btn waves-effect waves-light grey darken-3 button"
                                     type="submit"
@@ -170,10 +129,32 @@ const BackUpdateProjet = () => {
                         </form>
                         <div className="col s12 update__project">
                             {pictures.map(picture => (
-                                <article className="card card__article preview__update-project" key={picture.id}>
+                                <article className="card__article preview__update-project" key={picture.id}>
                                     <div className="card-image">
-                                        <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
-                                        {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
+                                        <div className="card__image-photo-project">
+                                            {picture.cover_photo === true ? <p className='cover__photo-project'>Cover</p> : ''}
+                                            <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                        </div>
+                                        <div className='card__button-flex-projet'>
+                                            {picture.cover_photo === false ? <button
+                                                className='btn-flat btn__toggle-supprimer'
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    // console.log('photo id =', picture.id);
+                                                    dispatch(actionDeletePhotoProject(picture.id));
+                                                }}
+                                            >Supprimer
+                                            </button> : ''}
+                                            {picture.cover_photo === false ? <button
+                                                className='btn-flat btn__toggle-updateCover'
+                                                onClick={(event) => {
+                                                    event.preventDefault();
+                                                    // console.log('photo id =', picture.id);
+                                                    dispatch(actionPostCoverPhotoProject(picture.id));
+                                                }}
+                                            >Ajouter cover
+                                            </button> : ''}
+                                        </div>
                                     </div>
                                 </article>
                             ))}

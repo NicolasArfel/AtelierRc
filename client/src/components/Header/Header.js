@@ -25,7 +25,10 @@ const Header = () => {
         <div>
             <header className="center">
                 <nav className="center " role="navigation">
+                <NavLink to='/'>
+
                     <span href='#' id="logo-container" className="brand-logo center"><img alt='LogoRC responsive-img' className='logo_header' src={LogoRC} /></span>
+                </NavLink>
                     <div className="nav-wrapper container">
                         <ul className="left hide-on-med-and-down">
                             <li className='navlink'>
@@ -38,6 +41,15 @@ const Header = () => {
                                     Mobilier
                                 </NavLink>
                             </li>
+                            {isLogged && role === 'admin' ?
+                                        <li className='navlink'>
+                                            <NavLink to="/back-projets" className={activeLink} >
+                                                Backoffice
+                                            </NavLink>
+                                        </li>
+                                        :
+                                        null
+                                    }
                         </ul>
                         <ul className="right hide-on-med-and-down">
                             <li>
@@ -50,23 +62,10 @@ const Header = () => {
                                     Contact
                                 </NavLink>
                             </li>
-                            {!isLogged ?
-                                <li>
-                                    <NavLink to="/login" className={activeLink}>
-                                        Connexion
-                                    </NavLink>
-                                </li>
-                                :
+                            {isLogged &&
+                                
                                 <>
-                                    {role === 'admin' ?
-                                        <li className='navlink'>
-                                            <NavLink to="/back-projets" className={activeLink} >
-                                                Backoffice
-                                            </NavLink>
-                                        </li>
-                                        :
-                                        null
-                                    }
+                                    
                                     {isLogged &&
                                     <li>
                                         <Link to="/profile">
@@ -121,7 +120,7 @@ const Header = () => {
                                 :
                                 <>
                                     {role === 'admin' ?
-                                        <li className='navlink li__side-nav'>
+                                        <li className='li__side-nav'>
                                             <NavLink to="/back-projets" className={activeLink} >
                                                 Backoffice
                                             </NavLink>
@@ -147,12 +146,14 @@ const Header = () => {
                                 </>
                             }
                         </ul>
-                        <span data-target="nav-mobile" className="sidenav-trigger "><i className="material-icons grey-text">menu</i></span>
+                        <span data-target="nav-mobile" className="sidenav-trigger " onClick={() => {
+                            console.log('test')
+                        }}><i className="material-icons grey-text">menu</i></span>
                     </div>
 
-                    <div className="col l4 s12 logoInsta hide-on-med-and-down">
+                    {/* <div className="col l4 s12 logoInsta hide-on-med-and-down">
                         <a href='https://www.instagram.com/lepetitchineur/?igshid=YmMyMTA2M2Y%3D' target="blank"><img alt='LogoRC' className='insta' src={logoInsta} /></a>
-                    </div>
+                    </div> */}
 
                 </nav>
             </header>

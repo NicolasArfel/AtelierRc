@@ -10,9 +10,33 @@ export const ACTION_ERROR_UPLOAD_COVER_PHOTO_PROJECT = 'ACTION_ERROR_UPLOAD_COVE
 export const ACTION_AXIOS_GET_ONLY_PROJECTS = 'ACTION_AXIOS_GET_ONLY_PROJECTS';
 export const DISPATCH_ONLY_PROJECTS = 'DISPATCH_ONLY_PROJECTS';
 export const POST_MULTY_PHOTO_PROJECT = 'POST_MULTY_PHOTO_PROJECT';
+export const ACTION_DELETE_PHOTO_PROJECT = 'ACTION_DELETE_PHOTO_PROJECT';
+export const ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET = 'ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET';
+export const ACTION_RESET_FORM_ADD_PROJECT = 'ACTION_RESET_FORM_ADD_PROJECT';
+export const ACTION_SUCCEED_UPDATE_PROJECT = 'ACTION_SUCCEED_UPDATE_PROJECT';
+export const ACTION_RESET_UPDATE_PROJECT = 'ACTION_RESET_UPDATE_PROJECT';
 
 export const actionAxiosGetOnlyProjects = () => ({
     type: ACTION_AXIOS_GET_ONLY_PROJECTS
+})
+
+export const actionSucceedUpdateProjects = () => ({
+    type: ACTION_SUCCEED_UPDATE_PROJECT
+})
+
+export const actionResetUpdateProject = () => ({
+    type: ACTION_RESET_UPDATE_PROJECT
+})
+
+export const actionDispatchProjetFormAutoComplet = (project) => ({
+    type: ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET,
+    payload: {
+        project
+    }
+})
+
+export const actionResetFormAddProject = () => ({
+    type: ACTION_RESET_FORM_ADD_PROJECT
 })
 
 export const dispatchGetOnlyProjects = (responseProjects) => ({
@@ -46,12 +70,10 @@ export const actionPostProject = (formData, config) => ({
     }
 })
 
-export const actionPostCoverPhotoProject = (project_id, formData, config) => ({
+export const actionPostCoverPhotoProject = (id) => ({
     type: POST_COVER_PHOTO_PROJECT,
     payload: {
-        project_id,
-        formData,
-        config
+        id
     }
 })
 
@@ -88,5 +110,12 @@ export const actionAxiosLabel = (responseLabel) => ({
     type: ACTION_AXIOS_LABEL,
     payload: {
         responseLabel
+    }
+})
+
+export const actionDeletePhotoProject = (id) => ({
+    type: ACTION_DELETE_PHOTO_PROJECT,
+    payload: {
+        id
     }
 })

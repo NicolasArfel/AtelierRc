@@ -12,7 +12,10 @@
 ### récupération de toutes les projets
 GET http://localhost:3001/api/projects
 
-### récupération d'une liste
+### récupération de certains projets
+GET http://localhost:3001/api/getOnlyProjects
+
+### récupération d'un projet
 GET http://localhost:3001/api/project/1
 
 ### récupération de toutes les objets de mobilier
@@ -21,8 +24,23 @@ GET http://localhost:3001/api/furnitures
 ### récupération d'un objet
 GET http://localhost:3001/api/furniture/1
 
-### suppression d'un projet
-DELETE http://localhost:3001/api/admin/project/4
+### Get all the status
+GET http://localhost:3001/api/status
+
+
+### user can loggin onto is back-office
+# POST http://localhost:3001/api/login HTTP/1.1
+# content-type: application/json
+
+# {
+#     "email": "romaincaillon.archi@gmail.com",
+#     "password": "atelierrc"
+# }
+
+
+// Doesn't works
+### suppression d'un projet 
+# DELETE http://localhost:3001/api/admin/project/4
 
 # POST http://localhost:3001/api/login HTTP/1.1
 # content-type: application/json

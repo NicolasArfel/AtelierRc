@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import BackUpdateProjetFormInput from './BackUpdateProjetFormInput/BackUpdateProjetFormInput'
 import { useNavigate } from 'react-router-dom';
-import { resetInputFormAddProject } from '../../../../../Redux/Actions/BackProjectsActions';
+import { actionResetUpdateProject } from '../../../../../Redux/Actions/BackProjectsActions';
 
 const BackUpdateProjetForm = ({
     project_id,
@@ -20,17 +20,18 @@ const BackUpdateProjetForm = ({
     handlePostProject }) => {
 
     // const [file, setFile] = useState(null)
-    const [labelValue, setLabelValue] = useState(1)
+    const [labelValue, setLabelValue] = useState(1);
     // console.log('labelValue', labelValue);
 
+    const isSucceed = useSelector((state) => state.BackProjectsReducer.isSucceed);
+    const isError = useSelector((state) => state.BackProjectsReducer.isError);
     const labels = useSelector((state) => state.BackProjectsReducer.label);
     // console.log('labels', labels);
-    const disabled = true;
 
     let isConfirm = false;
 
-    const dispatch = useDispatch();
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const projectTitle = 'Nom du projet';
     const locationTitle = 'Localisation';
@@ -41,6 +42,7 @@ const BackUpdateProjetForm = ({
     const clientTitle = 'Commenditaire';
     const designTitle = 'Conception';
     const creditTitle = 'Crédit Photo';
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -49,7 +51,8 @@ const BackUpdateProjetForm = ({
         // I check if my input is empty or not. If is not i replace some carac for build a cool slug
         if (projectName) {
             // I format my projectName to skip spaces and some other carac for build a cool name
-            const slugName = projectName.replace(/(?!\w|\s)./g, '')
+            const slugName = projectName
+                .replace(/(?!\w|\s)./g, '')
                 .replace(/\s+/g, ' ')
                 .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
             // with my new cool name i build a slug and i exploit it to navigate when my project is updated
@@ -59,8 +62,12 @@ const BackUpdateProjetForm = ({
         }
     }
 
+    useEffect(() => {
+        dispatch(actionResetUpdateProject());
+    }, [dispatch]);
+
     return (
-        <form className="col s6 left contact__form" onSubmit={handleSubmit}>
+        <form className="col s12 left contact__form" onSubmit={handleSubmit}>
             {isConfirm === true ? <p className='isConfirm__form-update-project'>Changements enregistrés</p> : ''}
             <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                 {labels.map((option) => (
@@ -137,6 +144,8 @@ const BackUpdateProjetForm = ({
                 value={photoCredit}
                 onChange={changeInputValue}
             />
+            {isSucceed === true ? <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p> : ''}
+            {isError === true ? <p style={{ color: 'red' }}>Une Erreur est survenu.</p> : ''}
             <p>(*) Champs obligatoires</p>
             <button
                 className="btn waves-effect waves-light grey darken-3 button"

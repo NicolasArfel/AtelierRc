@@ -7,6 +7,9 @@ import { resetInputFormAddProject } from '../../../../../Redux/Actions/BackProje
 import { useNavigate } from 'react-router-dom';
 
 const BackProjetForm = ({
+    imageHandler,
+    setFile,
+    file,
     projectName,
     location,
     date,
@@ -29,7 +32,6 @@ const BackProjetForm = ({
 
     let navigate = useNavigate();
 
-    const [file, setFile] = useState(null)
     const [labelValue, setLabelValue] = useState(1)
     // console.log('labelValue', labelValue);
 
@@ -75,18 +77,25 @@ const BackProjetForm = ({
         navigate(path);
     }
 
+    const onChangeCoverImg = (e) => {
+        setFile(e.target.files[0])
+        imageHandler(e)
+    }
+
     return (
 
-        <form className="col s6 left contact__form" onSubmit={handleSubmit}>
+        <form className="col s4 left contact__form" onSubmit={handleSubmit}>
             <div>
                 <input
+                    id='file'
                     type="file"
                     name="cover_image"
                     accept="image/png, image/jpeg, image/jpg"
                     required
-                    onChange={(e) => { setFile(e.target.files[0]) }}
+                    onChange={onChangeCoverImg}
                     className="input__file-cover-project"
                 />
+                <label htmlFor="file">Choisir une photo de couverture</label>
                 <select id='label' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>
                     {labels.map((option) => (
                         <option
@@ -180,16 +189,16 @@ const BackProjetForm = ({
 
 BackProjetForm.propTypes = {
     projectName: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    program: PropTypes.string.isRequired,
-    surface: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    client: PropTypes.string.isRequired,
-    design: PropTypes.string.isRequired,
-    photoCredit: PropTypes.string.isRequired,
-    changeInputValue: PropTypes.string.isRequired,
-    handlePostProject: PropTypes.string.isRequired,
+    location: PropTypes.string,
+    date: PropTypes.string,
+    program: PropTypes.string,
+    surface: PropTypes.string,
+    type: PropTypes.string,
+    client: PropTypes.string,
+    design: PropTypes.string,
+    photoCredit: PropTypes.string,
+    changeInputValue: PropTypes.func.isRequired,
+    handlePostProject: PropTypes.func.isRequired,
 }
 
 export default BackProjetForm;

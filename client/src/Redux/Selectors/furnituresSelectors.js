@@ -4,3 +4,11 @@ export function findFurniture(FurnituresReducer, searchedSlug) {
     })
     return furniture;
 }
+
+export function filteredFurnitures(furnitures, id) {
+    const newFurnituresList = furnitures.filter((furniture) => {
+        return furniture.furniture_id !== id;
+    })
+    // console.log('newFurnituresList', newFurnituresList )
+    return newFurnituresList;
+}

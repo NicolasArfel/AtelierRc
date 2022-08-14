@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 export async function getAllFurnitures () {
     try {
         const response = await axiosInstance.get('/api/furnitures');
-        console.log('furnitures request', response);
+        // console.log('furnitures request', response);
         return response
     }catch(err) {
         console.error(err)
@@ -17,7 +17,7 @@ export async function getAllFurnitures () {
 export async function getAllFurnituresPictures (furniture_id) {
     try {
         const response = await axiosInstance.get(`/api/furniture/${furniture_id}`);
-        console.log('furnitures pictures request', response);
+        // console.log('furnitures pictures request', response);
         return response.data
     }catch(err) {
         console.error(err)

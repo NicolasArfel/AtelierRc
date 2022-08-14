@@ -13,7 +13,7 @@ const projectDatamapper = {
 
     async findAll() {
         const result = await client.query(
-            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true'
+            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id INNER JOIN STATUS ON STATUS.ID = PROJECT.STATUS_ID WHERE cover_photo = true;'
         );
         return result.rows;
     },
@@ -38,7 +38,21 @@ const projectDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1`,
+            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1 ORDER BY project_photo.position`,
+            values: [id],
+        };
+        const result = await client.query(preparedQuery);
+
+        if (result.rowCount === 0) {
+            return null;
+        }
+
+        return result.rows;
+    },
+
+    async findProjectByPkPhoto(id) {
+        const preparedQuery = {
+            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_photo.id = $1`,
             values: [id],
         };
         const result = await client.query(preparedQuery);
@@ -107,8 +121,7 @@ const projectDatamapper = {
         // }
 
         const preparedProjectQuery = {
-            text: ` INSERT INTO "project"
-                    (
+            text: ` INSERT INTO "project"(
                         "name", 
                         "slug", 
                         "location", 
@@ -167,7 +180,7 @@ const projectDatamapper = {
                 originalName,
                 data.position,
                 data.photo_credit,
-                data.cover_photo,
+                true,
                 projectId,
             ],
         };
@@ -198,41 +211,6 @@ const projectDatamapper = {
         const result = await client.query(preparedPhotoQuery);
         return result.rowCount;
     },
-
-    //! fonction à compléter
-    // /**
-    //  * Modify a project in the database
-    //  * @param {number} id - the id to modify
-    //  * @param {InputData} inputData
-    //  * @returns
-    //  */
-    // async update(id, inputData) {
-    //     const data = { ...inputData, id };
-    //     const savedProject = await client.query(
-    //         'SELECT * FROM "project"($1)',
-    //         [data],
-    //     );
-
-    //     return savedProject.rows[0];
-    // },
-
-    // async update(id, project) {
-    //     const fields = Object.keys(project).map((prop, index) => `"${prop}" = $${index + 1}`);
-    //     console.log(fields)
-    //     const values = Object.values(project);
-
-    //     const savedProject = await client.query(
-    //         `
-    //             UPDATE "project" SET
-    //                 ${fields}
-    //             WHERE id = $${fields.length + 1}
-    //             RETURNING *
-    //         `,
-    //         [...values, id],
-    //     );
-
-    //     return savedProject.rows[0];
-    // },
 
     /**
      * Delete the project from the database

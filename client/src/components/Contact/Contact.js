@@ -5,7 +5,7 @@ import Banner from '../Banner/Banner';
 import ContactForm from './ContactForm/ContactForm';
 
 import './Contact.css';
-import { actionRefreshContactState, actionSubmitContact, changeInputValue } from '../../Redux/Actions/ContactActions';
+import { actionAddSubjectValue, actionRefreshContactState, actionSubmitContact, changeInputValue } from '../../Redux/Actions/ContactActions';
 
 const ContactImg = '../../images/contact_img.png';
 
@@ -22,8 +22,9 @@ const Contact = () => {
     const text = useSelector((state) => state.ContactReducer.text);
 
     useEffect(() => {
-        dispatch(actionRefreshContactState());        
-     }, [dispatch]);
+        dispatch(actionRefreshContactState());
+        dispatch(actionAddSubjectValue(''))
+    }, [dispatch]);
 
     return (
         <main className="container" >

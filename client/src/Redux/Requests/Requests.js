@@ -34,19 +34,9 @@ export async function getAllProjectsPictures(project_id) {
 export async function requestLogin(email, password) {
   try {
     const response = await axiosInstance.post('/api/login', { email, password });
-    return response.data;
+    return response;
 
   } catch (err) {
     console.error(err);
   }
-}
-
-export function saveAuthorization(token) {
-  // on va modifier les valeurs par defaut de notre instance axios pour sauvegarder le token
-  axiosInstance.defaults.headers.common.Authorization = `bearer ${token}`;
-}
-
-export function removeAuthorization() {
-  // on supprime le token par defaut de notre instance
-  axiosInstance.defaults.headers.common.Authorization = '';
 }

@@ -42,7 +42,7 @@ function checkFileType(file, callback) {
 
 const upload = multer({
     storage: multerConfig,
-    limits: { fileSize: 1024 * 1024 * 5 },
+    // limits: { fileSize: 1024 * 1024 * 5 },
     fileFilter: function (req, file, callback) {
         checkFileType(file, callback)
     },
@@ -51,28 +51,37 @@ const upload = multer({
 exports.uploadImage = upload.single('cover_image');
 
 exports.upload = async (req, res) => {
-
+    console.log("Nous sommes ici");
     try {
 
         const originalname = req.file.originalname
+        console.log("originalname = ", originalname)
 
         const data = req.body;
-    
-        const spacingProjectName = data.project_name.replace(/  +/g, " ")
+
+        const spacingProjectName = data.project_name
+            .replace(/(?!\w|\s)./g, '')
+            .replace(/\s+/g, ' ')
+            .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
         const slugProjectName = spacingProjectName.replace(/ +/g, "-").toLowerCase()
         console.log(slugProjectName)
-    
+
         const allProjects = await projectDatamapper.findAll();
-        // console.log('all projects : ', allProjects);
-    
+        console.log('all projects : ', allProjects);
+
         // Checking if the project already exists
-        const checkIfProjectExists = allProjects.find(element => element.project_name === data.project_name);
-        // console.log('Existing project :', checkIfProjectExists);
-    
+        const checkIfProjectExists = allProjects.find(element => {
+            console.log(element.project_name)
+            return element.project_name === data.project_name
+        });
+        //console.log("je cherche le data.project_name",data.project_name)
+        //console.log('Existing project :', checkIfProjectExists);
+
         //Checking if the photo already exists
         const checkIfphotoExist = allProjects.find(element => element.photo_name === originalname);
-        
-        console.log("toto",checkIfphotoExist);
+        //console.log("je cherche le originalname", originalname)
+
+        console.log("toto", checkIfphotoExist);
 
         if (checkIfphotoExist !== undefined) {
             return res.status(500).json(`"La photo ${originalname} existe déjà, merci de saisir un autre nom"`);
@@ -80,12 +89,12 @@ exports.upload = async (req, res) => {
 
         if (data.project_name === "") {
             return res.status(500).json(`Merci de remplir le champs nom du projet (project_name)`);
-        } 
+        }
 
         //! Le champs se rempli automatiquement, mais c'est une vérification supplémentaire
         if (data.photo_name === "") {
             return res.status(500).json(`Merci de remplir le champs nome de la photo (photo_name)`);
-        } 
+        }
 
         if (checkIfProjectExists !== undefined) {
             return res.status(500).json(`"Le projet ${data.project_name} existe déjà, merci de saisir un autre nom"`);

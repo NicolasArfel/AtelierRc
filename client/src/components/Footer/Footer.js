@@ -1,10 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import './Footer.css'
 const LogoRC = '../../images/logo-simple.png'
 const logoInsta = '../../images/instagram-brands.svg'
 
-const footer = () => {
+
+const Footer = () => {
+
+    const isLogged = useSelector((state) => state.UserReducer.isLogged);
+
     return (
         <footer className="page-footer">
             <div className="row footer-content">
@@ -21,12 +27,17 @@ const footer = () => {
                 </div>
             </div>
             <div className="footer-copyright">
-                <div className="container">
-                    <p className='copyright'>© 2022 Copyright Atelier-RC</p>
+                <div className="container center">
+                    <NavLink to='/credit'>
+                        <p className='copyright'>© 2022 Copyright Atelier-RC</p>
+                    </NavLink>
+                    {!isLogged && <NavLink to="/login" className='login__link' >
+                        Se connecter au Back Office
+                    </NavLink>}
                 </div>
             </div>
         </footer>
     )
 }
 
-export default footer
+export default Footer

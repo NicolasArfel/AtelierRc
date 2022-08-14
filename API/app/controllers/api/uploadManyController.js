@@ -43,9 +43,9 @@ function checkFileType(file, callback) {
 
 const multiUpload = multer({
     storage: multerConfig,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    },
+    // limits: {
+    //     fileSize: 1024 * 1024 * 5
+    // },
     fileFilter: function (req, file, callback) {
         checkFileType(file, callback)
     },

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { findProject } from '../../../Redux/Selectors/projectsSelectors';
@@ -29,45 +29,41 @@ const DetailProjet = () => {
 
     // useSelector allow us to get all information stash in reducer pictures []
     const pictures = useSelector((state) => state.ProjectsReducer.pictures)
-    console.log('pictures', pictures);
+    // console.log('pictures', pictures);
 
     return (
         <>
             {projet &&
                 <main className="container" >
-                    <Banner title={`Design par ${projet.design}`} description={projet.program}/>
+                    <Banner title={'Projet'} description="" />
                     <div className="row detail__project">
                         <div className="col s6 sticky__details-project">
+                            <h2 className="left card-title card__title">{projet.project_name}</h2>
                             <div className="col s12">
-                                <div className="card card__detail">
+                                <div className="left card card__detail">
                                     <div className="card-content black-text">
-                                        <h2 className="center card-title card__title">{projet.project_name}</h2>
-                                        <p className='card__section-title'>Projet :</p>
-                                        {projet.program &&
-                                            <p>{projet.program}</p>
-                                        }
+
+                                        <p>{projet.location} </p>
+                                        <p>{projet.date} </p>
+                                        <p>{projet.program}</p>
+                                        <p>{projet.label}</p>
                                     </div>
-                                    {projet.type && projet.surface_area &&
-                                        <div className="card-content">
-                                            <p className='card__section-title'>Type && surface:</p>
-                                            <p>{projet.type} de {projet.surface_area}</p>
-                                        </div>
-                                    }
-                                    {projet.location &&
-                                        <div className="card-content">
-                                            <p className='card__section-title'>location :</p>
-                                            <p>{projet.location}</p>
-                                        </div>
-                                    }
-                                    {projet.demande &&
-                                        <div className="card-content">
-                                            <p className='card__section-title'>Demande :</p>
-                                            <p>{projet.demande}</p>
-                                        </div>
-                                    }
                                     <div className="card-content">
-                                        <p>{projet.client}</p>
+                                        <p>{projet.type} de {projet.surface_area}</p>
+                                        <p>{projet.demande}</p>
+                                        <p>Client: {projet.client} </p>
+                                        <p>{projet.design} </p>
+                                        <p>{projet.photo_credit}</p>
                                     </div>
+                                <NavLink to='/'>
+                                    <button
+                                        className="btn waves-effect waves-light grey darken-3 button"
+                                        name="action"
+                                    >
+                                        Revenir aux projets
+                                    </button>
+
+                                </NavLink>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +72,7 @@ const DetailProjet = () => {
                                 {pictures.map(picture => (
                                     <article className="card card__article" key={picture.id}>
                                         <div className="card-image">
-                                            <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
+                                            <img className="responsive-img " alt={picture.name} src={`http://localhost:3001/image/projects/${picture.name}`} />
                                             {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
                                         </div>
                                     </article>

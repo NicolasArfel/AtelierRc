@@ -1,5 +1,7 @@
 import axios from "axios";
 
+// const token = localStorage.getItem('token');
+// // console.log('token =', token);
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3001"
@@ -15,10 +17,11 @@ export async function findAllProjects() {
   }
 }
 
-export async function deleteProject(projectId) {
+export async function deleteProject(projectId, token) {
   try {
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.delete(`api/admin/project/${projectId}`);
-    console.log(`le projet avec id ${projectId} est supprimé`);
     return response
 
   } catch (err) {
@@ -26,37 +29,62 @@ export async function deleteProject(projectId) {
   }
 }
 
-export async function postNewProject(formData, config) {
+export async function deletePhotoProject(id, token) {
   try {
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
+    const response = await axiosInstance.delete(`/api/admin/delete-images/${id}`);
+      return response
+
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export async function postNewProject(formData, config, token) {
+  try {
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post('/api/admin/add-project', formData, { config });
     return response;
+
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function updateCoverPhotoProject(project_id, formData, config) {
+export async function updateCoverPhotoProject(id, token) {
   try {
-    const response = await axiosInstance.put(`/api/admin/project/${project_id}/coverphoto`, formData, { config });
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
+    const response = await axiosInstance.put(`/api/admin/project/${id}/coverphoto`);
     return response;
+
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function uploadMorePhotoProject(project_id, formData, config) {
+export async function uploadMorePhotoProject(project_id, formData, config, token) {
   try {
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.post(`/api/admin/add-images/${project_id}`, formData, { config });
     return response;
+
   } catch (err) {
     console.error(err);
   }
 }
 
-export async function UpdateProject(project_id, newData) {
+export async function UpdateProject(project_id, newData, token) {
+  // console.log(newData);
   try {
+
+    axiosInstance.defaults.headers.common.authorization = `${token}`;
     const response = await axiosInstance.put(`/api/admin/project/${project_id}`, newData);
     return response;
+
   } catch (err) {
     console.error(err);
   }

@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
 import Banner from "../Banner/Banner";
 import './Login.css'
 import LoginForm from "./LoginForm/LoginForm";
@@ -14,11 +13,10 @@ const Login = () => {
     const email = useSelector((state) => state.UserReducer.email);
     const password = useSelector((state) => state.UserReducer.password);
     const isLogged = useSelector((state) => state.UserReducer.isLogged);
-
     return (
         <main className="login container center" >
             <Banner title={title} description={description} />
-            <div className="row ">
+            <div className="row center login__form-container">
                 <LoginForm
                     title={title}
                     email={email}
@@ -32,14 +30,14 @@ const Login = () => {
                         dispatch(actionSubmitLogin())
                     }}
                 />
-                <div className="column col s6">
+                {/* <div className="column col s6">
                     <p>Vous n'avez pas de compte ? Inscrivez-vous !</p>
                     <Link to='/register'>
                         <button className="button btn-large waves-effect waves-light grey darken-3">
                             S'inscrire
                         </button>
                     </Link>
-                </div>
+                </div> */}
             </div>
         </main>
 

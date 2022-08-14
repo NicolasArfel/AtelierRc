@@ -4,7 +4,9 @@
     margin: 2em 0em 2em 0em;
     text-align: initial;
 }
-
+.contact__form {
+    margin-top: 2rem;
+}
 .contact__banner-p {
     margin-left: 2em;
     font-size: 1.2em;
@@ -28,6 +30,8 @@
     justify-content: center;
     margin: auto;
     max-width: 70%;
+    max-height: 600px;
+    box-shadow: none !important;
 }
 
 .contact__aticle {

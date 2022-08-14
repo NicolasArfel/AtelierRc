@@ -7,8 +7,6 @@ export const actionAxiosFurnitures = () => ({
     type: AXIOS_FURNITURES
 })
 
-
-
 export const actionDispatchFurnitures = (furnitures) => ({
     type: DISPATCH_FURNITURES,
     payload: {
@@ -28,4 +26,6 @@ export const actionDispatchFurnituresPictures = (pictures) => ({
         pictures
     }
 })  
+
+
 

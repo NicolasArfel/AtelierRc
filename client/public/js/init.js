@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 (function($){
   $(function(){
-
+    console.log('test sidenav')
     $('.sidenav').sidenav();
     $('.carousel').carousel();
 
