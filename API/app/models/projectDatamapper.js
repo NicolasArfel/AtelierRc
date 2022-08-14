@@ -1,4 +1,4 @@
-const client = require("../config/db");
+const client = require('../config/db');
 
 // /**
 //  * @typedef {Object} InputData
@@ -13,22 +13,17 @@ const projectDatamapper = {
 
     async findAll() {
         const result = await client.query(
-            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id INNER JOIN STATUS ON STATUS.ID = PROJECT.STATUS_ID WHERE cover_photo = true;'
+            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id INNER JOIN STATUS ON STATUS.ID = PROJECT.STATUS_ID WHERE cover_photo = true;',
         );
         return result.rows;
     },
 
     async findAllProjects() {
         const result = await client.query(
-            'SELECT project.name AS project_name, * FROM project'
+            'SELECT project.name AS project_name, * FROM project',
         );
         return result.rows;
     },
-
-    //     async findAllPhotos() {
-    //         const result = await client.query('SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id');
-    //         return result.rows;
-    // },
 
     /**
      * Get the project by his id
@@ -38,7 +33,7 @@ const projectDatamapper = {
 
     async findByPk(id) {
         const preparedQuery = {
-            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1 ORDER BY project_photo.position`,
+            text: 'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_id = $1 ORDER BY project_photo.position',
             values: [id],
         };
         const result = await client.query(preparedQuery);
@@ -52,21 +47,7 @@ const projectDatamapper = {
 
     async findProjectByPkPhoto(id) {
         const preparedQuery = {
-            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_photo.id = $1`,
-            values: [id],
-        };
-        const result = await client.query(preparedQuery);
-
-        if (result.rowCount === 0) {
-            return null;
-        }
-
-        return result.rows;
-    },
-
-    async findProjectByPkPhoto(id) {
-        const preparedQuery = {
-            text: `SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_photo.id = $1`,
+            text: 'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE project_photo.id = $1',
             values: [id],
         };
         const result = await client.query(preparedQuery);
@@ -80,7 +61,7 @@ const projectDatamapper = {
 
     async findPhotoByPk(id) {
         const preparedQuery = {
-            text: `SELECT * FROM "project_photo" WHERE id = $1`,
+            text: 'SELECT * FROM "project_photo" WHERE id = $1',
             values: [id],
         };
         const result = await client.query(preparedQuery);
@@ -94,7 +75,7 @@ const projectDatamapper = {
 
     async findAllStatus() {
         const preparedQuery = {
-            text: `SELECT * FROM "status"`,
+            text: 'SELECT * FROM "status"',
         };
         const result = await client.query(preparedQuery);
 
@@ -156,10 +137,10 @@ const projectDatamapper = {
         };
 
         const result1 = await client.query(preparedProjectQuery);
-        console.log("je suis ici", result1);
+        console.log('je suis ici', result1);
         const projectId = result1.rows[0].id;
 
-        if (originalName === "") {
+        if (originalName === '') {
             originalName = null;
             console.error(`Merci de remplir le champs ${originalName}`);
         }
@@ -220,7 +201,7 @@ const projectDatamapper = {
 
     async delete(id) {
         const preparedDeleteQuery = {
-            text: `DELETE FROM "project" WHERE "id" = $1;`,
+            text: 'DELETE FROM "project" WHERE "id" = $1;',
             values: [id],
         };
         const deletedProject = await client.query(preparedDeleteQuery);
@@ -229,7 +210,7 @@ const projectDatamapper = {
 
     async deletePhoto(id) {
         const preparedPhotoDeleteQuery = {
-            text: `DELETE FROM "project_photo" WHERE "id" = $1;`,
+            text: 'DELETE FROM "project_photo" WHERE "id" = $1;',
             values: [id],
         };
         const deletedPhoto = await client.query(preparedPhotoDeleteQuery);
@@ -248,10 +229,10 @@ const projectDatamapper = {
         project_client,
         design,
         photo_credit,
-        status_id
+        status_id,
     ) {
         const preparedQuery = {
-            text: `UPDATE "project" SET name=$2, slug=$3, location=$4, date=$5, program=$6, surface_area=$7, type=$8, client=$9, design=$10, photo_credit=$11, status_id=$12 WHERE id=$1`,
+            text: 'UPDATE "project" SET name=$2, slug=$3, location=$4, date=$5, program=$6, surface_area=$7, type=$8, client=$9, design=$10, photo_credit=$11, status_id=$12 WHERE id=$1',
             values: [
                 id,
                 name,
@@ -279,7 +260,6 @@ const projectDatamapper = {
 
     async updateCoverPhoto(data, originalname, project_id) {
         const preparedQuery = {
-            // text: `UPDATE "project_photo" SET name=$2, photo_credit=$3, position=$4, cover_photo=$5 WHERE id=$1`,
             text: `
             INSERT INTO "project_photo"  (
                 "name", 
@@ -305,7 +285,7 @@ const projectDatamapper = {
 
     async turnOffCoverPhoto(photo_id, position) {
         const preparedQuery = {
-            text: `UPDATE "project_photo" SET cover_photo=$2, position=$3 WHERE id=$1`,
+            text: 'UPDATE "project_photo" SET cover_photo=$2, position=$3 WHERE id=$1',
             values: [photo_id, false, position],
         };
 
@@ -320,7 +300,7 @@ const projectDatamapper = {
 
     async turnONCoverPhoto(id) {
         const preparedQuery = {
-            text: `UPDATE "project_photo" SET cover_photo=$2, position=$3 WHERE id=$1`,
+            text: 'UPDATE "project_photo" SET cover_photo=$2, position=$3 WHERE id=$1',
             values: [id, true, 1],
         };
 

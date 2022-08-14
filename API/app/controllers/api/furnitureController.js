@@ -1,168 +1,162 @@
 const fs = require('fs');
 
-const { updateOneFurniture } = require('../../models/furnitureDatamapper.js');
 const furnitureDatamapper = require('../../models/furnitureDatamapper.js');
 
-
 const furnitureController = {
-  async getAllFurnitures(_, res) {
-    try {
-      const furnitures = await furnitureDatamapper.findAll();
-      return res.json(furnitures);
+    async getAllFurnitures(_, res) {
+        try {
+            const furnitures = await furnitureDatamapper.findAll();
+            return res.json(furnitures);
+        } catch (error) {
+            console.trace(error);
+            res.status(500).json(error.toString());
+        }
+        return null;
+    },
 
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error.toString());
-    }
-  },
+    async getOne(req, res) {
+        try {
+            const furniture = await furnitureDatamapper.findByPk(req.params.id);
+            if (!furniture) {
+                res.status(404).json('furniture not found');
+            }
+            return res.json(furniture);
+        } catch (error) {
+            console.trace(error);
+            res.status(500).json(error.toString());
+        }
+        return null;
+    },
 
-  async getOne(req, res) {
-    try {
-      const furniture = await furnitureDatamapper.findByPk(req.params.id);
-      if (!furniture) {
-        res.status(404).json("furniture not found");
-      }
-      return res.json(furniture);
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error.toString());
-    }
-  },
+    async delete(req, res) {
+        const deleteFurniture = await furnitureDatamapper.findByPk(req.params.id);
+        if (!deleteFurniture) {
+            return res.status(404).json('error: The furniture you are looking for does not exist');
+        }
+        await furnitureDatamapper.delete(req.params.id);
+        // 204 : No Content
+        return res.status(204).json(toString('The furniture has been deleted'));
+    },
 
-  async delete(req, res) {
-    const deleteFurniture = await furnitureDatamapper.findByPk(req.params.id);
-    if (!deleteFurniture) {
-      return res.status(404).json("error: The furniture you are looking for does not exist");
-    }
-    await furnitureDatamapper.delete(req.params.id);
-    // 204 : No Content
-    return res.status(204).json(toString('The furniture has been deleted'));
-  },
+    async deletePhoto(req, res) {
+        try {
+            const deleteThisPhoto = await furnitureDatamapper.findPhotoByPk(req.params.id);
+            // console.log("je suis dans le controller delete", deleteThisPhoto)
+            const photoName = [];
+            photoName.push(deleteThisPhoto[0].name);
+            console.log('photoname', photoName);
+            if (!deleteThisPhoto) {
+                return res.status(404).json('error: The photo you are looking for does not exists');
+            }
+            const response = await furnitureDatamapper.deletePhoto(req.params.id);
+            // console.log('delete resp',response)
+            if (response) {
+                fs.unlinkSync(`public/image/furnitures/${photoName}`);
+                return res.status(204).json(toString('The photo has been deleted'));
+            }
+            return res.status(400).json('error: The photo is not delete');
+        } catch (err) {
+            return res.status(400).send(err);
+        }
+    },
 
-  async deletePhoto(req, res) {
-    try {
-      const deleteThisPhoto = await furnitureDatamapper.findPhotoByPk(req.params.id);
-      // console.log("je suis dans le controller delete", deleteThisPhoto)
-      const photoName = [];
-      photoName.push(deleteThisPhoto[0].name);
-      console.log('photoname', photoName)
-      if (!deleteThisPhoto) {
-        return res.status(404).json("error: The photo you are looking for does not exists");
-      }
-      const response = await furnitureDatamapper.deletePhoto(req.params.id);
-      // console.log('delete resp',response)
-      if (response) {
-        fs.unlinkSync(`public/image/furnitures/${photoName}`);
-        return res.status(204).json(toString('The photo has been deleted'));
-      } else {
-        return res.status(400).json("error: The photo is not delete");
+    async switchCoverPhotoFurniture(req, res) {
+        try {
+            //! I need id from photo clicked
+            const id = Number(req.params.id);
+            console.log(id);
 
-      }
-    } catch (err) {
-      return res.status(400).send(err);
-    }
-  },
+            // ? I want to check in my furniture the file with furniture_cover = true
 
-  async switchCoverPhotoFurniture(req, res) {
-    try {
-      //! I need id from photo clicked
-      const id = Number(req.params.id);
-      console.log(id);
+            const currentFurnitureWithClickedPhoto = await furnitureDatamapper.findFurnitureByPkPhoto(id);
+            // console.log('furniture + photo cliké = ', currentFurnitureWithClickedPhoto);
 
-      //? I want to check in my furniture the file with furniture_cover = true
+            const { furniture_id } = currentFurnitureWithClickedPhoto[0];
+            // console.log('furniture_id =', furniture_id);
 
-      const currentFurnitureWithClickedPhoto = await furnitureDatamapper.findFurnitureByPkPhoto(id)
-      // console.log('furniture + photo cliké = ', currentFurnitureWithClickedPhoto);
+            const currentFurnitureWithAllPhoto = await furnitureDatamapper.findByPk(furniture_id);
+            // console.log('current furniture + all photo =', currentFurnitureWithAllPhoto);
+            const position = currentFurnitureWithAllPhoto.length;
+            // console.log('position = ', position + 1);
 
-      const furniture_id = currentFurnitureWithClickedPhoto[0].furniture_id;
-      // console.log('furniture_id =', furniture_id);
+            const findedCoverPhoto = currentFurnitureWithAllPhoto.find((element) => element.cover_photo === true);
+            console.log('findedCoverPhoto =', findedCoverPhoto);
 
-      const currentFurnitureWithAllPhoto = await furnitureDatamapper.findByPk(furniture_id)
-      // console.log('current furniture + all photo =', currentFurnitureWithAllPhoto);
-      const position = currentFurnitureWithAllPhoto.length;
-      // console.log('position = ', position + 1);
+            // ? I want to swtich true to false on the furniture_photo found
+            if (findedCoverPhoto) {
+                console.log(' je suis dans if findedCoverPhoto et je lance turnOffCoverPhoto');
+                const responseFindedCoverPhoto = await furnitureDatamapper.turnOffCoverPhoto(findedCoverPhoto.id, position);
+                // //? I want to switch false to true on the furniture_photo i clicked
+                responseFindedCoverPhoto && await furnitureDatamapper.turnONCoverPhoto(id);
+            } else {
+                await furnitureDatamapper.turnONCoverPhoto(id);
+            }
 
-      const findedCoverPhoto = currentFurnitureWithAllPhoto.find(element => element.cover_photo === true);
-      console.log('findedCoverPhoto =', findedCoverPhoto);
+            return res.status(200).json('la photo de couverture a bien été modifiée');
+        } catch (error) {
+            console.trace(error);
+            res.status(500).json(error.toString());
+        }
+    },
 
-      //? I want to swtich true to false on the furniture_photo found
-      if (findedCoverPhoto) {
-        console.log(' je suis dans if findedCoverPhoto et je lance turnOffCoverPhoto');
-        const responseFindedCoverPhoto = await furnitureDatamapper.turnOffCoverPhoto(findedCoverPhoto.id, position);
-        // //? I want to switch false to true on the furniture_photo i clicked
-        responseFindedCoverPhoto && await furnitureDatamapper.turnONCoverPhoto(id);
-      } else {
-        await furnitureDatamapper.turnONCoverPhoto(id);
-      }
+    async updateOneFurniture(req, res) {
+        const id = Number(req.params.id);
+        let newFurnitureName = req.body.furniture_name;
+        console.log('req.body', req.body);
 
-      return res.status(200).json(`la photo de couverture a bien été modifiée`);
+        const furnitures = await furnitureDatamapper.findAll();
+        console.log('furnitures', furnitures);
 
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error.toString());
-    }
-  },
+        const findSameFurnitureName = furnitures.find((element) => element.furniture_name === req.body.furniture_name && element.furniture_id !== id);
+        // console.log('findSameFurnitureName = ', findSameFurnitureName);
 
-  async updateOneFurniture(req, res) {
+        const FurnitureNameBeforChange = furnitures.find((element) => element.furniture_id === id);
+        // console.log('FurnitureNameBeforChange = ', FurnitureNameBeforChange);
 
-    const id = Number(req.params.id)
-    let newFurnitureName = req.body.furniture_name
-    console.log('req.body', req.body);
+        if (newFurnitureName === '') {
+            // console.log('Je suis dans IF newFurnitureName');
+            newFurnitureName = FurnitureNameBeforChange.furniture_name;
+            console.log('newFurnitureName dans if =', newFurnitureName);
+        }
 
-    const furnitures = await furnitureDatamapper.findAll();
-    console.log('furnitures', furnitures);
+        if (findSameFurnitureName !== undefined) {
+            return res.status(404).json(`furniture ${req.body.furniture_name} already create`);
+        }
 
-    const findSameFurnitureName = furnitures.find(element => element.furniture_name === req.body.furniture_name && element.furniture_id !== id)
-    // console.log('findSameFurnitureName = ', findSameFurnitureName);
+        const furnitureToUpdate = await furnitureDatamapper.findByPk(id);
+        if (!furnitureToUpdate) {
+            return res.status(404).json('furniture not found');
+        }
 
-    let FurnitureNameBeforChange = furnitures.find(element => element.furniture_id === id)
-    // console.log('FurnitureNameBeforChange = ', FurnitureNameBeforChange);
+        console.log('newFurnitureName aprés if =', newFurnitureName);
+        const spacingFurnitureName = newFurnitureName
+            .replace(/(?!\w|\s)./g, '')
+            .replace(/\s+/g, ' ')
+            .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
+        const slugFurnitureName = spacingFurnitureName.replace(/ +/g, '-').toLowerCase();
+        console.log('slugFurnitureName slug =', slugFurnitureName);
 
-    if (newFurnitureName === "") {
-      // console.log('Je suis dans IF newFurnitureName');
-      newFurnitureName = FurnitureNameBeforChange.furniture_name
-      console.log('newFurnitureName dans if =', newFurnitureName);
-    }
+        if (furnitureToUpdate) {
+            const name = spacingFurnitureName;
+            const slug = slugFurnitureName;
+            const { type } = req.body;
+            const { designer } = req.body;
+            const { editor } = req.body;
+            const { date } = req.body;
+            const { dimensions } = req.body;
+            const { condition } = req.body;
+            const { description } = req.body;
+            const { availability } = req.body;
+            const { price } = req.body;
 
-    if (findSameFurnitureName !== undefined) {
-      return res.status(404).json(`furniture ${req.body.furniture_name} already create`);
-    }
+            // console.log('id', id);
 
-    const furnitureToUpdate = await furnitureDatamapper.findByPk(id);
-    if (!furnitureToUpdate) {
-      return res.status(404).json('furniture not found');
-    }
+            const updateFurniture = await furnitureDatamapper.updateOneFurniture(id, name, slug, type, designer, editor, date, dimensions, condition, description, availability, price);
+            console.log(updateFurniture);
 
-    console.log('newFurnitureName aprés if =', newFurnitureName);
-    const spacingFurnitureName = newFurnitureName
-      .replace(/(?!\w|\s)./g, '')
-      .replace(/\s+/g, ' ')
-      .replace(/^(\s*)([\W\w]*)(\b\s*$)/g, '$2');
-    const slugFurnitureName = spacingFurnitureName.replace(/ +/g, "-").toLowerCase()
-    console.log('slugFurnitureName slug =', slugFurnitureName);
-
-    if (furnitureToUpdate) {
-
-      const name = spacingFurnitureName;
-      const slug = slugFurnitureName;
-      const type = req.body.type;
-      const designer = req.body.designer;
-      const editor = req.body.editor;
-      const date = req.body.date;
-      const dimensions = req.body.dimensions;
-      const condition = req.body.condition;
-      const description = req.body.description;
-      const availability = req.body.availability;
-      const price = req.body.price;
-
-      // console.log('id', id);
-
-      const updateFurniture = await furnitureDatamapper.updateOneFurniture(id, name, slug, type, designer, editor, date, dimensions, condition, description, availability, price);
-      console.log(updateFurniture);
-
-      return res.status(200).json('Furniture has been updated');
-    }
-  },
+            return res.status(200).json('Furniture has been updated');
+        }
+    },
 
 };
 
