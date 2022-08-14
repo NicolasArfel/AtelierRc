@@ -75,14 +75,19 @@ CREATE TABLE "furniture" (
     "name" TEXT NOT NULL,
     "slug" TEXT NOT NULL UNIQUE,
     "type" TEXT,
+    "designer" TEXT DEFAULT 'Anonyme',
+    "editor" TEXT DEFAULT 'Anonyme',
+    "date" TEXT,
+    "dimensions" TEXT,
     "condition" TEXT,
     "description" TEXT,
     "availability" BOOLEAN NOT NULL,
     "price" NUMERIC(15,4),
-     
+    "user_id" INT NOT NULL REFERENCES "user" ("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT now(),
     "updated_at" TIMESTAMPTZ
 );
+
 
 CREATE TABLE "project_photo" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
