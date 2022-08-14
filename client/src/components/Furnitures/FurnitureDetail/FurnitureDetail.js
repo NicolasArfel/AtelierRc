@@ -50,7 +50,6 @@ const FurnitureDetail = () => {
                                 </div>
 
 
-                            </div>
                             <NavLink to='/mobilier'>
                                 <button
                                     className="btn waves-effect waves-light grey darken-3 button"
@@ -60,6 +59,7 @@ const FurnitureDetail = () => {
                                 </button>
 
                             </NavLink>
+                            </div>
                         </div>
                     </div>
                     {pictures &&
@@ -67,7 +67,7 @@ const FurnitureDetail = () => {
                             {pictures.map(picture => (
                                 <article className="card card__article" key={picture.id}>
                                     <div className="card-image">
-                                        <img className="responsive-img z-depth-2" alt={picture.name} src={`http://localhost:3001/image/furnitures/${picture.name}`} />
+                                        <img className="responsive-img" alt={picture.name} src={`http://localhost:3001/image/furnitures/${picture.name}`} />
                                         {/* <img className="responsive-img z-depth-2" alt={picture.name} src={`http://www.salleanthony.fr:6520/image/projects/${picture.name}`} /> */}
                                     </div>
                                 </article>

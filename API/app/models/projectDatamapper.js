@@ -13,7 +13,7 @@ const projectDatamapper = {
 
     async findAll() {
         const result = await client.query(
-            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id WHERE cover_photo = true'
+            'SELECT project.name AS project_name, project_photo.name AS photo_name, * FROM "project" INNER JOIN project_photo ON project_photo.project_id = project.id INNER JOIN STATUS ON STATUS.ID = PROJECT.STATUS_ID WHERE cover_photo = true;'
         );
         return result.rows;
     },

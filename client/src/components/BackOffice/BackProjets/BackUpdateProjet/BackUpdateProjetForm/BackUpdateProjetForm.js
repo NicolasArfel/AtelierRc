@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import BackUpdateProjetFormInput from './BackUpdateProjetFormInput/BackUpdateProjetFormInput'
 import { useNavigate } from 'react-router-dom';
+import { actionResetUpdateProject } from '../../../../../Redux/Actions/BackProjectsActions';
 
 const BackUpdateProjetForm = ({
     project_id,
@@ -19,15 +20,18 @@ const BackUpdateProjetForm = ({
     handlePostProject }) => {
 
     // const [file, setFile] = useState(null)
-    const [labelValue, setLabelValue] = useState(1)
+    const [labelValue, setLabelValue] = useState(1);
     // console.log('labelValue', labelValue);
 
+    const isSucceed = useSelector((state) => state.BackProjectsReducer.isSucceed);
+    const isError = useSelector((state) => state.BackProjectsReducer.isError);
     const labels = useSelector((state) => state.BackProjectsReducer.label);
     // console.log('labels', labels);
 
     let isConfirm = false;
 
     let navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const projectTitle = 'Nom du projet';
     const locationTitle = 'Localisation';
@@ -57,6 +61,10 @@ const BackUpdateProjetForm = ({
             navigate(path);
         }
     }
+
+    useEffect(() => {
+        dispatch(actionResetUpdateProject());
+    }, [dispatch]);
 
     return (
         <form className="col s12 left contact__form" onSubmit={handleSubmit}>
@@ -136,6 +144,8 @@ const BackUpdateProjetForm = ({
                 value={photoCredit}
                 onChange={changeInputValue}
             />
+            {isSucceed === true ? <p style={{ color: 'green' }}>Informations mises à jour avec succès.</p> : ''}
+            {isError === true ? <p style={{ color: 'red' }}>Une Erreur est survenu.</p> : ''}
             <p>(*) Champs obligatoires</p>
             <button
                 className="btn waves-effect waves-light grey darken-3 button"

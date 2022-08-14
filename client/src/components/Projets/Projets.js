@@ -23,7 +23,7 @@ const Projets = () => {
                 {projects.map(project => (
                     <Link
                         to={`/projet/${project.slug}`}
-                        key={project.id}
+                        key={project.slug}
                         className="card-image card__image "
                     >
                         {/* <img className="responsive-img z-depth-2" alt={project.name} src={`http://www.salleanthony.fr:6520/image/projects/${project.name}`} /> */}

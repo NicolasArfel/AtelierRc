@@ -1,31 +1,24 @@
 /* --- import modules --- */
-
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 /* --- import actions --- */
-
 import { actionDeleteFurniture } from '../../../Redux/Actions/BackFurnituresActions';
 
 /* --- import component --- */
-
 import BannerBackOffice from '../BannerBackOffice/BannerBackOffice';
 
 /* --- import css --- */
-
 import './BackMobilier.css'
 
 /* --- variables --- */
-
 const title = 'Back Office'
 
 /* --- creation of the component --- */
-
 const BackMobilier = () => {
 
   /* --- dispatch variable for using actions --- */
-
   const dispatch = useDispatch();
 
   /* --- we get the furnitures state frmo the reducer --- */
@@ -47,7 +40,6 @@ const BackMobilier = () => {
               <tr>
                 <th>Nom de l'article</th>
                 <th>Etat</th>
-                <th>Description</th>
                 <th>Type</th>
                 <th>Actions</th>
               </tr>
@@ -57,7 +49,6 @@ const BackMobilier = () => {
                 <tr key={furniture.id}>
                   <td>{furniture.furniture_name}</td>
                   <td>{furniture.condition}</td>
-                  <td>{furniture.description}</td>
                   <td>{furniture.type}</td>
                   <td>
                     <button

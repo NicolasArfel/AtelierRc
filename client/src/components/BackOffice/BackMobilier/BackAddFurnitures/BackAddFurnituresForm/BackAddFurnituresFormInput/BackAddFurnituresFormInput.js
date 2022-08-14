@@ -9,7 +9,7 @@ const BackAddFurnituresFormInput = ({ type, name, onChange, value, title }) => {
     return (
         <div className="input-field col s12">
             <input
-                value={value}
+                value={value == null ? '' : value}
                 name={name}
                 id={type}
                 type={type}
@@ -27,7 +27,7 @@ BackAddFurnituresFormInput.propTypes = {
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     title: PropTypes.string.isRequired,
 }
 

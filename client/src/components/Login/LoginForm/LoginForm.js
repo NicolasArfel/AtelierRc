@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 
 import LoginFormInput from "./LoginFormInput/LoginFormInput";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const LoginForm = ({ title, email, password, isLogged, changeInputValue, handleLogin }) => {
-
+    const error = useSelector((state) => state.UserReducer.isErrored);
     let navigate = useNavigate();
 
     const emailTitle = 'Email';
@@ -33,6 +34,7 @@ const LoginForm = ({ title, email, password, isLogged, changeInputValue, handleL
                     value={password}
                     onChange={changeInputValue}
                 />
+                {error === true && <p style={{color: 'red'}}>Email ou Mot de Passe Incorrect </p> }
                 <button
                     className="btn waves-effect waves-light grey darken-3 button"
                     type="submit"

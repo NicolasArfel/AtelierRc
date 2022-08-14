@@ -1,17 +1,18 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import BackAddFurnituresFormInput from "./BackAddFurnituresFormInput/BackAddFurnituresFormInput";
 
 const BackAddFurnituresForm = ({
+    imageHandler,
+    setFile,
+    file,
     furnitureName,
     type,
     editor,
     designer,
     date,
     dimensions,
-    conditions,
     description,
-    // availability,
     photoCredit,
     userId,
     changeInputValue,
@@ -19,9 +20,7 @@ const BackAddFurnituresForm = ({
 
     const disabled = true;
     const navigate = useNavigate()
-    const [file, setFile] = useState(null)
     const [labelValue, setLabelValue] = useState(1)
-    // const dispatch = useDispatch();
     const conditionsLabels = ['Etat correct', 'Bon état', 'Excellent état', 'Pour pièces']
 
     const furnitureTitle = 'Nom du Mobilier';
@@ -66,6 +65,12 @@ const BackAddFurnituresForm = ({
         navigate(path);
     }
 
+    const onChangeCoverImg = (e) => {
+        setFile(e.target.files[0])
+        imageHandler(e)
+    }
+
+
     return (
 
         <form className="col s6 left contact__form" onSubmit={handleSubmit} >
@@ -75,7 +80,7 @@ const BackAddFurnituresForm = ({
                     name="cover_image"
                     accept="image/png, image/jpeg, image/jpg"
                     required
-                    onChange={(e) => { setFile(e.target.files[0]) }}
+                    onChange={onChangeCoverImg}
                     className="input__file-cover-project"
                 />
                 <select id='condition' value={labelValue} onChange={(e) => setLabelValue(e.target.value)}>

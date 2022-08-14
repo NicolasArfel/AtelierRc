@@ -1,11 +1,17 @@
 .furniture__card {
     margin-bottom: 2rem;
     font-size: 1rem;
-    min-width: 300px;
-    max-width: 400px;
+    /* min-width: 300px; */
 }
 .furniture__card-image img{
-    min-height: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+.furniture__card-justone {
+    max-width: 350px;
+    height: 550px;
+    margin: 1rem;
+
 }
 .furniture__section {
     display: flex;
@@ -15,7 +21,7 @@
 }
 
 .furniture__card-title {
-    font-size: 1.7rem;
+    font-size: 1.5rem !important;
 }
 
 .card-reveal {
@@ -33,9 +39,12 @@
     .furniture__card {        
         font-size: 0.8rem;   
     }
+    .furniture__card-action {
+        height: 200px;
+    }
     .furniture__card-field {
         justify-content: unset;
-        height: 65%;
+        /* height: 65%; */
     }
 }
 @media (max-width: 990px) {

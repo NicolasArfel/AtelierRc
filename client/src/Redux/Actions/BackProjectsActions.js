@@ -13,9 +13,19 @@ export const POST_MULTY_PHOTO_PROJECT = 'POST_MULTY_PHOTO_PROJECT';
 export const ACTION_DELETE_PHOTO_PROJECT = 'ACTION_DELETE_PHOTO_PROJECT';
 export const ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET = 'ACTION_DISPATCH_PROJECT_FORM_AUTO_COMPLET';
 export const ACTION_RESET_FORM_ADD_PROJECT = 'ACTION_RESET_FORM_ADD_PROJECT';
+export const ACTION_SUCCEED_UPDATE_PROJECT = 'ACTION_SUCCEED_UPDATE_PROJECT';
+export const ACTION_RESET_UPDATE_PROJECT = 'ACTION_RESET_UPDATE_PROJECT';
 
 export const actionAxiosGetOnlyProjects = () => ({
     type: ACTION_AXIOS_GET_ONLY_PROJECTS
+})
+
+export const actionSucceedUpdateProjects = () => ({
+    type: ACTION_SUCCEED_UPDATE_PROJECT
+})
+
+export const actionResetUpdateProject = () => ({
+    type: ACTION_RESET_UPDATE_PROJECT
 })
 
 export const actionDispatchProjetFormAutoComplet = (project) => ({

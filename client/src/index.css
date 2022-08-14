@@ -31,6 +31,20 @@ code {
   color: #e51c23 !important;
 }
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #757575;
+  border-radius: 10px;
+  border: 3px solid #757575;
+}
+
 .materialize-red.lighten-5 {
   background-color: #fdeaeb !important;
 }

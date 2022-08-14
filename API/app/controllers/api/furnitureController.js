@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const { updateOneFurniture } = require('../../models/furnitureDatamapper.js');
 const furnitureDatamapper = require('../../models/furnitureDatamapper.js');
 
@@ -17,10 +19,9 @@ const furnitureController = {
   async getOne(req, res) {
     try {
       const furniture = await furnitureDatamapper.findByPk(req.params.id);
-      //  if (!furniture) {
-      //throw new ApiError('Post not found', { statusCode: 404 });
-      //  res.send('furniture not found');
-      // }
+      if (!furniture) {
+        res.status(404).json("furniture not found");
+      }
       return res.json(furniture);
     } catch (error) {
       console.trace(error);
@@ -39,14 +40,27 @@ const furnitureController = {
   },
 
   async deletePhoto(req, res) {
-    const deleteThisPhoto = await furnitureDatamapper.findPhotoByPk(req.params.id);
-    console.log("je suis dans le controller delete", deleteThisPhoto)
-    if (!deleteThisPhoto) {
-      return res.status(404).json("error: The photo you are looking for does not exists");
+    try {
+      const deleteThisPhoto = await furnitureDatamapper.findPhotoByPk(req.params.id);
+      // console.log("je suis dans le controller delete", deleteThisPhoto)
+      const photoName = [];
+      photoName.push(deleteThisPhoto[0].name);
+      console.log('photoname', photoName)
+      if (!deleteThisPhoto) {
+        return res.status(404).json("error: The photo you are looking for does not exists");
+      }
+      const response = await furnitureDatamapper.deletePhoto(req.params.id);
+      // console.log('delete resp',response)
+      if (response) {
+        fs.unlinkSync(`public/image/furnitures/${photoName}`);
+        return res.status(204).json(toString('The photo has been deleted'));
+      } else {
+        return res.status(400).json("error: The photo is not delete");
+
+      }
+    } catch (err) {
+      return res.status(400).send(err);
     }
-    await furnitureDatamapper.deletePhoto(req.params.id);
-    // 204 : No Content
-    return res.status(204).json(toString('The photo has been deleted'));
   },
 
   async switchCoverPhotoFurniture(req, res) {

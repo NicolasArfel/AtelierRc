@@ -9,7 +9,7 @@ const logoInsta = '../../images/instagram-brands.svg'
 
 const Footer = () => {
 
-const isLogged = useSelector((state) => state.UserReducer.isLogged);
+    const isLogged = useSelector((state) => state.UserReducer.isLogged);
 
     return (
         <footer className="page-footer">
@@ -28,10 +28,12 @@ const isLogged = useSelector((state) => state.UserReducer.isLogged);
             </div>
             <div className="footer-copyright">
                 <div className="container center">
-                    <p className='copyright'>© 2022 Copyright Atelier-RC</p>
-                {!isLogged && <NavLink to="/login" className='login__link' >
-                    Se connecter au Back Office
-                </NavLink>}
+                    <NavLink to='/credit'>
+                        <p className='copyright'>© 2022 Copyright Atelier-RC</p>
+                    </NavLink>
+                    {!isLogged && <NavLink to="/login" className='login__link' >
+                        Se connecter au Back Office
+                    </NavLink>}
                 </div>
             </div>
         </footer>
